@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pref_off">Off</string>
+    <string name="pref_on">On</string>
+    <string name="pref_graphics">Graphics</string>
+
+    <string name="pref_transparency_title">Transparency</string>
+    <string name="pref_transparency_off">Transparency off</string>
+    <string name="pref_transparency_on">Transparency on</string>
+
+    <string name="pref_quality_title">Quality</string>
+
+    <string name="pref_light_title">Light(not ready)</string>
+    <string name="pref_light_off">Light off</string>
+    <string name="pref_light_on">Light on</string>
+
+    <string name="pref_background_color_title">Background color</string>
+
+    <string name="pref_title_controls">Controls</string>
+</resources>

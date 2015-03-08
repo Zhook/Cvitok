@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <Button android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/dialog_files_save"
+            android:id="@+id/dialog_file_save"
+            android:layout_gravity="center_horizontal"/>
+    <Button android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/dialog_files_load"
+            android:id="@+id/dialog_file_load"
+            android:layout_gravity="center_horizontal"/>
+    <Button android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/dialog_file_new"
+            android:id="@+id/dialog_file_new"
+            android:layout_gravity="center_horizontal"/>
+</LinearLayout>

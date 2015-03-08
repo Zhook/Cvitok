@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pref_off">Выкл</string>
+    <string name="pref_on">Вкл</string>
+    <string name="pref_graphics">Графика</string>
+
+    <string name="pref_transparency_title">Прозрачность</string>
+    <string name="pref_transparency_off">Прозрачность выключена</string>
+    <string name="pref_transparency_on">Прозрачность включена</string>
+
+    <string name="pref_quality_title">Качество</string>
+
+    <string name="pref_light_title">Свет(не работает)</string>
+    <string name="pref_light_off">Свет выключен</string>
+    <string name="pref_light_on">Свет включен</string>
+
+    <string name="pref_title_controls">Управление</string>
+</resources>

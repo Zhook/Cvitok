@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+    <PreferenceScreen android:key="@string/preference_key_graphics"
+                      android:title="@string/pref_graphics"
+                      android:summary="">
+
+        <net.vc9ufi.cvitok.settings.QualityDialogPref
+                android:key="@string/preference_key_quality"
+                android:title="@string/pref_quality_title"
+                android:dialogTitle="@string/pref_quality_title"
+                android:summary=""
+                android:persistent="true"
+                android:defaultValue="10"/>
+
+        <SwitchPreference
+                android:key="@string/preference_key_transparency"
+                android:title="@string/pref_transparency_title"
+                android:summaryOff="@string/pref_transparency_off"
+                android:summaryOn="@string/pref_transparency_on"
+                android:switchTextOff="@string/pref_off"
+                android:switchTextOn="@string/pref_on"/>
+
+        <SwitchPreference
+                android:key="@string/preference_key_light_switch"
+                android:title="@string/pref_light_title"
+                android:summaryOff="@string/pref_light_off"
+                android:summaryOn="@string/pref_light_on"
+                android:switchTextOff="@string/pref_off"
+                android:switchTextOn="@string/pref_on"/>
+
+    </PreferenceScreen>
+
+    <PreferenceScreen android:key="@string/preference_key_controls"
+                      android:title="@string/pref_title_controls"
+                      android:summary="">
+
+
+    </PreferenceScreen>
+
+
+</PreferenceScreen>

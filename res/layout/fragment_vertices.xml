@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fragment_vertices_button_vertces"
+            android:src="@drawable/ic_action_vertices"
+            android:layout_alignParentTop="true"
+            android:contentDescription="@string/fragment_flower_background"
+            android:layout_toLeftOf="@+id/fragment_vertices_button_color_vertices"
+            android:layout_alignBottom="@+id/fragment_vertices_button_color_vertices"/>
+    <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fragment_vertices_button_color_vertices"
+            android:src="@drawable/ic_action_vertices_color"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:contentDescription="@string/fragment_flower_background"/>
+</RelativeLayout>

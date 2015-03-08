@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Cvitok</string>
+
+
+    <string name="menu_settings">Settings</string>
+    <string name="menu_files">Files</string>
+
+    <string name="flower">Flower</string>
+    <string name="petal">Petal</string>
+
+    <string name="dialog_petal_name_title">Name of petal</string>
+    <string name="msg_input_name">Input name</string>
+    <string name="msg_petal_exists">Petal with the same name already exists</string>
+    <string name="dialog_first_petal_name_title">Name of first petal</string>
+    <string name="dialog_delete_petal_title">Delete petal?</string>
+
+    <string name="dialog_files_title">Files</string>
+    <string name="dialog_files_not_found">Not found</string>
+    <string name="dialog_files_save">Save</string>
+    <string name="dialog_files_load">Load</string>
+    <string name="toast_file_corrupted">The file is corrupted</string>
+    <string name="dialog_file_new">New</string>
+    <string name="toast_file_exists">File with the same name already exists</string>
+    <string name="dialog_flower_name_title">Name of flower</string>
+    <string name="dialog_delete_file_title">Delete file?</string>
+    <string name="toast_file_deleted">File deleted</string>
+    <string name="dialog_file_delete">Delete</string>
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+    <string name="Ok">OK</string>
+    <string name="Cancel">Cancel</string>
+
+    <string name="dialog_color_title">Choice color</string>
+
+    <string name="dialog_vertices_title">Choice Of Vertices</string>
+    <string name="dialog_vertices_checkBox_tip">Tip</string>
+    <string name="dialog_vertices_checkBox_upside">UpSide</string>
+    <string name="dialog_vertices_checkBox_downside">DownSide</string>
+    <string name="dialog_vertices_checkBox_foot">Foot</string>
+
+    <string name="fragment_light_button_ambient">am</string>
+    <string name="fragment_light_button_diffuse">di</string>
+    <string name="fragment_light_button_specular">sp</string>
+
+    <string name="fragment_flower_background">Background</string>
+    <string name="fragment_flower_petals">Petals</string>
+    <string name="fragment_flower_text_flower">Flower</string>
+    <string name="fragment_flower_light">Light</string>
+
+
+</resources>

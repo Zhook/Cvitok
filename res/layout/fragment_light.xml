@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fragment_light_button_ambient"
+            android:id="@+id/fragment_light_button_ambient"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/fragment_light_button_diffuse"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fragment_light_button_diffuse"
+            android:id="@+id/fragment_light_button_diffuse"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/fragment_light_button_specular"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fragment_light_button_specular"
+            android:id="@+id/fragment_light_button_specular"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"/>
+</RelativeLayout>

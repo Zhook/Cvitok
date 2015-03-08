@@ -1,0 +1,1585 @@
+com.google.gson.ExclusionStrategy -> a.a.a.a:
+    boolean shouldSkipField(com.google.gson.FieldAttributes) -> a
+    boolean shouldSkipClass(java.lang.Class) -> a
+com.google.gson.FieldAttributes -> a.a.a.b:
+    java.lang.reflect.Field field -> a
+com.google.gson.FieldNamingPolicy -> a.a.a.c:
+    com.google.gson.FieldNamingPolicy IDENTITY -> a
+    com.google.gson.FieldNamingPolicy UPPER_CAMEL_CASE -> b
+    com.google.gson.FieldNamingPolicy UPPER_CAMEL_CASE_WITH_SPACES -> c
+    com.google.gson.FieldNamingPolicy LOWER_CASE_WITH_UNDERSCORES -> d
+    com.google.gson.FieldNamingPolicy LOWER_CASE_WITH_DASHES -> e
+    com.google.gson.FieldNamingPolicy[] $VALUES -> f
+    com.google.gson.FieldNamingPolicy[] values() -> values
+    com.google.gson.FieldNamingPolicy valueOf(java.lang.String) -> valueOf
+    java.lang.String separateCamelCase(java.lang.String,java.lang.String) -> b
+    java.lang.String upperCaseFirstLetter(java.lang.String) -> b
+    java.lang.String modifyString(char,java.lang.String,int) -> a
+    java.lang.String access$100(java.lang.String) -> a
+    java.lang.String access$200(java.lang.String,java.lang.String) -> a
+com.google.gson.FieldNamingPolicy$1 -> a.a.a.d:
+    java.lang.String translateName(java.lang.reflect.Field) -> a
+com.google.gson.FieldNamingPolicy$2 -> a.a.a.e:
+    java.lang.String translateName(java.lang.reflect.Field) -> a
+com.google.gson.FieldNamingPolicy$3 -> a.a.a.f:
+    java.lang.String translateName(java.lang.reflect.Field) -> a
+com.google.gson.FieldNamingPolicy$4 -> a.a.a.g:
+    java.lang.String translateName(java.lang.reflect.Field) -> a
+com.google.gson.FieldNamingPolicy$5 -> a.a.a.h:
+    java.lang.String translateName(java.lang.reflect.Field) -> a
+com.google.gson.FieldNamingStrategy -> a.a.a.i:
+    java.lang.String translateName(java.lang.reflect.Field) -> a
+com.google.gson.Gson -> a.a.a.j:
+    java.lang.ThreadLocal calls -> c
+    java.util.Map typeTokenCache -> d
+    java.util.List factories -> e
+    com.google.gson.internal.ConstructorConstructor constructorConstructor -> f
+    boolean serializeNulls -> g
+    boolean htmlSafe -> h
+    boolean generateNonExecutableJson -> i
+    boolean prettyPrinting -> j
+    com.google.gson.JsonDeserializationContext deserializationContext -> a
+    com.google.gson.JsonSerializationContext serializationContext -> b
+    com.google.gson.TypeAdapter doubleAdapter(boolean) -> a
+    com.google.gson.TypeAdapter floatAdapter(boolean) -> b
+    void checkValidFloatingPoint(double) -> a
+    com.google.gson.TypeAdapter longAdapter(com.google.gson.LongSerializationPolicy) -> a
+    com.google.gson.TypeAdapter getAdapter(com.google.gson.reflect.TypeToken) -> a
+    com.google.gson.TypeAdapter getDelegateAdapter(com.google.gson.TypeAdapterFactory,com.google.gson.reflect.TypeToken) -> a
+    com.google.gson.TypeAdapter getAdapter(java.lang.Class) -> a
+    java.lang.String toJson(java.lang.Object) -> a
+    java.lang.String toJson(java.lang.Object,java.lang.reflect.Type) -> a
+    void toJson(java.lang.Object,java.lang.reflect.Type,java.lang.Appendable) -> a
+    void toJson(java.lang.Object,java.lang.reflect.Type,com.google.gson.stream.JsonWriter) -> a
+    java.lang.String toJson(com.google.gson.JsonElement) -> a
+    void toJson(com.google.gson.JsonElement,java.lang.Appendable) -> a
+    com.google.gson.stream.JsonWriter newJsonWriter(java.io.Writer) -> a
+    void toJson(com.google.gson.JsonElement,com.google.gson.stream.JsonWriter) -> a
+    java.lang.Object fromJson(java.lang.String,java.lang.Class) -> a
+    java.lang.Object fromJson(java.lang.String,java.lang.reflect.Type) -> a
+    java.lang.Object fromJson(java.io.Reader,java.lang.reflect.Type) -> a
+    void assertFullConsumption(java.lang.Object,com.google.gson.stream.JsonReader) -> a
+    java.lang.Object fromJson(com.google.gson.stream.JsonReader,java.lang.reflect.Type) -> a
+    java.lang.String toString() -> toString
+    void access$000(com.google.gson.Gson,double) -> a
+com.google.gson.Gson$1 -> a.a.a.k:
+    com.google.gson.Gson this$0 -> a
+com.google.gson.Gson$2 -> a.a.a.l:
+    com.google.gson.Gson this$0 -> a
+com.google.gson.Gson$3 -> a.a.a.m:
+    com.google.gson.Gson this$0 -> a
+    java.lang.Double read(com.google.gson.stream.JsonReader) -> a
+    void write(com.google.gson.stream.JsonWriter,java.lang.Number) -> a
+    java.lang.Object read(com.google.gson.stream.JsonReader) -> b
+    void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> a
+com.google.gson.Gson$4 -> a.a.a.n:
+    com.google.gson.Gson this$0 -> a
+    java.lang.Float read(com.google.gson.stream.JsonReader) -> a
+    void write(com.google.gson.stream.JsonWriter,java.lang.Number) -> a
+    java.lang.Object read(com.google.gson.stream.JsonReader) -> b
+    void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> a
+com.google.gson.Gson$5 -> a.a.a.o:
+    com.google.gson.Gson this$0 -> a
+    java.lang.Number read(com.google.gson.stream.JsonReader) -> a
+    void write(com.google.gson.stream.JsonWriter,java.lang.Number) -> a
+    java.lang.Object read(com.google.gson.stream.JsonReader) -> b
+    void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> a
+com.google.gson.Gson$FutureTypeAdapter -> a.a.a.p:
+    com.google.gson.TypeAdapter delegate -> a
+    void setDelegate(com.google.gson.TypeAdapter) -> a
+    java.lang.Object read(com.google.gson.stream.JsonReader) -> b
+    void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> a
+com.google.gson.InstanceCreator -> a.a.a.q:
+    java.lang.Object createInstance(java.lang.reflect.Type) -> a
+com.google.gson.JsonArray -> a.a.a.r:
+    java.util.List elements -> a
+    void add(com.google.gson.JsonElement) -> a
+    java.util.Iterator iterator() -> iterator
+    java.lang.Number getAsNumber() -> a
+    java.lang.String getAsString() -> b
+    double getAsDouble() -> c
+    long getAsLong() -> d
+    int getAsInt() -> e
+    boolean getAsBoolean() -> f
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+com.google.gson.JsonDeserializationContext -> a.a.a.s:
+com.google.gson.JsonElement -> a.a.a.t:
+    boolean isJsonArray() -> g
+    boolean isJsonObject() -> h
+    boolean isJsonPrimitive() -> i
+    boolean isJsonNull() -> j
+    com.google.gson.JsonObject getAsJsonObject() -> k
+    com.google.gson.JsonArray getAsJsonArray() -> l
+    com.google.gson.JsonPrimitive getAsJsonPrimitive() -> m
+    boolean getAsBoolean() -> f
+    java.lang.Boolean getAsBooleanWrapper() -> n
+    java.lang.Number getAsNumber() -> a
+    java.lang.String getAsString() -> b
+    double getAsDouble() -> c
+    long getAsLong() -> d
+    int getAsInt() -> e
+    java.lang.String toString() -> toString
+com.google.gson.JsonIOException -> a.a.a.u:
+com.google.gson.JsonNull -> a.a.a.v:
+    com.google.gson.JsonNull INSTANCE -> a
+    int hashCode() -> hashCode
+    boolean equals(java.lang.Object) -> equals
+com.google.gson.JsonObject -> a.a.a.w:
+    com.google.gson.internal.LinkedTreeMap members -> a
+    void add(java.lang.String,com.google.gson.JsonElement) -> a
+    java.util.Set entrySet() -> o
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+com.google.gson.JsonParseException -> a.a.a.x:
+com.google.gson.JsonPrimitive -> a.a.a.y:
+    java.lang.Class[] PRIMITIVE_TYPES -> a
+    java.lang.Object value -> b
+    void setValue(java.lang.Object) -> a
+    boolean isBoolean() -> o
+    java.lang.Boolean getAsBooleanWrapper() -> n
+    boolean getAsBoolean() -> f
+    boolean isNumber() -> p
+    java.lang.Number getAsNumber() -> a
+    boolean isString() -> q
+    java.lang.String getAsString() -> b
+    double getAsDouble() -> c
+    long getAsLong() -> d
+    int getAsInt() -> e
+    boolean isPrimitiveOrString(java.lang.Object) -> b
+    int hashCode() -> hashCode
+    boolean equals(java.lang.Object) -> equals
+    boolean isIntegral(com.google.gson.JsonPrimitive) -> a
+com.google.gson.JsonSerializationContext -> a.a.a.z:
+com.google.gson.JsonSyntaxException -> a.a.a.aa:
+com.google.gson.LongSerializationPolicy -> a.a.a.ab:
+    com.google.gson.LongSerializationPolicy DEFAULT -> a
+    com.google.gson.LongSerializationPolicy STRING -> b
+    com.google.gson.LongSerializationPolicy[] $VALUES -> c
+    com.google.gson.LongSerializationPolicy[] values() -> values
+    com.google.gson.LongSerializationPolicy valueOf(java.lang.String) -> valueOf
+com.google.gson.LongSerializationPolicy$1 -> a.a.a.ac:
+com.google.gson.LongSerializationPolicy$2 -> a.a.a.ad:
+com.google.gson.TypeAdapter -> a.a.a.ae:
+    void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> a
+    com.google.gson.JsonElement toJsonTree(java.lang.Object) -> a
+    java.lang.Object read(com.google.gson.stream.JsonReader) -> b
+com.google.gson.TypeAdapterFactory -> a.a.a.af:
+    com.google.gson.TypeAdapter create(com.google.gson.Gson,com.google.gson.reflect.TypeToken) -> a
+com.google.gson.annotations.Expose -> a.a.a.a.a:
+    boolean serialize() -> a
+    boolean deserialize() -> b
+com.google.gson.annotations.JsonAdapter -> a.a.a.a.b:
+    java.lang.Class value() -> a
+com.google.gson.annotations.SerializedName -> a.a.a.a.c:
+    java.lang.String value() -> a
+com.google.gson.annotations.Since -> a.a.a.a.d:
+    double value() -> a
+com.google.gson.annotations.Until -> a.a.a.a.e:
+    double value() -> a
+com.google.gson.internal.$Gson$Preconditions -> a.a.a.b.a:
+    java.lang.Object checkNotNull(java.lang.Object) -> a
+    void checkArgument(boolean) -> a
+com.google.gson.internal.$Gson$Types -> a.a.a.b.b:
+    java.lang.reflect.Type[] EMPTY_TYPE_ARRAY -> a
+    java.lang.reflect.ParameterizedType newParameterizedTypeWithOwner(java.lang.reflect.Type,java.lang.reflect.Type,java.lang.reflect.Type[]) -> a
+    java.lang.reflect.GenericArrayType arrayOf(java.lang.reflect.Type) -> a
+    java.lang.reflect.WildcardType subtypeOf(java.lang.reflect.Type) -> b
+    java.lang.reflect.WildcardType supertypeOf(java.lang.reflect.Type) -> c
+    java.lang.reflect.Type canonicalize(java.lang.reflect.Type) -> d
+    java.lang.Class getRawType(java.lang.reflect.Type) -> e
+    boolean equal(java.lang.Object,java.lang.Object) -> a
+    boolean equals(java.lang.reflect.Type,java.lang.reflect.Type) -> a
+    int hashCodeOrZero(java.lang.Object) -> b
+    java.lang.String typeToString(java.lang.reflect.Type) -> f
+    java.lang.reflect.Type getGenericSupertype(java.lang.reflect.Type,java.lang.Class,java.lang.Class) -> a
+    java.lang.reflect.Type getSupertype(java.lang.reflect.Type,java.lang.Class,java.lang.Class) -> b
+    java.lang.reflect.Type getArrayComponentType(java.lang.reflect.Type) -> g
+    java.lang.reflect.Type getCollectionElementType(java.lang.reflect.Type,java.lang.Class) -> a
+    java.lang.reflect.Type[] getMapKeyAndValueTypes(java.lang.reflect.Type,java.lang.Class) -> b
+    java.lang.reflect.Type resolve(java.lang.reflect.Type,java.lang.Class,java.lang.reflect.Type) -> a
+    java.lang.reflect.Type resolveTypeVariable(java.lang.reflect.Type,java.lang.Class,java.lang.reflect.TypeVariable) -> a
+    int indexOf(java.lang.Object[],java.lang.Object) -> a
+    java.lang.Class declaringClassOf(java.lang.reflect.TypeVariable) -> a
+    void checkNotPrimitive(java.lang.reflect.Type) -> i
+    void access$000(java.lang.reflect.Type) -> h
+    int access$100(java.lang.Object) -> a
+com.google.gson.internal.$Gson$Types$GenericArrayTypeImpl -> a.a.a.b.c:
+    java.lang.reflect.Type componentType -> a
+    java.lang.reflect.Type getGenericComponentType() -> getGenericComponentType
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+com.google.gson.internal.$Gson$Types$ParameterizedTypeImpl -> a.a.a.b.d:
+    java.lang.reflect.Type ownerType -> a
+    java.lang.reflect.Type rawType -> b
+    java.lang.reflect.Type[] typeArguments -> c
+    java.lang.reflect.Type[] getActualTypeArguments() -> getActualTypeArguments
+    java.lang.reflect.Type getRawType() -> getRawType
+    java.lang.reflect.Type getOwnerType() -> getOwnerType
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+com.google.gson.internal.$Gson$Types$WildcardTypeImpl -> a.a.a.b.e:
+    java.lang.reflect.Type upperBound -> a
+    java.lang.reflect.Type lowerBound -> b
+    java.lang.reflect.Type[] getUpperBounds() -> getUpperBounds
+    java.lang.reflect.Type[] getLowerBounds() -> getLowerBounds
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+com.google.gson.internal.ConstructorConstructor -> a.a.a.b.f:
+    java.util.Map instanceCreators -> a
+    com.google.gson.internal.ObjectConstructor get(com.google.gson.reflect.TypeToken) -> a
+    com.google.gson.internal.ObjectConstructor newDefaultConstructor(java.lang.Class) -> a
+    com.google.gson.internal.ObjectConstructor newDefaultImplementationConstructor(java.lang.reflect.Type,java.lang.Class) -> a
+    com.google.gson.internal.ObjectConstructor newUnsafeAllocator(java.lang.reflect.Type,java.lang.Class) -> b
+    java.lang.String toString() -> toString
+com.google.gson.internal.ConstructorConstructor$1 -> a.a.a.b.g:
+    com.google.gson.InstanceCreator val$typeCreator -> a
+    java.lang.reflect.Type val$type -> b
+    com.google.gson.internal.ConstructorConstructor this$0 -> c
+    java.lang.Object construct() -> a
+com.google.gson.internal.ConstructorConstructor$10 -> a.a.a.b.h:
+    com.google.gson.internal.ConstructorConstructor this$0 -> a
+    java.lang.Object construct() -> a
+com.google.gson.internal.ConstructorConstructor$11 -> a.a.a.b.i:
+    com.google.gson.internal.ConstructorConstructor this$0 -> a
+    java.lang.Object construct() -> a
+com.google.gson.internal.ConstructorConstructor$12 -> a.a.a.b.j:
+    com.google.gson.internal.UnsafeAllocator unsafeAllocator -> d
+    java.lang.Class val$rawType -> a
+    java.lang.reflect.Type val$type -> b
+    com.google.gson.internal.ConstructorConstructor this$0 -> c
+    java.lang.Object construct() -> a
+com.google.gson.internal.ConstructorConstructor$2 -> a.a.a.b.k:
+    com.google.gson.InstanceCreator val$rawTypeCreator -> a
+    java.lang.reflect.Type val$type -> b
+    com.google.gson.internal.ConstructorConstructor this$0 -> c
+    java.lang.Object construct() -> a
+com.google.gson.internal.ConstructorConstructor$3 -> a.a.a.b.l:
+    java.lang.reflect.Constructor val$constructor -> a
+    com.google.gson.internal.ConstructorConstructor this$0 -> b
+    java.lang.Object construct() -> a
+com.google.gson.internal.ConstructorConstructor$4 -> a.a.a.b.m:
+    com.google.gson.internal.ConstructorConstructor this$0 -> a
+    java.lang.Object construct() -> a
+com.google.gson.internal.ConstructorConstructor$5 -> a.a.a.b.n:
+    java.lang.reflect.Type val$type -> a
+    com.google.gson.internal.ConstructorConstructor this$0 -> b
+    java.lang.Object construct() -> a
+com.google.gson.internal.ConstructorConstructor$6 -> a.a.a.b.o:
+    com.google.gson.internal.ConstructorConstructor this$0 -> a
+    java.lang.Object construct() -> a
+com.google.gson.internal.ConstructorConstructor$7 -> a.a.a.b.p:
+    com.google.gson.internal.ConstructorConstructor this$0 -> a
+    java.lang.Object construct() -> a
+com.google.gson.internal.ConstructorConstructor$8 -> a.a.a.b.q:
+    com.google.gson.internal.ConstructorConstructor this$0 -> a
+    java.lang.Object construct() -> a
+com.google.gson.internal.ConstructorConstructor$9 -> a.a.a.b.r:
+    com.google.gson.internal.ConstructorConstructor this$0 -> a
+    java.lang.Object construct() -> a
+com.google.gson.internal.Excluder -> a.a.a.b.s:
+    com.google.gson.internal.Excluder DEFAULT -> a
+    double version -> b
+    int modifiers -> c
+    boolean serializeInnerClasses -> d
+    boolean requireExpose -> e
+    java.util.List serializationStrategies -> f
+    java.util.List deserializationStrategies -> g
+    com.google.gson.internal.Excluder clone() -> a
+    com.google.gson.TypeAdapter create(com.google.gson.Gson,com.google.gson.reflect.TypeToken) -> a
+    boolean excludeField(java.lang.reflect.Field,boolean) -> a
+    boolean excludeClass(java.lang.Class,boolean) -> a
+    boolean isAnonymousOrLocal(java.lang.Class) -> a
+    boolean isInnerClass(java.lang.Class) -> b
+    boolean isStatic(java.lang.Class) -> c
+    boolean isValidVersion(com.google.gson.annotations.Since,com.google.gson.annotations.Until) -> a
+    boolean isValidSince(com.google.gson.annotations.Since) -> a
+    boolean isValidUntil(com.google.gson.annotations.Until) -> a
+    java.lang.Object clone() -> clone
+com.google.gson.internal.Excluder$1 -> a.a.a.b.t:
+    com.google.gson.TypeAdapter delegate -> f
+    boolean val$skipDeserialize -> a
+    boolean val$skipSerialize -> b
+    com.google.gson.Gson val$gson -> c
+    com.google.gson.reflect.TypeToken val$type -> d
+    com.google.gson.internal.Excluder this$0 -> e
+    java.lang.Object read(com.google.gson.stream.JsonReader) -> b
+    void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> a
+    com.google.gson.TypeAdapter delegate() -> a
+com.google.gson.internal.JsonReaderInternalAccess -> a.a.a.b.u:
+    com.google.gson.internal.JsonReaderInternalAccess INSTANCE -> a
+    void promoteNameToValue(com.google.gson.stream.JsonReader) -> a
+com.google.gson.internal.LazilyParsedNumber -> a.a.a.b.v:
+    java.lang.String value -> a
+    int intValue() -> intValue
+    long longValue() -> longValue
+    float floatValue() -> floatValue
+    double doubleValue() -> doubleValue
+    java.lang.String toString() -> toString
+com.google.gson.internal.LinkedTreeMap -> a.a.a.b.w:
+    java.util.Comparator NATURAL_ORDER -> g
+    java.util.Comparator comparator -> a
+    com.google.gson.internal.LinkedTreeMap$Node root -> b
+    int size -> c
+    int modCount -> d
+    com.google.gson.internal.LinkedTreeMap$Node header -> e
+    com.google.gson.internal.LinkedTreeMap$EntrySet entrySet -> h
+    com.google.gson.internal.LinkedTreeMap$KeySet keySet -> i
+    boolean $assertionsDisabled -> f
+    int size() -> size
+    java.lang.Object get(java.lang.Object) -> get
+    boolean containsKey(java.lang.Object) -> containsKey
+    java.lang.Object put(java.lang.Object,java.lang.Object) -> put
+    void clear() -> clear
+    java.lang.Object remove(java.lang.Object) -> remove
+    com.google.gson.internal.LinkedTreeMap$Node find(java.lang.Object,boolean) -> a
+    com.google.gson.internal.LinkedTreeMap$Node findByObject(java.lang.Object) -> a
+    com.google.gson.internal.LinkedTreeMap$Node findByEntry(java.util.Map$Entry) -> a
+    boolean equal(java.lang.Object,java.lang.Object) -> a
+    void removeInternal(com.google.gson.internal.LinkedTreeMap$Node,boolean) -> a
+    com.google.gson.internal.LinkedTreeMap$Node removeInternalByKey(java.lang.Object) -> b
+    void replaceInParent(com.google.gson.internal.LinkedTreeMap$Node,com.google.gson.internal.LinkedTreeMap$Node) -> a
+    void rebalance(com.google.gson.internal.LinkedTreeMap$Node,boolean) -> b
+    void rotateLeft(com.google.gson.internal.LinkedTreeMap$Node) -> a
+    void rotateRight(com.google.gson.internal.LinkedTreeMap$Node) -> b
+    java.util.Set entrySet() -> entrySet
+    java.util.Set keySet() -> keySet
+com.google.gson.internal.LinkedTreeMap$1 -> a.a.a.b.x:
+    int compare(java.lang.Comparable,java.lang.Comparable) -> a
+    int compare(java.lang.Object,java.lang.Object) -> compare
+com.google.gson.internal.LinkedTreeMap$EntrySet -> a.a.a.b.y:
+    com.google.gson.internal.LinkedTreeMap this$0 -> a
+    int size() -> size
+    java.util.Iterator iterator() -> iterator
+    boolean contains(java.lang.Object) -> contains
+    boolean remove(java.lang.Object) -> remove
+    void clear() -> clear
+com.google.gson.internal.LinkedTreeMap$EntrySet$1 -> a.a.a.b.z:
+    com.google.gson.internal.LinkedTreeMap$EntrySet this$1 -> a
+    java.util.Map$Entry next() -> a
+    java.lang.Object next() -> next
+com.google.gson.internal.LinkedTreeMap$KeySet -> a.a.a.b.aa:
+    com.google.gson.internal.LinkedTreeMap this$0 -> a
+    int size() -> size
+    java.util.Iterator iterator() -> iterator
+    boolean contains(java.lang.Object) -> contains
+    boolean remove(java.lang.Object) -> remove
+    void clear() -> clear
+com.google.gson.internal.LinkedTreeMap$KeySet$1 -> a.a.a.b.ab:
+    com.google.gson.internal.LinkedTreeMap$KeySet this$1 -> a
+    java.lang.Object next() -> next
+com.google.gson.internal.LinkedTreeMap$LinkedTreeMapIterator -> a.a.a.b.ac:
+    com.google.gson.internal.LinkedTreeMap$Node next -> b
+    com.google.gson.internal.LinkedTreeMap$Node lastReturned -> c
+    int expectedModCount -> d
+    com.google.gson.internal.LinkedTreeMap this$0 -> e
+    boolean hasNext() -> hasNext
+    com.google.gson.internal.LinkedTreeMap$Node nextNode() -> b
+    void remove() -> remove
+com.google.gson.internal.LinkedTreeMap$Node -> a.a.a.b.ad:
+    com.google.gson.internal.LinkedTreeMap$Node parent -> a
+    com.google.gson.internal.LinkedTreeMap$Node left -> b
+    com.google.gson.internal.LinkedTreeMap$Node right -> c
+    com.google.gson.internal.LinkedTreeMap$Node next -> d
+    com.google.gson.internal.LinkedTreeMap$Node prev -> e
+    java.lang.Object key -> f
+    java.lang.Object value -> g
+    int height -> h
+    java.lang.Object getKey() -> getKey
+    java.lang.Object getValue() -> getValue
+    java.lang.Object setValue(java.lang.Object) -> setValue
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+    com.google.gson.internal.LinkedTreeMap$Node first() -> a
+    com.google.gson.internal.LinkedTreeMap$Node last() -> b
+com.google.gson.internal.ObjectConstructor -> a.a.a.b.ae:
+    java.lang.Object construct() -> a
+com.google.gson.internal.Primitives -> a.a.a.b.af:
+    java.util.Map PRIMITIVE_TO_WRAPPER_TYPE -> a
+    java.util.Map WRAPPER_TO_PRIMITIVE_TYPE -> b
+    void add(java.util.Map,java.util.Map,java.lang.Class,java.lang.Class) -> a
+    boolean isPrimitive(java.lang.reflect.Type) -> a
+    java.lang.Class wrap(java.lang.Class) -> a
+com.google.gson.internal.Streams -> a.a.a.b.ag:
+    void write(com.google.gson.JsonElement,com.google.gson.stream.JsonWriter) -> a
+    java.io.Writer writerForAppendable(java.lang.Appendable) -> a
+com.google.gson.internal.Streams$1 -> a.a.a.b.ah:
+com.google.gson.internal.Streams$AppendableWriter -> a.a.a.b.ai:
+    java.lang.Appendable appendable -> a
+    com.google.gson.internal.Streams$AppendableWriter$CurrentWrite currentWrite -> b
+    void write(char[],int,int) -> write
+    void write(int) -> write
+    void flush() -> flush
+    void close() -> close
+com.google.gson.internal.Streams$AppendableWriter$CurrentWrite -> a.a.a.b.aj:
+    char[] chars -> a
+    int length() -> length
+    char charAt(int) -> charAt
+    java.lang.CharSequence subSequence(int,int) -> subSequence
+com.google.gson.internal.UnsafeAllocator -> a.a.a.b.ak:
+    java.lang.Object newInstance(java.lang.Class) -> a
+    com.google.gson.internal.UnsafeAllocator create() -> a
+com.google.gson.internal.UnsafeAllocator$1 -> a.a.a.b.al:
+    java.lang.reflect.Method val$allocateInstance -> a
+    java.lang.Object val$unsafe -> b
+    java.lang.Object newInstance(java.lang.Class) -> a
+com.google.gson.internal.UnsafeAllocator$2 -> a.a.a.b.am:
+    java.lang.reflect.Method val$newInstance -> a
+    int val$constructorId -> b
+    java.lang.Object newInstance(java.lang.Class) -> a
+com.google.gson.internal.UnsafeAllocator$3 -> a.a.a.b.an:
+    java.lang.reflect.Method val$newInstance -> a
+    java.lang.Object newInstance(java.lang.Class) -> a
+com.google.gson.internal.UnsafeAllocator$4 -> a.a.a.b.ao:
+    java.lang.Object newInstance(java.lang.Class) -> a
+com.google.gson.internal.bind.ArrayTypeAdapter -> a.a.a.b.a.a:
+    com.google.gson.TypeAdapterFactory FACTORY -> a
+    java.lang.Class componentType -> b
+    com.google.gson.TypeAdapter componentTypeAdapter -> c
+    java.lang.Object read(com.google.gson.stream.JsonReader) -> b
+    void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> a
+com.google.gson.internal.bind.ArrayTypeAdapter$1 -> a.a.a.b.a.b:
+    com.google.gson.TypeAdapter create(com.google.gson.Gson,com.google.gson.reflect.TypeToken) -> a
+com.google.gson.internal.bind.CollectionTypeAdapterFactory -> a.a.a.b.a.c:
+    com.google.gson.internal.ConstructorConstructor constructorConstructor -> a
+    com.google.gson.TypeAdapter create(com.google.gson.Gson,com.google.gson.reflect.TypeToken) -> a
+com.google.gson.internal.bind.CollectionTypeAdapterFactory$Adapter -> a.a.a.b.a.d:
+    com.google.gson.TypeAdapter elementTypeAdapter -> a
+    com.google.gson.internal.ObjectConstructor constructor -> b
+    java.util.Collection read(com.google.gson.stream.JsonReader) -> a
+    void write(com.google.gson.stream.JsonWriter,java.util.Collection) -> a
+    java.lang.Object read(com.google.gson.stream.JsonReader) -> b
+    void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> a
+com.google.gson.internal.bind.DateTypeAdapter -> a.a.a.b.a.e:
+    com.google.gson.TypeAdapterFactory FACTORY -> a
+    java.text.DateFormat enUsFormat -> b
+    java.text.DateFormat localFormat -> c
+    java.text.DateFormat iso8601Format -> d
+    java.text.DateFormat buildIso8601Format() -> a
+    java.util.Date read(com.google.gson.stream.JsonReader) -> a
+    java.util.Date deserializeToDate(java.lang.String) -> a
+    void write(com.google.gson.stream.JsonWriter,java.util.Date) -> a
+    java.lang.Object read(com.google.gson.stream.JsonReader) -> b
+    void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> a
+com.google.gson.internal.bind.DateTypeAdapter$1 -> a.a.a.b.a.f:
+    com.google.gson.TypeAdapter create(com.google.gson.Gson,com.google.gson.reflect.TypeToken) -> a
+com.google.gson.internal.bind.JsonAdapterAnnotationTypeAdapterFactory -> a.a.a.b.a.g:
+    com.google.gson.internal.ConstructorConstructor constructorConstructor -> a
+    com.google.gson.TypeAdapter create(com.google.gson.Gson,com.google.gson.reflect.TypeToken) -> a
+    com.google.gson.TypeAdapter getTypeAdapter(com.google.gson.internal.ConstructorConstructor,com.google.gson.Gson,com.google.gson.reflect.TypeToken,com.google.gson.annotations.JsonAdapter) -> a
+com.google.gson.internal.bind.JsonTreeReader -> a.a.a.b.a.h:
+    java.io.Reader UNREADABLE_READER -> a
+    java.lang.Object SENTINEL_CLOSED -> b
+    java.util.List stack -> c
+    void beginArray() -> a
+    void endArray() -> b
+    void beginObject() -> c
+    void endObject() -> d
+    boolean hasNext() -> e
+    com.google.gson.stream.JsonToken peek() -> f
+    java.lang.Object peekStack() -> r
+    java.lang.Object popStack() -> s
+    void expect(com.google.gson.stream.JsonToken) -> a
+    java.lang.String nextName() -> g
+    java.lang.String nextString() -> h
+    boolean nextBoolean() -> i
+    void nextNull() -> j
+    double nextDouble() -> k
+    long nextLong() -> l
+    int nextInt() -> m
+    void close() -> close
+    void skipValue() -> n
+    java.lang.String toString() -> toString
+    void promoteNameToValue() -> o
+com.google.gson.internal.bind.JsonTreeReader$1 -> a.a.a.b.a.i:
+    int read(char[],int,int) -> read
+    void close() -> close
+com.google.gson.internal.bind.JsonTreeWriter -> a.a.a.b.a.j:
+    java.io.Writer UNWRITABLE_WRITER -> a
+    com.google.gson.JsonPrimitive SENTINEL_CLOSED -> b
+    java.util.List stack -> c
+    java.lang.String pendingName -> d
+    com.google.gson.JsonElement product -> e
+    com.google.gson.JsonElement get() -> a
+    com.google.gson.JsonElement peek() -> j
+    void put(com.google.gson.JsonElement) -> a
+    com.google.gson.stream.JsonWriter beginArray() -> b
+    com.google.gson.stream.JsonWriter endArray() -> c
+    com.google.gson.stream.JsonWriter beginObject() -> d
+    com.google.gson.stream.JsonWriter endObject() -> e
+    com.google.gson.stream.JsonWriter name(java.lang.String) -> a
+    com.google.gson.stream.JsonWriter value(java.lang.String) -> b
+    com.google.gson.stream.JsonWriter nullValue() -> f
+    com.google.gson.stream.JsonWriter value(boolean) -> a
+    com.google.gson.stream.JsonWriter value(long) -> a
+    com.google.gson.stream.JsonWriter value(java.lang.Number) -> a
+    void flush() -> flush
+    void close() -> close
+com.google.gson.internal.bind.JsonTreeWriter$1 -> a.a.a.b.a.k:
+    void write(char[],int,int) -> write
+    void flush() -> flush
+    void close() -> close
+com.google.gson.internal.bind.MapTypeAdapterFactory -> a.a.a.b.a.l:
+    com.google.gson.internal.ConstructorConstructor constructorConstructor -> a
+    boolean complexMapKeySerialization -> b
+    com.google.gson.TypeAdapter create(com.google.gson.Gson,com.google.gson.reflect.TypeToken) -> a
+    com.google.gson.TypeAdapter getKeyAdapter(com.google.gson.Gson,java.lang.reflect.Type) -> a
+    boolean access$000(com.google.gson.internal.bind.MapTypeAdapterFactory) -> a
+com.google.gson.internal.bind.MapTypeAdapterFactory$Adapter -> a.a.a.b.a.m:
+    com.google.gson.TypeAdapter keyTypeAdapter -> b
+    com.google.gson.TypeAdapter valueTypeAdapter -> c
+    com.google.gson.internal.ObjectConstructor constructor -> d
+    com.google.gson.internal.bind.MapTypeAdapterFactory this$0 -> a
+    java.util.Map read(com.google.gson.stream.JsonReader) -> a
+    void write(com.google.gson.stream.JsonWriter,java.util.Map) -> a
+    java.lang.String keyToString(com.google.gson.JsonElement) -> a
+    java.lang.Object read(com.google.gson.stream.JsonReader) -> b
+    void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> a
+com.google.gson.internal.bind.ObjectTypeAdapter -> a.a.a.b.a.n:
+    com.google.gson.TypeAdapterFactory FACTORY -> a
+    com.google.gson.Gson gson -> b
+    java.lang.Object read(com.google.gson.stream.JsonReader) -> b
+    void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> a
+com.google.gson.internal.bind.ObjectTypeAdapter$1 -> a.a.a.b.a.o:
+    com.google.gson.TypeAdapter create(com.google.gson.Gson,com.google.gson.reflect.TypeToken) -> a
+com.google.gson.internal.bind.ObjectTypeAdapter$2 -> a.a.a.b.a.p:
+    int[] $SwitchMap$com$google$gson$stream$JsonToken -> a
+com.google.gson.internal.bind.ReflectiveTypeAdapterFactory -> a.a.a.b.a.q:
+    com.google.gson.internal.ConstructorConstructor constructorConstructor -> a
+    com.google.gson.FieldNamingStrategy fieldNamingPolicy -> b
+    com.google.gson.internal.Excluder excluder -> c
+    boolean excludeField(java.lang.reflect.Field,boolean) -> a
+    boolean excludeField(java.lang.reflect.Field,boolean,com.google.gson.internal.Excluder) -> a
+    java.lang.String getFieldName(java.lang.reflect.Field) -> a
+    java.lang.String getFieldName(com.google.gson.FieldNamingStrategy,java.lang.reflect.Field) -> a
+    com.google.gson.TypeAdapter create(com.google.gson.Gson,com.google.gson.reflect.TypeToken) -> a
+    com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$BoundField createBoundField(com.google.gson.Gson,java.lang.reflect.Field,java.lang.String,com.google.gson.reflect.TypeToken,boolean,boolean) -> a
+    com.google.gson.TypeAdapter getFieldAdapter(com.google.gson.Gson,java.lang.reflect.Field,com.google.gson.reflect.TypeToken) -> a
+    java.util.Map getBoundFields(com.google.gson.Gson,com.google.gson.reflect.TypeToken,java.lang.Class) -> a
+    com.google.gson.TypeAdapter access$100(com.google.gson.internal.bind.ReflectiveTypeAdapterFactory,com.google.gson.Gson,java.lang.reflect.Field,com.google.gson.reflect.TypeToken) -> a
+com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$1 -> a.a.a.b.a.r:
+    com.google.gson.TypeAdapter typeAdapter -> a
+    com.google.gson.Gson val$context -> b
+    java.lang.reflect.Field val$field -> c
+    com.google.gson.reflect.TypeToken val$fieldType -> d
+    boolean val$isPrimitive -> e
+    com.google.gson.internal.bind.ReflectiveTypeAdapterFactory this$0 -> f
+    void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> a
+    void read(com.google.gson.stream.JsonReader,java.lang.Object) -> a
+    boolean writeField(java.lang.Object) -> a
+com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$Adapter -> a.a.a.b.a.s:
+    com.google.gson.internal.ObjectConstructor constructor -> a
+    java.util.Map boundFields -> b
+    java.lang.Object read(com.google.gson.stream.JsonReader) -> b
+    void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> a
+com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$BoundField -> a.a.a.b.a.t:
+    java.lang.String name -> g
+    boolean serialized -> h
+    boolean deserialized -> i
+    boolean writeField(java.lang.Object) -> a
+    void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> a
+    void read(com.google.gson.stream.JsonReader,java.lang.Object) -> a
+com.google.gson.internal.bind.SqlDateTypeAdapter -> a.a.a.b.a.u:
+    com.google.gson.TypeAdapterFactory FACTORY -> a
+    java.text.DateFormat format -> b
+    java.sql.Date read(com.google.gson.stream.JsonReader) -> a
+    void write(com.google.gson.stream.JsonWriter,java.sql.Date) -> a
+    java.lang.Object read(com.google.gson.stream.JsonReader) -> b
+    void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> a
+com.google.gson.internal.bind.SqlDateTypeAdapter$1 -> a.a.a.b.a.v:
+    com.google.gson.TypeAdapter create(com.google.gson.Gson,com.google.gson.reflect.TypeToken) -> a
+com.google.gson.internal.bind.TimeTypeAdapter -> a.a.a.b.a.w:
+    com.google.gson.TypeAdapterFactory FACTORY -> a
+    java.text.DateFormat format -> b
+    java.sql.Time read(com.google.gson.stream.JsonReader) -> a
+    void write(com.google.gson.stream.JsonWriter,java.sql.Time) -> a
+    java.lang.Object read(com.google.gson.stream.JsonReader) -> b
+    void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> a
+com.google.gson.internal.bind.TimeTypeAdapter$1 -> a.a.a.b.a.x:
+    com.google.gson.TypeAdapter create(com.google.gson.Gson,com.google.gson.reflect.TypeToken) -> a
+com.google.gson.internal.bind.TypeAdapterRuntimeTypeWrapper -> a.a.a.b.a.y:
+    com.google.gson.Gson context -> a
+    com.google.gson.TypeAdapter delegate -> b
+    java.lang.reflect.Type type -> c
+    java.lang.Object read(com.google.gson.stream.JsonReader) -> b
+    void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> a
+    java.lang.reflect.Type getRuntimeTypeIfMoreSpecific(java.lang.reflect.Type,java.lang.Object) -> a
+com.google.gson.internal.bind.TypeAdapters -> a.a.a.b.a.z:
+    com.google.gson.TypeAdapter CLASS -> a
+    com.google.gson.TypeAdapterFactory CLASS_FACTORY -> b
+    com.google.gson.TypeAdapter BIT_SET -> c
+    com.google.gson.TypeAdapterFactory BIT_SET_FACTORY -> d
+    com.google.gson.TypeAdapter BOOLEAN -> e
+    com.google.gson.TypeAdapter BOOLEAN_AS_STRING -> f
+    com.google.gson.TypeAdapterFactory BOOLEAN_FACTORY -> g
+    com.google.gson.TypeAdapter BYTE -> h
+    com.google.gson.TypeAdapterFactory BYTE_FACTORY -> i
+    com.google.gson.TypeAdapter SHORT -> j
+    com.google.gson.TypeAdapterFactory SHORT_FACTORY -> k
+    com.google.gson.TypeAdapter INTEGER -> l
+    com.google.gson.TypeAdapterFactory INTEGER_FACTORY -> m
+    com.google.gson.TypeAdapter LONG -> n
+    com.google.gson.TypeAdapter FLOAT -> o
+    com.google.gson.TypeAdapter DOUBLE -> p
+    com.google.gson.TypeAdapter NUMBER -> q
+    com.google.gson.TypeAdapterFactory NUMBER_FACTORY -> r
+    com.google.gson.TypeAdapter CHARACTER -> s
+    com.google.gson.TypeAdapterFactory CHARACTER_FACTORY -> t
+    com.google.gson.TypeAdapter STRING -> u
+    com.google.gson.TypeAdapter BIG_DECIMAL -> v
+    com.google.gson.TypeAdapter BIG_INTEGER -> w
+    com.google.gson.TypeAdapterFactory STRING_FACTORY -> x
+    com.google.gson.TypeAdapter STRING_BUILDER -> y
+    com.google.gson.TypeAdapterFactory STRING_BUILDER_FACTORY -> z
+    com.google.gson.TypeAdapter STRING_BUFFER -> A
+    com.google.gson.TypeAdapterFactory STRING_BUFFER_FACTORY -> B
+    com.google.gson.TypeAdapter URL -> C
+    com.google.gson.TypeAdapterFactory URL_FACTORY -> D
+    com.google.gson.TypeAdapter URI -> E
+    com.google.gson.TypeAdapterFactory URI_FACTORY -> F
+    com.google.gson.TypeAdapter INET_ADDRESS -> G
+    com.google.gson.TypeAdapterFactory INET_ADDRESS_FACTORY -> H
+    com.google.gson.TypeAdapter UUID -> I
+    com.google.gson.TypeAdapterFactory UUID_FACTORY -> J
+    com.google.gson.TypeAdapterFactory TIMESTAMP_FACTORY -> K
+    com.google.gson.TypeAdapter CALENDAR -> L
+    com.google.gson.TypeAdapterFactory CALENDAR_FACTORY -> M
+    com.google.gson.TypeAdapter LOCALE -> N
+    com.google.gson.TypeAdapterFactory LOCALE_FACTORY -> O
+    com.google.gson.TypeAdapter JSON_ELEMENT -> P
+    com.google.gson.TypeAdapterFactory JSON_ELEMENT_FACTORY -> Q
+    com.google.gson.TypeAdapterFactory ENUM_FACTORY -> R
+    com.google.gson.TypeAdapterFactory newFactory(java.lang.Class,com.google.gson.TypeAdapter) -> a
+    com.google.gson.TypeAdapterFactory newFactory(java.lang.Class,java.lang.Class,com.google.gson.TypeAdapter) -> a
+    com.google.gson.TypeAdapterFactory newFactoryForMultipleTypes(java.lang.Class,java.lang.Class,com.google.gson.TypeAdapter) -> b
+    com.google.gson.TypeAdapterFactory newTypeHierarchyFactory(java.lang.Class,com.google.gson.TypeAdapter) -> b
+com.google.gson.internal.bind.TypeAdapters$1 -> a.a.a.b.a.aa:
+    void write(com.google.gson.stream.JsonWriter,java.lang.Class) -> a
+    java.lang.Class read(com.google.gson.stream.JsonReader) -> a
+    java.lang.Object read(com.google.gson.stream.JsonReader) -> b
+    void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> a
+com.google.gson.internal.bind.TypeAdapters$10 -> a.a.a.b.a.ab:
+    java.lang.Number read(com.google.gson.stream.JsonReader) -> a
+    void write(com.google.gson.stream.JsonWriter,java.lang.Number) -> a
+    java.lang.Object read(com.google.gson.stream.JsonReader) -> b
+    void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> a
+com.google.gson.internal.bind.TypeAdapters$11 -> a.a.a.b.a.ac:
+    java.lang.Number read(com.google.gson.stream.JsonReader) -> a
+    void write(com.google.gson.stream.JsonWriter,java.lang.Number) -> a
+    java.lang.Object read(com.google.gson.stream.JsonReader) -> b
+    void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> a
+com.google.gson.internal.bind.TypeAdapters$12 -> a.a.a.b.a.ad:
+    java.lang.Character read(com.google.gson.stream.JsonReader) -> a
+    void write(com.google.gson.stream.JsonWriter,java.lang.Character) -> a
+    java.lang.Object read(com.google.gson.stream.JsonReader) -> b
+    void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> a
+com.google.gson.internal.bind.TypeAdapters$13 -> a.a.a.b.a.ae:
+    java.lang.String read(com.google.gson.stream.JsonReader) -> a
+    void write(com.google.gson.stream.JsonWriter,java.lang.String) -> a
+    java.lang.Object read(com.google.gson.stream.JsonReader) -> b
+    void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> a
+com.google.gson.internal.bind.TypeAdapters$14 -> a.a.a.b.a.af:
+    java.math.BigDecimal read(com.google.gson.stream.JsonReader) -> a
+    void write(com.google.gson.stream.JsonWriter,java.math.BigDecimal) -> a
+    java.lang.Object read(com.google.gson.stream.JsonReader) -> b
+    void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> a
+com.google.gson.internal.bind.TypeAdapters$15 -> a.a.a.b.a.ag:
+    java.math.BigInteger read(com.google.gson.stream.JsonReader) -> a
+    void write(com.google.gson.stream.JsonWriter,java.math.BigInteger) -> a
+    java.lang.Object read(com.google.gson.stream.JsonReader) -> b
+    void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> a
+com.google.gson.internal.bind.TypeAdapters$16 -> a.a.a.b.a.ah:
+    java.lang.StringBuilder read(com.google.gson.stream.JsonReader) -> a
+    void write(com.google.gson.stream.JsonWriter,java.lang.StringBuilder) -> a
+    java.lang.Object read(com.google.gson.stream.JsonReader) -> b
+    void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> a
+com.google.gson.internal.bind.TypeAdapters$17 -> a.a.a.b.a.ai:
+    java.lang.StringBuffer read(com.google.gson.stream.JsonReader) -> a
+    void write(com.google.gson.stream.JsonWriter,java.lang.StringBuffer) -> a
+    java.lang.Object read(com.google.gson.stream.JsonReader) -> b
+    void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> a
+com.google.gson.internal.bind.TypeAdapters$18 -> a.a.a.b.a.aj:
+    java.net.URL read(com.google.gson.stream.JsonReader) -> a
+    void write(com.google.gson.stream.JsonWriter,java.net.URL) -> a
+    java.lang.Object read(com.google.gson.stream.JsonReader) -> b
+    void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> a
+com.google.gson.internal.bind.TypeAdapters$19 -> a.a.a.b.a.ak:
+    java.net.URI read(com.google.gson.stream.JsonReader) -> a
+    void write(com.google.gson.stream.JsonWriter,java.net.URI) -> a
+    java.lang.Object read(com.google.gson.stream.JsonReader) -> b
+    void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> a
+com.google.gson.internal.bind.TypeAdapters$2 -> a.a.a.b.a.al:
+    java.util.BitSet read(com.google.gson.stream.JsonReader) -> a
+    void write(com.google.gson.stream.JsonWriter,java.util.BitSet) -> a
+    java.lang.Object read(com.google.gson.stream.JsonReader) -> b
+    void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> a
+com.google.gson.internal.bind.TypeAdapters$20 -> a.a.a.b.a.am:
+    java.net.InetAddress read(com.google.gson.stream.JsonReader) -> a
+    void write(com.google.gson.stream.JsonWriter,java.net.InetAddress) -> a
+    java.lang.Object read(com.google.gson.stream.JsonReader) -> b
+    void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> a
+com.google.gson.internal.bind.TypeAdapters$21 -> a.a.a.b.a.an:
+    java.util.UUID read(com.google.gson.stream.JsonReader) -> a
+    void write(com.google.gson.stream.JsonWriter,java.util.UUID) -> a
+    java.lang.Object read(com.google.gson.stream.JsonReader) -> b
+    void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> a
+com.google.gson.internal.bind.TypeAdapters$22 -> a.a.a.b.a.ao:
+    com.google.gson.TypeAdapter create(com.google.gson.Gson,com.google.gson.reflect.TypeToken) -> a
+com.google.gson.internal.bind.TypeAdapters$22$1 -> a.a.a.b.a.ap:
+    com.google.gson.TypeAdapter val$dateTypeAdapter -> a
+    com.google.gson.internal.bind.TypeAdapters$22 this$0 -> b
+    java.sql.Timestamp read(com.google.gson.stream.JsonReader) -> a
+    void write(com.google.gson.stream.JsonWriter,java.sql.Timestamp) -> a
+    java.lang.Object read(com.google.gson.stream.JsonReader) -> b
+    void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> a
+com.google.gson.internal.bind.TypeAdapters$23 -> a.a.a.b.a.aq:
+    java.util.Calendar read(com.google.gson.stream.JsonReader) -> a
+    void write(com.google.gson.stream.JsonWriter,java.util.Calendar) -> a
+    java.lang.Object read(com.google.gson.stream.JsonReader) -> b
+    void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> a
+com.google.gson.internal.bind.TypeAdapters$24 -> a.a.a.b.a.ar:
+    java.util.Locale read(com.google.gson.stream.JsonReader) -> a
+    void write(com.google.gson.stream.JsonWriter,java.util.Locale) -> a
+    java.lang.Object read(com.google.gson.stream.JsonReader) -> b
+    void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> a
+com.google.gson.internal.bind.TypeAdapters$25 -> a.a.a.b.a.as:
+    com.google.gson.JsonElement read(com.google.gson.stream.JsonReader) -> a
+    void write(com.google.gson.stream.JsonWriter,com.google.gson.JsonElement) -> a
+    java.lang.Object read(com.google.gson.stream.JsonReader) -> b
+    void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> a
+com.google.gson.internal.bind.TypeAdapters$26 -> a.a.a.b.a.at:
+    com.google.gson.TypeAdapter create(com.google.gson.Gson,com.google.gson.reflect.TypeToken) -> a
+com.google.gson.internal.bind.TypeAdapters$28 -> a.a.a.b.a.au:
+    java.lang.Class val$type -> a
+    com.google.gson.TypeAdapter val$typeAdapter -> b
+    com.google.gson.TypeAdapter create(com.google.gson.Gson,com.google.gson.reflect.TypeToken) -> a
+    java.lang.String toString() -> toString
+com.google.gson.internal.bind.TypeAdapters$29 -> a.a.a.b.a.av:
+    java.lang.Class val$unboxed -> a
+    java.lang.Class val$boxed -> b
+    com.google.gson.TypeAdapter val$typeAdapter -> c
+    com.google.gson.TypeAdapter create(com.google.gson.Gson,com.google.gson.reflect.TypeToken) -> a
+    java.lang.String toString() -> toString
+com.google.gson.internal.bind.TypeAdapters$3 -> a.a.a.b.a.aw:
+    java.lang.Boolean read(com.google.gson.stream.JsonReader) -> a
+    void write(com.google.gson.stream.JsonWriter,java.lang.Boolean) -> a
+    java.lang.Object read(com.google.gson.stream.JsonReader) -> b
+    void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> a
+com.google.gson.internal.bind.TypeAdapters$30 -> a.a.a.b.a.ax:
+    java.lang.Class val$base -> a
+    java.lang.Class val$sub -> b
+    com.google.gson.TypeAdapter val$typeAdapter -> c
+    com.google.gson.TypeAdapter create(com.google.gson.Gson,com.google.gson.reflect.TypeToken) -> a
+    java.lang.String toString() -> toString
+com.google.gson.internal.bind.TypeAdapters$31 -> a.a.a.b.a.ay:
+    java.lang.Class val$clazz -> a
+    com.google.gson.TypeAdapter val$typeAdapter -> b
+    com.google.gson.TypeAdapter create(com.google.gson.Gson,com.google.gson.reflect.TypeToken) -> a
+    java.lang.String toString() -> toString
+com.google.gson.internal.bind.TypeAdapters$32 -> a.a.a.b.a.az:
+    int[] $SwitchMap$com$google$gson$stream$JsonToken -> a
+com.google.gson.internal.bind.TypeAdapters$4 -> a.a.a.b.a.ba:
+    java.lang.Boolean read(com.google.gson.stream.JsonReader) -> a
+    void write(com.google.gson.stream.JsonWriter,java.lang.Boolean) -> a
+    java.lang.Object read(com.google.gson.stream.JsonReader) -> b
+    void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> a
+com.google.gson.internal.bind.TypeAdapters$5 -> a.a.a.b.a.bb:
+    java.lang.Number read(com.google.gson.stream.JsonReader) -> a
+    void write(com.google.gson.stream.JsonWriter,java.lang.Number) -> a
+    java.lang.Object read(com.google.gson.stream.JsonReader) -> b
+    void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> a
+com.google.gson.internal.bind.TypeAdapters$6 -> a.a.a.b.a.bc:
+    java.lang.Number read(com.google.gson.stream.JsonReader) -> a
+    void write(com.google.gson.stream.JsonWriter,java.lang.Number) -> a
+    java.lang.Object read(com.google.gson.stream.JsonReader) -> b
+    void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> a
+com.google.gson.internal.bind.TypeAdapters$7 -> a.a.a.b.a.bd:
+    java.lang.Number read(com.google.gson.stream.JsonReader) -> a
+    void write(com.google.gson.stream.JsonWriter,java.lang.Number) -> a
+    java.lang.Object read(com.google.gson.stream.JsonReader) -> b
+    void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> a
+com.google.gson.internal.bind.TypeAdapters$8 -> a.a.a.b.a.be:
+    java.lang.Number read(com.google.gson.stream.JsonReader) -> a
+    void write(com.google.gson.stream.JsonWriter,java.lang.Number) -> a
+    java.lang.Object read(com.google.gson.stream.JsonReader) -> b
+    void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> a
+com.google.gson.internal.bind.TypeAdapters$9 -> a.a.a.b.a.bf:
+    java.lang.Number read(com.google.gson.stream.JsonReader) -> a
+    void write(com.google.gson.stream.JsonWriter,java.lang.Number) -> a
+    java.lang.Object read(com.google.gson.stream.JsonReader) -> b
+    void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> a
+com.google.gson.internal.bind.TypeAdapters$EnumTypeAdapter -> a.a.a.b.a.bg:
+    java.util.Map nameToConstant -> a
+    java.util.Map constantToName -> b
+    java.lang.Enum read(com.google.gson.stream.JsonReader) -> a
+    void write(com.google.gson.stream.JsonWriter,java.lang.Enum) -> a
+    java.lang.Object read(com.google.gson.stream.JsonReader) -> b
+    void write(com.google.gson.stream.JsonWriter,java.lang.Object) -> a
+com.google.gson.reflect.TypeToken -> a.a.a.c.a:
+    java.lang.Class rawType -> a
+    java.lang.reflect.Type type -> b
+    int hashCode -> c
+    java.lang.reflect.Type getSuperclassTypeParameter(java.lang.Class) -> a
+    java.lang.Class getRawType() -> a
+    java.lang.reflect.Type getType() -> b
+    int hashCode() -> hashCode
+    boolean equals(java.lang.Object) -> equals
+    java.lang.String toString() -> toString
+    com.google.gson.reflect.TypeToken get(java.lang.reflect.Type) -> a
+    com.google.gson.reflect.TypeToken get(java.lang.Class) -> b
+com.google.gson.stream.JsonReader -> a.a.a.d.a:
+    char[] NON_EXECUTE_PREFIX -> a
+    java.io.Reader in -> b
+    boolean lenient -> c
+    char[] buffer -> d
+    int pos -> e
+    int limit -> f
+    int lineNumber -> g
+    int lineStart -> h
+    int peeked -> i
+    long peekedLong -> j
+    int peekedNumberLength -> k
+    java.lang.String peekedString -> l
+    int[] stack -> m
+    int stackSize -> n
+    java.lang.String[] pathNames -> o
+    int[] pathIndices -> p
+    void setLenient(boolean) -> a
+    boolean isLenient() -> p
+    void beginArray() -> a
+    void endArray() -> b
+    void beginObject() -> c
+    void endObject() -> d
+    boolean hasNext() -> e
+    com.google.gson.stream.JsonToken peek() -> f
+    int doPeek() -> o
+    int peekKeyword() -> r
+    int peekNumber() -> s
+    boolean isLiteral(char) -> a
+    java.lang.String nextName() -> g
+    java.lang.String nextString() -> h
+    boolean nextBoolean() -> i
+    void nextNull() -> j
+    double nextDouble() -> k
+    long nextLong() -> l
+    java.lang.String nextQuotedValue(char) -> b
+    java.lang.String nextUnquotedValue() -> t
+    void skipQuotedValue(char) -> c
+    void skipUnquotedValue() -> u
+    int nextInt() -> m
+    void close() -> close
+    void skipValue() -> n
+    void push(int) -> a
+    boolean fillBuffer(int) -> b
+    int getLineNumber() -> v
+    int getColumnNumber() -> w
+    int nextNonWhitespace(boolean) -> b
+    void checkLenient() -> x
+    void skipToEndOfLine() -> y
+    boolean skipTo(java.lang.String) -> a
+    java.lang.String toString() -> toString
+    java.lang.String getPath() -> q
+    char readEscapeCharacter() -> z
+    java.io.IOException syntaxError(java.lang.String) -> b
+    void consumeNonExecutePrefix() -> A
+    int access$000(com.google.gson.stream.JsonReader) -> a
+    int access$100(com.google.gson.stream.JsonReader) -> b
+    int access$002(com.google.gson.stream.JsonReader,int) -> a
+    int access$200(com.google.gson.stream.JsonReader) -> c
+    int access$300(com.google.gson.stream.JsonReader) -> d
+com.google.gson.stream.JsonReader$1 -> a.a.a.d.b:
+    void promoteNameToValue(com.google.gson.stream.JsonReader) -> a
+com.google.gson.stream.JsonToken -> a.a.a.d.c:
+    com.google.gson.stream.JsonToken BEGIN_ARRAY -> a
+    com.google.gson.stream.JsonToken END_ARRAY -> b
+    com.google.gson.stream.JsonToken BEGIN_OBJECT -> c
+    com.google.gson.stream.JsonToken END_OBJECT -> d
+    com.google.gson.stream.JsonToken NAME -> e
+    com.google.gson.stream.JsonToken STRING -> f
+    com.google.gson.stream.JsonToken NUMBER -> g
+    com.google.gson.stream.JsonToken BOOLEAN -> h
+    com.google.gson.stream.JsonToken NULL -> i
+    com.google.gson.stream.JsonToken END_DOCUMENT -> j
+    com.google.gson.stream.JsonToken[] $VALUES -> k
+    com.google.gson.stream.JsonToken[] values() -> values
+    com.google.gson.stream.JsonToken valueOf(java.lang.String) -> valueOf
+com.google.gson.stream.JsonWriter -> a.a.a.d.d:
+    java.lang.String[] REPLACEMENT_CHARS -> a
+    java.lang.String[] HTML_SAFE_REPLACEMENT_CHARS -> b
+    java.io.Writer out -> c
+    int[] stack -> d
+    int stackSize -> e
+    java.lang.String indent -> f
+    java.lang.String separator -> g
+    boolean lenient -> h
+    boolean htmlSafe -> i
+    java.lang.String deferredName -> j
+    boolean serializeNulls -> k
+    void setIndent(java.lang.String) -> c
+    void setLenient(boolean) -> b
+    boolean isLenient() -> g
+    void setHtmlSafe(boolean) -> c
+    boolean isHtmlSafe() -> h
+    void setSerializeNulls(boolean) -> d
+    boolean getSerializeNulls() -> i
+    com.google.gson.stream.JsonWriter beginArray() -> b
+    com.google.gson.stream.JsonWriter endArray() -> c
+    com.google.gson.stream.JsonWriter beginObject() -> d
+    com.google.gson.stream.JsonWriter endObject() -> e
+    com.google.gson.stream.JsonWriter open(int,java.lang.String) -> a
+    com.google.gson.stream.JsonWriter close(int,int,java.lang.String) -> a
+    void push(int) -> a
+    int peek() -> a
+    void replaceTop(int) -> b
+    com.google.gson.stream.JsonWriter name(java.lang.String) -> a
+    void writeDeferredName() -> j
+    com.google.gson.stream.JsonWriter value(java.lang.String) -> b
+    com.google.gson.stream.JsonWriter nullValue() -> f
+    com.google.gson.stream.JsonWriter value(boolean) -> a
+    com.google.gson.stream.JsonWriter value(long) -> a
+    com.google.gson.stream.JsonWriter value(java.lang.Number) -> a
+    void flush() -> flush
+    void close() -> close
+    void string(java.lang.String) -> d
+    void newline() -> k
+    void beforeName() -> l
+    void beforeValue(boolean) -> e
+com.google.gson.stream.MalformedJsonException -> a.a.a.d.e:
+net.vc9ufi.cvitok.App -> net.vc9ufi.cvitok.App:
+    net.vc9ufi.cvitok.settings.Setting setting -> a
+    net.vc9ufi.cvitok.control.Control control -> b
+    net.vc9ufi.cvitok.data.Flower flower -> c
+    net.vc9ufi.cvitok.renderers.FlowerRenderer flowerRenderer -> d
+    net.vc9ufi.cvitok.renderers.ColorDialogRenderer colorRenderer -> e
+    void onCreate() -> onCreate
+    void makeFlowerRenderer(android.opengl.GLSurfaceView) -> a
+    void setTransparency(boolean) -> a
+    void setLight(boolean) -> b
+    net.vc9ufi.cvitok.renderers.ColorDialogRenderer getColorRenderer() -> a
+    net.vc9ufi.cvitok.control.Control access$000(net.vc9ufi.cvitok.App) -> a
+net.vc9ufi.cvitok.App$1 -> net.vc9ufi.cvitok.a:
+    net.vc9ufi.cvitok.App this$0 -> a
+    boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
+net.vc9ufi.cvitok.MainActivity -> net.vc9ufi.cvitok.MainActivity:
+    net.vc9ufi.cvitok.App app -> a
+    net.vc9ufi.cvitok.fragments.FragmentFlower frag_flower -> b
+    net.vc9ufi.cvitok.fragments.FragmentLight frag_light -> c
+    net.vc9ufi.cvitok.fragments.FragmentPetals frag_petal -> d
+    net.vc9ufi.cvitok.fragments.FragmentVertices frag_vertices -> e
+    net.vc9ufi.cvitok.MainActivity$FRAME1 frame1 -> g
+    net.vc9ufi.cvitok.MainActivity$FRAME2 frame2 -> h
+    boolean $assertionsDisabled -> f
+    void onStart() -> onStart
+    void onCreate(android.os.Bundle) -> onCreate
+    void init(android.view.View) -> a
+    boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
+    boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
+    void addFlowerFragment() -> a
+    void addPetalsFragment() -> b
+    void addLightFragment() -> c
+    void addVerticesFragment() -> d
+    void setFrame1(android.app.Fragment) -> a
+    void setFrame2(android.app.Fragment) -> b
+net.vc9ufi.cvitok.MainActivity$1 -> net.vc9ufi.cvitok.b:
+    net.vc9ufi.cvitok.MainActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+net.vc9ufi.cvitok.MainActivity$2 -> net.vc9ufi.cvitok.c:
+    net.vc9ufi.cvitok.MainActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+net.vc9ufi.cvitok.MainActivity$FRAME1 -> net.vc9ufi.cvitok.d:
+    net.vc9ufi.cvitok.MainActivity$FRAME1 NULL -> a
+    net.vc9ufi.cvitok.MainActivity$FRAME1 FLOWER -> b
+    net.vc9ufi.cvitok.MainActivity$FRAME1 PETAL -> c
+    net.vc9ufi.cvitok.MainActivity$FRAME1[] $VALUES -> d
+    net.vc9ufi.cvitok.MainActivity$FRAME1[] values() -> values
+    net.vc9ufi.cvitok.MainActivity$FRAME1 valueOf(java.lang.String) -> valueOf
+net.vc9ufi.cvitok.MainActivity$FRAME2 -> net.vc9ufi.cvitok.e:
+    net.vc9ufi.cvitok.MainActivity$FRAME2 NULL -> a
+    net.vc9ufi.cvitok.MainActivity$FRAME2 LIGHT -> b
+    net.vc9ufi.cvitok.MainActivity$FRAME2 VERTICES -> c
+    net.vc9ufi.cvitok.MainActivity$FRAME2[] $VALUES -> d
+    net.vc9ufi.cvitok.MainActivity$FRAME2[] values() -> values
+    net.vc9ufi.cvitok.MainActivity$FRAME2 valueOf(java.lang.String) -> valueOf
+net.vc9ufi.cvitok.control.Control -> net.vc9ufi.cvitok.a.a:
+    net.vc9ufi.cvitok.control.Control control -> e
+    net.vc9ufi.geometry.LookAt flower_lookat -> a
+    net.vc9ufi.cvitok.control.Motion motionEventPetals -> b
+    net.vc9ufi.cvitok.control.Motion motionEventVertices -> c
+    net.vc9ufi.cvitok.control.Motion motionEventLight -> d
+    net.vc9ufi.cvitok.control.Control$MODE mode -> f
+    net.vc9ufi.cvitok.control.Control getInstance() -> a
+    boolean onTouchSurface(android.view.View,android.view.MotionEvent) -> a
+    float[] getLookAtVectors() -> b
+    void setMode(net.vc9ufi.cvitok.control.Control$MODE) -> a
+net.vc9ufi.cvitok.control.Control$1 -> net.vc9ufi.cvitok.a.b:
+    net.vc9ufi.cvitok.control.Control this$0 -> a
+    void singleMove(float,float) -> a
+    void multiMove(float,float,float) -> a
+net.vc9ufi.cvitok.control.Control$2 -> net.vc9ufi.cvitok.a.c:
+    net.vc9ufi.cvitok.control.Control this$0 -> a
+    void singleMove(float,float) -> a
+    void multiMove(float,float,float) -> a
+net.vc9ufi.cvitok.control.Control$3 -> net.vc9ufi.cvitok.a.d:
+    net.vc9ufi.cvitok.control.Control this$0 -> a
+    void singleMove(float,float) -> a
+    void multiMove(float,float,float) -> a
+net.vc9ufi.cvitok.control.Control$4 -> net.vc9ufi.cvitok.a.e:
+    int[] $SwitchMap$net$vc9ufi$cvitok$control$Control$MODE -> a
+net.vc9ufi.cvitok.control.Control$MODE -> net.vc9ufi.cvitok.a.f:
+    net.vc9ufi.cvitok.control.Control$MODE NULL -> a
+    net.vc9ufi.cvitok.control.Control$MODE FLOWER -> b
+    net.vc9ufi.cvitok.control.Control$MODE PETAL -> c
+    net.vc9ufi.cvitok.control.Control$MODE VERTEX -> d
+    net.vc9ufi.cvitok.control.Control$MODE LIGHT -> e
+    net.vc9ufi.cvitok.control.Control$MODE[] $VALUES -> f
+    net.vc9ufi.cvitok.control.Control$MODE[] values() -> values
+    net.vc9ufi.cvitok.control.Control$MODE valueOf(java.lang.String) -> valueOf
+net.vc9ufi.cvitok.control.Motion -> net.vc9ufi.cvitok.a.g:
+    float x -> a
+    float y -> b
+    float r -> c
+    boolean motionEvent(android.view.MotionEvent) -> a
+    void singleMove(float,float) -> a
+    void multiMove(float,float,float) -> a
+net.vc9ufi.cvitok.data.Flower -> net.vc9ufi.cvitok.b.a:
+    float[] BACKGROUND -> a
+    net.vc9ufi.cvitok.data.Flower flower -> b
+    java.lang.String name -> c
+    java.util.ArrayList petals -> d
+    net.vc9ufi.cvitok.data.Light light -> e
+    float[] background -> f
+    net.vc9ufi.cvitok.petal.Petal selectedPetal -> g
+    net.vc9ufi.cvitok.data.SelectedVertices left -> h
+    net.vc9ufi.cvitok.data.SelectedVertices right -> i
+    net.vc9ufi.cvitok.data.Flower getInstance() -> a
+    boolean setNewFlower(java.lang.String) -> a
+    java.lang.String getName() -> b
+    boolean setName(java.lang.String) -> b
+    boolean addPetal(java.lang.String) -> c
+    boolean delPetal() -> c
+    java.util.List getPetalsNames() -> d
+    net.vc9ufi.cvitok.data.Light getLight() -> e
+    float[] getBackground() -> f
+    void setBackground(float[]) -> a
+    boolean setSelectedPetal(int) -> a
+    boolean setSelectedPetals(java.lang.String) -> d
+    java.lang.String getSelectedName() -> g
+    int getSelectedIndex() -> h
+    net.vc9ufi.cvitok.petal.Petal getSelectedPetal() -> i
+    void setSelectedVertices(net.vc9ufi.cvitok.data.SelectedVertices,net.vc9ufi.cvitok.data.SelectedVertices) -> a
+    void setVerticesColor(float[]) -> b
+    net.vc9ufi.cvitok.data.SelectedVertices getRight() -> j
+    net.vc9ufi.cvitok.data.SelectedVertices getLeft() -> k
+    void setQuality(int) -> b
+    void paint(javax.microedition.khronos.opengles.GL10) -> a
+    net.vc9ufi.cvitok.data.FlowerFile getFlowerFile() -> l
+    void setFlower(net.vc9ufi.cvitok.data.FlowerFile) -> a
+    boolean wrongIndex(int) -> c
+net.vc9ufi.cvitok.data.FlowerFile -> net.vc9ufi.cvitok.b.b:
+    java.lang.String name -> a
+    java.util.ArrayList petals -> b
+    float[] background -> c
+    net.vc9ufi.cvitok.data.Light light -> d
+    net.vc9ufi.cvitok.data.FlowerFile getFlower(java.lang.String) -> a
+    java.lang.String toJSON() -> a
+net.vc9ufi.cvitok.data.Light -> net.vc9ufi.cvitok.b.c:
+    float[] position -> a
+    float[] direction -> b
+    float spotCutoff -> c
+    float[] ambient -> d
+    float[] diffuse -> e
+    float[] specular -> f
+    void lightOn(javax.microedition.khronos.opengles.GL10) -> a
+    void single(float,float) -> a
+    void multi(float) -> a
+net.vc9ufi.cvitok.data.Parameters -> net.vc9ufi.cvitok.b.d:
+    java.lang.String name -> a
+    int quantity -> b
+    float angle -> c
+    boolean circle -> d
+    net.vc9ufi.cvitok.data.Parameters$Line left -> e
+    net.vc9ufi.cvitok.data.Parameters$Line right -> f
+    float convex -> g
+    float quantityf -> h
+    net.vc9ufi.cvitok.data.Parameters clone() -> a
+    boolean equals(java.lang.Object) -> equals
+    void changeQuantity(float) -> a
+    java.lang.Object clone() -> clone
+net.vc9ufi.cvitok.data.Parameters$Colors -> net.vc9ufi.cvitok.b.e:
+    float[] start -> a
+    float[] p1 -> b
+    float[] p2 -> c
+    float[] finish -> d
+    net.vc9ufi.cvitok.data.Parameters$Colors clone() -> a
+    java.lang.Object clone() -> clone
+net.vc9ufi.cvitok.data.Parameters$Coordinates -> net.vc9ufi.cvitok.b.f:
+    net.vc9ufi.geometry.Vertex start -> a
+    net.vc9ufi.geometry.Vertex p1 -> b
+    net.vc9ufi.geometry.Vertex p2 -> c
+    net.vc9ufi.geometry.Vertex finish -> d
+    net.vc9ufi.cvitok.data.Parameters$Coordinates clone() -> a
+    net.vc9ufi.geometry.Vertex[] toParamBezier() -> b
+    net.vc9ufi.cvitok.data.Parameters$Coordinates rotate(net.vc9ufi.geometry.Quaternion) -> a
+    java.lang.Object clone() -> clone
+net.vc9ufi.cvitok.data.Parameters$Line -> net.vc9ufi.cvitok.b.g:
+    net.vc9ufi.cvitok.data.Parameters$Coordinates coord -> a
+    net.vc9ufi.cvitok.data.Parameters$Colors colors -> b
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    net.vc9ufi.cvitok.data.Parameters$Line clone() -> a
+    java.lang.Object clone() -> clone
+net.vc9ufi.cvitok.data.SaveNLoad -> net.vc9ufi.cvitok.b.h:
+    java.lang.String[] getFileList(android.content.Context) -> a
+    void save(android.content.Context) -> b
+    boolean load(android.content.Context,java.lang.String) -> a
+    java.lang.String readFile(android.content.Context,java.lang.String) -> b
+    void writeFile(android.content.Context,java.lang.String,java.lang.String) -> a
+    boolean deleteFile(android.content.Context,java.lang.String) -> c
+    boolean isFileNameValid(java.lang.String) -> a
+    boolean isFileExists(android.content.Context,java.lang.String) -> d
+net.vc9ufi.cvitok.data.SelectedVertices -> net.vc9ufi.cvitok.b.i:
+    boolean start -> a
+    boolean p1 -> b
+    boolean p2 -> c
+    boolean finish -> d
+    void clean() -> a
+net.vc9ufi.cvitok.dialogs.ChoiceOfVertices -> net.vc9ufi.cvitok.c.a:
+    android.content.Context context -> a
+    net.vc9ufi.cvitok.App app -> b
+    net.vc9ufi.cvitok.data.SelectedVertices left -> c
+    net.vc9ufi.cvitok.data.SelectedVertices right -> d
+    android.widget.CheckBox cb_tip -> e
+    android.widget.CheckBox cb_leftUpSide -> f
+    android.widget.Button b_upSide -> g
+    android.widget.CheckBox cb_rightUpSide -> h
+    android.widget.CheckBox cb_leftDownSide -> i
+    android.widget.Button b_downSide -> j
+    android.widget.CheckBox cb_rightDownSide -> k
+    android.widget.CheckBox cb_leftFoot -> l
+    android.widget.Button b_foot -> m
+    android.widget.CheckBox cb_rightFoot -> n
+    void show() -> a
+    void buttonsInit(android.widget.LinearLayout) -> a
+net.vc9ufi.cvitok.dialogs.ChoiceOfVertices$1 -> net.vc9ufi.cvitok.c.b:
+    net.vc9ufi.cvitok.dialogs.ChoiceOfVertices this$0 -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+net.vc9ufi.cvitok.dialogs.ChoiceOfVertices$10 -> net.vc9ufi.cvitok.c.c:
+    net.vc9ufi.cvitok.dialogs.ChoiceOfVertices this$0 -> a
+    void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
+net.vc9ufi.cvitok.dialogs.ChoiceOfVertices$11 -> net.vc9ufi.cvitok.c.d:
+    net.vc9ufi.cvitok.dialogs.ChoiceOfVertices this$0 -> a
+    void onClick(android.view.View) -> onClick
+net.vc9ufi.cvitok.dialogs.ChoiceOfVertices$12 -> net.vc9ufi.cvitok.c.e:
+    net.vc9ufi.cvitok.dialogs.ChoiceOfVertices this$0 -> a
+    void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
+net.vc9ufi.cvitok.dialogs.ChoiceOfVertices$2 -> net.vc9ufi.cvitok.c.f:
+    net.vc9ufi.cvitok.dialogs.ChoiceOfVertices this$0 -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+net.vc9ufi.cvitok.dialogs.ChoiceOfVertices$3 -> net.vc9ufi.cvitok.c.g:
+    net.vc9ufi.cvitok.dialogs.ChoiceOfVertices this$0 -> a
+    void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
+net.vc9ufi.cvitok.dialogs.ChoiceOfVertices$4 -> net.vc9ufi.cvitok.c.h:
+    net.vc9ufi.cvitok.dialogs.ChoiceOfVertices this$0 -> a
+    void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
+net.vc9ufi.cvitok.dialogs.ChoiceOfVertices$5 -> net.vc9ufi.cvitok.c.i:
+    net.vc9ufi.cvitok.dialogs.ChoiceOfVertices this$0 -> a
+    void onClick(android.view.View) -> onClick
+net.vc9ufi.cvitok.dialogs.ChoiceOfVertices$6 -> net.vc9ufi.cvitok.c.j:
+    net.vc9ufi.cvitok.dialogs.ChoiceOfVertices this$0 -> a
+    void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
+net.vc9ufi.cvitok.dialogs.ChoiceOfVertices$7 -> net.vc9ufi.cvitok.c.k:
+    net.vc9ufi.cvitok.dialogs.ChoiceOfVertices this$0 -> a
+    void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
+net.vc9ufi.cvitok.dialogs.ChoiceOfVertices$8 -> net.vc9ufi.cvitok.c.l:
+    net.vc9ufi.cvitok.dialogs.ChoiceOfVertices this$0 -> a
+    void onClick(android.view.View) -> onClick
+net.vc9ufi.cvitok.dialogs.ChoiceOfVertices$9 -> net.vc9ufi.cvitok.c.m:
+    net.vc9ufi.cvitok.dialogs.ChoiceOfVertices this$0 -> a
+    void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
+net.vc9ufi.cvitok.dialogs.FileDialog -> net.vc9ufi.cvitok.c.n:
+    android.content.Context context -> a
+    net.vc9ufi.cvitok.App app -> b
+    android.widget.Button save -> c
+    android.widget.Button load -> d
+    android.widget.Button new_file -> e
+    android.app.AlertDialog mainDialog -> f
+    android.app.AlertDialog dialogFileList -> g
+    android.view.View$OnClickListener newFileClickListener -> h
+    android.widget.AdapterView$OnItemClickListener onFileClickListener -> i
+    void show() -> a
+    void buttonsInit(android.view.View) -> a
+    void showFileListDialog(android.content.Context) -> a
+    void showDeleteDialog(android.content.Context,java.lang.String) -> a
+net.vc9ufi.cvitok.dialogs.FileDialog$1 -> net.vc9ufi.cvitok.c.o:
+    net.vc9ufi.cvitok.dialogs.FileDialog this$0 -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+net.vc9ufi.cvitok.dialogs.FileDialog$2 -> net.vc9ufi.cvitok.c.p:
+    net.vc9ufi.cvitok.dialogs.FileDialog this$0 -> a
+    void onClick(android.view.View) -> onClick
+net.vc9ufi.cvitok.dialogs.FileDialog$3 -> net.vc9ufi.cvitok.c.q:
+    net.vc9ufi.cvitok.dialogs.FileDialog this$0 -> a
+    void onClick(android.view.View) -> onClick
+net.vc9ufi.cvitok.dialogs.FileDialog$4 -> net.vc9ufi.cvitok.c.r:
+    net.vc9ufi.cvitok.dialogs.FileDialog this$0 -> a
+    void onClick(android.view.View) -> onClick
+net.vc9ufi.cvitok.dialogs.FileDialog$4$1 -> net.vc9ufi.cvitok.c.s:
+    net.vc9ufi.cvitok.dialogs.FileDialog$4 this$1 -> a
+    boolean onPositiveClick(java.lang.String) -> a
+net.vc9ufi.cvitok.dialogs.FileDialog$5 -> net.vc9ufi.cvitok.c.t:
+    net.vc9ufi.cvitok.dialogs.FileDialog this$0 -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+net.vc9ufi.cvitok.dialogs.FileDialog$6 -> net.vc9ufi.cvitok.c.u:
+    android.content.Context val$context -> a
+    java.lang.String val$name -> b
+    void onClick(android.content.DialogInterface,int) -> onClick
+net.vc9ufi.cvitok.dialogs.FileDialog$7 -> net.vc9ufi.cvitok.c.v:
+    void onClick(android.content.DialogInterface,int) -> onClick
+net.vc9ufi.cvitok.dialogs.FileDialog$8 -> net.vc9ufi.cvitok.c.w:
+    net.vc9ufi.cvitok.dialogs.FileDialog this$0 -> a
+    void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+net.vc9ufi.cvitok.dialogs.FileDialog$8$1 -> net.vc9ufi.cvitok.c.x:
+    java.lang.String val$name -> a
+    net.vc9ufi.cvitok.dialogs.FileDialog$8 this$1 -> b
+    void onClick(android.content.DialogInterface,int) -> onClick
+net.vc9ufi.cvitok.dialogs.FileDialog$8$2 -> net.vc9ufi.cvitok.c.y:
+    java.lang.String val$name -> a
+    net.vc9ufi.cvitok.dialogs.FileDialog$8 this$1 -> b
+    void onClick(android.content.DialogInterface,int) -> onClick
+net.vc9ufi.cvitok.dialogs.FileDialog$8$3 -> net.vc9ufi.cvitok.c.z:
+    net.vc9ufi.cvitok.dialogs.FileDialog$8 this$1 -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+net.vc9ufi.cvitok.dialogs.NameDialog -> net.vc9ufi.cvitok.c.aa:
+    android.content.Context context -> b
+    java.lang.String title -> c
+    java.lang.String defName -> d
+    android.widget.TextView textViewMsg -> e
+    void show() -> a
+    void setMsg(java.lang.String) -> b
+    boolean onPositiveClick(java.lang.String) -> a
+net.vc9ufi.cvitok.dialogs.NameDialog$1 -> net.vc9ufi.cvitok.c.ab:
+    net.vc9ufi.cvitok.dialogs.NameDialog this$0 -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+net.vc9ufi.cvitok.dialogs.NameDialog$2 -> net.vc9ufi.cvitok.c.ac:
+    net.vc9ufi.cvitok.dialogs.NameDialog this$0 -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+net.vc9ufi.cvitok.dialogs.NameDialog$3 -> net.vc9ufi.cvitok.c.ad:
+    android.widget.EditText val$editTextName -> a
+    android.app.AlertDialog val$nameDialog -> b
+    net.vc9ufi.cvitok.dialogs.NameDialog this$0 -> c
+    void onClick(android.view.View) -> onClick
+net.vc9ufi.cvitok.dialogs.colordialog.ColorDialog -> net.vc9ufi.cvitok.c.a.a:
+    android.content.Context context -> a
+    net.vc9ufi.cvitok.App app -> b
+    android.opengl.GLSurfaceView surface -> c
+    net.vc9ufi.cvitok.renderers.ColorDialogRenderer renderer -> d
+    android.widget.SeekBar alphaBar -> e
+    void show() -> a
+    void init(android.view.View) -> a
+    void onClickPositiveButton(float[]) -> a
+    void onClickNegativeButton() -> b
+net.vc9ufi.cvitok.dialogs.colordialog.ColorDialog$1 -> net.vc9ufi.cvitok.c.a.b:
+    net.vc9ufi.cvitok.dialogs.colordialog.ColorDialog this$0 -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+net.vc9ufi.cvitok.dialogs.colordialog.ColorDialog$2 -> net.vc9ufi.cvitok.c.a.c:
+    net.vc9ufi.cvitok.dialogs.colordialog.ColorDialog this$0 -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+net.vc9ufi.cvitok.dialogs.colordialog.ColorDialog$3 -> net.vc9ufi.cvitok.c.a.d:
+    net.vc9ufi.geometry.LookAt val$camera -> a
+    net.vc9ufi.cvitok.dialogs.colordialog.ColorDialog this$0 -> b
+    boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
+net.vc9ufi.cvitok.dialogs.colordialog.ColorMatrix -> net.vc9ufi.cvitok.c.a.e:
+    int quantity -> a
+    float[] vertex -> b
+    java.nio.FloatBuffer buffervertex -> c
+    float[] color -> d
+    java.nio.FloatBuffer buffercolor -> e
+    float[] normal -> f
+    java.nio.FloatBuffer buffernormal -> g
+    boolean init -> h
+    float[] hudcolor -> i
+    java.nio.FloatBuffer hudcolorbuff -> j
+    java.nio.FloatBuffer hudvertex -> k
+    int hudsize -> l
+    java.util.ArrayList trians -> m
+    void paint(javax.microedition.khronos.opengles.GL10) -> a
+    void paintHUD(javax.microedition.khronos.opengles.GL10,float[],int) -> a
+    java.nio.FloatBuffer floatToBuffer(float[]) -> a
+    float[] getColor(javax.microedition.khronos.opengles.GL10,int,int) -> a
+    float[] invertColor(float[]) -> b
+    void calkHUD(float[],int) -> a
+net.vc9ufi.cvitok.fragments.FragmentFlower -> net.vc9ufi.cvitok.d.a:
+    net.vc9ufi.cvitok.App app -> a
+    android.content.Context context -> b
+    net.vc9ufi.cvitok.MainActivity mainActivity -> c
+    android.widget.TextView tv_flowerName -> d
+    android.view.View$OnClickListener backgroundOnClickListener -> e
+    void setAppNMainActivity(net.vc9ufi.cvitok.App,net.vc9ufi.cvitok.MainActivity) -> a
+    android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
+    void onResume() -> onResume
+    void init(android.view.View) -> a
+net.vc9ufi.cvitok.fragments.FragmentFlower$1 -> net.vc9ufi.cvitok.d.b:
+    net.vc9ufi.cvitok.fragments.FragmentFlower this$0 -> a
+    void onClick(android.view.View) -> onClick
+net.vc9ufi.cvitok.fragments.FragmentFlower$2 -> net.vc9ufi.cvitok.d.c:
+    net.vc9ufi.cvitok.fragments.FragmentFlower this$0 -> a
+    void onClick(android.view.View) -> onClick
+net.vc9ufi.cvitok.fragments.FragmentFlower$2$1 -> net.vc9ufi.cvitok.d.d:
+    net.vc9ufi.cvitok.fragments.FragmentFlower$2 this$1 -> f
+    void onClickPositiveButton(float[]) -> a
+    void onClickNegativeButton() -> b
+net.vc9ufi.cvitok.fragments.FragmentLight -> net.vc9ufi.cvitok.d.e:
+    net.vc9ufi.cvitok.App app -> a
+    android.content.Context context -> b
+    android.widget.Button b_ambient -> c
+    android.widget.Button b_diffuse -> d
+    android.widget.Button b_specular -> e
+    android.view.View$OnClickListener ambientOnClickListener -> f
+    android.view.View$OnClickListener diffuseOnClickListener -> g
+    android.view.View$OnClickListener specularOnClickListener -> h
+    android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
+net.vc9ufi.cvitok.fragments.FragmentLight$1 -> net.vc9ufi.cvitok.d.f:
+    net.vc9ufi.cvitok.fragments.FragmentLight this$0 -> a
+    void onClick(android.view.View) -> onClick
+net.vc9ufi.cvitok.fragments.FragmentLight$1$1 -> net.vc9ufi.cvitok.d.g:
+    net.vc9ufi.cvitok.fragments.FragmentLight$1 this$1 -> f
+    void onClickPositiveButton(float[]) -> a
+    void onClickNegativeButton() -> b
+net.vc9ufi.cvitok.fragments.FragmentLight$2 -> net.vc9ufi.cvitok.d.h:
+    net.vc9ufi.cvitok.fragments.FragmentLight this$0 -> a
+    void onClick(android.view.View) -> onClick
+net.vc9ufi.cvitok.fragments.FragmentLight$2$1 -> net.vc9ufi.cvitok.d.i:
+    net.vc9ufi.cvitok.fragments.FragmentLight$2 this$1 -> f
+    void onClickPositiveButton(float[]) -> a
+    void onClickNegativeButton() -> b
+net.vc9ufi.cvitok.fragments.FragmentLight$3 -> net.vc9ufi.cvitok.d.j:
+    net.vc9ufi.cvitok.fragments.FragmentLight this$0 -> a
+    void onClick(android.view.View) -> onClick
+net.vc9ufi.cvitok.fragments.FragmentLight$3$1 -> net.vc9ufi.cvitok.d.k:
+    net.vc9ufi.cvitok.fragments.FragmentLight$3 this$1 -> f
+    void onClickPositiveButton(float[]) -> a
+    void onClickNegativeButton() -> b
+net.vc9ufi.cvitok.fragments.FragmentPetals -> net.vc9ufi.cvitok.d.l:
+    net.vc9ufi.cvitok.App app -> a
+    android.content.Context context -> b
+    net.vc9ufi.cvitok.MainActivity mainActivity -> c
+    android.widget.Spinner sp_petals -> d
+    android.view.View$OnClickListener onDeleteClickListener -> e
+    void setAppNMainActivity(net.vc9ufi.cvitok.App,net.vc9ufi.cvitok.MainActivity) -> a
+    android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
+    void fillSpinner() -> a
+    void showNameDialog() -> b
+net.vc9ufi.cvitok.fragments.FragmentPetals$1 -> net.vc9ufi.cvitok.d.m:
+    net.vc9ufi.cvitok.fragments.FragmentPetals this$0 -> a
+    void onItemSelected(android.widget.AdapterView,android.view.View,int,long) -> onItemSelected
+    void onNothingSelected(android.widget.AdapterView) -> onNothingSelected
+net.vc9ufi.cvitok.fragments.FragmentPetals$2 -> net.vc9ufi.cvitok.d.n:
+    net.vc9ufi.cvitok.fragments.FragmentPetals this$0 -> a
+    void onClick(android.view.View) -> onClick
+net.vc9ufi.cvitok.fragments.FragmentPetals$3 -> net.vc9ufi.cvitok.d.o:
+    net.vc9ufi.cvitok.fragments.FragmentPetals this$0 -> a
+    void onClick(android.view.View) -> onClick
+net.vc9ufi.cvitok.fragments.FragmentPetals$4 -> net.vc9ufi.cvitok.d.p:
+    net.vc9ufi.cvitok.fragments.FragmentPetals this$0 -> a
+    boolean onPositiveClick(java.lang.String) -> a
+net.vc9ufi.cvitok.fragments.FragmentPetals$5 -> net.vc9ufi.cvitok.d.q:
+    net.vc9ufi.cvitok.fragments.FragmentPetals this$0 -> a
+    void onClick(android.view.View) -> onClick
+net.vc9ufi.cvitok.fragments.FragmentPetals$5$1 -> net.vc9ufi.cvitok.d.r:
+    net.vc9ufi.cvitok.fragments.FragmentPetals$5 this$1 -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+net.vc9ufi.cvitok.fragments.FragmentPetals$5$2 -> net.vc9ufi.cvitok.d.s:
+    net.vc9ufi.cvitok.fragments.FragmentPetals$5 this$1 -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+net.vc9ufi.cvitok.fragments.FragmentVertices -> net.vc9ufi.cvitok.d.t:
+    net.vc9ufi.cvitok.App app -> a
+    android.content.Context context -> b
+    android.view.View$OnClickListener colorOnClickListener -> c
+    android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
+net.vc9ufi.cvitok.fragments.FragmentVertices$1 -> net.vc9ufi.cvitok.d.u:
+    net.vc9ufi.cvitok.fragments.FragmentVertices this$0 -> a
+    void onClick(android.view.View) -> onClick
+net.vc9ufi.cvitok.fragments.FragmentVertices$2 -> net.vc9ufi.cvitok.d.v:
+    net.vc9ufi.cvitok.fragments.FragmentVertices this$0 -> a
+    void onClick(android.view.View) -> onClick
+net.vc9ufi.cvitok.fragments.FragmentVertices$2$1 -> net.vc9ufi.cvitok.d.w:
+    net.vc9ufi.cvitok.fragments.FragmentVertices$2 this$1 -> f
+    void onClickPositiveButton(float[]) -> a
+    void onClickNegativeButton() -> b
+net.vc9ufi.cvitok.petal.Calculator -> net.vc9ufi.cvitok.e.a:
+    float[] UP -> d
+    net.vc9ufi.cvitok.petal.Pointers pointers -> a
+    net.vc9ufi.cvitok.data.Parameters parameters -> b
+    int quality -> e
+    boolean work -> f
+    boolean terminate -> g
+    net.vc9ufi.cvitok.data.Parameters parameters_ -> c
+    int quality_ -> h
+    void run() -> run
+    void setParameters(net.vc9ufi.cvitok.data.Parameters) -> a
+    void setQuality(int) -> a
+    net.vc9ufi.cvitok.petal.Pointers getPointers() -> a
+    net.vc9ufi.cvitok.petal.Pointers calculate2(net.vc9ufi.cvitok.data.Parameters,int) -> a
+    net.vc9ufi.geometry.Triangle[] calcPetal(net.vc9ufi.cvitok.data.Parameters$Coordinates,net.vc9ufi.cvitok.data.Parameters$Coordinates,float[][][],int,float) -> a
+    net.vc9ufi.geometry.Vertex[] getConvexVertexLine(net.vc9ufi.geometry.Vertex[],net.vc9ufi.geometry.Vertex[],float) -> a
+    net.vc9ufi.geometry.VertexInTriangle[][] getGrid(net.vc9ufi.geometry.Vertex[],net.vc9ufi.geometry.Vertex[],net.vc9ufi.geometry.Vertex[],net.vc9ufi.geometry.Vertex[],int) -> a
+    float[][][] getColorGrid(float[][],float[][],int) -> a
+    net.vc9ufi.geometry.Triangle[] makeTrianglesFromVertexArray(net.vc9ufi.geometry.VertexInTriangle[][],float[][][],int) -> a
+    void calcVertexNormal(net.vc9ufi.geometry.Triangle[]) -> a
+    net.vc9ufi.cvitok.petal.Pointers makePointersFromTriangles(net.vc9ufi.geometry.Triangle[]) -> b
+    java.nio.FloatBuffer floatToBuffer(float[]) -> a
+net.vc9ufi.cvitok.petal.Petal -> net.vc9ufi.cvitok.e.b:
+    net.vc9ufi.cvitok.data.Parameters parameters -> a
+    net.vc9ufi.cvitok.petal.Calculator calculator -> b
+    float[] UP -> c
+    java.lang.String getName() -> a
+    void setQuality(int) -> a
+    void changeQuantity(float) -> a
+    void rotatePoints(float,float,net.vc9ufi.cvitok.data.SelectedVertices,net.vc9ufi.cvitok.data.SelectedVertices) -> a
+    void movePoints(float,net.vc9ufi.cvitok.data.SelectedVertices,net.vc9ufi.cvitok.data.SelectedVertices) -> a
+    void movePetal(float,float) -> a
+    float[] rotatePoint(float,float,float[],float,float[]) -> a
+    void setColor(float[],net.vc9ufi.cvitok.data.SelectedVertices,net.vc9ufi.cvitok.data.SelectedVertices) -> a
+    net.vc9ufi.cvitok.petal.Pointers getPointers() -> b
+    net.vc9ufi.cvitok.data.Parameters getParameters() -> c
+net.vc9ufi.cvitok.petal.Pointers -> net.vc9ufi.cvitok.e.c:
+    java.nio.FloatBuffer vertex -> a
+    java.nio.FloatBuffer color -> b
+    java.nio.FloatBuffer normal -> c
+    int size -> d
+    void paint(javax.microedition.khronos.opengles.GL10) -> a
+net.vc9ufi.cvitok.renderers.ColorDialogRenderer -> net.vc9ufi.cvitok.f.a:
+    int width -> d
+    int height -> e
+    net.vc9ufi.cvitok.dialogs.colordialog.ColorMatrix sphere -> a
+    float[] BACKGROUND -> b
+    float[] background -> c
+    net.vc9ufi.geometry.LookAt camera -> f
+    float[] getColor() -> a
+    net.vc9ufi.geometry.LookAt getLookAt() -> b
+    void onSurfaceCreated(javax.microedition.khronos.opengles.GL10,javax.microedition.khronos.egl.EGLConfig) -> onSurfaceCreated
+    void onSurfaceChanged(javax.microedition.khronos.opengles.GL10,int,int) -> onSurfaceChanged
+    void onDrawFrame(javax.microedition.khronos.opengles.GL10) -> onDrawFrame
+    void setupPerspective(javax.microedition.khronos.opengles.GL10) -> a
+    void setupOrtho(javax.microedition.khronos.opengles.GL10) -> b
+net.vc9ufi.cvitok.renderers.FlowerRenderer -> net.vc9ufi.cvitok.f.b:
+    int width -> a
+    int height -> b
+    net.vc9ufi.cvitok.App app -> c
+    boolean transparency -> d
+    boolean light -> e
+    void onSurfaceCreated(javax.microedition.khronos.opengles.GL10,javax.microedition.khronos.egl.EGLConfig) -> onSurfaceCreated
+    void onSurfaceChanged(javax.microedition.khronos.opengles.GL10,int,int) -> onSurfaceChanged
+    void onDrawFrame(javax.microedition.khronos.opengles.GL10) -> onDrawFrame
+    void clean(javax.microedition.khronos.opengles.GL10) -> c
+    void light(javax.microedition.khronos.opengles.GL10) -> d
+    void transparency(javax.microedition.khronos.opengles.GL10) -> a
+    void setupPerspective(javax.microedition.khronos.opengles.GL10) -> b
+    void setTransparency(boolean) -> a
+    void setLight(boolean) -> b
+net.vc9ufi.cvitok.settings.PrefActivity -> net.vc9ufi.cvitok.settings.PrefActivity:
+    net.vc9ufi.cvitok.App app -> a
+    void onCreate(android.os.Bundle) -> onCreate
+net.vc9ufi.cvitok.settings.PrefActivity$MyPreferenceFragment -> net.vc9ufi.cvitok.settings.a:
+    void onCreate(android.os.Bundle) -> onCreate
+net.vc9ufi.cvitok.settings.QualityDialogPref -> net.vc9ufi.cvitok.settings.QualityDialogPref:
+    android.content.Context context -> a
+    android.widget.NumberPicker picker -> b
+    int defQuality -> c
+    int quality -> d
+    android.view.View onCreateDialogView() -> onCreateDialogView
+    void onDialogClosed(boolean) -> onDialogClosed
+net.vc9ufi.cvitok.settings.Setting -> net.vc9ufi.cvitok.settings.b:
+    net.vc9ufi.cvitok.settings.Setting setting -> c
+    net.vc9ufi.cvitok.App app -> a
+    android.content.SharedPreferences preferences -> d
+    android.content.SharedPreferences$OnSharedPreferenceChangeListener onSharedPreferenceChangeListener -> e
+    float[] DEF_COLOR_F -> b
+    net.vc9ufi.cvitok.settings.Setting getInstance() -> a
+    void setApp(net.vc9ufi.cvitok.App) -> a
+    boolean getTransparency() -> b
+    int getQuality() -> c
+    boolean getLight() -> d
+    void setLastFlower(java.lang.String) -> a
+net.vc9ufi.cvitok.settings.Setting$1 -> net.vc9ufi.cvitok.settings.c:
+    net.vc9ufi.cvitok.settings.Setting this$0 -> a
+    void onSharedPreferenceChanged(android.content.SharedPreferences,java.lang.String) -> onSharedPreferenceChanged
+net.vc9ufi.geometry.Bezier -> net.vc9ufi.a.a:
+    float[][] getCurve(float[],float[],float[],float[],int) -> a
+    net.vc9ufi.geometry.Vertex[] getCurve(net.vc9ufi.geometry.Vertex[],int) -> a
+net.vc9ufi.geometry.Icosahedron -> net.vc9ufi.a.b:
+    float[][] VDATA -> a
+    int[][] TINDICES -> b
+    int CalcIcosahedron(java.util.ArrayList,float,int) -> a
+    int Subdivide(java.util.ArrayList,float,float[],float[],float[],int) -> a
+net.vc9ufi.geometry.Icosahedron$Trian -> net.vc9ufi.a.c:
+    float[][] v -> a
+    float[][] n -> b
+    void calkNormalf(float[],float[],float[]) -> a
+net.vc9ufi.geometry.LookAt -> net.vc9ufi.a.d:
+    float[] camera -> b
+    float[] up -> c
+    float[] camera_ -> d
+    float[] up_ -> e
+    float camera_fb -> f
+    float camera_lr -> g
+    float camera_r -> h
+    float x -> i
+    float y -> j
+    float r -> k
+    boolean terminate -> a
+    float[] getCameraTargetUp() -> a
+    void setAngle(float,float) -> a
+    boolean motionEvent(android.view.MotionEvent) -> a
+    void run() -> run
+net.vc9ufi.geometry.Quaternion -> net.vc9ufi.a.e:
+    float[] p -> a
+    void Normalize() -> a
+    net.vc9ufi.geometry.Quaternion Conjugate() -> b
+    net.vc9ufi.geometry.Quaternion Product(net.vc9ufi.geometry.Quaternion,net.vc9ufi.geometry.Quaternion) -> a
+    net.vc9ufi.geometry.Quaternion FromAxisAndAngle(float[],float) -> a
+    float[] Rotate(float[],net.vc9ufi.geometry.Quaternion) -> a
+net.vc9ufi.geometry.Triangle -> net.vc9ufi.a.f:
+    net.vc9ufi.geometry.VertexInTriangle v1 -> a
+    net.vc9ufi.geometry.VertexInTriangle v2 -> b
+    net.vc9ufi.geometry.VertexInTriangle v3 -> c
+    net.vc9ufi.geometry.Vertex n -> d
+    float[] c1 -> e
+    float[] c2 -> f
+    float[] c3 -> g
+    void setV1(net.vc9ufi.geometry.VertexInTriangle) -> a
+    void setV2(net.vc9ufi.geometry.VertexInTriangle) -> b
+    void setV3(net.vc9ufi.geometry.VertexInTriangle) -> c
+    int getVerticesFloatArray(float[],int) -> a
+    int getNormalsFloatArray(float[],int) -> b
+    int getColorsFloatArray(float[],int) -> c
+net.vc9ufi.geometry.Vector3D -> net.vc9ufi.a.g:
+    double[][][] NORMAL -> a
+    float[] normalizeF(float[]) -> a
+    float[] sum(float[],float[]) -> a
+    float[] cross(float[],float[]) -> b
+    void setLength(float[],double) -> a
+    void dLength(float[],double) -> b
+net.vc9ufi.geometry.Vertex -> net.vc9ufi.a.h:
+    float[] p -> a
+    net.vc9ufi.geometry.Vertex clone() -> a
+    net.vc9ufi.geometry.Vertex addToNew(net.vc9ufi.geometry.Vertex) -> a
+    net.vc9ufi.geometry.Vertex middle(net.vc9ufi.geometry.Vertex) -> b
+    net.vc9ufi.geometry.Vertex subtract(net.vc9ufi.geometry.Vertex) -> c
+    net.vc9ufi.geometry.Vertex crossProduct(net.vc9ufi.geometry.Vertex) -> d
+    float getLength() -> b
+    net.vc9ufi.geometry.Vertex setLength(float) -> a
+    net.vc9ufi.geometry.Vertex divLength(float) -> b
+    net.vc9ufi.geometry.Vertex normalize() -> c
+    net.vc9ufi.geometry.Vertex rotate(net.vc9ufi.geometry.Quaternion) -> a
+    java.lang.Object clone() -> clone
+net.vc9ufi.geometry.VertexInTriangle -> net.vc9ufi.a.i:
+    java.util.ArrayList triangles -> b
+    boolean hasNormal -> c
+    net.vc9ufi.geometry.Vertex normal -> d
+    void addTriangle(net.vc9ufi.geometry.Triangle) -> a
+    void calcVertexNormal() -> d
+    net.vc9ufi.geometry.Vertex calculateNotNormalizeNormal(net.vc9ufi.geometry.Vertex,net.vc9ufi.geometry.Vertex,net.vc9ufi.geometry.Vertex) -> a
