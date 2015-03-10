@@ -32,12 +32,6 @@ public class MainActivity extends Activity {
     FragmentVertices frag_vertices;
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        (new FileDialog(this)).show();
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
@@ -65,6 +59,8 @@ public class MainActivity extends Activity {
         frag_vertices = new FragmentVertices();
 
         init(customActionBarView);
+
+        if (app.isStart()) (new FileDialog(this)).show();
     }
 
     void init(View customActionBarView) {

@@ -20,6 +20,8 @@ public class App extends Application {
     private FlowerRenderer flowerRenderer;
     private ColorDialogRenderer colorRenderer;
 
+    private boolean start = true;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -63,5 +65,13 @@ public class App extends Application {
 
     public ColorDialogRenderer getColorRenderer() {
         return colorRenderer;
+    }
+
+    public boolean isStart() {
+        if (start) {
+            start = false;
+            return true;
+        }
+        return false;
     }
 }
