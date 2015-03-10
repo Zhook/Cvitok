@@ -4,12 +4,21 @@
           android:title="@string/menu_settings"
           android:menuCategory="system"
           android:orderInCategory="0"
-          android:showAsAction="ifRoom"
-          android:icon="@drawable/ic_action_settings"/>
-
-    <item android:id="@+id/menu_files"
-          android:title="@string/menu_files"
+          android:showAsAction="never"/>
+    <item android:id="@+id/menu_file_save"
+          android:title="@string/menu_files_save"
           android:orderInCategory="1"
-          android:showAsAction="ifRoom"
-          android:icon="@drawable/ic_action_save"/>
+          android:showAsAction="never"/>
+    <item android:id="@+id/menu_file_load"
+          android:title="@string/menu_files_load"
+          android:orderInCategory="2"
+          android:showAsAction="never"/>
+    <item android:id="@+id/menu_file_new"
+          android:title="@string/menu_files_new"
+          android:orderInCategory="3"
+          android:showAsAction="never"/>
+    <item android:id="@+id/menu_file_new_random"
+          android:title="@string/menu_files_new_random"
+          android:orderInCategory="3"
+          android:showAsAction="never"/>
 </menu>

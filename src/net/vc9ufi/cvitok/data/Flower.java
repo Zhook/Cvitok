@@ -48,6 +48,19 @@ public class Flower {
         return false;
     }
 
+    public boolean setNewRandomFlower(String flowerName) {
+        if (setName(flowerName)) {
+            petals = new ArrayList<>();
+            selectedPetal = new Petal(new Parameters("Petal1"), Setting.getInstance().getQuality());
+            petals.add(selectedPetal);
+            light = new Light();
+            background = BACKGROUND.clone();
+            left.clean();
+            right.clean();
+            return true;
+        }
+        return false;
+    }
 
     //-----------------------------------------------------------------------------------Name
     public String getName() {

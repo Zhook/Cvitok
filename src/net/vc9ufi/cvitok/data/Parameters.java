@@ -114,6 +114,10 @@ public class Parameters implements Cloneable {
         return this;
     }
 
+    public Parameters setConvex(float convex) {
+        this.convex = convex;
+        return this;
+    }
 
     //----------------------------subclasses
 

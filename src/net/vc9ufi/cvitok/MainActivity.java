@@ -1,9 +1,8 @@
 package net.vc9ufi.cvitok;
 
-import android.app.ActionBar;
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
+import android.app.*;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
@@ -11,13 +10,18 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
+import android.widget.*;
 import net.vc9ufi.cvitok.control.Control;
+import net.vc9ufi.cvitok.data.Flower;
+import net.vc9ufi.cvitok.data.SaveNLoad;
 import net.vc9ufi.cvitok.dialogs.FileDialog;
+import net.vc9ufi.cvitok.dialogs.FileListDialog;
+import net.vc9ufi.cvitok.dialogs.NameDialog;
 import net.vc9ufi.cvitok.fragments.FragmentFlower;
 import net.vc9ufi.cvitok.fragments.FragmentLight;
 import net.vc9ufi.cvitok.fragments.FragmentPetals;
 import net.vc9ufi.cvitok.fragments.FragmentVertices;
+import net.vc9ufi.cvitok.petal.RandomFlowerBuilder;
 import net.vc9ufi.cvitok.settings.PrefActivity;
 
 
@@ -30,6 +34,8 @@ public class MainActivity extends Activity {
 
     FragmentPetals frag_petal;
     FragmentVertices frag_vertices;
+
+    AlertDialog dialogFileList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,14 +100,73 @@ public class MainActivity extends Activity {
             case (R.id.menu_settings):
                 startActivity(new Intent(MainActivity.this, PrefActivity.class));
                 return true;
-            case (R.id.menu_files):
-                (new FileDialog(this)).show();
+            case (R.id.menu_file_save):
+                SaveNLoad.save(app);
+                return true;
+            case (R.id.menu_file_load):
+                (new FileListDialog(this)).show();
+                return true;
+            case (R.id.menu_file_new):
+                NameDialog flowerNameDialog = new NameDialog(this,
+                        getString(R.string.dialog_flower_name_title),
+                        getString(R.string.flower)) {
+                    @Override
+                    protected boolean onPositiveClick(String flowerName) {
+                        if (flowerName.length() > 0) {
+                            if (SaveNLoad.isFileExists(app, flowerName)) {
+                                this.setMsg(app.getString(R.string.toast_file_exists));
+                                return false;
+                            } else {
+                                if (Flower.getInstance().setNewFlower(flowerName))
+                                    return true;
+
+                                this.setMsg("invalid name");
+                                return false;
+                            }
+                        }
+                        this.setMsg(app.getString(R.string.msg_input_name));
+                        return false;
+                    }
+                };
+                flowerNameDialog.show();
+                return true;
+            case (R.id.menu_file_new_random):
+                NameDialog randomFlowerNameDialog = new NameDialog(this,
+                        getString(R.string.dialog_flower_name_title),
+                        getString(R.string.flower)) {
+                    @Override
+                    protected boolean onPositiveClick(String flowerName) {
+                        if (flowerName.length() > 0) {
+                            if (SaveNLoad.isFileExists(app, flowerName)) {
+                                this.setMsg(app.getString(R.string.toast_file_exists));
+                                return false;
+                            } else {
+                                if (SaveNLoad.isFileNameValid(flowerName)) {
+                                    RandomFlowerBuilder flowerBuilder = new RandomFlowerBuilder(flowerName);
+                                    flowerBuilder
+                                            .setBackground()
+                                            .addPetal();
+                                    Flower.getInstance().setFlower(flowerBuilder.build());
+                                    return true;
+                                }
+
+                                this.setMsg("invalid name");
+                                return false;
+                            }
+                        }
+                        this.setMsg(app.getString(R.string.msg_input_name));
+                        return false;
+                    }
+                };
+                randomFlowerNameDialog.show();
                 return true;
         }
 
 
         return super.onOptionsItemSelected(item);
     }
+
+    //-------------------------------------------------
 
     public void addFlowerFragment() {
         if (frame1 == FRAME1.FLOWER) {

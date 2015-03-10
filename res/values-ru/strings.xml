@@ -2,16 +2,15 @@
 <resources>
 
     <string name="menu_settings">Настройки</string>
-    <string name="menu_files">Файлы</string>
+    <string name="menu_files_save">Сохранить</string>
+    <string name="menu_files_load">Загрузить</string>
+    <string name="menu_files_new">Новый</string>
 
     <string name="flower">Цветок</string>
     <string name="petal">Лепесток</string>
 
     <string name="dialog_files_title">Файлы</string>
-    <string name="dialog_files_save">Сохранить</string>
-    <string name="dialog_files_load">Загрузить</string>
 
-    <string name="dialog_file_new">Новый</string>
     <string name="msg_input_name">Введите имя</string>
     <string name="toast_file_exists">Файл с таким именем уже есть</string>
 

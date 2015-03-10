@@ -9,16 +9,16 @@ import java.util.ArrayList;
 public class FlowerFile {
 
     @SerializedName("Name")
-    String name;
+    public String name;
 
     @SerializedName("Petals")
-    ArrayList<Parameters> petals = new ArrayList<>();
+    public ArrayList<Parameters> petals = new ArrayList<>();
 
     @SerializedName("Background")
-    float[] background;
+    public float[] background;
 
     @SerializedName("Light")
-    Light light;
+    public Light light;
 
     public static FlowerFile getFlower(String json) {
         Gson gson = new Gson();

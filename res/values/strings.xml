@@ -5,7 +5,10 @@
 
 
     <string name="menu_settings">Settings</string>
-    <string name="menu_files">Files</string>
+    <string name="menu_files_save">Save</string>
+    <string name="menu_files_load">Load</string>
+    <string name="menu_files_new">New</string>
+    <string name="menu_files_new_random">Random</string>
 
     <string name="flower">Flower</string>
     <string name="petal">Petal</string>
@@ -18,10 +21,8 @@
 
     <string name="dialog_files_title">Files</string>
     <string name="dialog_files_not_found">Not found</string>
-    <string name="dialog_files_save">Save</string>
-    <string name="dialog_files_load">Load</string>
     <string name="toast_file_corrupted">The file is corrupted</string>
-    <string name="dialog_file_new">New</string>
+
     <string name="toast_file_exists">File with the same name already exists</string>
     <string name="dialog_flower_name_title">Name of flower</string>
     <string name="dialog_delete_file_title">Delete file?</string>
