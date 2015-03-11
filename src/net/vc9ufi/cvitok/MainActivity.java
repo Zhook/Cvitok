@@ -145,7 +145,7 @@ public class MainActivity extends Activity {
                                     RandomFlowerBuilder flowerBuilder = new RandomFlowerBuilder(flowerName);
                                     flowerBuilder
                                             .setBackground()
-                                            .addPetal();
+                                            .addPetals();
                                     Flower.getInstance().setFlower(flowerBuilder.build());
                                     return true;
                                 }

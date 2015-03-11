@@ -1,6 +1,5 @@
 package net.vc9ufi.cvitok.petal;
 
-import net.vc9ufi.cvitok.data.Flower;
 import net.vc9ufi.cvitok.data.FlowerFile;
 import net.vc9ufi.cvitok.data.Light;
 import net.vc9ufi.cvitok.data.Parameters;
@@ -12,7 +11,7 @@ import java.util.Random;
 public class RandomFlowerBuilder {
 
     FlowerFile flower;
-    private String name = "";
+
     private Random random;
 
     public RandomFlowerBuilder(String name) {
@@ -42,14 +41,23 @@ public class RandomFlowerBuilder {
     public static final int START_BACKGROUND = 200;
     public static final int SIZE_BACKGROUND = 56;
 
+    public RandomFlowerBuilder addPetals() {
+        int l = 1 + random.nextInt(4);
+        for (int i = 0; i < l; i++) {
+            addPetal();
+        }
+        return this;
+    }
 
     public RandomFlowerBuilder addPetal() {
         Parameters p = new Parameters(PETALNAME + String.valueOf(flower.petals.size()));
         p.changeQuantity(random.nextInt(SIZE_QUANTITY) / 0.01f);
         p.setConvex(random.nextFloat() - 0.5f);
 
-        p.left = getRandomLine();
-        p.right = getRandomLine();
+        Vertex start = new Vertex(0, 0, 0);
+        Vertex finish = getRandomVertex(1);
+        p.left = getRandomLine(start, finish);
+        p.right = getRandomLine(start, finish);
 
         flower.petals.add(p);
 
@@ -58,7 +66,7 @@ public class RandomFlowerBuilder {
 
     public static final String PETALNAME = "Petal";
 
-    public static final int SIZE_QUANTITY = 3;
+    public static final int SIZE_QUANTITY = 5;
 
 
     public float[] getRandomColor(int start, int size) {
@@ -72,14 +80,14 @@ public class RandomFlowerBuilder {
         return color;
     }
 
-    public Vertex getRandomVertex() {
+    public Vertex getRandomVertex(float size) {
         return new Vertex(
-                2 * random.nextFloat() - 1,
-                2 * random.nextFloat() - 1,
-                2 * random.nextFloat() - 1);
+                2 * size * random.nextFloat() - size,
+                2 * size * random.nextFloat() - size,
+                2 * size * random.nextFloat() - size);
     }
 
-    public Parameters.Line getRandomLine() {
+    public Parameters.Line getRandomLine(Vertex start, Vertex finish) {
         Parameters.Line line;
         Parameters.Colors colors;
         Parameters.Coordinates coordinates;
@@ -91,10 +99,10 @@ public class RandomFlowerBuilder {
                 getRandomColor(0, 255));
 
         coordinates = new Parameters.Coordinates(
-                new Vertex(0, 0, 0),
-                getRandomVertex(),
-                getRandomVertex(),
-                getRandomVertex());
+                start,
+                getRandomVertex(0.5f),
+                getRandomVertex(0.5f),
+                finish);
 
 
         line = new Parameters.Line(colors, coordinates);
