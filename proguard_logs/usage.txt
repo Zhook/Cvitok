@@ -210,6 +210,8 @@ com.google.gson.stream.MalformedJsonException:
     33:37:public MalformedJsonException(java.lang.String,java.lang.Throwable)
     39:43:public MalformedJsonException(java.lang.Throwable)
 net.vc9ufi.cvitok.BuildConfig
+net.vc9ufi.cvitok.MainActivity:
+    android.app.AlertDialog dialogFileList
 net.vc9ufi.cvitok.R
 net.vc9ufi.cvitok.R$attr
 net.vc9ufi.cvitok.R$dimen
@@ -221,7 +223,9 @@ net.vc9ufi.cvitok.R$string
 net.vc9ufi.cvitok.R$xml
 net.vc9ufi.cvitok.Timer
 net.vc9ufi.cvitok.control.Control:
-    94:94:public boolean isMode(net.vc9ufi.cvitok.control.Control$MODE)
+    92:92:public boolean isMode(net.vc9ufi.cvitok.control.Control$MODE)
+net.vc9ufi.cvitok.data.Flower:
+    52:62:public boolean setNewRandomFlower(java.lang.String)
 net.vc9ufi.cvitok.data.Parameters:
     private static final float QUANTITY_STEP
     103:104:public net.vc9ufi.cvitok.data.Parameters setName(java.lang.String)
@@ -229,17 +233,19 @@ net.vc9ufi.cvitok.data.Parameters:
     113:114:public net.vc9ufi.cvitok.data.Parameters setAngle(float)
 net.vc9ufi.cvitok.data.SaveNLoad:
     static final java.lang.String EXT
-    15:15:public SaveNLoad()
-net.vc9ufi.cvitok.petal.Calculator:
-    250:252:static java.nio.FloatBuffer makeBuffer(int)
+    14:14:public SaveNLoad()
+net.vc9ufi.cvitok.dialogs.FileDialog:
+    android.app.AlertDialog dialogFileList
 net.vc9ufi.cvitok.petal.Petal:
     private static final float ROTATE_STEP
-    28:29:public void setName(java.lang.String)
-net.vc9ufi.cvitok.renderers.ColorDialogRenderer:
-    110:110:public void setPrecision(int)
-    113:119:private void light(javax.microedition.khronos.opengles.GL10)
+    27:28:public void setName(java.lang.String)
+net.vc9ufi.cvitok.petal.RandomFlowerBuilder:
+    public static final int START_BACKGROUND
+    public static final int SIZE_BACKGROUND
+    public static final java.lang.String PETALNAME
+    public static final int SIZE_QUANTITY
 net.vc9ufi.cvitok.renderers.FlowerRenderer:
-    123:131:public void setupOrtho(javax.microedition.khronos.opengles.GL10)
+    144:152:public void setupOrtho(javax.microedition.khronos.opengles.GL10)
 net.vc9ufi.cvitok.settings.ColorDialogPref
 net.vc9ufi.cvitok.settings.ColorDialogPref$1
 net.vc9ufi.cvitok.settings.Setting:
@@ -253,9 +259,9 @@ net.vc9ufi.cvitok.settings.Setting:
     public float modifySensitivityMove
     public static final float MODIFY_SENSITIVITY_MOVE
     public static final int DEF_QUALITY
-    51:51:public java.lang.String getLastFile()
-    75:79:public static int getIntColor(float[])
-    83:88:public static float[] getFloatColor(int)
+    50:50:public java.lang.String getLastFile()
+    74:78:public static int getIntColor(float[])
+    82:87:public static float[] getFloatColor(int)
 net.vc9ufi.geometry.Bezier:
     3:3:public Bezier()
 net.vc9ufi.geometry.Icosahedron:
@@ -267,34 +273,32 @@ net.vc9ufi.geometry.LookAt:
     private static final float step_radius
     41:41:public synchronized float[] getCamera()
     45:45:public synchronized float[] getUp()
-net.vc9ufi.geometry.Rotor
 net.vc9ufi.geometry.Triangle:
-    47:51:public void getVerticesFloatBuffer(java.nio.FloatBuffer)
-    54:58:public void getNormalsFloatBuffer(java.nio.FloatBuffer)
-    61:65:public void getColorsFloatBuffer(java.nio.FloatBuffer)
+    43:47:public void getVerticesFloatBuffer(java.nio.FloatBuffer)
+    50:54:public void getNormalsFloatBuffer(java.nio.FloatBuffer)
+    57:61:public void getColorsFloatBuffer(java.nio.FloatBuffer)
 net.vc9ufi.geometry.Vector3D:
     3:3:public Vector3D()
-    10:19:public static boolean eQuals(float[],float[])
-    23:29:public static boolean inCube(float[],float[],float[],float)
-    33:40:public static float[] calcNormal(float[],float[],float[])
-    57:65:public static double[] normalizeD(double[])
-    78:82:public static float[] middle(float[],float[])
-    86:92:public static float[] crossF(float[],float[],float[])
-    96:102:public static double[] crossD(float[],float[],float[])
-    114:114:public static float dotF(float[],float[])
-    118:118:public static double dotD(float[],float[])
-    124:124:public static double dotD(double[],float[])
-    130:130:public static double dotD(double[],double[])
-    136:140:public static float[] subF(float[],float[])
-    144:148:public static double[] subD(float[],float[])
-    152:156:public static double[] subD(float[],double[])
-    160:160:public static float length(float[])
-    165:165:public static float length(double[])
-    188:193:public static void divLength(float[],float)
-    196:196:public static float lengthSQR(float[])
-    200:200:public static float lengthSQR(float[],float[])
-    206:218:public static float[][] add2arr(float[][],float[][])
-    223:223:public static float[] toFloat(double[])
+    10:14:public static boolean eQuals(float[],float[])
+    18:24:public static boolean inCube(float[],float[],float[],float)
+    28:35:public static float[] calcNormal(float[],float[],float[])
+    52:60:public static double[] normalizeD(double[])
+    73:77:public static float[] middle(float[],float[])
+    81:87:public static float[] crossF(float[],float[],float[])
+    91:97:public static double[] crossD(float[],float[],float[])
+    109:109:public static float dotF(float[],float[])
+    113:113:public static double dotD(float[],float[])
+    119:119:public static double dotD(double[],float[])
+    125:125:public static double dotD(double[],double[])
+    131:135:public static float[] subF(float[],float[])
+    139:143:public static double[] subD(float[],float[])
+    147:151:public static double[] subD(float[],double[])
+    155:155:public static float length(float[])
+    160:160:public static float length(double[])
+    183:188:public static void divLength(float[],float)
+    191:191:public static float lengthSQR(float[])
+    195:195:public static float lengthSQR(float[],float[])
+    201:201:public static float[] toFloat(double[])
 net.vc9ufi.geometry.Vertex:
     31:34:public net.vc9ufi.geometry.Vertex add(net.vc9ufi.geometry.Vertex)
 org.intellij.lang.annotations.Flow

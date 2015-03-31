@@ -953,13 +953,19 @@ net.vc9ufi.cvitok.App -> net.vc9ufi.cvitok.App:
     net.vc9ufi.cvitok.settings.Setting setting -> a
     net.vc9ufi.cvitok.control.Control control -> b
     net.vc9ufi.cvitok.data.Flower flower -> c
-    net.vc9ufi.cvitok.renderers.FlowerRenderer flowerRenderer -> d
-    net.vc9ufi.cvitok.renderers.ColorDialogRenderer colorRenderer -> e
+    android.app.Activity mainActivity -> d
+    net.vc9ufi.cvitok.renderers.FlowerRenderer flowerRenderer -> e
+    net.vc9ufi.cvitok.renderers.ColorDialogRenderer colorRenderer -> f
+    boolean start -> g
     void onCreate() -> onCreate
+    void setMainActivity(android.app.Activity) -> a
     void makeFlowerRenderer(android.opengl.GLSurfaceView) -> a
     void setTransparency(boolean) -> a
     void setLight(boolean) -> b
-    net.vc9ufi.cvitok.renderers.ColorDialogRenderer getColorRenderer() -> a
+    void makeScreenShot() -> a
+    net.vc9ufi.cvitok.renderers.ColorDialogRenderer getColorRenderer() -> b
+    boolean isStart() -> c
+    void runInMainActivity(java.lang.Runnable) -> a
     net.vc9ufi.cvitok.control.Control access$000(net.vc9ufi.cvitok.App) -> a
 net.vc9ufi.cvitok.App$1 -> net.vc9ufi.cvitok.a:
     net.vc9ufi.cvitok.App this$0 -> a
@@ -973,7 +979,6 @@ net.vc9ufi.cvitok.MainActivity -> net.vc9ufi.cvitok.MainActivity:
     net.vc9ufi.cvitok.MainActivity$FRAME1 frame1 -> g
     net.vc9ufi.cvitok.MainActivity$FRAME2 frame2 -> h
     boolean $assertionsDisabled -> f
-    void onStart() -> onStart
     void onCreate(android.os.Bundle) -> onCreate
     void init(android.view.View) -> a
     boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
@@ -990,14 +995,23 @@ net.vc9ufi.cvitok.MainActivity$1 -> net.vc9ufi.cvitok.b:
 net.vc9ufi.cvitok.MainActivity$2 -> net.vc9ufi.cvitok.c:
     net.vc9ufi.cvitok.MainActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-net.vc9ufi.cvitok.MainActivity$FRAME1 -> net.vc9ufi.cvitok.d:
+net.vc9ufi.cvitok.MainActivity$3 -> net.vc9ufi.cvitok.d:
+    net.vc9ufi.cvitok.MainActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+net.vc9ufi.cvitok.MainActivity$4 -> net.vc9ufi.cvitok.e:
+    net.vc9ufi.cvitok.MainActivity this$0 -> a
+    boolean onPositiveClick(java.lang.String) -> a
+net.vc9ufi.cvitok.MainActivity$5 -> net.vc9ufi.cvitok.f:
+    net.vc9ufi.cvitok.MainActivity this$0 -> a
+    boolean onPositiveClick(java.lang.String) -> a
+net.vc9ufi.cvitok.MainActivity$FRAME1 -> net.vc9ufi.cvitok.g:
     net.vc9ufi.cvitok.MainActivity$FRAME1 NULL -> a
     net.vc9ufi.cvitok.MainActivity$FRAME1 FLOWER -> b
     net.vc9ufi.cvitok.MainActivity$FRAME1 PETAL -> c
     net.vc9ufi.cvitok.MainActivity$FRAME1[] $VALUES -> d
     net.vc9ufi.cvitok.MainActivity$FRAME1[] values() -> values
     net.vc9ufi.cvitok.MainActivity$FRAME1 valueOf(java.lang.String) -> valueOf
-net.vc9ufi.cvitok.MainActivity$FRAME2 -> net.vc9ufi.cvitok.e:
+net.vc9ufi.cvitok.MainActivity$FRAME2 -> net.vc9ufi.cvitok.h:
     net.vc9ufi.cvitok.MainActivity$FRAME2 NULL -> a
     net.vc9ufi.cvitok.MainActivity$FRAME2 LIGHT -> b
     net.vc9ufi.cvitok.MainActivity$FRAME2 VERTICES -> c
@@ -1108,6 +1122,7 @@ net.vc9ufi.cvitok.data.Parameters -> net.vc9ufi.cvitok.b.d:
     net.vc9ufi.cvitok.data.Parameters clone() -> a
     boolean equals(java.lang.Object) -> equals
     void changeQuantity(float) -> a
+    net.vc9ufi.cvitok.data.Parameters setConvex(float) -> b
     java.lang.Object clone() -> clone
 net.vc9ufi.cvitok.data.Parameters$Colors -> net.vc9ufi.cvitok.b.e:
     float[] start -> a
@@ -1163,7 +1178,7 @@ net.vc9ufi.cvitok.dialogs.ChoiceOfVertices -> net.vc9ufi.cvitok.c.a:
     android.widget.Button b_foot -> m
     android.widget.CheckBox cb_rightFoot -> n
     void show() -> a
-    void buttonsInit(android.widget.LinearLayout) -> a
+    void buttonsInit(android.view.View) -> a
 net.vc9ufi.cvitok.dialogs.ChoiceOfVertices$1 -> net.vc9ufi.cvitok.c.b:
     net.vc9ufi.cvitok.dialogs.ChoiceOfVertices this$0 -> a
     void onClick(android.content.DialogInterface,int) -> onClick
@@ -1207,13 +1222,9 @@ net.vc9ufi.cvitok.dialogs.FileDialog -> net.vc9ufi.cvitok.c.n:
     android.widget.Button load -> d
     android.widget.Button new_file -> e
     android.app.AlertDialog mainDialog -> f
-    android.app.AlertDialog dialogFileList -> g
-    android.view.View$OnClickListener newFileClickListener -> h
-    android.widget.AdapterView$OnItemClickListener onFileClickListener -> i
+    android.view.View$OnClickListener newFileClickListener -> g
     void show() -> a
     void buttonsInit(android.view.View) -> a
-    void showFileListDialog(android.content.Context) -> a
-    void showDeleteDialog(android.content.Context,java.lang.String) -> a
 net.vc9ufi.cvitok.dialogs.FileDialog$1 -> net.vc9ufi.cvitok.c.o:
     net.vc9ufi.cvitok.dialogs.FileDialog this$0 -> a
     void onClick(android.content.DialogInterface,int) -> onClick
@@ -1229,30 +1240,36 @@ net.vc9ufi.cvitok.dialogs.FileDialog$4 -> net.vc9ufi.cvitok.c.r:
 net.vc9ufi.cvitok.dialogs.FileDialog$4$1 -> net.vc9ufi.cvitok.c.s:
     net.vc9ufi.cvitok.dialogs.FileDialog$4 this$1 -> a
     boolean onPositiveClick(java.lang.String) -> a
-net.vc9ufi.cvitok.dialogs.FileDialog$5 -> net.vc9ufi.cvitok.c.t:
-    net.vc9ufi.cvitok.dialogs.FileDialog this$0 -> a
+net.vc9ufi.cvitok.dialogs.FileListDialog -> net.vc9ufi.cvitok.c.t:
+    android.content.Context context -> a
+    android.app.AlertDialog dialogFileList -> b
+    android.widget.AdapterView$OnItemClickListener onFileClickListener -> c
+    void show() -> a
+    void showDeleteDialog(android.content.Context,java.lang.String) -> a
+net.vc9ufi.cvitok.dialogs.FileListDialog$1 -> net.vc9ufi.cvitok.c.u:
+    net.vc9ufi.cvitok.dialogs.FileListDialog this$0 -> a
     void onClick(android.content.DialogInterface,int) -> onClick
-net.vc9ufi.cvitok.dialogs.FileDialog$6 -> net.vc9ufi.cvitok.c.u:
+net.vc9ufi.cvitok.dialogs.FileListDialog$2 -> net.vc9ufi.cvitok.c.v:
     android.content.Context val$context -> a
     java.lang.String val$name -> b
     void onClick(android.content.DialogInterface,int) -> onClick
-net.vc9ufi.cvitok.dialogs.FileDialog$7 -> net.vc9ufi.cvitok.c.v:
+net.vc9ufi.cvitok.dialogs.FileListDialog$3 -> net.vc9ufi.cvitok.c.w:
     void onClick(android.content.DialogInterface,int) -> onClick
-net.vc9ufi.cvitok.dialogs.FileDialog$8 -> net.vc9ufi.cvitok.c.w:
-    net.vc9ufi.cvitok.dialogs.FileDialog this$0 -> a
+net.vc9ufi.cvitok.dialogs.FileListDialog$4 -> net.vc9ufi.cvitok.c.x:
+    net.vc9ufi.cvitok.dialogs.FileListDialog this$0 -> a
     void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-net.vc9ufi.cvitok.dialogs.FileDialog$8$1 -> net.vc9ufi.cvitok.c.x:
+net.vc9ufi.cvitok.dialogs.FileListDialog$4$1 -> net.vc9ufi.cvitok.c.y:
     java.lang.String val$name -> a
-    net.vc9ufi.cvitok.dialogs.FileDialog$8 this$1 -> b
+    net.vc9ufi.cvitok.dialogs.FileListDialog$4 this$1 -> b
     void onClick(android.content.DialogInterface,int) -> onClick
-net.vc9ufi.cvitok.dialogs.FileDialog$8$2 -> net.vc9ufi.cvitok.c.y:
+net.vc9ufi.cvitok.dialogs.FileListDialog$4$2 -> net.vc9ufi.cvitok.c.z:
     java.lang.String val$name -> a
-    net.vc9ufi.cvitok.dialogs.FileDialog$8 this$1 -> b
+    net.vc9ufi.cvitok.dialogs.FileListDialog$4 this$1 -> b
     void onClick(android.content.DialogInterface,int) -> onClick
-net.vc9ufi.cvitok.dialogs.FileDialog$8$3 -> net.vc9ufi.cvitok.c.z:
-    net.vc9ufi.cvitok.dialogs.FileDialog$8 this$1 -> a
+net.vc9ufi.cvitok.dialogs.FileListDialog$4$3 -> net.vc9ufi.cvitok.c.aa:
+    net.vc9ufi.cvitok.dialogs.FileListDialog$4 this$1 -> a
     void onClick(android.content.DialogInterface,int) -> onClick
-net.vc9ufi.cvitok.dialogs.NameDialog -> net.vc9ufi.cvitok.c.aa:
+net.vc9ufi.cvitok.dialogs.NameDialog -> net.vc9ufi.cvitok.c.ab:
     android.content.Context context -> b
     java.lang.String title -> c
     java.lang.String defName -> d
@@ -1260,13 +1277,13 @@ net.vc9ufi.cvitok.dialogs.NameDialog -> net.vc9ufi.cvitok.c.aa:
     void show() -> a
     void setMsg(java.lang.String) -> b
     boolean onPositiveClick(java.lang.String) -> a
-net.vc9ufi.cvitok.dialogs.NameDialog$1 -> net.vc9ufi.cvitok.c.ab:
+net.vc9ufi.cvitok.dialogs.NameDialog$1 -> net.vc9ufi.cvitok.c.ac:
     net.vc9ufi.cvitok.dialogs.NameDialog this$0 -> a
     void onClick(android.content.DialogInterface,int) -> onClick
-net.vc9ufi.cvitok.dialogs.NameDialog$2 -> net.vc9ufi.cvitok.c.ac:
+net.vc9ufi.cvitok.dialogs.NameDialog$2 -> net.vc9ufi.cvitok.c.ad:
     net.vc9ufi.cvitok.dialogs.NameDialog this$0 -> a
     void onClick(android.content.DialogInterface,int) -> onClick
-net.vc9ufi.cvitok.dialogs.NameDialog$3 -> net.vc9ufi.cvitok.c.ad:
+net.vc9ufi.cvitok.dialogs.NameDialog$3 -> net.vc9ufi.cvitok.c.ae:
     android.widget.EditText val$editTextName -> a
     android.app.AlertDialog val$nameDialog -> b
     net.vc9ufi.cvitok.dialogs.NameDialog this$0 -> c
@@ -1451,6 +1468,17 @@ net.vc9ufi.cvitok.petal.Pointers -> net.vc9ufi.cvitok.e.c:
     java.nio.FloatBuffer normal -> c
     int size -> d
     void paint(javax.microedition.khronos.opengles.GL10) -> a
+net.vc9ufi.cvitok.petal.RandomFlowerBuilder -> net.vc9ufi.cvitok.e.d:
+    net.vc9ufi.cvitok.data.FlowerFile flower -> a
+    java.util.Random random -> b
+    net.vc9ufi.cvitok.petal.RandomFlowerBuilder setBackground() -> a
+    net.vc9ufi.cvitok.petal.RandomFlowerBuilder setBackground(int,int) -> a
+    net.vc9ufi.cvitok.petal.RandomFlowerBuilder addPetals() -> b
+    net.vc9ufi.cvitok.petal.RandomFlowerBuilder addPetal() -> c
+    float[] getRandomColor(int,int) -> b
+    net.vc9ufi.geometry.Vertex getRandomVertex(float) -> a
+    net.vc9ufi.cvitok.data.Parameters$Line getRandomLine(net.vc9ufi.geometry.Vertex,net.vc9ufi.geometry.Vertex) -> a
+    net.vc9ufi.cvitok.data.FlowerFile build() -> d
 net.vc9ufi.cvitok.renderers.ColorDialogRenderer -> net.vc9ufi.cvitok.f.a:
     int width -> d
     int height -> e
@@ -1471,6 +1499,7 @@ net.vc9ufi.cvitok.renderers.FlowerRenderer -> net.vc9ufi.cvitok.f.b:
     net.vc9ufi.cvitok.App app -> c
     boolean transparency -> d
     boolean light -> e
+    boolean screenshot -> f
     void onSurfaceCreated(javax.microedition.khronos.opengles.GL10,javax.microedition.khronos.egl.EGLConfig) -> onSurfaceCreated
     void onSurfaceChanged(javax.microedition.khronos.opengles.GL10,int,int) -> onSurfaceChanged
     void onDrawFrame(javax.microedition.khronos.opengles.GL10) -> onDrawFrame
@@ -1480,6 +1509,32 @@ net.vc9ufi.cvitok.renderers.FlowerRenderer -> net.vc9ufi.cvitok.f.b:
     void setupPerspective(javax.microedition.khronos.opengles.GL10) -> b
     void setTransparency(boolean) -> a
     void setLight(boolean) -> b
+    void makeScreenshot() -> a
+net.vc9ufi.cvitok.renderers.FlowerRenderer$1 -> net.vc9ufi.cvitok.f.c:
+    net.vc9ufi.cvitok.renderers.ScreenShot val$screenShot -> a
+    net.vc9ufi.cvitok.renderers.FlowerRenderer this$0 -> b
+    void run() -> run
+net.vc9ufi.cvitok.renderers.ScreenShot -> net.vc9ufi.cvitok.f.d:
+    net.vc9ufi.cvitok.App app -> a
+    int width -> g
+    int height -> h
+    int size -> b
+    int[] mPixelsBuffer -> c
+    java.lang.String name -> d
+    java.io.File file -> e
+    java.text.SimpleDateFormat formater -> f
+    void addPngScreenShotToAlbum() -> a
+    android.graphics.Bitmap makeBitmap() -> b
+    java.io.File createImageFile(java.lang.String,java.lang.String) -> a
+    void saveImageFile(java.io.File,android.graphics.Bitmap) -> a
+    void galleryAddPic(android.content.Context,java.lang.String) -> a
+    void showResultToast(android.content.Context,java.io.File) -> a
+    void swapRedNBlue(int[]) -> a
+    java.lang.String getUniqueName(java.lang.String) -> a
+    void access$000(net.vc9ufi.cvitok.renderers.ScreenShot,android.content.Context,java.io.File) -> a
+net.vc9ufi.cvitok.renderers.ScreenShot$1 -> net.vc9ufi.cvitok.f.e:
+    net.vc9ufi.cvitok.renderers.ScreenShot this$0 -> a
+    void run() -> run
 net.vc9ufi.cvitok.settings.PrefActivity -> net.vc9ufi.cvitok.settings.PrefActivity:
     net.vc9ufi.cvitok.App app -> a
     void onCreate(android.os.Bundle) -> onCreate

@@ -1,16 +1,16 @@
 package net.vc9ufi.cvitok;
 
-import android.app.*;
-import android.content.Context;
-import android.content.DialogInterface;
+import android.app.ActionBar;
+import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.*;
+import android.widget.ImageButton;
 import net.vc9ufi.cvitok.control.Control;
 import net.vc9ufi.cvitok.data.Flower;
 import net.vc9ufi.cvitok.data.SaveNLoad;
@@ -35,8 +35,6 @@ public class MainActivity extends Activity {
     FragmentPetals frag_petal;
     FragmentVertices frag_vertices;
 
-    AlertDialog dialogFileList;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +50,7 @@ public class MainActivity extends Activity {
         actionBar.setDisplayShowHomeEnabled(false);
         actionBar.setDisplayShowTitleEnabled(false);
 
-        View customActionBarView = LayoutInflater.from(this).inflate(R.layout.main_actionbar, null);
+        View customActionBarView = View.inflate(this, R.layout.main_actionbar, null);
 
         actionBar.setCustomView(customActionBarView);
         actionBar.setDisplayShowCustomEnabled(true);
