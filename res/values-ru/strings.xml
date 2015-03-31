@@ -45,6 +45,8 @@
     <string name="fragment_flower_background">Фон</string>
     <string name="fragment_flower_petals">Лепестки</string>
     <string name="fragment_flower_light">Свет</string>
+    <string name="toast_screenshot_saved">Скриншот сохранен: </string>
+    <string name="toast_screenshot_error">Ошибка записи на sd-карту</string>
 
 
 </resources>

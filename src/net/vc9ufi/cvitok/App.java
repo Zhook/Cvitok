@@ -1,5 +1,6 @@
 package net.vc9ufi.cvitok;
 
+import android.app.Activity;
 import android.app.Application;
 import android.opengl.GLSurfaceView;
 import android.view.MotionEvent;
@@ -16,6 +17,7 @@ public class App extends Application {
     private Setting setting;
     private Control control;
     private Flower flower;
+    private Activity mainActivity;
 
     private FlowerRenderer flowerRenderer;
     private ColorDialogRenderer colorRenderer;
@@ -42,6 +44,9 @@ public class App extends Application {
 
     }
 
+    public void setMainActivity(Activity activity){
+        mainActivity = activity;
+    }
 
     //--------------------------------------------------------------------------------------Renderers
     public void makeFlowerRenderer(GLSurfaceView flowerSurface) {
@@ -62,6 +67,9 @@ public class App extends Application {
         flowerRenderer.setLight(light);
     }
 
+    public void makeScreenShot() {
+        flowerRenderer.makeScreenshot();
+    }
 
     public ColorDialogRenderer getColorRenderer() {
         return colorRenderer;
@@ -73,5 +81,9 @@ public class App extends Application {
             return true;
         }
         return false;
+    }
+
+    public void runInMainActivity(Runnable runnable){
+        mainActivity.runOnUiThread(runnable);
     }
 }

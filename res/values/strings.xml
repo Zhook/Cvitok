@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Cvitok</string>
+    <string name="app_name" translatable="false">Cvitok</string>
 
 
     <string name="menu_settings">Settings</string>
@@ -21,7 +21,7 @@
 
     <string name="dialog_files_title">Files</string>
     <string name="dialog_files_not_found">Not found</string>
-    <string name="toast_file_corrupted">The file is corrupted</string>
+    <string name="toast_file_corrupted" translatable="false">The file is corrupted</string>
 
     <string name="toast_file_exists">File with the same name already exists</string>
     <string name="dialog_flower_name_title">Name of flower</string>
@@ -52,5 +52,7 @@
     <string name="fragment_flower_text_flower">Flower</string>
     <string name="fragment_flower_light">Light</string>
 
-
+    <string name="actionBar_imageButton_screenshot_description" translatable="false">ScreenShot</string>
+    <string name="toast_screenshot_saved">Screenshot saved:</string>
+    <string name="toast_screenshot_error">Error writing to the SD card</string>
 </resources>

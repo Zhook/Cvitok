@@ -1,14 +1,24 @@
 package net.vc9ufi.cvitok.renderers;
 
+import android.graphics.Bitmap;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLU;
+import android.view.Gravity;
+import android.widget.Toast;
 import net.vc9ufi.cvitok.App;
+import net.vc9ufi.cvitok.R;
 import net.vc9ufi.cvitok.control.Control;
 import net.vc9ufi.cvitok.data.Flower;
 import net.vc9ufi.cvitok.data.Light;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.ShortBuffer;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.concurrent.Executor;
 
 
 public class FlowerRenderer implements GLSurfaceView.Renderer {
@@ -19,6 +29,7 @@ public class FlowerRenderer implements GLSurfaceView.Renderer {
 
     private volatile boolean transparency = false;
     private volatile boolean light = false;
+    private volatile boolean screenshot = false;
 
     public FlowerRenderer(App app) {
         this.app = app;
@@ -76,6 +87,19 @@ public class FlowerRenderer implements GLSurfaceView.Renderer {
 //        gl.glMaterialfv(GL10.GL_FRONT_AND_BACK, GL10.GL_SPECULAR, new float[]{0.2f, 0.2f, 0.2f, 1}, 0);
 
         Flower.getInstance().paint(gl);
+
+        if (screenshot) {
+            String name = ScreenShot.getUniqueName(Flower.getInstance().getName());
+            final ScreenShot screenShot = new ScreenShot(app, gl, width, height, name);
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    screenShot.addPngScreenShotToAlbum();
+                }
+            }).start();
+            screenshot = false;
+        }
     }
 
     private void clean(GL10 gl) {
@@ -136,4 +160,7 @@ public class FlowerRenderer implements GLSurfaceView.Renderer {
         this.light = light;
     }
 
+    public void makeScreenshot() {
+        this.screenshot = true;
+    }
 }

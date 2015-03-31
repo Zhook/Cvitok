@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="preference_key_lastfile">preference_key_last_flower</string>
+    <string name="preference_key_lastfile" translatable="false">preference_key_last_flower</string>
 
-    <string name="preference_key_graphics">preference_key_graphics</string>
+    <string name="preference_key_graphics" translatable="false">preference_key_graphics</string>
 
-    <string name="preference_key_transparency">preference_key_transparency</string>
-    <string name="preference_key_quality">preference_key_quality</string>
+    <string name="preference_key_transparency" translatable="false">preference_key_transparency</string>
+    <string name="preference_key_quality" translatable="false">preference_key_quality</string>
 
-    <string name="preference_key_light_setting">preference_key_light_settings</string>
-    <string name="preference_key_light_switch">preference_key_light_switch</string>
+    <string name="preference_key_light_setting" translatable="false">preference_key_light_settings</string>
+    <string name="preference_key_light_switch" translatable="false">preference_key_light_switch</string>
 
-    <string name="preference_key_controls">preference_key_controls</string>
+    <string name="preference_key_controls" translatable="false">preference_key_controls</string>
 </resources>

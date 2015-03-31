@@ -44,6 +44,7 @@ public class MainActivity extends Activity {
 
         app = (App) getApplicationContext();
         app.makeFlowerRenderer((GLSurfaceView) findViewById(R.id.glFlower));
+        app.setMainActivity(this);
 
         ActionBar actionBar = getActionBar();
         assert actionBar != null;
@@ -70,6 +71,14 @@ public class MainActivity extends Activity {
     }
 
     void init(View customActionBarView) {
+        ImageButton b_screenshot = (ImageButton) customActionBarView.findViewById(R.id.actionBar_imageButton_screenshot);
+        b_screenshot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                app.makeScreenShot();
+            }
+        });
+
         ImageButton b_flower = (ImageButton) customActionBarView.findViewById(R.id.actionBar_imageButton_flower);
         b_flower.setOnClickListener(new View.OnClickListener() {
             @Override
