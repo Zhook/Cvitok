@@ -1,39 +1,56 @@
-package net.vc9ufi.cvitok;
+package net.vc9ufi.cvitok.views;
 
-import android.app.ActionBar;
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
+import android.app.*;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.opengl.GLSurfaceView;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
-import net.vc9ufi.cvitok.control.Control;
+import android.widget.ProgressBar;
+import android.widget.Toast;
+import net.vc9ufi.cvitok.App;
+import net.vc9ufi.cvitok.R;
 import net.vc9ufi.cvitok.data.Flower;
+import net.vc9ufi.cvitok.data.Light;
 import net.vc9ufi.cvitok.data.SaveNLoad;
-import net.vc9ufi.cvitok.dialogs.FileDialog;
-import net.vc9ufi.cvitok.dialogs.FileListDialog;
-import net.vc9ufi.cvitok.dialogs.NameDialog;
-import net.vc9ufi.cvitok.fragments.FragmentFlower;
-import net.vc9ufi.cvitok.fragments.FragmentLight;
-import net.vc9ufi.cvitok.fragments.FragmentPetals;
-import net.vc9ufi.cvitok.fragments.FragmentVertices;
+import net.vc9ufi.cvitok.views.dialogs.FileDialog;
+import net.vc9ufi.cvitok.views.dialogs.FileListDialog;
+import net.vc9ufi.cvitok.views.dialogs.NameDialog;
+import net.vc9ufi.cvitok.views.dialogs.ScreenshotDialog;
+import net.vc9ufi.cvitok.views.fragments.FragmentFlower;
+import net.vc9ufi.cvitok.views.fragments.FragmentLight;
+import net.vc9ufi.cvitok.views.fragments.FragmentPetals;
+import net.vc9ufi.cvitok.views.fragments.FragmentVertices;
 import net.vc9ufi.cvitok.petal.RandomFlowerBuilder;
-import net.vc9ufi.cvitok.settings.PrefActivity;
+import net.vc9ufi.cvitok.views.render.ImplRenderer;
+import net.vc9ufi.cvitok.views.render.ScreenShot;
+import net.vc9ufi.cvitok.views.settings.PrefActivity;
+
+import javax.microedition.khronos.opengles.GL10;
+import java.io.File;
+import java.io.IOException;
+import java.net.URI;
 
 
 public class MainActivity extends Activity {
 
-    App app;
+    private App app;
 
-    FragmentFlower frag_flower;
-    FragmentLight frag_light;
+    private FragmentFlower frag_flower;
+    private FragmentLight frag_light;
 
-    FragmentPetals frag_petal;
-    FragmentVertices frag_vertices;
+    private FragmentPetals frag_petal;
+    private FragmentVertices frag_vertices;
+
+    private ImplRenderer mFlowerRenderer;
+    private GLSurfaceView glSurfaceView;
+
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,19 +58,74 @@ public class MainActivity extends Activity {
         setContentView(R.layout.main_activity);
 
         app = (App) getApplicationContext();
-        app.makeFlowerRenderer((GLSurfaceView) findViewById(R.id.glFlower));
-        app.setMainActivity(this);
 
-        ActionBar actionBar = getActionBar();
-        assert actionBar != null;
 
-        actionBar.setDisplayShowHomeEnabled(false);
-        actionBar.setDisplayShowTitleEnabled(false);
+        final Flower flower = app.getFlower();
+        mFlowerRenderer = new ImplRenderer(flower.getFlowerOnTouchListener()) {
+            @Override
+            public void paint(GL10 gl) {
+                flower.paint(gl);
+            }
 
-        View customActionBarView = View.inflate(this, R.layout.main_actionbar, null);
+            @Override
+            public void onCaptureScreenShot(final Bitmap bitmap) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        progressBar.setVisibility(View.VISIBLE);
 
-        actionBar.setCustomView(customActionBarView);
-        actionBar.setDisplayShowCustomEnabled(true);
+                        new AsyncTask<String, Integer, Uri>() {
+
+                            @Override
+                            protected Uri doInBackground(String... params) {
+                                String name = ScreenShot.getUniqueName(params[0]);
+                                try {
+                                    File file = ScreenShot.createImageFile(name, ".png");
+
+                                    if (file != null) {
+                                        ScreenShot.saveImageFile(file, bitmap);
+                                        return ScreenShot.addToGallery(app, file.getAbsolutePath());
+                                    }
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                                return null;
+                            }
+
+                            @Override
+                            protected void onPostExecute(Uri uri) {
+                                super.onPostExecute(uri);
+                                progressBar.setVisibility(View.INVISIBLE);
+
+                                if (uri == null) {
+                                    Toast.makeText(MainActivity.this, getString(R.string.toast_screenshot_error), Toast.LENGTH_SHORT).show();
+                                } else {
+                                    ScreenshotDialog screenshotDialog = new ScreenshotDialog();
+                                    screenshotDialog.setBitmap(bitmap, uri);
+                                    screenshotDialog.show(getFragmentManager(), "dlg");
+                                }
+                            }
+                        }.execute(flower.getName());
+                    }
+                });
+            }
+
+            @Override
+            public float[] background() {
+                return flower.getBackground();
+            }
+
+            @Override
+            public Light light() {
+                return flower.getLight();
+            }
+        };
+
+        glSurfaceView = (GLSurfaceView) findViewById(R.id.glFlower);
+        glSurfaceView.setOnTouchListener(app.getFlower().getOnTouchListener(App.MODE.NULL));
+        glSurfaceView.setRenderer(mFlowerRenderer);
+
+        initActionBar();
 
         frag_flower = new FragmentFlower();
         frag_flower.setAppNMainActivity(app, this);
@@ -63,17 +135,27 @@ public class MainActivity extends Activity {
         frag_petal.setAppNMainActivity(app, this);
         frag_vertices = new FragmentVertices();
 
-        init(customActionBarView);
+        progressBar = (ProgressBar) findViewById(R.id.mainActivity_progressBar);
 
         if (app.isStart()) (new FileDialog(this)).show();
     }
 
-    void init(View customActionBarView) {
+    private void initActionBar() {
+        ActionBar actionBar = getActionBar();
+        assert actionBar != null;
+        actionBar.setDisplayShowHomeEnabled(false);
+        actionBar.setDisplayShowTitleEnabled(false);
+
+        View customActionBarView = View.inflate(this, R.layout.main_actionbar, null);
+
+        actionBar.setCustomView(customActionBarView);
+        actionBar.setDisplayShowCustomEnabled(true);
+
         ImageButton b_screenshot = (ImageButton) customActionBarView.findViewById(R.id.actionBar_imageButton_screenshot);
         b_screenshot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                app.makeScreenShot();
+                mFlowerRenderer.makeScreenshot();
             }
         });
 
@@ -93,6 +175,7 @@ public class MainActivity extends Activity {
             }
         });
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -124,7 +207,7 @@ public class MainActivity extends Activity {
                                 this.setMsg(app.getString(R.string.toast_file_exists));
                                 return false;
                             } else {
-                                if (Flower.getInstance().setNewFlower(flowerName))
+                                if (app.getFlower().setNewFlower(flowerName))
                                     return true;
 
                                 this.setMsg("invalid name");
@@ -153,7 +236,7 @@ public class MainActivity extends Activity {
                                     flowerBuilder
                                             .setBackground()
                                             .addPetals();
-                                    Flower.getInstance().setFlower(flowerBuilder.build());
+                                    app.getFlower().setFlower(flowerBuilder.build());
                                     return true;
                                 }
 
@@ -177,13 +260,13 @@ public class MainActivity extends Activity {
 
     public void addFlowerFragment() {
         if (frame1 == FRAME1.FLOWER) {
-            Control.getInstance().setMode(Control.MODE.NULL);
+            glSurfaceView.setOnTouchListener(app.getFlower().getOnTouchListener(App.MODE.NULL));
             frame1 = FRAME1.NULL;
             setFrame1(new Fragment());
             frame2 = FRAME2.NULL;
             setFrame2(new Fragment());
         } else {
-            Control.getInstance().setMode(Control.MODE.FLOWER);
+            glSurfaceView.setOnTouchListener(app.getFlower().getOnTouchListener(App.MODE.FLOWER));
             frame1 = FRAME1.FLOWER;
             setFrame1(frag_flower);
             frame2 = FRAME2.NULL;
@@ -193,13 +276,13 @@ public class MainActivity extends Activity {
 
     public void addPetalsFragment() {
         if (frame1 == FRAME1.PETAL) {
-            Control.getInstance().setMode(Control.MODE.NULL);
+            glSurfaceView.setOnTouchListener(app.getFlower().getOnTouchListener(App.MODE.NULL));
             frame1 = FRAME1.NULL;
             setFrame1(new Fragment());
             frame2 = FRAME2.NULL;
             setFrame2(new Fragment());
         } else {
-            Control.getInstance().setMode(Control.MODE.PETAL);
+            glSurfaceView.setOnTouchListener(app.getFlower().getOnTouchListener(App.MODE.PETAL));
             frame1 = FRAME1.PETAL;
             setFrame1(frag_petal);
             frame2 = FRAME2.NULL;
@@ -209,11 +292,11 @@ public class MainActivity extends Activity {
 
     public void addLightFragment() {
         if (frame2 == FRAME2.LIGHT) {
-            Control.getInstance().setMode(Control.MODE.FLOWER);
+            glSurfaceView.setOnTouchListener(app.getFlower().getOnTouchListener(App.MODE.FLOWER));
             frame2 = FRAME2.NULL;
             setFrame2(new Fragment());
         } else {
-            Control.getInstance().setMode(Control.MODE.LIGHT);
+            glSurfaceView.setOnTouchListener(app.getFlower().getOnTouchListener(App.MODE.LIGHT));
             frame2 = FRAME2.LIGHT;
             setFrame2(frag_light);
         }
@@ -221,11 +304,11 @@ public class MainActivity extends Activity {
 
     public void addVerticesFragment() {
         if (frame2 == FRAME2.VERTICES) {
-            Control.getInstance().setMode(Control.MODE.PETAL);
+            glSurfaceView.setOnTouchListener(app.getFlower().getOnTouchListener(App.MODE.PETAL));
             frame2 = FRAME2.NULL;
             setFrame2(new Fragment());
         } else {
-            Control.getInstance().setMode(Control.MODE.VERTEX);
+            glSurfaceView.setOnTouchListener(app.getFlower().getOnTouchListener(App.MODE.VERTEX));
             frame2 = FRAME2.VERTICES;
             setFrame2(frag_vertices);
         }

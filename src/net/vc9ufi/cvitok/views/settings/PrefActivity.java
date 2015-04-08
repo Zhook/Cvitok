@@ -1,4 +1,4 @@
-package net.vc9ufi.cvitok.settings;
+package net.vc9ufi.cvitok.views.settings;
 
 import android.os.Bundle;
 import android.preference.PreferenceActivity;

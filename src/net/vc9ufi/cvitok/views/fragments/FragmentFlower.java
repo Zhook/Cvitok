@@ -1,4 +1,4 @@
-package net.vc9ufi.cvitok.fragments;
+package net.vc9ufi.cvitok.views.fragments;
 
 import android.app.Fragment;
 import android.content.Context;
@@ -9,11 +9,10 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import net.vc9ufi.cvitok.App;
-import net.vc9ufi.cvitok.MainActivity;
 import net.vc9ufi.cvitok.R;
-import net.vc9ufi.cvitok.data.Flower;
-import net.vc9ufi.cvitok.dialogs.colordialog.ColorDialog;
-import net.vc9ufi.cvitok.renderers.ColorDialogRenderer;
+import net.vc9ufi.cvitok.views.MainActivity;
+import net.vc9ufi.cvitok.views.dialogs.colordialog.ColorDialog;
+import net.vc9ufi.cvitok.views.dialogs.colordialog.ColorDialogRenderer;
 
 public class FragmentFlower extends Fragment {
 
@@ -42,12 +41,12 @@ public class FragmentFlower extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        tv_flowerName.setText(Flower.getInstance().getName());
+        tv_flowerName.setText(app.getFlower().getName());
     }
 
     void init(View view) {
         tv_flowerName = (TextView) view.findViewById(R.id.fragment_flower_textView_fileName);
-        tv_flowerName.setText(Flower.getInstance().getName());
+        tv_flowerName.setText(app.getFlower().getName());
 
         ImageButton b_background = (ImageButton) view.findViewById(R.id.fragment_flower_imageButton_background);
         b_background.setOnClickListener(backgroundOnClickListener);
@@ -68,7 +67,7 @@ public class FragmentFlower extends Fragment {
             ColorDialog colorDialog = new ColorDialog(context, renderer) {
                 @Override
                 public void onClickPositiveButton(float[] color) {
-                    Flower.getInstance().setBackground(color);
+                    app.getFlower().setBackground(color);
                 }
 
                 @Override

@@ -7,7 +7,7 @@
                       android:title="@string/pref_graphics"
                       android:summary="">
 
-        <net.vc9ufi.cvitok.settings.QualityDialogPref
+        <net.vc9ufi.cvitok.views.settings.QualityDialogPref
                 android:key="@string/preference_key_quality"
                 android:title="@string/pref_quality_title"
                 android:dialogTitle="@string/pref_quality_title"

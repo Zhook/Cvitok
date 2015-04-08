@@ -2,8 +2,9 @@ package net.vc9ufi.cvitok.data;
 
 import android.content.Context;
 import android.widget.Toast;
+import net.vc9ufi.cvitok.App;
 import net.vc9ufi.cvitok.R;
-import net.vc9ufi.cvitok.settings.Setting;
+import net.vc9ufi.cvitok.views.settings.Setting;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
@@ -34,7 +35,7 @@ public class SaveNLoad {
     }
 
     public static void save(Context context) {
-        FlowerFile flower = Flower.getInstance().getFlowerFile();
+        FlowerFile flower = ((App)context.getApplicationContext()).getFlower().getFlowerFile();
         if (flower == null) return;
         String filename = flower.name + EXT;
         String json = flower.toJSON();
@@ -47,7 +48,7 @@ public class SaveNLoad {
         FlowerFile flower = FlowerFile.getFlower(file);
 
         if (flower == null) return false;
-        Flower.getInstance().setFlower(flower);
+        ((App)context.getApplicationContext()).getFlower().setFlower(flower);
         Setting.getInstance().setLastFlower(name);
         return true;
     }

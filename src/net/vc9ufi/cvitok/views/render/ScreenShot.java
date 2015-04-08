@@ -1,4 +1,4 @@
-package net.vc9ufi.cvitok.renderers;
+package net.vc9ufi.cvitok.views.render;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.os.Environment;
 import android.view.Gravity;
 import android.widget.Toast;
-import net.vc9ufi.cvitok.App;
 import net.vc9ufi.cvitok.R;
 
 import javax.microedition.khronos.opengles.GL10;
@@ -18,25 +17,24 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Random;
 
 public class ScreenShot {
 
-    App app;
     private int width;
     private int height;
     int size;
     int[] mPixelsBuffer;
-    String name;
-    File file = null;
+
+    public ScreenShot() {
+    }
 
 
-    public ScreenShot(App app, GL10 gl, int width, int height, String name) {
-        this.app = app;
+    public ScreenShot(GL10 gl, int width, int height) {
         this.width = width;
         this.height = height;
         size = width * height;
-        this.name = name;
 
         ByteBuffer mByteBuffer = ByteBuffer.allocateDirect(size * 4);
         mByteBuffer.order(ByteOrder.nativeOrder());
@@ -46,32 +44,8 @@ public class ScreenShot {
         mByteBuffer.asIntBuffer().get(mPixelsBuffer);
     }
 
-    public void addPngScreenShotToAlbum() {
-        Bitmap bitmap = makeBitmap();
 
-        try {
-            file = createImageFile(name, ".png");
-
-            if (file != null) {
-                saveImageFile(file, bitmap);
-
-                galleryAddPic(app, file.getAbsolutePath());
-
-                app.runInMainActivity(new Runnable() {
-                    @Override
-                    public void run() {
-                        showResultToast(app, file);
-                    }
-                });
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    private Bitmap makeBitmap() {
+    public Bitmap makeBitmap() {
 
         swapRedNBlue(mPixelsBuffer);
 
@@ -97,32 +71,14 @@ public class ScreenShot {
         outputStream.close();
     }
 
-    private void galleryAddPic(Context context, String path) {
+    public static Uri addToGallery(Context context, String path) {
         Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
         File f = new File(path);
         Uri contentUri = Uri.fromFile(f);
         mediaScanIntent.setData(contentUri);
         context.sendBroadcast(mediaScanIntent);
+        return contentUri;
     }
-
-    private void showResultToast(Context context, File file) {
-        if (file == null) {
-            Toast toast = Toast.makeText(
-                    context,
-                    R.string.toast_screenshot_error,
-                    Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.CENTER, 0, 0);
-            toast.show();
-        } else {
-            Toast toast = Toast.makeText(
-                    context,
-                    context.getString(R.string.toast_screenshot_saved) + file.getName(),
-                    Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.CENTER, 0, 0);
-            toast.show();
-        }
-    }
-
 
     private static void swapRedNBlue(int[] pixelsBuffer) {
         for (int i = 0; i < pixelsBuffer.length; ++i) {
@@ -132,7 +88,7 @@ public class ScreenShot {
         }
     }
 
-    static SimpleDateFormat formater = new SimpleDateFormat("_yyyy_MM_dd_HH_mm_ss_");
+    static SimpleDateFormat formater = new SimpleDateFormat("_yyyy_MM_dd_HH_mm_ss_", Locale.getDefault());
 
     public static String getUniqueName(String name) {
         String date = formater.format(new Date());

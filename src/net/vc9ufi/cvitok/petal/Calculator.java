@@ -13,9 +13,8 @@ public class Calculator extends Thread {
 
     Pointers pointers;
     Parameters parameters;
-    private int quality = 3;
     private boolean work = false;
-    private boolean terminate = false;
+    private volatile boolean terminate = false;
 
     Parameters parameters_;
     private int quality_ = 3;
@@ -24,6 +23,7 @@ public class Calculator extends Thread {
     public void run() {
         while (!terminate) {
             if (work) {
+                int quality;
                 synchronized (this) {
                     try {
                         parameters = parameters_.clone();
@@ -69,10 +69,12 @@ public class Calculator extends Thread {
         return pointers;
     }
 
+    public void terminate(){
+        terminate = true;
+    }
     //----------------------------------------
 
     public static Pointers calculate2(Parameters parameters, int precision) {
-//        Timer timer = new Timer("Calculator");
 
         float[][] startColorLeft = Bezier.getCurve(
                 parameters.left.colors.start,
@@ -87,8 +89,6 @@ public class Calculator extends Thread {
                 parameters.right.colors.finish,
                 precision);
         float[][][] ColorGrid = getColorGrid(startColorLeft, startColorRight, precision);
-
-//        timer.println("color");
 
         int petalQuantity = parameters.quantity;
         int countTriangles = 2 * (precision - 1) * (precision - 1);
@@ -108,16 +108,9 @@ public class Calculator extends Thread {
 
             System.arraycopy(trianglesLeft, 0, triangles, offset, trianglesLeft.length);
             offset += trianglesLeft.length;
-
-            //timer.println("leaf" + String.valueOf(i));
         }
 
-        Pointers pointers = makePointersFromTriangles(triangles);
-
-//        timer.println("pointers");
-
-//        timer.printlnFullTime();
-        return pointers;
+        return makePointersFromTriangles(triangles);
     }
 
     static Triangle[] calcPetal(Parameters.Coordinates line1, Parameters.Coordinates line2, float[][][] color, int precision, float convex) {

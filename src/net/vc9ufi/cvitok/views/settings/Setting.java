@@ -1,17 +1,16 @@
-package net.vc9ufi.cvitok.settings;
+package net.vc9ufi.cvitok.views.settings;
 
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.preference.PreferenceManager;
 import net.vc9ufi.cvitok.App;
 import net.vc9ufi.cvitok.R;
-import net.vc9ufi.cvitok.data.Flower;
 
 public class Setting {
     private static final Setting setting = new Setting();
 
-    App app;
-    private SharedPreferences preferences;
+    App mApp;
+    private SharedPreferences mPreferences;
 
 
     private Setting() {
@@ -23,47 +22,39 @@ public class Setting {
 
 
     public void setApp(App a) {
-        app = a;
-        preferences = PreferenceManager.getDefaultSharedPreferences(app.getBaseContext());
-        preferences.registerOnSharedPreferenceChangeListener(onSharedPreferenceChangeListener);
+        mApp = a;
+        mPreferences = PreferenceManager.getDefaultSharedPreferences(mApp.getBaseContext());
+        mPreferences.registerOnSharedPreferenceChangeListener(onSharedPreferenceChangeListener);
     }
 
     private SharedPreferences.OnSharedPreferenceChangeListener onSharedPreferenceChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-            if (key.equals(app.getString(R.string.preference_key_transparency))) {
-                app.setTransparency(getTransparency());
-            }
-
-            if (key.equals(app.getString(R.string.preference_key_quality))) {
-                Flower.getInstance().setQuality(getQuality());
-            }
-
-            if (key.equals(app.getString(R.string.preference_key_light_switch))) {
-                app.setLight(getLight());
+            if (key.equals(mApp.getString(R.string.preference_key_quality))) {
+                mApp.getFlower().setQuality(getQuality());
             }
         }
     };
 
 
     public String getLastFile() {
-        return preferences.getString(app.getString(R.string.preference_key_lastfile), "");
+        return mPreferences.getString(mApp.getString(R.string.preference_key_lastfile), "");
     }
 
     public boolean getTransparency() {
-        return preferences.getBoolean(app.getString(R.string.preference_key_transparency), false);
+        return mPreferences.getBoolean(mApp.getString(R.string.preference_key_transparency), false);
     }
 
     public int getQuality() {
-        return preferences.getInt(app.getString(R.string.preference_key_quality), Setting.DEF_QUALITY);
+        return mPreferences.getInt(mApp.getString(R.string.preference_key_quality), Setting.DEF_QUALITY);
     }
 
     public boolean getLight() {
-        return preferences.getBoolean(app.getString(R.string.preference_key_light_switch), false);
+        return mPreferences.getBoolean(mApp.getString(R.string.preference_key_light_switch), false);
     }
 
     public void setLastFlower(String name) {
-//        SharedPreferences.Editor editPref = preferences.edit();
+//        SharedPreferences.Editor editPref = mPreferences.edit();
 //        editPref.putString(getString(R.string.preference_key_lastfile),name);
 //        editPref.apply();
     }

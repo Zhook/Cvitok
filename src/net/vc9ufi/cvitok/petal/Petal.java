@@ -1,8 +1,11 @@
 package net.vc9ufi.cvitok.petal;
 
+import android.view.View;
+import net.vc9ufi.cvitok.control.Motion;
+import net.vc9ufi.cvitok.data.Flower;
 import net.vc9ufi.cvitok.data.Parameters;
 import net.vc9ufi.cvitok.data.SelectedVertices;
-import net.vc9ufi.cvitok.settings.Setting;
+import net.vc9ufi.cvitok.views.settings.Setting;
 import net.vc9ufi.geometry.Quaternion;
 import net.vc9ufi.geometry.Vector3D;
 
@@ -10,8 +13,36 @@ public class Petal {
 
     private Parameters parameters;
     private Calculator calculator = new Calculator();
+    private View.OnTouchListener mPetalOnTouchListener;
+    private View.OnTouchListener mVerticesOnTouchListener;
 
-    public Petal(Parameters parameters, int precision) {
+    public Petal(Parameters parameters, int precision, final Flower flower) {
+        mPetalOnTouchListener = new Motion() {
+
+            @Override
+            public void singleMove(float dx, float dy) {
+                movePetal(dx, dy);
+            }
+
+            @Override
+            public void multiMove(float dr, float dx, float dy) {
+                changeQuantity(dr);
+            }
+        };
+
+        mVerticesOnTouchListener = new Motion() {
+
+            @Override
+            public void singleMove(float dx, float dy) {
+                rotatePoints(dx, dy, flower.getLeft(), flower.getRight());
+            }
+
+            @Override
+            public void multiMove(float dr, float dx, float dy) {
+                movePoints(dr, flower.getLeft(), flower.getRight());
+            }
+        };
+
         this.parameters = parameters;
         try {
             calculator.setParameters(parameters.clone());
@@ -33,6 +64,14 @@ public class Petal {
 
     public void setQuality(int quality) {
         calculator.setQuality(quality);
+    }
+
+    public View.OnTouchListener getPetalOnTouchListener() {
+        return mPetalOnTouchListener;
+    }
+
+    public View.OnTouchListener getVerticesOnTouchListener() {
+        return mVerticesOnTouchListener;
     }
 
     //------------------------------------

@@ -1,11 +1,12 @@
-package net.vc9ufi.cvitok.dialogs;
+package net.vc9ufi.cvitok.views.dialogs;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.*;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import net.vc9ufi.cvitok.App;
 import net.vc9ufi.cvitok.R;
 import net.vc9ufi.cvitok.data.Flower;
@@ -13,7 +14,6 @@ import net.vc9ufi.cvitok.data.SelectedVertices;
 
 
 public class ChoiceOfVertices {
-
     Context context;
     App app;
     final SelectedVertices left;
@@ -35,24 +35,24 @@ public class ChoiceOfVertices {
 
     public ChoiceOfVertices(Context context) {
         this.context = context;
-        app = (App) context.getApplicationContext();
-        this.left = Flower.getInstance().getLeft();
-        this.right = Flower.getInstance().getRight();
+        this.app = (App) context.getApplicationContext();
+        Flower flower = app.getFlower();
+        left = flower.getLeft();
+        right = flower.getRight();
     }
 
     public void show() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(context);
         dialog.setTitle(R.string.dialog_vertices_title);
 
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View layout = inflater.inflate(R.layout.dialog_choice_of_vertices, null);
+        View view = View.inflate(context, R.layout.dialog_choice_of_vertices, null);
 
-        buttonsInit(layout);
+        buttonsInit(view);
 
-        dialog.setView(layout);
+        dialog.setView(view);
         dialog.setPositiveButton(R.string.Ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                Flower.getInstance().setSelectedVertices(left, right);
+                app.getFlower().setSelectedVertices(left, right);
             }
         });
         dialog.setNegativeButton(R.string.Cancel, new DialogInterface.OnClickListener() {
@@ -63,8 +63,8 @@ public class ChoiceOfVertices {
         dialog.show();
     }
 
-    private void buttonsInit(View layout) {
-        cb_tip = (CheckBox) layout.findViewById(R.id.cofv_checkbox_tip);
+    private void buttonsInit(View view) {
+        cb_tip = (CheckBox) view.findViewById(R.id.cofv_checkbox_tip);
         cb_tip.setChecked(left.finish);
         cb_tip.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -75,7 +75,7 @@ public class ChoiceOfVertices {
         });
 
 
-        cb_leftUpSide = (CheckBox) layout.findViewById(R.id.cofv_checkbox_left_upside);
+        cb_leftUpSide = (CheckBox) view.findViewById(R.id.cofv_checkbox_left_upside);
         cb_leftUpSide.setChecked(left.p2);
         cb_leftUpSide.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -84,7 +84,7 @@ public class ChoiceOfVertices {
             }
         });
 
-        b_upSide = (Button) layout.findViewById(R.id.cofv_button_upside);
+        b_upSide = (Button) view.findViewById(R.id.cofv_button_upside);
         b_upSide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,7 +98,7 @@ public class ChoiceOfVertices {
             }
         });
 
-        cb_rightUpSide = (CheckBox) layout.findViewById(R.id.cofv_checkbox_right_upside);
+        cb_rightUpSide = (CheckBox) view.findViewById(R.id.cofv_checkbox_right_upside);
         cb_rightUpSide.setChecked(right.p2);
         cb_rightUpSide.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -108,7 +108,7 @@ public class ChoiceOfVertices {
         });
 
 
-        cb_leftDownSide = (CheckBox) layout.findViewById(R.id.cofv_checkbox_left_downside);
+        cb_leftDownSide = (CheckBox) view.findViewById(R.id.cofv_checkbox_left_downside);
         cb_leftDownSide.setChecked(left.p1);
         cb_leftDownSide.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -117,7 +117,7 @@ public class ChoiceOfVertices {
             }
         });
 
-        b_downSide = (Button) layout.findViewById(R.id.cofv_button_downside);
+        b_downSide = (Button) view.findViewById(R.id.cofv_button_downside);
         b_downSide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -131,7 +131,7 @@ public class ChoiceOfVertices {
             }
         });
 
-        cb_rightDownSide = (CheckBox) layout.findViewById(R.id.cofv_checkbox_right_downside);
+        cb_rightDownSide = (CheckBox) view.findViewById(R.id.cofv_checkbox_right_downside);
         cb_rightDownSide.setChecked(right.p1);
         cb_rightDownSide.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -141,7 +141,7 @@ public class ChoiceOfVertices {
         });
 
 
-        cb_leftFoot = (CheckBox) layout.findViewById(R.id.cofv_checkbox_left_foot);
+        cb_leftFoot = (CheckBox) view.findViewById(R.id.cofv_checkbox_left_foot);
         cb_leftFoot.setChecked(left.start);
         cb_leftFoot.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -150,7 +150,7 @@ public class ChoiceOfVertices {
             }
         });
 
-        b_foot = (Button) layout.findViewById(R.id.cofv_button_foot);
+        b_foot = (Button) view.findViewById(R.id.cofv_button_foot);
         b_foot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -163,7 +163,7 @@ public class ChoiceOfVertices {
                 }
             }
         });
-        cb_rightFoot = (CheckBox) layout.findViewById(R.id.cofv_checkbox_right_foot);
+        cb_rightFoot = (CheckBox) view.findViewById(R.id.cofv_checkbox_right_foot);
         cb_rightFoot.setChecked(right.start);
         cb_rightFoot.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

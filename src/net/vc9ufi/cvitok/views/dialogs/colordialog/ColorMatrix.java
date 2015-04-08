@@ -1,4 +1,4 @@
-package net.vc9ufi.cvitok.dialogs.colordialog;
+package net.vc9ufi.cvitok.views.dialogs.colordialog;
 
 import android.opengl.GLES20;
 import net.vc9ufi.geometry.Icosahedron;

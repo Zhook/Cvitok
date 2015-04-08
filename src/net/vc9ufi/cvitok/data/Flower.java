@@ -1,9 +1,13 @@
 package net.vc9ufi.cvitok.data;
 
 
+import android.view.View;
+import net.vc9ufi.cvitok.App;
+
+import net.vc9ufi.cvitok.control.LookAt;
 import net.vc9ufi.cvitok.petal.Petal;
 import net.vc9ufi.cvitok.petal.Pointers;
-import net.vc9ufi.cvitok.settings.Setting;
+import net.vc9ufi.cvitok.views.settings.Setting;
 import org.jetbrains.annotations.NotNull;
 
 import javax.microedition.khronos.opengles.GL10;
@@ -13,12 +17,9 @@ import java.util.List;
 public class Flower {
     public static final float[] BACKGROUND = new float[]{0.9f, 1.0f, 0.9f, 1.0f};
 
-    private static final Flower flower = new Flower();
-
     private String name = "";
     private ArrayList<Petal> petals = new ArrayList<>();
 
-    @NotNull
     private volatile Light light = new Light();
     private volatile float[] background = new float[4];
 
@@ -27,31 +28,16 @@ public class Flower {
     private SelectedVertices left = new SelectedVertices();
     private SelectedVertices right = new SelectedVertices();
 
-    private Flower() {
-    }
+    private LookAt mFlowerOnTouchListener;
 
-    public static Flower getInstance() {
-        return flower;
+    public Flower() {
+        mFlowerOnTouchListener = new LookAt();
     }
 
     public boolean setNewFlower(String flowerName) {
         if (setName(flowerName)) {
             petals = new ArrayList<>();
-            selectedPetal = new Petal(new Parameters("Petal1"), Setting.getInstance().getQuality());
-            petals.add(selectedPetal);
-            light = new Light();
-            background = BACKGROUND.clone();
-            left.clean();
-            right.clean();
-            return true;
-        }
-        return false;
-    }
-
-    public boolean setNewRandomFlower(String flowerName) {
-        if (setName(flowerName)) {
-            petals = new ArrayList<>();
-            selectedPetal = new Petal(new Parameters("Petal1"), Setting.getInstance().getQuality());
+            selectedPetal = new Petal(new Parameters("Petal1"), Setting.getInstance().getQuality(), this);
             petals.add(selectedPetal);
             light = new Light();
             background = BACKGROUND.clone();
@@ -83,7 +69,7 @@ public class Flower {
                 if (name.equals(petal.getName())) return false;
             }
         }
-        Petal petal = new Petal(new Parameters(name), Setting.getInstance().getQuality());
+        Petal petal = new Petal(new Parameters(name), Setting.getInstance().getQuality(), this);
         petals.add(petal);
         selectedPetal = petal;
         return true;
@@ -163,6 +149,24 @@ public class Flower {
         return selectedPetal;
     }
 
+    public View.OnTouchListener getOnTouchListener(App.MODE mode) {
+        switch (mode) {
+            case NULL:
+            case FLOWER:
+                return mFlowerOnTouchListener;
+            case PETAL:
+                return selectedPetal.getPetalOnTouchListener();
+            case VERTEX:
+                return selectedPetal.getVerticesOnTouchListener();
+            case LIGHT:
+                return light.getOnTouchListener();
+        }
+        return mFlowerOnTouchListener;
+    }
+
+    public LookAt getFlowerOnTouchListener() {
+        return mFlowerOnTouchListener;
+    }
 
     //-------------------------------------------------------------------------------------Vertices
     public void setSelectedVertices(SelectedVertices left, SelectedVertices right) {
@@ -219,7 +223,7 @@ public class Flower {
 
         petals = new ArrayList<>();
         for (Parameters p : flower.petals)
-            petals.add(new Petal(p, Setting.getInstance().getQuality()));
+            petals.add(new Petal(p, Setting.getInstance().getQuality(), this));
         if (petals.size() > 0) setSelectedPetal(0);
 
         light = flower.light;

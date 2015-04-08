@@ -1,4 +1,4 @@
-package net.vc9ufi.cvitok.dialogs;
+package net.vc9ufi.cvitok.views.dialogs;
 
 
 import android.app.AlertDialog;
@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.*;
 import net.vc9ufi.cvitok.App;
 import net.vc9ufi.cvitok.R;
-import net.vc9ufi.cvitok.data.Flower;
 import net.vc9ufi.cvitok.data.SaveNLoad;
 
 public class FileDialog {
@@ -79,17 +78,17 @@ public class FileDialog {
                 @Override
                 protected boolean onPositiveClick(String flowerName) {
                     if (flowerName.length() > 0) {
-                        if (SaveNLoad.isFileExists(context, flowerName)) {
-                            this.setMsg(context.getString(R.string.toast_file_exists));
+                        if (SaveNLoad.isFileExists(mContext, flowerName)) {
+                            this.setMsg(mContext.getString(R.string.toast_file_exists));
                             return false;
                         } else {
-                            if (Flower.getInstance().setNewFlower(flowerName)) return true;
+                            if (app.getFlower().setNewFlower(flowerName)) return true;
 
                             this.setMsg("invalid name");
                             return false;
                         }
                     }
-                    this.setMsg(context.getString(R.string.msg_input_name));
+                    this.setMsg(mContext.getString(R.string.msg_input_name));
                     return false;
                 }
             };

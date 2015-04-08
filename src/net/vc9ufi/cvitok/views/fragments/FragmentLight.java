@@ -1,4 +1,4 @@
-package net.vc9ufi.cvitok.fragments;
+package net.vc9ufi.cvitok.views.fragments;
 
 import android.app.Fragment;
 import android.content.Context;
@@ -9,9 +9,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import net.vc9ufi.cvitok.App;
 import net.vc9ufi.cvitok.R;
-import net.vc9ufi.cvitok.data.Flower;
-import net.vc9ufi.cvitok.dialogs.colordialog.ColorDialog;
-import net.vc9ufi.cvitok.renderers.ColorDialogRenderer;
+import net.vc9ufi.cvitok.views.dialogs.colordialog.ColorDialog;
+import net.vc9ufi.cvitok.views.dialogs.colordialog.ColorDialogRenderer;
 
 public class FragmentLight extends Fragment {
 
@@ -45,7 +44,7 @@ public class FragmentLight extends Fragment {
             ColorDialog colorDialog = new ColorDialog(context, renderer) {
                 @Override
                 public void onClickPositiveButton(float[] color) {
-                    Flower.getInstance().getLight().ambient = color;
+                    app.getFlower().getLight().ambient = color;
                 }
 
                 @Override
@@ -64,7 +63,7 @@ public class FragmentLight extends Fragment {
             ColorDialog colorDialog = new ColorDialog(context, renderer) {
                 @Override
                 public void onClickPositiveButton(float[] color) {
-                    Flower.getInstance().getLight().diffuse = color;
+                    app.getFlower().getLight().diffuse = color;
                 }
 
                 @Override
@@ -83,7 +82,7 @@ public class FragmentLight extends Fragment {
             ColorDialog colorDialog = new ColorDialog(context, renderer) {
                 @Override
                 public void onClickPositiveButton(float[] color) {
-                    Flower.getInstance().getLight().specular = color;
+                    app.getFlower().getLight().specular = color;
                 }
 
                 @Override

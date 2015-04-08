@@ -1,4 +1,4 @@
-package net.vc9ufi.cvitok.dialogs;
+package net.vc9ufi.cvitok.views.dialogs;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -8,7 +8,7 @@ import android.widget.*;
 import net.vc9ufi.cvitok.R;
 import net.vc9ufi.cvitok.data.SaveNLoad;
 
-public class FileListDialog{
+public class FileListDialog {
 
     Context context;
     AlertDialog dialogFileList;
@@ -20,7 +20,7 @@ public class FileListDialog{
 
         String[] files = SaveNLoad.getFileList(context);
 
-        if ((files != null ? files.length : 0) > 0) {
+        if (files.length > 0) {
             ListView fileList = new ListView(context);
             final ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_list_item_1, files);
             fileList.setAdapter(adapter);
@@ -41,7 +41,7 @@ public class FileListDialog{
         dialogFileList = builder.create();
     }
 
-    public void show(){
+    public void show() {
         dialogFileList.show();
     }
 

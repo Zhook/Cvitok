@@ -1,25 +1,25 @@
 package net.vc9ufi.cvitok;
 
-import android.app.Activity;
 import android.app.Application;
+import android.graphics.Bitmap;
 import android.opengl.GLSurfaceView;
-import android.view.MotionEvent;
-import android.view.View;
-import net.vc9ufi.cvitok.control.Control;
-import net.vc9ufi.cvitok.data.*;
-import net.vc9ufi.cvitok.renderers.ColorDialogRenderer;
-import net.vc9ufi.cvitok.renderers.FlowerRenderer;
-import net.vc9ufi.cvitok.settings.Setting;
-import net.vc9ufi.geometry.LookAt;
+import net.vc9ufi.cvitok.control.LookAt;
+import net.vc9ufi.cvitok.data.Flower;
+import net.vc9ufi.cvitok.data.Light;
+import net.vc9ufi.cvitok.views.dialogs.colordialog.ColorDialogRenderer;
+import net.vc9ufi.cvitok.views.render.ImplRenderer;
+import net.vc9ufi.cvitok.views.render.ScreenShot;
+import net.vc9ufi.cvitok.views.settings.Setting;
+
+import javax.microedition.khronos.opengles.GL10;
+import java.io.File;
+import java.io.IOException;
 
 public class App extends Application {
 
-    private Setting setting;
-    private Control control;
-    private Flower flower;
-    private Activity mainActivity;
+    Flower flower;
 
-    private FlowerRenderer flowerRenderer;
+
     private ColorDialogRenderer colorRenderer;
 
     private boolean start = true;
@@ -28,48 +28,20 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
 
-        setting = Setting.getInstance();
+        Setting setting = Setting.getInstance();
         setting.setApp(this);
 
-        flower = Flower.getInstance();
+        flower = new Flower();
         flower.setQuality(setting.getQuality());
 
-        control = Control.getInstance();
-
-        flowerRenderer = new FlowerRenderer(this);
         colorRenderer = new ColorDialogRenderer(new LookAt());
-
-        flowerRenderer.setLight(setting.getLight());
-        flowerRenderer.setTransparency(setting.getTransparency());
-
     }
 
-    public void setMainActivity(Activity activity){
-        mainActivity = activity;
+
+    public Flower getFlower() {
+        return flower;
     }
 
-    //--------------------------------------------------------------------------------------Renderers
-    public void makeFlowerRenderer(GLSurfaceView flowerSurface) {
-        flowerSurface.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return control.onTouchSurface(v, event);
-            }
-        });
-        flowerSurface.setRenderer(flowerRenderer);
-    }
-
-    public void setTransparency(boolean transparency) {
-        flowerRenderer.setTransparency(transparency);
-    }
-
-    public void setLight(boolean light) {
-        flowerRenderer.setLight(light);
-    }
-
-    public void makeScreenShot() {
-        flowerRenderer.makeScreenshot();
-    }
 
     public ColorDialogRenderer getColorRenderer() {
         return colorRenderer;
@@ -83,7 +55,5 @@ public class App extends Application {
         return false;
     }
 
-    public void runInMainActivity(Runnable runnable){
-        mainActivity.runOnUiThread(runnable);
-    }
+    public enum MODE {NULL, FLOWER, PETAL, VERTEX, LIGHT}
 }

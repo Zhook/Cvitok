@@ -1,4 +1,4 @@
-package net.vc9ufi.cvitok.fragments;
+package net.vc9ufi.cvitok.views.fragments;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
@@ -10,10 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import net.vc9ufi.cvitok.App;
-import net.vc9ufi.cvitok.MainActivity;
 import net.vc9ufi.cvitok.R;
-import net.vc9ufi.cvitok.data.Flower;
-import net.vc9ufi.cvitok.dialogs.NameDialog;
+import net.vc9ufi.cvitok.views.MainActivity;
+import net.vc9ufi.cvitok.views.dialogs.NameDialog;
 
 import java.util.List;
 
@@ -41,7 +40,7 @@ public class FragmentPetals extends Fragment {
         sp_petals.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Flower.getInstance().setSelectedPetals(parent.getSelectedItem().toString());
+                app.getFlower().setSelectedPetals(parent.getSelectedItem().toString());
             }
 
             @Override
@@ -73,13 +72,13 @@ public class FragmentPetals extends Fragment {
     }
 
     void fillSpinner() {
-        List<String> names = Flower.getInstance().getPetalsNames();
+        List<String> names = app.getFlower().getPetalsNames();
         if (names != null) {
             ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, names);
             sp_petals.setAdapter(adapter);
         }
 
-        int index = Flower.getInstance().getSelectedIndex();
+        int index = app.getFlower().getSelectedIndex();
         if (index < 0)
             showNameDialog();
         else
@@ -91,7 +90,7 @@ public class FragmentPetals extends Fragment {
             @Override
             protected boolean onPositiveClick(String name) {
                 if (name.length() > 0) {
-                    if (Flower.getInstance().addPetal(name)) {
+                    if (app.getFlower().addPetal(name)) {
                         fillSpinner();
                         return true;
                     }
@@ -111,11 +110,11 @@ public class FragmentPetals extends Fragment {
             AlertDialog.Builder deleteDialog = new AlertDialog.Builder(context);
             deleteDialog.setTitle(R.string.dialog_delete_petal_title);
             TextView field = new TextView(context);
-            field.setText(Flower.getInstance().getSelectedName());
+            field.setText(app.getFlower().getSelectedName());
             deleteDialog.setView(field);
             deleteDialog.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                    Flower.getInstance().delPetal();
+                    app.getFlower().delPetal();
                     fillSpinner();
                 }
             });

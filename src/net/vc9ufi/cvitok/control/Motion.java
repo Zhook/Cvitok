@@ -1,14 +1,16 @@
 package net.vc9ufi.cvitok.control;
 
 import android.view.MotionEvent;
+import android.view.View;
 
-public abstract class Motion {
+public abstract class Motion implements View.OnTouchListener {
 
     private float x = 0;
     private float y = 0;
     private float r = 0;
 
-    public boolean motionEvent(MotionEvent event) {
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
         switch (event.getActionMasked()) {
             case MotionEvent.ACTION_DOWN:
                 x = event.getX();

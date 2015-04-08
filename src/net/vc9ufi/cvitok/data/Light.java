@@ -1,6 +1,8 @@
 package net.vc9ufi.cvitok.data;
 
+import android.view.View;
 import com.google.gson.annotations.SerializedName;
+import net.vc9ufi.cvitok.control.Motion;
 
 import javax.microedition.khronos.opengles.GL10;
 
@@ -18,6 +20,8 @@ public class Light {
     @SerializedName("Specular")
     public float[] specular;
 
+    private View.OnTouchListener mOnTouchListener;
+
     public Light() {
         position = new float[]{3, 7, 10, 1};
         direction = new float[]{0, 0, -1};
@@ -25,8 +29,24 @@ public class Light {
         ambient = new float[]{0.1f, 0.1f, 0.1f, 1};
         diffuse = new float[]{0.7f, 0.7f, 0.7f, 1};
         specular = new float[]{0.1f, 0.1f, 0.1f, 1};
+
+        mOnTouchListener = new Motion() {
+
+            @Override
+            public void singleMove(float dx, float dy) {
+                single(dx, dy);
+            }
+
+            @Override
+            public void multiMove(float dr, float dx, float dy) {
+                multi(dr);
+            }
+        };
     }
 
+    public View.OnTouchListener getOnTouchListener() {
+        return mOnTouchListener;
+    }
 
     public void lightOn(GL10 gl) {
         gl.glEnable(GL10.GL_LIGHT0);

@@ -53,6 +53,9 @@
     <string name="fragment_flower_light">Light</string>
 
     <string name="actionBar_imageButton_screenshot_description" translatable="false">ScreenShot</string>
-    <string name="toast_screenshot_saved">Screenshot saved:</string>
     <string name="toast_screenshot_error">Error writing to the SD card</string>
+    <string name="des_share">Share</string>
+    <string name="screnshot">ScreenShot</string>
+    <string name="screenshot">Screenshot</string>
+    <string name="screenshot_saved">Screenshot was saved in gallery</string>
 </resources>
