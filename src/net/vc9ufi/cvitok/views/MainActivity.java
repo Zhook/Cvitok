@@ -1,24 +1,27 @@
 package net.vc9ufi.cvitok.views;
 
-import android.app.*;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.opengl.GLSurfaceView;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
-import android.widget.ProgressBar;
-import android.widget.Toast;
+import android.widget.*;
 import net.vc9ufi.cvitok.App;
 import net.vc9ufi.cvitok.R;
 import net.vc9ufi.cvitok.data.Flower;
 import net.vc9ufi.cvitok.data.Light;
 import net.vc9ufi.cvitok.data.SaveNLoad;
-import net.vc9ufi.cvitok.views.dialogs.FileDialog;
+import net.vc9ufi.cvitok.petal.RandomFlowerBuilder;
 import net.vc9ufi.cvitok.views.dialogs.FileListDialog;
 import net.vc9ufi.cvitok.views.dialogs.NameDialog;
 import net.vc9ufi.cvitok.views.dialogs.ScreenshotDialog;
@@ -26,7 +29,6 @@ import net.vc9ufi.cvitok.views.fragments.FragmentFlower;
 import net.vc9ufi.cvitok.views.fragments.FragmentLight;
 import net.vc9ufi.cvitok.views.fragments.FragmentPetals;
 import net.vc9ufi.cvitok.views.fragments.FragmentVertices;
-import net.vc9ufi.cvitok.petal.RandomFlowerBuilder;
 import net.vc9ufi.cvitok.views.render.ImplRenderer;
 import net.vc9ufi.cvitok.views.render.ScreenShot;
 import net.vc9ufi.cvitok.views.settings.PrefActivity;
@@ -34,10 +36,9 @@ import net.vc9ufi.cvitok.views.settings.PrefActivity;
 import javax.microedition.khronos.opengles.GL10;
 import java.io.File;
 import java.io.IOException;
-import java.net.URI;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends ActionBarActivity {
 
     private App app;
 
@@ -52,13 +53,21 @@ public class MainActivity extends Activity {
 
     private ProgressBar progressBar;
 
+    private DrawerLayout mDrawerLayout;
+    private ActionBarDrawerToggle mDrawerToggle;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
-        app = (App) getApplicationContext();
+        initActionBar();
 
+        initDrawerLayout();
+
+
+        app = (App) getApplicationContext();
 
         final Flower flower = app.getFlower();
         mFlowerRenderer = new ImplRenderer(flower.getFlowerOnTouchListener()) {
@@ -125,8 +134,6 @@ public class MainActivity extends Activity {
         glSurfaceView.setOnTouchListener(app.getFlower().getOnTouchListener(App.MODE.NULL));
         glSurfaceView.setRenderer(mFlowerRenderer);
 
-        initActionBar();
-
         frag_flower = new FragmentFlower();
         frag_flower.setAppNMainActivity(app, this);
         frag_light = new FragmentLight();
@@ -137,14 +144,16 @@ public class MainActivity extends Activity {
 
         progressBar = (ProgressBar) findViewById(R.id.mainActivity_progressBar);
 
-        if (app.isStart()) (new FileDialog(this)).show();
+
+        if (savedInstanceState == null) mDrawerLayout.openDrawer(findViewById(R.id.left_drawer));
     }
 
     private void initActionBar() {
-        ActionBar actionBar = getActionBar();
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
-        actionBar.setDisplayShowHomeEnabled(false);
         actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeButtonEnabled(true);
 
         View customActionBarView = View.inflate(this, R.layout.main_actionbar, null);
 
@@ -176,84 +185,138 @@ public class MainActivity extends Activity {
         });
     }
 
+    private void initDrawerLayout() {
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.main_layout);
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R.string.drawer_close) {
+
+            public void onDrawerClosed(View view) {
+                super.onDrawerClosed(view);
+                //invalidateOptionsMenu();
+            }
+
+
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                //invalidateOptionsMenu();
+            }
+
+        };
+
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+
+        ListView mDrawerMainListView = (ListView) findViewById(R.id.navdrawer_main_listView);
+        ListAdapter adapterMain = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
+                getResources().getStringArray(R.array.navdrawer_menu_main));
+        mDrawerMainListView.setAdapter(adapterMain);
+        mDrawerMainListView.setOnItemClickListener(new ListView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (position) {
+                    case 0:
+                        SaveNLoad.save(app);
+                        break;
+                    case 1:
+                        (new FileListDialog(MainActivity.this)).show();
+                        break;
+                    case 2:
+                        NameDialog flowerNameDialog = new NameDialog(MainActivity.this,
+                                getString(R.string.dialog_flower_name_title),
+                                getString(R.string.flower)) {
+                            @Override
+                            protected boolean onPositiveClick(String flowerName) {
+                                if (flowerName.length() > 0) {
+                                    if (SaveNLoad.isFileExists(app, flowerName)) {
+                                        this.setMsg(app.getString(R.string.toast_file_exists));
+                                        return false;
+                                    } else {
+                                        if (app.getFlower().setNewFlower(flowerName))
+                                            return true;
+
+                                        this.setMsg("invalid name");
+                                        return false;
+                                    }
+                                }
+                                this.setMsg(app.getString(R.string.msg_input_name));
+                                return false;
+                            }
+                        };
+                        flowerNameDialog.show();
+                        break;
+                    case 3:
+                        NameDialog randomFlowerNameDialog = new NameDialog(MainActivity.this,
+                                getString(R.string.dialog_flower_name_title),
+                                getString(R.string.flower)) {
+                            @Override
+                            protected boolean onPositiveClick(String flowerName) {
+                                if (flowerName.length() > 0) {
+                                    if (SaveNLoad.isFileExists(app, flowerName)) {
+                                        this.setMsg(app.getString(R.string.toast_file_exists));
+                                        return false;
+                                    } else {
+                                        if (SaveNLoad.isFileNameValid(flowerName)) {
+                                            RandomFlowerBuilder flowerBuilder = new RandomFlowerBuilder(flowerName);
+                                            flowerBuilder
+                                                    .setBackground()
+                                                    .addPetals();
+                                            app.getFlower().setFlower(flowerBuilder.build());
+                                            return true;
+                                        }
+
+                                        this.setMsg("invalid name");
+                                        return false;
+                                    }
+                                }
+                                this.setMsg(app.getString(R.string.msg_input_name));
+                                return false;
+                            }
+                        };
+                        randomFlowerNameDialog.show();
+                        break;
+                }
+                mDrawerLayout.closeDrawers();
+            }
+        });
+
+        ListView mDrawerSubListView = (ListView) findViewById(R.id.navdrawer_sub_listView);
+        ListAdapter adapterSub = new ArrayAdapter<>(this, R.layout.list_item_small,
+                getResources().getStringArray(R.array.navdrawer_menu_sub));
+        mDrawerSubListView.setAdapter(adapterSub);
+        mDrawerSubListView.setOnItemClickListener(new ListView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (position) {
+                    case 0:
+                        startActivity(new Intent(MainActivity.this, PrefActivity.class));
+                        break;
+                    case 1:
+                        break;
+                }
+                mDrawerLayout.closeDrawers();
+            }
+        });
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        mDrawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        mDrawerToggle.onConfigurationChanged(newConfig);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        switch (id) {
-            case (R.id.menu_settings):
-                startActivity(new Intent(MainActivity.this, PrefActivity.class));
-                return true;
-            case (R.id.menu_file_save):
-                SaveNLoad.save(app);
-                return true;
-            case (R.id.menu_file_load):
-                (new FileListDialog(this)).show();
-                return true;
-            case (R.id.menu_file_new):
-                NameDialog flowerNameDialog = new NameDialog(this,
-                        getString(R.string.dialog_flower_name_title),
-                        getString(R.string.flower)) {
-                    @Override
-                    protected boolean onPositiveClick(String flowerName) {
-                        if (flowerName.length() > 0) {
-                            if (SaveNLoad.isFileExists(app, flowerName)) {
-                                this.setMsg(app.getString(R.string.toast_file_exists));
-                                return false;
-                            } else {
-                                if (app.getFlower().setNewFlower(flowerName))
-                                    return true;
-
-                                this.setMsg("invalid name");
-                                return false;
-                            }
-                        }
-                        this.setMsg(app.getString(R.string.msg_input_name));
-                        return false;
-                    }
-                };
-                flowerNameDialog.show();
-                return true;
-            case (R.id.menu_file_new_random):
-                NameDialog randomFlowerNameDialog = new NameDialog(this,
-                        getString(R.string.dialog_flower_name_title),
-                        getString(R.string.flower)) {
-                    @Override
-                    protected boolean onPositiveClick(String flowerName) {
-                        if (flowerName.length() > 0) {
-                            if (SaveNLoad.isFileExists(app, flowerName)) {
-                                this.setMsg(app.getString(R.string.toast_file_exists));
-                                return false;
-                            } else {
-                                if (SaveNLoad.isFileNameValid(flowerName)) {
-                                    RandomFlowerBuilder flowerBuilder = new RandomFlowerBuilder(flowerName);
-                                    flowerBuilder
-                                            .setBackground()
-                                            .addPetals();
-                                    app.getFlower().setFlower(flowerBuilder.build());
-                                    return true;
-                                }
-
-                                this.setMsg("invalid name");
-                                return false;
-                            }
-                        }
-                        this.setMsg(app.getString(R.string.msg_input_name));
-                        return false;
-                    }
-                };
-                randomFlowerNameDialog.show();
-                return true;
-        }
-
-
-        return super.onOptionsItemSelected(item);
+        return mDrawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
     }
 
     //-------------------------------------------------
@@ -316,7 +379,7 @@ public class MainActivity extends Activity {
 
     void setFrame1(Fragment fragment) {
         FragmentTransaction fTrans;
-        fTrans = getFragmentManager().beginTransaction();
+        fTrans = getSupportFragmentManager().beginTransaction();
         fTrans.replace(R.id.mainActivity_frame1, fragment);
         fTrans.addToBackStack(null);
         fTrans.commit();
@@ -324,7 +387,7 @@ public class MainActivity extends Activity {
 
     void setFrame2(Fragment fragment) {
         FragmentTransaction fTrans;
-        fTrans = getFragmentManager().beginTransaction();
+        fTrans = getSupportFragmentManager().beginTransaction();
         fTrans.replace(R.id.mainActivity_frame2, fragment);
         fTrans.addToBackStack(null);
         fTrans.commit();

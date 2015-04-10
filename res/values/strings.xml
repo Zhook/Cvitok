@@ -7,8 +7,8 @@
     <string name="menu_settings">Settings</string>
     <string name="menu_files_save">Save</string>
     <string name="menu_files_load">Load</string>
-    <string name="menu_files_new">New</string>
-    <string name="menu_files_new_random">Random</string>
+    <string name="menu_files_new">New Empty</string>
+    <string name="menu_files_new_random">New Random</string>
 
     <string name="flower">Flower</string>
     <string name="petal">Petal</string>
@@ -25,7 +25,7 @@
 
     <string name="toast_file_exists">File with the same name already exists</string>
     <string name="dialog_flower_name_title">Name of flower</string>
-    <string name="dialog_delete_file_title">Delete file?</string>
+    <string name="dialog_delete_file_title" translatable="false">Delete file?</string>
     <string name="toast_file_deleted">File deleted</string>
     <string name="dialog_file_delete">Delete</string>
 
@@ -54,8 +54,11 @@
 
     <string name="actionBar_imageButton_screenshot_description" translatable="false">ScreenShot</string>
     <string name="toast_screenshot_error">Error writing to the SD card</string>
-    <string name="des_share">Share</string>
+    <string name="des_share" translatable="false">Share</string>
     <string name="screnshot">ScreenShot</string>
     <string name="screenshot">Screenshot</string>
     <string name="screenshot_saved">Screenshot was saved in gallery</string>
+    <string name="drawer_open" translatable="false">open</string>
+    <string name="drawer_close" translatable="false">close</string>
+
 </resources>

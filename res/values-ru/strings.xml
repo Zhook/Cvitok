@@ -4,7 +4,7 @@
     <string name="menu_settings">Настройки</string>
     <string name="menu_files_save">Сохранить</string>
     <string name="menu_files_load">Загрузить</string>
-    <string name="menu_files_new">Новый</string>
+    <string name="menu_files_new">Новый пустой</string>
 
     <string name="flower">Цветок</string>
     <string name="petal">Лепесток</string>
@@ -48,6 +48,6 @@
     <string name="toast_screenshot_error">Ошибка записи sd-cardу</string>
     <string name="screenshot">Снимок</string>
     <string name="screenshot_saved">Снимок сохранен в галерею</string>
-
+    <string name="menu_files_new_random">Новый случайный</string>
 
 </resources>
