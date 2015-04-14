@@ -3,15 +3,22 @@ package net.vc9ufi.cvitok.petal.generator;
 import java.util.Random;
 
 public class ExtRandomFloat extends Random {
-    private final float START;
-    private final float DELTA;
+    float min = 0;
+    float max = 0;
 
-    public ExtRandomFloat(float start, float delta) {
-        this.DELTA = delta;
-        this.START = start;
+    public ExtRandomFloat() {
+    }
+
+    public ExtRandomFloat(float min, float max) {
+        this.max = max;
+        this.min = min;
     }
 
     public float getFloat() {
-        return START + DELTA * nextFloat();
+        return min + (max - min) * nextFloat();
+    }
+
+    public float getFloat(float min, float max) {
+        return min + (max - min) * nextFloat();
     }
 }

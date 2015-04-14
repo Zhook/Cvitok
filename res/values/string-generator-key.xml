@@ -20,4 +20,7 @@
     <string name="generator_key_min_petals_brightness" translatable="false">generator_key_min_petals_brightness</string>
     <string name="generator_key_max_petals_brightness" translatable="false">generator_key_max_petals_brightness</string>
 
+    <string name="generator_key_min_petals_convex" translatable="false">generator_key_min_petals_convex</string>
+    <string name="generator_key_max_petals_convex" translatable="false">generator_key_max_petals_convex</string>
+
 </resources>

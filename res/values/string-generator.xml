@@ -11,5 +11,6 @@
     <string name="generator_title_quantity_petals">Quantity of petal in circle</string>
     <string name="generator_title_background_brightness">Background brightness</string>
     <string name="generator_title_petals_brightness">Petals brightness</string>
+    <string name="generator_title_petals_convex">Petals convex</string>
 
 </resources>

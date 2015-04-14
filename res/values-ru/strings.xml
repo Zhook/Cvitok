@@ -59,5 +59,6 @@
     <string name="generator_title_theta">Полярный угол</string>
     <string name="generator_title">Генератор</string>
     <string name="generator_button_build">Сгенерировать</string>
+    <string name="generator_title_petals_convex">Выпуклость лепестка</string>
 
 </resources>

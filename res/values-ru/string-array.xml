@@ -4,10 +4,11 @@
         <item>Сохранить</item>
         <item>Загрузить</item>
         <item>Новый пустой</item>
-        <item>Новый случайный</item>
+        <item>Сгенерировать</item>
+        <item>Настройки генератора</item>
     </string-array>
     <string-array name="navdrawer_menu_sub">
-        <item>Настройки</item>
+        <item>Настройки программы</item>
         <item>О программе</item>
     </string-array>
 </resources>

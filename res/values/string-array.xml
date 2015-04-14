@@ -4,10 +4,11 @@
         <item>Save</item>
         <item>Load</item>
         <item>New empty</item>
-        <item>New random</item>
+        <item>Generate</item>
+        <item>Setting generator</item>
     </string-array>
     <string-array name="navdrawer_menu_sub">
-        <item>Setting</item>
+        <item>Setting app</item>
         <item>About</item>
     </string-array>
 </resources>

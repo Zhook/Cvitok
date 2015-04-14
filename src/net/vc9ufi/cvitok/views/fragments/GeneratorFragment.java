@@ -2,6 +2,7 @@ package net.vc9ufi.cvitok.views.fragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
@@ -11,7 +12,11 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import net.vc9ufi.cvitok.App;
 import net.vc9ufi.cvitok.R;
+import net.vc9ufi.cvitok.data.Flower;
+import net.vc9ufi.cvitok.data.FlowerFile;
+import net.vc9ufi.cvitok.petal.generator.FlowerGenerator;
 import net.vc9ufi.cvitok.views.customlist.BaseItem;
 import net.vc9ufi.cvitok.views.customlist.CustomArrayAdapter;
 import net.vc9ufi.cvitok.views.customlist.ItemWithTwoValues;
@@ -26,6 +31,7 @@ public class GeneratorFragment extends Fragment {
 
     private CustomArrayAdapter mListAdapter;
 
+
     private void initListAdapter() {
         mListAdapter = new CustomArrayAdapter(context);
         mListAdapter.add(initQuantityOfCirclesSetting());
@@ -34,6 +40,7 @@ public class GeneratorFragment extends Fragment {
         mListAdapter.add(initQuantityOfPetalSetting());
         mListAdapter.add(initBackgroundBrightnessSetting());
         mListAdapter.add(initPetalBrightnessSetting());
+        mListAdapter.add(initPetalConvex());
     }
 
     private BaseItem initQuantityOfCirclesSetting() {
@@ -257,6 +264,41 @@ public class GeneratorFragment extends Fragment {
         return item;
     }
 
+    private BaseItem initPetalConvex() {
+        final ItemWithTwoValues item = new ItemWithTwoValues(getString(R.string.generator_title_petals_convex), getString(R.string.generator_min), getString(R.string.generator_max));
+        final SharedPreferences sharedPreferences = Setting.getInstance().getSharedPreferences();
+
+        int min = sharedPreferences.getInt(getString(R.string.generator_key_min_petals_convex), -5);
+        int max = sharedPreferences.getInt(getString(R.string.generator_key_max_petals_convex), 5);
+
+        item.setValue1(String.valueOf(min));
+        item.setValue2(String.valueOf(max));
+
+        item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TwoNumPickersDialog dialog = new TwoNumPickersDialog() {
+                    @Override
+                    public void onClickOk(int value1, int value2) {
+                        item.setValue1(String.valueOf(value1));
+                        item.setValue2(String.valueOf(value2));
+                        SharedPreferences.Editor editPref = sharedPreferences.edit();
+                        editPref.putInt(getString(R.string.generator_key_min_petals_convex), value1);
+                        editPref.putInt(getString(R.string.generator_key_max_petals_convex), value2);
+                        editPref.apply();
+                    }
+                };
+                dialog.setTitle(getString(R.string.generator_title_petals_brightness));
+                dialog.setParameters1(getString(R.string.generator_min), -10, +10,
+                        sharedPreferences.getInt(getString(R.string.generator_key_min_petals_convex), -5));
+                dialog.setParameters2(getString(R.string.generator_max), -10, +10,
+                        sharedPreferences.getInt(getString(R.string.generator_key_max_petals_convex), 5));
+                dialog.show(getActivity().getSupportFragmentManager(), "dlg");
+            }
+        });
+        return item;
+    }
+
 
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -282,6 +324,19 @@ public class GeneratorFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+                new AsyncTask<Void, Void, FlowerFile>() {
+                    @Override
+                    protected FlowerFile doInBackground(Void... params) {
+                        return new FlowerGenerator(context).generate();
+                    }
+
+                    @Override
+                    protected void onPostExecute(FlowerFile flowerFile) {
+                        super.onPostExecute(flowerFile);
+                        ((App) context.getApplicationContext()).getFlower().setFlower(flowerFile);
+                        getFragmentManager().popBackStack();
+                    }
+                }.execute();
             }
         });
 

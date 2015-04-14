@@ -7,23 +7,23 @@ import java.util.Random;
 
 public class RandomParameters extends Parameters {
 
-    private int startQuantityOfPetals = 3;
-    private int deltaQuantityOfPetals = 1;
+    private int minQuantityOfPetals = 3;
+    private int maxQuantityOfPetals = 1;
 
-    private float startRadiusOfPetal = 0;
-    private float deltaRadiusOfPetal = 1;
+    private int minRadiusOfPetal = 30;
+    private int maxRadiusOfPetal = 100;
 
-    private float startConvex = -0.5f;
-    private float deltaConvex = 1f;
+    private float minConvex = -0.5f;
+    private float maxConvex = 1f;
 
-    private int startRed = 0;
-    private int deltaRed = 255;
-    private int startGreen = 0;
-    private int deltaGreen = 255;
-    private int startBlue = 0;
-    private int deltaBlue = 255;
-    private int startAlpha = 150;
-    private int deltaAlpha = 255;
+    private int minRed = 0;
+    private int maxRed = 100;
+    private int minGreen = 0;
+    private int maxGreen = 100;
+    private int minBlue = 0;
+    private int maxBlue = 100;
+    private int minAlpha = 60;
+    private int maxAlpha = 100;
 
     private double[] theta;
 
@@ -33,89 +33,84 @@ public class RandomParameters extends Parameters {
         this.theta = theta;
     }
 
-    public void setSizeOfConvex(float startConvex, float deltaConvex) {
-        this.startConvex = startConvex;
-        this.deltaConvex = deltaConvex;
+    public void setRandomConvex(int min, int max) {
+        this.minConvex = min * 0.1f;
+        this.maxConvex = max * 0.1f;
     }
 
-    public void setQuantityOfPetal(int startQuantityOfPetals, int deltaQuantityOfPetals) throws InvalidParameterException {
-        if (startQuantityOfPetals < 1) throw new InvalidParameterException("start Quantity of Petals < 1");
-        if (deltaQuantityOfPetals < 0) throw new InvalidParameterException("delta Quantity of Petals < 0");
+    public void setRandomQuantity(int min, int max) throws InvalidParameterException {
+        if (min < 1) throw new InvalidParameterException("min Quantity of Petals < 1");
+        if (max < 1) throw new InvalidParameterException("max Quantity of Petals < 1");
 
-        this.startQuantityOfPetals = startQuantityOfPetals;
-        this.deltaQuantityOfPetals = deltaQuantityOfPetals;
+        this.minQuantityOfPetals = min;
+        this.maxQuantityOfPetals = max;
     }
 
-    public void setSizeOfPetal(float startRadiusOfPetal, float deltaRadiusOfPetal) throws InvalidParameterException {
-        if (startRadiusOfPetal < 0) throw new InvalidParameterException("start Radius Of Petal < 0");
-        if (deltaRadiusOfPetal < 0) throw new InvalidParameterException("delta Radius Of Petal < 0");
+    public void setRandomSize(int min, int max) throws InvalidParameterException {
+        if (min < 0) throw new InvalidParameterException("min Radius Of Petal < 0");
+        if (max < 0) throw new InvalidParameterException("max Radius Of Petal < 0");
 
-        this.startRadiusOfPetal = startRadiusOfPetal;
-        this.deltaRadiusOfPetal = deltaRadiusOfPetal;
+        this.minRadiusOfPetal = min;
+        this.maxRadiusOfPetal = max;
     }
 
-    public void setColor(int start, int delta) throws InvalidParameterException {
-        if (start < 0) throw new InvalidParameterException("start Color < 0");
-        if (start > 255) throw new InvalidParameterException("start Color > 255");
+    public void setRandomColor(int min, int max) throws InvalidParameterException {
+        if (min < 0) throw new InvalidParameterException("min Color < 0");
+        if (max < 0) throw new InvalidParameterException("max Color < 0");
+        if (min > 100) throw new InvalidParameterException("min Color > 100");
+        if (max > 100) throw new InvalidParameterException("max Color > 100");
 
-        if (delta < 1) throw new InvalidParameterException("delta Color < 1");
-        if (delta + start > 255) throw new InvalidParameterException("start + delta Color > 255");
+        this.minRed = min;
+        this.maxRed = max;
 
-        this.startRed = start;
-        this.deltaRed = delta;
+        this.minGreen = min;
+        this.maxGreen = max;
 
-        this.startGreen = start;
-        this.deltaGreen = delta;
+        this.minBlue = min;
+        this.maxBlue = max;
 
-        this.startBlue = start;
-        this.deltaBlue = delta;
-
-        this.startAlpha = start;
-        this.deltaAlpha = delta;
+        this.minAlpha = min;
+        this.maxAlpha = max;
     }
 
-    public void setRed(int start, int delta) throws InvalidParameterException {
-        if (start < 0) throw new InvalidParameterException("start Red < 0");
-        if (start > 255) throw new InvalidParameterException("start Red > 255");
+    public void setRandomRed(int min, int max) throws InvalidParameterException {
+        if (min < 0) throw new InvalidParameterException("min Color < 0");
+        if (max < 0) throw new InvalidParameterException("max Color < 0");
+        if (min > 100) throw new InvalidParameterException("min Color > 100");
+        if (max > 100) throw new InvalidParameterException("max Color > 100");
 
-        if (delta < 1) throw new InvalidParameterException("delta Red < 1");
-        if (delta + start > 255) throw new InvalidParameterException("start + delta Red > 255");
-
-        this.startRed = start;
-        this.deltaRed = delta;
+        this.minRed = min;
+        this.maxRed = max;
     }
 
-    public void setGreen(int start, int delta) throws InvalidParameterException {
-        if (start < 0) throw new InvalidParameterException("start Green < 0");
-        if (start > 255) throw new InvalidParameterException("start Green > 255");
+    public void setRandomGreen(int min, int max) throws InvalidParameterException {
+        if (min < 0) throw new InvalidParameterException("min Color < 0");
+        if (max < 0) throw new InvalidParameterException("max Color < 0");
+        if (min > 100) throw new InvalidParameterException("min Color > 100");
+        if (max > 100) throw new InvalidParameterException("max Color > 100");
 
-        if (delta < 1) throw new InvalidParameterException("delta Green < 1");
-        if (delta + start > 255) throw new InvalidParameterException("start + delta Green > 255");
-
-        this.startGreen = start;
-        this.deltaGreen = delta;
+        this.minGreen = min;
+        this.maxGreen = max;
     }
 
-    public void setBlue(int start, int delta) throws InvalidParameterException {
-        if (start < 0) throw new InvalidParameterException("start Blue < 0");
-        if (start > 255) throw new InvalidParameterException("start Blue > 255");
+    public void setRandomBlue(int min, int max) throws InvalidParameterException {
+        if (min < 0) throw new InvalidParameterException("min Color < 0");
+        if (max < 0) throw new InvalidParameterException("max Color < 0");
+        if (min > 100) throw new InvalidParameterException("min Color > 100");
+        if (max > 100) throw new InvalidParameterException("max Color > 100");
 
-        if (delta < 1) throw new InvalidParameterException("delta Blue < 1");
-        if (delta + start > 255) throw new InvalidParameterException("start + delta Blue > 255");
-
-        this.startBlue = start;
-        this.deltaBlue = delta;
+        this.minBlue = min;
+        this.maxBlue = max;
     }
 
-    public void setAlpha(int start, int delta) throws InvalidParameterException {
-        if (start < 0) throw new InvalidParameterException("start Alpha < 0");
-        if (start > 255) throw new InvalidParameterException("start Alpha > 255");
+    public void setRandomAlpha(int min, int max) throws InvalidParameterException {
+        if (min < 0) throw new InvalidParameterException("min Color < 0");
+        if (max < 0) throw new InvalidParameterException("max Color < 0");
+        if (min > 100) throw new InvalidParameterException("min Color > 100");
+        if (max > 100) throw new InvalidParameterException("max Color > 100");
 
-        if (delta < 1) throw new InvalidParameterException("delta Alpha < 1");
-        if (delta + start > 255) throw new InvalidParameterException("start + delta Alpha > 255");
-
-        this.startAlpha = start;
-        this.deltaAlpha = delta;
+        this.minAlpha = min;
+        this.maxAlpha = max;
     }
 
 
@@ -129,44 +124,50 @@ public class RandomParameters extends Parameters {
 
 
     private void rowQuantity() {
-        Random random = new Random();
-        super.quantity = startQuantityOfPetals + random.nextInt(deltaQuantityOfPetals + 1);
-        super.angle = (float) (2 * Math.PI / quantity);
+        quantity = minQuantityOfPetals;
+        int delta = maxQuantityOfPetals - minQuantityOfPetals;
+        if (delta > 0) {
+            Random random = new Random();
+            quantity += random.nextInt(delta);
+        } else if (delta < 0) {
+            Random random = new Random();
+            quantity -= random.nextInt(-delta);
+        }
+        angle = (float) (2 * Math.PI / quantity);
     }
 
     private void rowGeometry() {
-        ExtRandomFloat random = new ExtRandomFloat(startRadiusOfPetal, deltaRadiusOfPetal);
-        double maxAngle = Math.PI / quantity;
+        ExtRandomFloat random = new ExtRandomFloat(minRadiusOfPetal, maxRadiusOfPetal);
 
         float radius;
         double phi;
 
-        radius = random.getFloat();
-        phi = maxAngle * random.nextDouble();
+        radius = random.getFloat() * 0.03f;
+        phi = angle * random.nextDouble() / 2;
         left.coord.p1.p = getPoint(radius, theta[0], phi);
 
-        radius = random.getFloat();
-        phi = maxAngle * random.nextDouble();
+        radius = random.getFloat() * 0.03f;
+        phi = angle * random.nextDouble() / 2;
         left.coord.p2.p = getPoint(radius, theta[1], phi);
 
-        radius = random.getFloat();
-        phi = 2 * maxAngle * random.nextDouble();
+        radius = random.getFloat() * 0.03f;
+        phi = angle * random.nextDouble();
         left.coord.finish.p = getPoint(radius, theta[2], phi);
 
 
-        radius = random.getFloat();
-        phi = maxAngle + maxAngle * random.nextDouble();
+        radius = random.getFloat() * 0.03f;
+        phi = angle / 2 + angle * random.nextDouble() / 2;
         right.coord.p1.p = getPoint(radius, theta[3], phi);
 
-        radius = random.getFloat();
-        phi = maxAngle + maxAngle * random.nextDouble();
+        radius = random.getFloat() * 0.03f;
+        phi = angle + angle * random.nextDouble() / 2;
         right.coord.p2.p = getPoint(radius, theta[4], phi);
 
         right.coord.finish = left.coord.finish;
     }
 
     private void rowConvex() {
-        setConvex(startConvex + deltaConvex * new Random().nextFloat());
+        convex = minConvex + (maxConvex - minConvex) * new Random().nextFloat();
     }
 
     private void rowColors() {
@@ -184,12 +185,12 @@ public class RandomParameters extends Parameters {
 
     private float[] getColor() {
         float[] color = new float[4];
-        Random random = new Random();
+        ExtRandomFloat random = new ExtRandomFloat();
 
-        color[0] = (startRed + random.nextInt(deltaRed + 1)) / 255f;
-        color[1] = (startGreen + random.nextInt(deltaGreen + 1)) / 255f;
-        color[2] = (startBlue + random.nextInt(deltaBlue + 1)) / 255f;
-        color[3] = (startAlpha + random.nextInt(deltaAlpha + 1)) / 255f;
+        color[0] = random.getFloat(minRed, maxRed) / 100;
+        color[1] = random.getFloat(minGreen, maxGreen) / 100;
+        color[2] = random.getFloat(minBlue, maxBlue) / 100;
+        color[3] = random.getFloat(minAlpha, maxAlpha) / 100;
 
         return color;
     }

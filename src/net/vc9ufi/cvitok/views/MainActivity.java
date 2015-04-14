@@ -2,6 +2,7 @@ package net.vc9ufi.cvitok.views;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -12,7 +13,9 @@ import android.view.View;
 import android.widget.*;
 import net.vc9ufi.cvitok.App;
 import net.vc9ufi.cvitok.R;
+import net.vc9ufi.cvitok.data.FlowerFile;
 import net.vc9ufi.cvitok.data.SaveNLoad;
+import net.vc9ufi.cvitok.petal.generator.FlowerGenerator;
 import net.vc9ufi.cvitok.views.dialogs.FileListDialog;
 import net.vc9ufi.cvitok.views.dialogs.NameDialog;
 import net.vc9ufi.cvitok.views.fragments.*;
@@ -168,6 +171,20 @@ public class MainActivity extends ActionBarActivity {
                     newEmptyFlower();
                     break;
                 case 3:
+                    new AsyncTask<Void, Void, FlowerFile>() {
+                        @Override
+                        protected FlowerFile doInBackground(Void... params) {
+                            return new FlowerGenerator(app).generate();
+                        }
+
+                        @Override
+                        protected void onPostExecute(FlowerFile flowerFile) {
+                            super.onPostExecute(flowerFile);
+                            app.getFlower().setFlower(flowerFile);
+                        }
+                    }.execute();
+                    break;
+                case 4:
                     showSettingsOfGenerator();
                     break;
             }
