@@ -162,7 +162,34 @@ public class MainActivity extends ActionBarActivity {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             switch (position) {
                 case 0:
-                    SaveNLoad.save(app);
+                    String name = app.getFlower().getName();
+                    if ((name == null) || (name.length() == 0)) {
+                        NameDialog flowerNameDialog = new NameDialog(MainActivity.this,
+                                getString(R.string.dialog_flower_name_title),
+                                getString(R.string.flower)) {
+                            @Override
+                            protected boolean onPositiveClick(String flowerName) {
+                                if (flowerName.length() > 0) {
+                                    if (SaveNLoad.isFileExists(app, flowerName)) {
+                                        this.setMsg(app.getString(R.string.toast_file_exists));
+                                        return false;
+                                    } else {
+                                        if (app.getFlower().setName(flowerName)) {
+                                            SaveNLoad.save(app);
+                                            return true;
+                                        }
+
+                                        this.setMsg("invalid name");
+                                        return false;
+                                    }
+                                }
+                                this.setMsg(app.getString(R.string.msg_input_name));
+                                return false;
+                            }
+                        };
+                        flowerNameDialog.show();
+                    } else SaveNLoad.save(app);
+
                     break;
                 case 1:
                     (new FileListDialog(MainActivity.this)).show();
