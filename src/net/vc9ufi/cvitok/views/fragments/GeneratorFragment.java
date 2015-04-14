@@ -11,9 +11,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import net.vc9ufi.cvitok.App;
 import net.vc9ufi.cvitok.R;
-import net.vc9ufi.cvitok.views.customlist.*;
+import net.vc9ufi.cvitok.views.customlist.BaseItem;
+import net.vc9ufi.cvitok.views.customlist.CustomArrayAdapter;
+import net.vc9ufi.cvitok.views.customlist.ItemWithTwoValues;
 import net.vc9ufi.cvitok.views.dialogs.TwoNumPickersDialog;
 import net.vc9ufi.cvitok.views.dialogs.TwoSeekbarsDialog;
 import net.vc9ufi.cvitok.views.settings.Setting;
@@ -21,7 +22,6 @@ import net.vc9ufi.cvitok.views.settings.Setting;
 
 public class GeneratorFragment extends Fragment {
 
-    private App app;
     private Context context;
 
     private CustomArrayAdapter mListAdapter;
@@ -109,11 +109,11 @@ public class GeneratorFragment extends Fragment {
     }
 
     private BaseItem initThetaSetting() {
-        SharedPreferences sharedPreferences = Setting.getInstance().getSharedPreferences();
+        final ItemWithTwoValues item = new ItemWithTwoValues(getString(R.string.generator_title_theta), getString(R.string.generator_min), getString(R.string.generator_max));
+        final SharedPreferences sharedPreferences = Setting.getInstance().getSharedPreferences();
+
         int min = sharedPreferences.getInt(getString(R.string.generator_key_min_theta), 0);
         int max = sharedPreferences.getInt(getString(R.string.generator_key_max_theta), 120);
-
-        ItemWithTwoValues item = new ItemWithTwoValues(getString(R.string.generator_title_theta), getString(R.string.generator_min), getString(R.string.generator_max));
 
         item.setValue1(String.valueOf(min));
         item.setValue2(String.valueOf(max));
@@ -124,7 +124,23 @@ public class GeneratorFragment extends Fragment {
         item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//TODO numberpicker
+                TwoSeekbarsDialog dialog = new TwoSeekbarsDialog() {
+                    @Override
+                    public void onClickOk(int value1, int value2) {
+                        item.setValue1(String.valueOf(value1));
+                        item.setValue2(String.valueOf(value2));
+                        SharedPreferences.Editor editPref = sharedPreferences.edit();
+                        editPref.putInt(getString(R.string.generator_key_min_theta), value1);
+                        editPref.putInt(getString(R.string.generator_key_max_theta), value2);
+                        editPref.apply();
+                    }
+                };
+                dialog.setTitle(getString(R.string.generator_title_theta));
+                dialog.setParameters1(getString(R.string.generator_min), 0, 180,
+                        sharedPreferences.getInt(getString(R.string.generator_key_min_theta), 30));
+                dialog.setParameters2(getString(R.string.generator_max), 0, 180,
+                        sharedPreferences.getInt(getString(R.string.generator_key_max_theta), 100));
+                dialog.show(getActivity().getSupportFragmentManager(), "dlg");
             }
         });
         return item;
@@ -166,11 +182,11 @@ public class GeneratorFragment extends Fragment {
     }
 
     private BaseItem initBackgroundBrightnessSetting() {
-        SharedPreferences sharedPreferences = Setting.getInstance().getSharedPreferences();
+        final ItemWithTwoValues item = new ItemWithTwoValues(getString(R.string.generator_title_background_brightness), getString(R.string.generator_min), getString(R.string.generator_max));
+        final SharedPreferences sharedPreferences = Setting.getInstance().getSharedPreferences();
+
         int min = sharedPreferences.getInt(getString(R.string.generator_key_min_background_brightness), 60);
         int max = sharedPreferences.getInt(getString(R.string.generator_key_max_background_brightness), 100);
-
-        ItemWithTwoValues item = new ItemWithTwoValues(getString(R.string.generator_title_background_brightness), getString(R.string.generator_min), getString(R.string.generator_max));
 
         item.setValue1(String.valueOf(min));
         item.setValue2(String.valueOf(max));
@@ -181,18 +197,34 @@ public class GeneratorFragment extends Fragment {
         item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//TODO numberpicker
+                TwoSeekbarsDialog dialog = new TwoSeekbarsDialog() {
+                    @Override
+                    public void onClickOk(int value1, int value2) {
+                        item.setValue1(String.valueOf(value1));
+                        item.setValue2(String.valueOf(value2));
+                        SharedPreferences.Editor editPref = sharedPreferences.edit();
+                        editPref.putInt(getString(R.string.generator_key_min_background_brightness), value1);
+                        editPref.putInt(getString(R.string.generator_key_max_background_brightness), value2);
+                        editPref.apply();
+                    }
+                };
+                dialog.setTitle(getString(R.string.generator_title_background_brightness));
+                dialog.setParameters1(getString(R.string.generator_min), 0, 100,
+                        sharedPreferences.getInt(getString(R.string.generator_key_min_background_brightness), 60));
+                dialog.setParameters2(getString(R.string.generator_max), 0, 100,
+                        sharedPreferences.getInt(getString(R.string.generator_key_max_background_brightness), 100));
+                dialog.show(getActivity().getSupportFragmentManager(), "dlg");
             }
         });
         return item;
     }
 
     private BaseItem initPetalBrightnessSetting() {
-        SharedPreferences sharedPreferences = Setting.getInstance().getSharedPreferences();
+        final ItemWithTwoValues item = new ItemWithTwoValues(getString(R.string.generator_title_petals_brightness), getString(R.string.generator_min), getString(R.string.generator_max));
+        final SharedPreferences sharedPreferences = Setting.getInstance().getSharedPreferences();
+
         int min = sharedPreferences.getInt(getString(R.string.generator_key_min_petals_brightness), 0);
         int max = sharedPreferences.getInt(getString(R.string.generator_key_max_petals_brightness), 100);
-
-        ItemWithTwoValues item = new ItemWithTwoValues(getString(R.string.generator_title_petals_brightness), getString(R.string.generator_min), getString(R.string.generator_max));
 
         item.setValue1(String.valueOf(min));
         item.setValue2(String.valueOf(max));
@@ -203,7 +235,23 @@ public class GeneratorFragment extends Fragment {
         item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//TODO numberpicker
+                TwoSeekbarsDialog dialog = new TwoSeekbarsDialog() {
+                    @Override
+                    public void onClickOk(int value1, int value2) {
+                        item.setValue1(String.valueOf(value1));
+                        item.setValue2(String.valueOf(value2));
+                        SharedPreferences.Editor editPref = sharedPreferences.edit();
+                        editPref.putInt(getString(R.string.generator_key_min_petals_brightness), value1);
+                        editPref.putInt(getString(R.string.generator_key_max_petals_brightness), value2);
+                        editPref.apply();
+                    }
+                };
+                dialog.setTitle(getString(R.string.generator_title_petals_brightness));
+                dialog.setParameters1(getString(R.string.generator_min), 0, 100,
+                        sharedPreferences.getInt(getString(R.string.generator_key_min_petals_brightness), 0));
+                dialog.setParameters2(getString(R.string.generator_max), 0, 100,
+                        sharedPreferences.getInt(getString(R.string.generator_key_max_petals_brightness), 100));
+                dialog.show(getActivity().getSupportFragmentManager(), "dlg");
             }
         });
         return item;
@@ -214,7 +262,6 @@ public class GeneratorFragment extends Fragment {
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_generator, container, false);
         context = inflater.getContext();
-        app = (App) context.getApplicationContext();
 
         initActionBar();
 
@@ -252,7 +299,4 @@ public class GeneratorFragment extends Fragment {
     }
 
 
-    public static String format(float value) {
-        return String.format("%.1f", value);
-    }
 }
