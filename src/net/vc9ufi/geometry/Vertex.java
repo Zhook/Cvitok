@@ -78,10 +78,8 @@ public class Vertex implements Cloneable {
     }
 
     public Vertex divLength(float dr) {
-        if (dr != 0) {
-            for (int i = 0; i < 3; i++) {
-                p[i] = p[i] + p[i] * dr;
-            }
+        for (int i = 0; i < 3; i++) {
+            p[i] = p[i] + p[i] * dr;
         }
         return this;
     }

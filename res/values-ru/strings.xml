@@ -49,5 +49,15 @@
     <string name="screenshot">Снимок</string>
     <string name="screenshot_saved">Снимок сохранен в галерею</string>
     <string name="menu_files_new_random">Новый случайный</string>
+    <string name="generator_max">Максимум</string>
+    <string name="generator_min">Минимум</string>
+    <string name="generator_title_background_brightness">Яркость фона</string>
+    <string name="generator_title_circles">Количество кругов</string>
+    <string name="generator_title_petals_brightness">Яркость лепестков</string>
+    <string name="generator_title_radius">Радиус лепестков</string>
+    <string name="generator_title_quantity_petals">Количество лепестков в круге</string>
+    <string name="generator_title_theta">Полярный угол</string>
+    <string name="generator_title">Генератор</string>
+    <string name="generator_button_build">Сгенерировать</string>
 
 </resources>

@@ -11,29 +11,27 @@ import android.view.ViewGroup;
 import android.widget.*;
 import net.vc9ufi.cvitok.App;
 import net.vc9ufi.cvitok.R;
+import net.vc9ufi.cvitok.data.Flower;
 import net.vc9ufi.cvitok.views.MainActivity;
 import net.vc9ufi.cvitok.views.dialogs.NameDialog;
 
 import java.util.List;
 
-public class FragmentPetals extends Fragment {
-    App app;
-    Context context;
-    MainActivity mainActivity;
+public class FragmentPetalsTools extends Fragment {
+    private App app;
+    private Context context;
+    private FragmentVerticesTools frag_vertices;
 
     Spinner sp_petals;
 
-    public void setAppNMainActivity(App app, MainActivity mainActivity) {
-        this.app = app;
-        this.mainActivity = mainActivity;
-    }
-
-
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_petals, container, false);
+        View view = inflater.inflate(R.layout.fragment_petals_tools, container, false);
         context = inflater.getContext();
         app = (App) context.getApplicationContext();
+        app.getFlower().setOnTouchMode(Flower.ON_TOUCH_MODE.PETAL);
+
+        frag_vertices = new FragmentVerticesTools();
 
         sp_petals = (Spinner) view.findViewById(R.id.fragment_petals_spinner_petals);
         sp_petals.setPrompt(getString(R.string.petal));
@@ -58,13 +56,13 @@ public class FragmentPetals extends Fragment {
         });
 
         ImageButton b_del = (ImageButton) view.findViewById(R.id.fragment_petals_imageButton_delPetal);
-        b_del.setOnClickListener(onDeleteClickListener);
+        b_del.setOnClickListener(new OnDeleteClickListener());
 
         ImageButton b_vertices = (ImageButton) view.findViewById(R.id.fragment_petals_button_vertices);
         b_vertices.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mainActivity.addVerticesFragment();
+                addVerticesToolsFragment();
             }
         });
 
@@ -104,7 +102,7 @@ public class FragmentPetals extends Fragment {
         nameDialog.show();
     }
 
-    View.OnClickListener onDeleteClickListener = new View.OnClickListener() {
+    class OnDeleteClickListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
             AlertDialog.Builder deleteDialog = new AlertDialog.Builder(context);
@@ -125,5 +123,25 @@ public class FragmentPetals extends Fragment {
             });
             deleteDialog.show();
         }
-    };
+    }
+
+
+    public void addVerticesToolsFragment() {
+        if (frag_vertices.isAdded()) {
+            setToolsFrame(PLACEHOLDER);
+            app.getFlower().setOnTouchMode(Flower.ON_TOUCH_MODE.PETAL);
+        } else {
+            setToolsFrame(frag_vertices);
+        }
+    }
+
+    private void setToolsFrame(android.support.v4.app.Fragment fragment) {
+        getActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragmentFlowerTools_toolsFrame, fragment)
+                .commit();
+    }
+
+    private static final Fragment PLACEHOLDER = new Fragment();
+
 }

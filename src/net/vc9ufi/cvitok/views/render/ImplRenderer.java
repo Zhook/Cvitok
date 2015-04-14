@@ -160,7 +160,7 @@ public abstract class ImplRenderer implements GLSurfaceView.Renderer {
         return width;
     }
 
-    public View.OnTouchListener getOnTouchListener() {
+    public LookAt getOnTouchListener() {
         return camera;
     }
 

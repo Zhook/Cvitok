@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="generator_key_circles" translatable="false">generator_key_circles</string>
+    <string name="generator_key_min_circles" translatable="false">generator_key_min_circles</string>
+    <string name="generator_key_max_circles" translatable="false">generator_key_max_circles</string>
+
+    <string name="generator_key_min_radius_of_petals" translatable="false">generator_key_min_radius_of_petals</string>
+    <string name="generator_key_max_radius_of_petals" translatable="false">generator_key_max_radius_of_petals</string>
+
+    <string name="generator_key_min_theta" translatable="false">generator_key_min_theta</string>
+    <string name="generator_key_max_theta" translatable="false">generator_key_max_theta</string>
+
+    <string name="generator_key_min_petals_in_circles" translatable="false">generator_key_min_petals_in_circles</string>
+    <string name="generator_key_max_petals_in_circles" translatable="false">generator_key_max_petals_in_circles</string>
+
+    <string name="generator_key_min_background_brightness" translatable="false">generator_key_min_background_brightness</string>
+    <string name="generator_key_max_background_brightness" translatable="false">generator_key_max_background_brightness</string>
+
+    <string name="generator_key_min_petals_brightness" translatable="false">generator_key_min_petals_brightness</string>
+    <string name="generator_key_max_petals_brightness" translatable="false">generator_key_max_petals_brightness</string>
+
+</resources>

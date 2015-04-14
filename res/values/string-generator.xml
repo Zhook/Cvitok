@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="generator_title">Generator</string>
+
+    <string name="generator_min">Minimum</string>
+    <string name="generator_max">Maximum</string>
+
+    <string name="generator_title_circles">Quantity of circles</string>
+    <string name="generator_title_radius">Radius of circles</string>
+    <string name="generator_title_theta">Polar angle</string>
+    <string name="generator_title_quantity_petals">Quantity of petal in circle</string>
+    <string name="generator_title_background_brightness">Background brightness</string>
+    <string name="generator_title_petals_brightness">Petals brightness</string>
+
+</resources>

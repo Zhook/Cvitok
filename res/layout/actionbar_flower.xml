@@ -10,6 +10,7 @@
             android:src="@android:drawable/ic_menu_camera"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
+            style="?android:attr/buttonBarButtonStyle"
             android:contentDescription="@string/actionBar_imageButton_screenshot_description"/>
 
     <ImageButton
@@ -20,7 +21,8 @@
             android:contentDescription="@string/fragment_flower_background"
             android:layout_alignParentTop="true"
             android:layout_toLeftOf="@+id/actionBar_imageButton_petals"
-            android:layout_alignBottom="@+id/actionBar_imageButton_petals"/>
+            android:layout_alignBottom="@+id/actionBar_imageButton_petals"
+            style="?android:attr/buttonBarButtonStyle"/>
     <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -28,5 +30,6 @@
             android:src="@drawable/ic_action_petal"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-            android:contentDescription="@string/fragment_flower_petals"/>
+            android:contentDescription="@string/fragment_flower_petals"
+            style="?android:attr/buttonBarButtonStyle"/>
 </RelativeLayout>

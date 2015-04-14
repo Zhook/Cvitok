@@ -36,6 +36,9 @@ public class Setting {
         }
     };
 
+    public SharedPreferences getSharedPreferences(){
+        return mPreferences;
+    }
 
     public String getLastFile() {
         return mPreferences.getString(mApp.getString(R.string.preference_key_lastfile), "");

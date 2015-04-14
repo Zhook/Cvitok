@@ -28,8 +28,7 @@ public class QualityDialogPref extends DialogPreference {
     protected View onCreateDialogView() {
         quality = getPersistedInt(defQuality);
 
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.dialog_quality, null);
+        View view = View.inflate(context, R.layout.dialog_quality, null);
 
         picker = (NumberPicker) view.findViewById(R.id.quality_numberPicker);
         picker.setMinValue(3);
@@ -49,7 +48,6 @@ public class QualityDialogPref extends DialogPreference {
 
         notifyChanged();
     }
-
 
 
 }

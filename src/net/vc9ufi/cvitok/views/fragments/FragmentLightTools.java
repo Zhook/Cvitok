@@ -12,7 +12,7 @@ import net.vc9ufi.cvitok.R;
 import net.vc9ufi.cvitok.views.dialogs.colordialog.ColorDialog;
 import net.vc9ufi.cvitok.views.dialogs.colordialog.ColorDialogRenderer;
 
-public class FragmentLight extends Fragment {
+public class FragmentLightTools extends Fragment {
 
     App app;
     Context context;
@@ -23,7 +23,7 @@ public class FragmentLight extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_light, container, false);
+        View view = inflater.inflate(R.layout.fragment_light_tools, container, false);
         context = inflater.getContext();
         app = (App) context.getApplicationContext();
 

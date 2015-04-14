@@ -18,7 +18,8 @@
             android:src="@drawable/ic_action_add_petal"
             android:layout_alignParentTop="true"
             android:contentDescription="@string/fragment_flower_background"
-            android:layout_toLeftOf="@+id/fragment_petals_imageButton_delPetal"/>
+            android:layout_toLeftOf="@+id/fragment_petals_imageButton_delPetal"
+            style="?android:attr/buttonBarButtonStyle"/>
     <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -26,7 +27,8 @@
             android:src="@drawable/ic_action_del_petal"
             android:layout_alignParentTop="true"
             android:contentDescription="@string/fragment_flower_background"
-            android:layout_toLeftOf="@+id/fragment_petals_button_vertices"/>
+            android:layout_toLeftOf="@+id/fragment_petals_button_vertices"
+            style="?android:attr/buttonBarButtonStyle"/>
     <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -34,5 +36,13 @@
             android:src="@drawable/ic_action_vertices"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-            android:contentDescription="@string/fragment_flower_background"/>
+            android:contentDescription="@string/fragment_flower_background"
+            style="?android:attr/buttonBarButtonStyle"/>
+    <FrameLayout
+            android:id="@+id/fragmentFlowerTools_toolsFrame"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/fragment_petals_spinner_petals"
+            android:background="@android:color/background_dark">
+    </FrameLayout>
 </RelativeLayout>

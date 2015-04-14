@@ -1,10 +1,12 @@
 package net.vc9ufi.cvitok.data;
 
 
+import android.view.MotionEvent;
 import android.view.View;
 import net.vc9ufi.cvitok.App;
 
 import net.vc9ufi.cvitok.control.LookAt;
+import net.vc9ufi.cvitok.control.Motion;
 import net.vc9ufi.cvitok.petal.Petal;
 import net.vc9ufi.cvitok.petal.Pointers;
 import net.vc9ufi.cvitok.views.settings.Setting;
@@ -29,9 +31,21 @@ public class Flower {
     private SelectedVertices right = new SelectedVertices();
 
     private LookAt mFlowerOnTouchListener;
+    private Motion mSelectedPetalOnTouchListener;
 
     public Flower() {
         mFlowerOnTouchListener = new LookAt();
+        mSelectedPetalOnTouchListener = new Motion() {
+            @Override
+            public void singleMove(float dx, float dy) {
+                selectedPetal.movePetal(dx, dy);
+            }
+
+            @Override
+            public void multiMove(float dr, float dx, float dy) {
+                selectedPetal.changeQuantity(dr);
+            }
+        };
     }
 
     public boolean setNewFlower(String flowerName) {
@@ -149,23 +163,36 @@ public class Flower {
         return selectedPetal;
     }
 
-    public View.OnTouchListener getOnTouchListener(App.MODE mode) {
-        switch (mode) {
-            case NULL:
-            case FLOWER:
-                return mFlowerOnTouchListener;
-            case PETAL:
-                return selectedPetal.getPetalOnTouchListener();
-            case VERTEX:
-                return selectedPetal.getVerticesOnTouchListener();
-            case LIGHT:
-                return light.getOnTouchListener();
-        }
-        return mFlowerOnTouchListener;
+    public View.OnTouchListener getOnTouchListener() {
+        return new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (mOnTouchMode) {
+                    case NULL:
+                    case FLOWER:
+                        mFlowerOnTouchListener.onTouch(v, event);
+                        break;
+                    case PETAL:
+                        mSelectedPetalOnTouchListener.onTouch(v, event);
+                        break;
+                    case VERTEX:
+                        selectedPetal.getVerticesOnTouchListener().onTouch(v, event);
+                        break;
+                    case LIGHT:
+                        light.getOnTouchListener().onTouch(v, event);
+                        break;
+                }
+                return true;
+            }
+        };
     }
 
     public LookAt getFlowerOnTouchListener() {
         return mFlowerOnTouchListener;
+    }
+
+    public void setFlowerOnTouchListener(LookAt flowerOnTouchListener) {
+        mFlowerOnTouchListener = flowerOnTouchListener;
     }
 
     //-------------------------------------------------------------------------------------Vertices
@@ -235,4 +262,11 @@ public class Flower {
         return (index < 0) || (index >= petals.size());
     }
 
+    public ON_TOUCH_MODE mOnTouchMode = ON_TOUCH_MODE.NULL;
+
+    public void setOnTouchMode(ON_TOUCH_MODE onTouchMode) {
+        mOnTouchMode = onTouchMode;
+    }
+
+    public enum ON_TOUCH_MODE {NULL, FLOWER, PETAL, VERTEX, LIGHT}
 }

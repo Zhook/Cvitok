@@ -9,19 +9,22 @@
             android:text="@string/fragment_light_button_ambient"
             android:id="@+id/fragment_light_button_ambient"
             android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/fragment_light_button_diffuse"/>
+            android:layout_toLeftOf="@+id/fragment_light_button_diffuse"
+            style="?android:attr/buttonBarButtonStyle"/>
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/fragment_light_button_diffuse"
             android:id="@+id/fragment_light_button_diffuse"
             android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/fragment_light_button_specular"/>
+            android:layout_toLeftOf="@+id/fragment_light_button_specular"
+            style="?android:attr/buttonBarButtonStyle"/>
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/fragment_light_button_specular"
             android:id="@+id/fragment_light_button_specular"
             android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"/>
+            android:layout_alignParentTop="true"
+            style="?android:attr/buttonBarButtonStyle"/>
 </RelativeLayout>

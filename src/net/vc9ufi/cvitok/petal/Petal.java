@@ -13,22 +13,9 @@ public class Petal {
 
     private Parameters parameters;
     private Calculator calculator = new Calculator();
-    private View.OnTouchListener mPetalOnTouchListener;
     private View.OnTouchListener mVerticesOnTouchListener;
 
     public Petal(Parameters parameters, int precision, final Flower flower) {
-        mPetalOnTouchListener = new Motion() {
-
-            @Override
-            public void singleMove(float dx, float dy) {
-                movePetal(dx, dy);
-            }
-
-            @Override
-            public void multiMove(float dr, float dx, float dy) {
-                changeQuantity(dr);
-            }
-        };
 
         mVerticesOnTouchListener = new Motion() {
 
@@ -66,9 +53,6 @@ public class Petal {
         calculator.setQuality(quality);
     }
 
-    public View.OnTouchListener getPetalOnTouchListener() {
-        return mPetalOnTouchListener;
-    }
 
     public View.OnTouchListener getVerticesOnTouchListener() {
         return mVerticesOnTouchListener;
