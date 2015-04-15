@@ -34,8 +34,8 @@ public class RandomParameters extends Parameters {
     }
 
     public void setRandomConvex(int min, int max) {
-        this.minConvex = min * 0.1f;
-        this.maxConvex = max * 0.1f;
+        this.minConvex = min * 0.05f;
+        this.maxConvex = max * 0.05f;
     }
 
     public void setRandomQuantity(int min, int max) throws InvalidParameterException {

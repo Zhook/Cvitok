@@ -14,13 +14,11 @@ import android.widget.Button;
 import android.widget.ListView;
 import net.vc9ufi.cvitok.App;
 import net.vc9ufi.cvitok.R;
-import net.vc9ufi.cvitok.data.Flower;
 import net.vc9ufi.cvitok.data.FlowerFile;
 import net.vc9ufi.cvitok.petal.generator.FlowerGenerator;
 import net.vc9ufi.cvitok.views.customlist.BaseItem;
 import net.vc9ufi.cvitok.views.customlist.CustomArrayAdapter;
 import net.vc9ufi.cvitok.views.customlist.ItemWithTwoValues;
-import net.vc9ufi.cvitok.views.dialogs.TwoNumPickersDialog;
 import net.vc9ufi.cvitok.views.dialogs.TwoSeekbarsDialog;
 import net.vc9ufi.cvitok.views.settings.Setting;
 
@@ -55,7 +53,7 @@ public class GeneratorFragment extends Fragment {
         item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TwoNumPickersDialog dialog = new TwoNumPickersDialog() {
+                TwoSeekbarsDialog dialog = new TwoSeekbarsDialog() {
                     @Override
                     public void onClickOk(int value1, int value2) {
                         item.setValue1(String.valueOf(value1));
@@ -166,7 +164,7 @@ public class GeneratorFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                TwoNumPickersDialog dialog = new TwoNumPickersDialog() {
+                TwoSeekbarsDialog dialog = new TwoSeekbarsDialog() {
                     @Override
                     public void onClickOk(int value1, int value2) {
                         item.setValue1(String.valueOf(value1));
@@ -277,7 +275,7 @@ public class GeneratorFragment extends Fragment {
         item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TwoNumPickersDialog dialog = new TwoNumPickersDialog() {
+                TwoSeekbarsDialog dialog = new TwoSeekbarsDialog() {
                     @Override
                     public void onClickOk(int value1, int value2) {
                         item.setValue1(String.valueOf(value1));

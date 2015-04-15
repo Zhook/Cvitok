@@ -15,12 +15,6 @@
                 android:id="@+id/dialog_2value_des1"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"/>
-        <SeekBar
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/dialog_2seekBar_value1"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="1"/>
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -49,6 +43,12 @@
                     android:layout_weight="1"
                     android:layout_marginRight="10dp"/>
         </LinearLayout>
+        <SeekBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/dialog_2seekBar_value1"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"/>
     </LinearLayout>
     <LinearLayout
             android:orientation="vertical"
@@ -61,12 +61,6 @@
                 android:id="@+id/dialog_2value_des2"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"/>
-        <SeekBar
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/dialog_2seekBar_value2"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="1"/>
         <LinearLayout android:orientation="horizontal"
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content">
@@ -91,6 +85,12 @@
                       android:layout_weight="1"
                       android:layout_marginLeft="10dp"/>
         </LinearLayout>
+        <SeekBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/dialog_2seekBar_value2"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"/>
     </LinearLayout>
     <LinearLayout
             android:orientation="horizontal"

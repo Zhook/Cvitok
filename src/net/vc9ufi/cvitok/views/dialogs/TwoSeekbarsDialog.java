@@ -21,26 +21,29 @@ public abstract class TwoSeekbarsDialog extends TwoIntValuesDialog {
 
         View view = inflater.inflate(R.layout.dialog_2seekbars, container, false);
 
-        TextView textViewMin1 = (TextView)view.findViewById(R.id.dialog_2seekBar_textView_min1);
+        TextView textViewMin1 = (TextView) view.findViewById(R.id.dialog_2seekBar_textView_min1);
         textViewMin1.setText(String.valueOf(min1));
-        TextView textViewMin2 = (TextView)view.findViewById(R.id.dialog_2seekBar_textView_min2);
+        TextView textViewMin2 = (TextView) view.findViewById(R.id.dialog_2seekBar_textView_min2);
         textViewMin2.setText(String.valueOf(min2));
-        TextView textViewMax1 = (TextView)view.findViewById(R.id.dialog_2seekBar_textView_max1);
+        TextView textViewMax1 = (TextView) view.findViewById(R.id.dialog_2seekBar_textView_max1);
         textViewMax1.setText(String.valueOf(max1));
-        TextView textViewMax2 = (TextView)view.findViewById(R.id.dialog_2seekBar_textView_max2);
+        TextView textViewMax2 = (TextView) view.findViewById(R.id.dialog_2seekBar_textView_max2);
         textViewMax2.setText(String.valueOf(max2));
-        final TextView textViewProgres1 = (TextView)view.findViewById(R.id.dialog_2seekBar_textView_progres1);
+        final TextView textViewProgres1 = (TextView) view.findViewById(R.id.dialog_2seekBar_textView_progres1);
         textViewProgres1.setText(String.valueOf(value1));
-        final TextView textViewProgres2 = (TextView)view.findViewById(R.id.dialog_2seekBar_textView_progres2);
+        final TextView textViewProgres2 = (TextView) view.findViewById(R.id.dialog_2seekBar_textView_progres2);
         textViewProgres2.setText(String.valueOf(value2));
 
+        final Formatter formatter1 = new Formatter(min1, max1);
+        final Formatter formatter2 = new Formatter(min2, max2);
+
         seekBar1 = (SeekBar) view.findViewById(R.id.dialog_2seekBar_value1);
-        seekBar1.setMax(max1);
-        seekBar1.setProgress(value1);
+        seekBar1.setMax(Math.abs(max1 - min1));
+        seekBar1.setProgress(formatter1.setValue(value1));
         seekBar1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                textViewProgres1.setText(String.valueOf(seekBar.getProgress()));
+                textViewProgres1.setText(formatter1.format(seekBar.getProgress()));
             }
 
             @Override
@@ -56,12 +59,12 @@ public abstract class TwoSeekbarsDialog extends TwoIntValuesDialog {
 
 
         seekBar2 = (SeekBar) view.findViewById(R.id.dialog_2seekBar_value2);
-        seekBar2.setMax(max2);
-        seekBar2.setProgress(value2);
+        seekBar2.setMax(Math.abs(max2 - min2));
+        seekBar2.setProgress(formatter1.setValue(value2));
         seekBar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                textViewProgres2.setText(String.valueOf(seekBar.getProgress()));
+                textViewProgres2.setText(formatter2.format(seekBar.getProgress()));
             }
 
             @Override
@@ -101,4 +104,37 @@ public abstract class TwoSeekbarsDialog extends TwoIntValuesDialog {
     }
 
     public abstract void onClickOk(int value1, int value2);
+
+    class Formatter {
+        int min;
+        int max;
+
+        public Formatter(int min, int max) {
+            this.max = max;
+            this.min = min;
+        }
+
+
+        public String format(int index) {
+            return Integer.toString(getValue(index));
+        }
+
+        public int getValue(int index) {
+            int d = max - min;
+            if (d > 0) {
+                return index + min;
+            } else {
+                return min - index;
+            }
+        }
+
+        public int setValue(int value) {
+            int d = max - min;
+            if (d > 0) {
+                return value - min;
+            } else {
+                return value + min;
+            }
+        }
+    }
 }

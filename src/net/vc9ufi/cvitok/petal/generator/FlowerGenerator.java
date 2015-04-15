@@ -24,14 +24,13 @@ public class FlowerGenerator {
 
     public FlowerFile generate() {
         FlowerFile flower = new FlowerFile();
-
         SharedPreferences sharedPreferences = Setting.getInstance().getSharedPreferences();
 
         flower.background = rowBackground(sharedPreferences);
         flower.light = new Light();
 
-
         flower.petals = row(sharedPreferences);
+
         return flower;
     }
 
