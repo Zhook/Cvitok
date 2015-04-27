@@ -30,18 +30,16 @@ public class ItemWithTwoValues extends BaseItem {
     public View getView(LayoutInflater inflater, View convertView, ViewGroup parent) {
         View view = super.getView(inflater, convertView, parent);
 
-        if (convertView == null) {
-            TextView textView_title = (TextView) view.findViewById(R.id.listitem_two_values_textView_title);
-            textView_title.setText(title);
-            TextView textView_des1 = (TextView) view.findViewById(R.id.listitem_two_values_textView_des1);
-            textView_des1.setText(description1);
-            TextView textView_des2 = (TextView) view.findViewById(R.id.listitem_two_values_textView_des2);
-            textView_des2.setText(description2);
-            TextView textView_postfix1 = (TextView) view.findViewById(R.id.listitem_two_values_textView_postfix1);
-            textView_postfix1.setText(postfix1);
-            TextView textView_postfix2 = (TextView) view.findViewById(R.id.listitem_two_values_textView_postfix2);
-            textView_postfix2.setText(postfix2);
-        }
+        TextView textView_title = (TextView) view.findViewById(R.id.listitem_two_values_textView_title);
+        textView_title.setText(title);
+        TextView textView_des1 = (TextView) view.findViewById(R.id.listitem_two_values_textView_des1);
+        textView_des1.setText(description1);
+        TextView textView_des2 = (TextView) view.findViewById(R.id.listitem_two_values_textView_des2);
+        textView_des2.setText(description2);
+        TextView textView_postfix1 = (TextView) view.findViewById(R.id.listitem_two_values_textView_postfix1);
+        textView_postfix1.setText(postfix1);
+        TextView textView_postfix2 = (TextView) view.findViewById(R.id.listitem_two_values_textView_postfix2);
+        textView_postfix2.setText(postfix2);
 
         textView_value1 = (TextView) view.findViewById(R.id.listitem_two_values_textView_value1);
         textView_value1.setText(value1);

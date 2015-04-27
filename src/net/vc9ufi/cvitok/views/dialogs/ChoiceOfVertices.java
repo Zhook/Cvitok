@@ -9,15 +9,15 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import net.vc9ufi.cvitok.App;
 import net.vc9ufi.cvitok.R;
-import net.vc9ufi.cvitok.data.Flower;
+
 import net.vc9ufi.cvitok.data.SelectedVertices;
 
 
 public class ChoiceOfVertices {
     Context context;
     App app;
-    final SelectedVertices left;
-    final SelectedVertices right;
+     SelectedVertices left;
+     SelectedVertices right;
 
     CheckBox cb_tip;
 
@@ -36,9 +36,6 @@ public class ChoiceOfVertices {
     public ChoiceOfVertices(Context context) {
         this.context = context;
         this.app = (App) context.getApplicationContext();
-        Flower flower = app.getFlower();
-        left = flower.getLeft();
-        right = flower.getRight();
     }
 
     public void show() {
@@ -52,7 +49,7 @@ public class ChoiceOfVertices {
         dialog.setView(view);
         dialog.setPositiveButton(R.string.Ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                app.getFlower().setSelectedVertices(left, right);
+
             }
         });
         dialog.setNegativeButton(R.string.Cancel, new DialogInterface.OnClickListener() {

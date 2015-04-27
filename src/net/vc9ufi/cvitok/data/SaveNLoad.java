@@ -35,7 +35,7 @@ public class SaveNLoad {
     }
 
     public static void save(Context context) {
-        FlowerFile flower = ((App)context.getApplicationContext()).getFlower().getFlowerFile();
+        FlowerFile flower = ((App)context.getApplicationContext()).getFlower();
         if (flower == null) return;
         String filename = flower.name + EXT;
         String json = flower.toJSON();
@@ -45,10 +45,10 @@ public class SaveNLoad {
     public static boolean load(Context context, String name) {
         if (!isFileNameValid(name)) throw new InvalidParameterException("file name invalid");
         String file = SaveNLoad.readFile(context, name + EXT);
-        FlowerFile flower = FlowerFile.getFlower(file);
+        FlowerFile flower = FlowerFile.fromJson(file);
 
         if (flower == null) return false;
-        ((App)context.getApplicationContext()).getFlower().setFlower(flower);
+        ((App)context.getApplicationContext()).setFlower(flower);
         Setting.getInstance().setLastFlower(name);
         return true;
     }

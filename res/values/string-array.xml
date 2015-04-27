@@ -6,6 +6,7 @@
         <item>New empty</item>
         <item>Generate</item>
         <item>Setting generator</item>
+        <item>Set wallpaper</item>
     </string-array>
     <string-array name="navdrawer_menu_sub">
         <item>Setting app</item>

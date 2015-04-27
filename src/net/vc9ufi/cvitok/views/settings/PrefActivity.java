@@ -3,17 +3,14 @@ package net.vc9ufi.cvitok.views.settings;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
-import net.vc9ufi.cvitok.App;
 import net.vc9ufi.cvitok.R;
 
 public class PrefActivity extends PreferenceActivity {
 
-    App app;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        app = (App) getApplicationContext();
 
         getFragmentManager()
                 .beginTransaction()
@@ -28,7 +25,6 @@ public class PrefActivity extends PreferenceActivity {
             addPreferencesFromResource(R.xml.preferences);
         }
     }
-
 
 }
 

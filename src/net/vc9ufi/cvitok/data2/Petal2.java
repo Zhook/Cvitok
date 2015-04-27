@@ -1,56 +1,20 @@
-package net.vc9ufi.cvitok.petal;
+package net.vc9ufi.cvitok.data2;
 
 import android.view.View;
-import net.vc9ufi.cvitok.control.Motion;
-import net.vc9ufi.cvitok.data.Flower;
 import net.vc9ufi.cvitok.data.Parameters;
 import net.vc9ufi.cvitok.data.SelectedVertices;
 import net.vc9ufi.cvitok.views.settings.Setting;
 import net.vc9ufi.geometry.Quaternion;
 import net.vc9ufi.geometry.Vector3D;
 
-public class Petal {
+public class Petal2 {
 
     private Parameters parameters;
-    private Calculator calculator = new Calculator();
+
     private View.OnTouchListener mVerticesOnTouchListener;
 
-    public Petal(Parameters parameters, int precision, final Flower flower) {
-
-        mVerticesOnTouchListener = new Motion() {
-
-            @Override
-            public void singleMove(float dx, float dy) {
-                rotatePoints(dx, dy, flower.getLeft(), flower.getRight());
-            }
-
-            @Override
-            public void multiMove(float dr, float dx, float dy) {
-                movePoints(dr, flower.getLeft(), flower.getRight());
-            }
-        };
-
-        this.parameters = parameters;
-        try {
-            calculator.setParameters(parameters.clone());
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
-        calculator.setQuality(precision);
-        calculator.start();
-    }
-
-
-    public void setName(String name) {
-        parameters.setName(name);
-    }
-
-    public String getName() {
-        return parameters.name;
-    }
-
-    public void setQuality(int quality) {
-        calculator.setQuality(quality);
+    public Petal2(Parameters parametersfinal) {
+        this.parameters = parametersfinal;
     }
 
 
@@ -61,11 +25,6 @@ public class Petal {
     //------------------------------------
     public void changeQuantity(float dr) {
         parameters.changeQuantity(dr);
-        try {
-            calculator.setParameters(parameters.clone());
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
     }
 
     public void rotatePoints(float dx, float dy, SelectedVertices left, SelectedVertices right) {
@@ -107,12 +66,7 @@ public class Petal {
             need_calc = true;
         }
 
-        if (need_calc)
-            try {
-                calculator.setParameters(parameters.clone());
-            } catch (CloneNotSupportedException e) {
-                e.printStackTrace();
-            }
+
     }
 
     public void movePoints(float dr, SelectedVertices left, SelectedVertices right) {
@@ -153,12 +107,6 @@ public class Petal {
             need_calc = true;
         }
 
-        if (need_calc)
-            try {
-                calculator.setParameters(parameters.clone());
-            } catch (CloneNotSupportedException e) {
-                e.printStackTrace();
-            }
     }
 
     public void movePetal(float dx, float dy) {
@@ -177,11 +125,6 @@ public class Petal {
         parameters.left.coord.finish.p = Quaternion.Rotate(parameters.left.coord.finish.p, q);
         parameters.right.coord.finish.p = Quaternion.Rotate(parameters.right.coord.finish.p, q);
 
-        try {
-            calculator.setParameters(parameters.clone());
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
     }
 
     private static float[] rotatePoint(float dx, float dy, float[] up, float step, float[] point) {
@@ -235,19 +178,8 @@ public class Petal {
             parameters.right.colors.finish = color;
             need_calc = true;
         }
-
-        if (need_calc)
-            try {
-                calculator.setParameters(parameters.clone());
-            } catch (CloneNotSupportedException e) {
-                e.printStackTrace();
-            }
     }
 
-
-    public Pointers getPointers() {
-        return calculator.getPointers();
-    }
 
     public Parameters getParameters() {
         return parameters;

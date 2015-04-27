@@ -6,9 +6,6 @@ import net.vc9ufi.geometry.Vertex;
 
 public class Parameters implements Cloneable {
 
-    @SerializedName("name")
-    public String name;
-
     @SerializedName("quantity")
     public int quantity;
     @SerializedName("angle")
@@ -26,8 +23,7 @@ public class Parameters implements Cloneable {
 
     float quantityf;
 
-    public Parameters(String name) {
-        this.name = name;
+    public Parameters() {
         quantity = 3;
         quantityf = 3;
 
@@ -62,7 +58,6 @@ public class Parameters implements Cloneable {
     @Override
     public Parameters clone() throws CloneNotSupportedException {
         Parameters p = (Parameters) super.clone();
-        p.name = name;
         p.quantity = quantity;
         p.angle = angle;
         p.circle = circle;
@@ -85,7 +80,6 @@ public class Parameters implements Cloneable {
         if (quantity != that.quantity) return false;
         if (Float.compare(that.quantityf, quantityf) != 0) return false;
         if (left != null ? !left.equals(that.left) : that.left != null) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (right != null ? !right.equals(that.right) : that.right != null) return false;
 
         return true;
@@ -98,11 +92,6 @@ public class Parameters implements Cloneable {
         angle = (float) (2 * Math.PI / quantity);
     }
     //------------------------------------------------------
-
-    public Parameters setName(String name) {
-        this.name = name;
-        return this;
-    }
 
     public Parameters setQuantity(int quantity) {
         this.quantity = quantity;

@@ -87,7 +87,9 @@ public abstract class TwoSeekbarsDialog extends TwoIntValuesDialog {
         buttonOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClickOk(seekBar1.getProgress(), seekBar2.getProgress());
+                onClickOk(
+                        formatter1.getValue(seekBar1.getProgress()),
+                        formatter2.getValue(seekBar2.getProgress()));
                 dismiss();
             }
         });
@@ -120,8 +122,7 @@ public abstract class TwoSeekbarsDialog extends TwoIntValuesDialog {
         }
 
         public int getValue(int index) {
-            int d = max - min;
-            if (d > 0) {
+            if (max - min > 0) {
                 return index + min;
             } else {
                 return min - index;
@@ -129,8 +130,7 @@ public abstract class TwoSeekbarsDialog extends TwoIntValuesDialog {
         }
 
         public int setValue(int value) {
-            int d = max - min;
-            if (d > 0) {
+            if (max - min > 0) {
                 return value - min;
             } else {
                 return value + min;

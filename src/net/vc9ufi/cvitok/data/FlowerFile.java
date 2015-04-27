@@ -20,7 +20,7 @@ public class FlowerFile {
     @SerializedName("Light")
     public Light light;
 
-    public static FlowerFile getFlower(String json) {
+    public static FlowerFile fromJson(String json) {
         Gson gson = new Gson();
         FlowerFile flower = null;
         try {

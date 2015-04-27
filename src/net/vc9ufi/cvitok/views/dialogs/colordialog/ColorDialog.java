@@ -7,19 +7,22 @@ import android.opengl.GLSurfaceView;
 import android.view.View;
 import android.widget.SeekBar;
 import net.vc9ufi.cvitok.R;
+import net.vc9ufi.cvitok.control.RotatingCamera;
+import net.vc9ufi.cvitok.render.ImplRenderer;
+import net.vc9ufi.geometry.TrianglesBase;
 
 public abstract class ColorDialog {
 
     Context context;
-    ColorDialogRenderer renderer;
+    TrianglesBase trianglesBase;
 
     GLSurfaceView surface;
     SeekBar alphaBar;
 
 
-    public ColorDialog(Context context, ColorDialogRenderer renderer) {
+    public ColorDialog(Context context, TrianglesBase trianglesBase) {
         this.context = context;
-        this.renderer = renderer;
+        this.trianglesBase = trianglesBase;
     }
 
     public void show() {
@@ -28,15 +31,30 @@ public abstract class ColorDialog {
 
         View view = View.inflate(context, R.layout.dialog_choice_color, null);
 
-        init(view);
+        surface = (GLSurfaceView) view.findViewById(R.id.colorDialog_glColor);
+
+        final ImplRenderer renderer = new ImplRenderer(trianglesBase){
+
+        };
+        surface.setRenderer(renderer);
+        surface.setZOrderOnTop(true);
+        surface.setOnTouchListener(new RotatingCamera() {
+            @Override
+            public void result(float[] camera, float[] target, float[] up) {
+                trianglesBase.setLookAt(camera, target, up);
+            }
+        });
+
+        alphaBar = (SeekBar) view.findViewById(R.id.colorDialog_seekBarAlpha);
+        alphaBar.setProgress(100);
 
         dialog.setView(view);
         dialog.setPositiveButton(R.string.Ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-
-                float[] color = renderer.getColor();
-                color[3] = alphaBar.getProgress() / 100f;
-                onClickPositiveButton(color);
+//TODO
+//                float[] color = renderer.getColor();
+//                color[3] = alphaBar.getProgress() / 100f;
+//                onClickPositiveButton(color);
             }
         });
         dialog.setNegativeButton(R.string.Cancel, new DialogInterface.OnClickListener() {
@@ -46,16 +64,6 @@ public abstract class ColorDialog {
             }
         });
         dialog.show();
-    }
-
-    private void init(View view) {
-        surface = (GLSurfaceView) view.findViewById(R.id.colorDialog_glColor);
-        surface.setRenderer(renderer);
-        surface.setZOrderOnTop(true);
-        surface.setOnTouchListener(renderer.getOnTouchListener());
-
-        alphaBar = (SeekBar) view.findViewById(R.id.colorDialog_seekBarAlpha);
-        alphaBar.setProgress(100);
     }
 
     public abstract void onClickPositiveButton(float[] color);

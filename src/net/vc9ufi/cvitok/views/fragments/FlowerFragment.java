@@ -17,14 +17,12 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 import net.vc9ufi.cvitok.App;
 import net.vc9ufi.cvitok.R;
-import net.vc9ufi.cvitok.control.LookAt;
-import net.vc9ufi.cvitok.data.Flower;
-import net.vc9ufi.cvitok.data.Light;
+import net.vc9ufi.cvitok.control.RotatingCamera;
+import net.vc9ufi.cvitok.render.ImplRenderer;
+import net.vc9ufi.cvitok.render.ScreenShot;
 import net.vc9ufi.cvitok.views.dialogs.ScreenshotDialog;
-import net.vc9ufi.cvitok.views.render.ImplRenderer;
-import net.vc9ufi.cvitok.views.render.ScreenShot;
+import net.vc9ufi.geometry.TrianglesBase;
 
-import javax.microedition.khronos.opengles.GL10;
 import java.io.File;
 import java.io.IOException;
 
@@ -32,6 +30,8 @@ public class FlowerFragment extends Fragment {
 
     private App app;
     private Context context;
+
+    private TrianglesBase trianglesBase;
 
     private FragmentFlowerTools mFlowerTools;
     private FragmentPetalsTools mPetalTools;
@@ -44,11 +44,27 @@ public class FlowerFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mFlowerRenderer = new ImplRenderer(new LookAt()) {
+        mFlowerTools = new FragmentFlowerTools();
+        mPetalTools = new FragmentPetalsTools();
+    }
+
+    @Override
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_flower, container, false);
+        context = inflater.getContext();
+        app = (App) context.getApplicationContext();
+
+        GLSurfaceView glSurfaceView = (GLSurfaceView) view.findViewById(R.id.glFlower);
+        trianglesBase = app.getPetalsBase();
+        RotatingCamera lookAt = new RotatingCamera() {
             @Override
-            public void paint(GL10 gl) {
-                app.getFlower().paint(gl);
+            public void result(float[] camera, float[] target, float[] up) {
+                trianglesBase.setLookAt(camera, target, up);
             }
+        };
+        glSurfaceView.setOnTouchListener(lookAt);
+
+        mFlowerRenderer = new ImplRenderer(trianglesBase) {
 
             @Override
             public void onCaptureScreenShot(final Bitmap bitmap) {
@@ -88,43 +104,18 @@ public class FlowerFragment extends Fragment {
                                     screenshotDialog.show(getActivity().getSupportFragmentManager(), "dlg");
                                 }
                             }
-                        }.execute(app.getFlower().getName());
+                        }.execute(app.getFlower().name);
                     }
                 });
             }
-
-            @Override
-            public float[] background() {
-                return app.getFlower().getBackground();
-            }
-
-            @Override
-            public Light light() {
-                return app.getFlower().getLight();
-            }
         };
-        mFlowerTools = new FragmentFlowerTools();
-        mPetalTools = new FragmentPetalsTools();
-    }
-
-    @Override
-    public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_flower, container, false);
-        context = inflater.getContext();
-        app = (App) context.getApplicationContext();
-        Flower flower = app.getFlower();
-
-        flower.setFlowerOnTouchListener(mFlowerRenderer.getOnTouchListener());
-
-        GLSurfaceView glSurfaceView = (GLSurfaceView) view.findViewById(R.id.glFlower);
-        glSurfaceView.setOnTouchListener(flower.getOnTouchListener());
         glSurfaceView.setRenderer(mFlowerRenderer);
 
         progressBar = (ProgressBar) view.findViewById(R.id.mainActivity_progressBar);
 
         initActionBar();
 
-        flower.setOnTouchMode(Flower.ON_TOUCH_MODE.FLOWER);
+
 
         return view;
     }
@@ -167,7 +158,7 @@ public class FlowerFragment extends Fragment {
     public void addFlowerToolsFragment() {
         if (mFlowerTools.isAdded()) {
             setToolsFrame(PLACEHOLDER);
-            app.getFlower().setOnTouchMode(Flower.ON_TOUCH_MODE.FLOWER);
+
         } else {
             setToolsFrame(mFlowerTools);
         }
@@ -176,7 +167,7 @@ public class FlowerFragment extends Fragment {
     public void addPetalsToolsFragment() {
         if (mPetalTools.isAdded()) {
             setToolsFrame(PLACEHOLDER);
-            app.getFlower().setOnTouchMode(Flower.ON_TOUCH_MODE.FLOWER);
+
         } else {
             setToolsFrame(mPetalTools);
         }

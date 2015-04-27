@@ -1,29 +1,28 @@
-package net.vc9ufi.cvitok.views.render;
+package net.vc9ufi.cvitok.render;
 
 import android.graphics.Bitmap;
+import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLU;
-import android.view.View;
-import net.vc9ufi.cvitok.control.LookAt;
-import net.vc9ufi.cvitok.data.Flower;
-import net.vc9ufi.cvitok.data.Light;
-import net.vc9ufi.cvitok.views.settings.Setting;
+import net.vc9ufi.geometry.TrianglesBase;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 
 
-public abstract class ImplRenderer implements GLSurfaceView.Renderer {
+public class ImplRenderer implements GLSurfaceView.Renderer {
 
-    private int width;
-    private int height;
+    protected int width;
+    protected int height;
+    protected float[] def_background = new float[]{1, 1, 1, 1};
+    protected volatile boolean screenshot = false;
 
-    private volatile boolean screenshot = false;
+    private TrianglesBase mTrianglesBase;
 
-    private LookAt camera;
-
-    public ImplRenderer(LookAt camera) {
-        this.camera = camera;
+    public ImplRenderer(TrianglesBase trianglesBD) {
+        mTrianglesBase = trianglesBD;
     }
 
     @Override
@@ -59,13 +58,12 @@ public abstract class ImplRenderer implements GLSurfaceView.Renderer {
 
         clean(gl);
         transparency(gl);
-        makeLight(gl);
 
         setupPerspective(gl);
 
-        float[] c = camera.getCamera();
-        float[] t = camera.getTarget();
-        float[] u = camera.getUp();
+        float[] c = mTrianglesBase.getCamera();
+        float[] t = mTrianglesBase.getTarget();
+        float[] u = mTrianglesBase.getUp();
         GLU.gluLookAt(gl, c[0], c[1], c[2], t[0], t[1], t[2], u[0], u[1], u[2]);
 
 
@@ -77,8 +75,13 @@ public abstract class ImplRenderer implements GLSurfaceView.Renderer {
 //        gl.glMaterialfv(GL10.GL_FRONT_AND_BACK, GL10.GL_AMBIENT, new float[]{0.2f, 0.2f, 0.2f, 0.2f}, 0);
 //        gl.glMaterialfv(GL10.GL_FRONT_AND_BACK, GL10.GL_DIFFUSE, new float[]{1.0f, 1.0f, 1.0f, 1}, 0);
 //        gl.glMaterialfv(GL10.GL_FRONT_AND_BACK, GL10.GL_SPECULAR, new float[]{0.2f, 0.2f, 0.2f, 1}, 0);
-
-        paint(gl);
+        Pointers pointers = mTrianglesBase.getPointers();
+        if (pointers != null && pointers.getSize() != 0) {
+            gl.glVertexPointer(3, GL10.GL_FLOAT, 0, pointers.getVertex());
+            gl.glColorPointer(4, GL10.GL_FLOAT, 0, pointers.getColor());
+            gl.glNormalPointer(GL10.GL_FLOAT, 0, pointers.getNormal());
+            gl.glDrawArrays(GL10.GL_TRIANGLES, 0, pointers.getSize());
+        }
 
         if (screenshot) {
             ScreenShot screenShot = new ScreenShot(gl, width, height);
@@ -88,40 +91,23 @@ public abstract class ImplRenderer implements GLSurfaceView.Renderer {
         }
     }
 
-    public abstract void paint(GL10 gl);
-
     public void onCaptureScreenShot(Bitmap bitmap) {
 
     }
 
 
     private void clean(GL10 gl) {
-        float[] background = background();
-        if ((background == null) || (background.length != 4))
-            background = Flower.BACKGROUND;
-        gl.glClearColor(background[0], background[1], background[2], background[3]);
+        float[] color = mTrianglesBase.getBackgroundColor();
+
+        if ((color != null) && (color.length == 4))
+            def_background = color;
+
+        gl.glClearColor(def_background[0], def_background[1], def_background[2], def_background[3]);
         gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
     }
 
-    public abstract float[] background();
-
-
-    private void makeLight(GL10 gl) {
-        if (Setting.getInstance().getLight()) {
-            Light l = light();
-            if (l == null) return;
-            gl.glEnable(GL10.GL_LIGHTING);
-            l.lightOn(gl);
-        } else {
-            gl.glDisable(GL10.GL_LIGHTING);
-        }
-    }
-
-    public abstract Light light();
-
-
     private void transparency(GL10 gl) {
-        if (Setting.getInstance().getTransparency()) {
+        if (mTrianglesBase.isTransparency()) {
             gl.glEnable(GL10.GL_ALPHA_TEST);
             gl.glEnable(GL10.GL_BLEND);
             gl.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
@@ -166,11 +152,20 @@ public abstract class ImplRenderer implements GLSurfaceView.Renderer {
         return width;
     }
 
-    public LookAt getOnTouchListener() {
-        return camera;
-    }
-
     public void makeScreenshot() {
         screenshot = true;
+    }
+
+    private float[] getColor(GL10 gl, int x, int y) {
+        ByteBuffer pixel = ByteBuffer.allocate(4);
+        pixel.order(ByteOrder.nativeOrder());
+        pixel.position(0);
+        gl.glReadPixels(x, y, 1, 1, GLES20.GL_RGBA, GLES20.GL_UNSIGNED_BYTE, pixel);
+
+        float[] c = new float[4];
+        for (int i = 0; i < 4; i++) {
+            c[i] = (pixel.get() & 0xFF) / 255.0f;
+        }
+        return c;
     }
 }

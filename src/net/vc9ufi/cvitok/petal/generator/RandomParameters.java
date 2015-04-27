@@ -28,8 +28,8 @@ public class RandomParameters extends Parameters {
     private double[] theta;
 
 
-    public RandomParameters(String name, double[] theta) {
-        super(name);
+    public RandomParameters(double[] theta) {
+        super();
         this.theta = theta;
     }
 

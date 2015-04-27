@@ -3,7 +3,7 @@ package net.vc9ufi.cvitok.control;
 import android.view.MotionEvent;
 import android.view.View;
 
-public abstract class Motion implements View.OnTouchListener {
+public class Motion implements View.OnTouchListener {
 
     private float x = 0;
     private float y = 0;
@@ -50,7 +50,7 @@ public abstract class Motion implements View.OnTouchListener {
         return true;
     }
 
-    public abstract void singleMove(float dx, float dy);
+    public void singleMove(float dx, float dy){};
 
-    public abstract void multiMove(float dr, float dx, float dy);
+    public void multiMove(float dr, float dx, float dy){};
 }

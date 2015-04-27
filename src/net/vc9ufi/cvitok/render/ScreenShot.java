@@ -1,13 +1,10 @@
-package net.vc9ufi.cvitok.views.render;
+package net.vc9ufi.cvitok.render;
 
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
-import android.view.Gravity;
-import android.widget.Toast;
-import net.vc9ufi.cvitok.R;
 
 import javax.microedition.khronos.opengles.GL10;
 import java.io.File;

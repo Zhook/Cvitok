@@ -32,13 +32,13 @@ public class GeneratorFragment extends Fragment {
 
     private void initListAdapter() {
         mListAdapter = new CustomArrayAdapter(context);
-        mListAdapter.add(initQuantityOfCirclesSetting());
-        mListAdapter.add(initRadiusOfPetalsSetting());
-        mListAdapter.add(initThetaSetting());
-        mListAdapter.add(initQuantityOfPetalSetting());
         mListAdapter.add(initBackgroundBrightnessSetting());
-        mListAdapter.add(initPetalBrightnessSetting());
+        mListAdapter.add(initQuantityOfCirclesSetting());
+        mListAdapter.add(initThetaSetting());
+        mListAdapter.add(initRadiusOfPetalsSetting());
+        mListAdapter.add(initQuantityOfPetalSetting());
         mListAdapter.add(initPetalConvex());
+        mListAdapter.add(initPetalBrightnessSetting());
     }
 
     private BaseItem initQuantityOfCirclesSetting() {
@@ -176,9 +176,9 @@ public class GeneratorFragment extends Fragment {
                     }
                 };
                 dialog.setTitle(getString(R.string.generator_title_quantity_petals));
-                dialog.setParameters1(getString(R.string.generator_min), 1, 10,
+                dialog.setParameters1(getString(R.string.generator_min), 1, 30,
                         sharedPreferences.getInt(getString(R.string.generator_key_min_petals_in_circles), 3));
-                dialog.setParameters2(getString(R.string.generator_max), 1, 10,
+                dialog.setParameters2(getString(R.string.generator_max), 1, 30,
                         sharedPreferences.getInt(getString(R.string.generator_key_max_petals_in_circles), 6));
                 dialog.show(getActivity().getSupportFragmentManager(), "dlg");
             }
@@ -286,7 +286,7 @@ public class GeneratorFragment extends Fragment {
                         editPref.apply();
                     }
                 };
-                dialog.setTitle(getString(R.string.generator_title_petals_brightness));
+                dialog.setTitle(getString(R.string.generator_title_petals_convex));
                 dialog.setParameters1(getString(R.string.generator_min), -10, +10,
                         sharedPreferences.getInt(getString(R.string.generator_key_min_petals_convex), -5));
                 dialog.setParameters2(getString(R.string.generator_max), -10, +10,
@@ -331,7 +331,7 @@ public class GeneratorFragment extends Fragment {
                     @Override
                     protected void onPostExecute(FlowerFile flowerFile) {
                         super.onPostExecute(flowerFile);
-                        ((App) context.getApplicationContext()).getFlower().setFlower(flowerFile);
+                        ((App) context.getApplicationContext()).setFlower(flowerFile);
                         getFragmentManager().popBackStack();
                     }
                 }.execute();

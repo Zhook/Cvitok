@@ -1,8 +1,11 @@
 package net.vc9ufi.cvitok.views;
 
+import android.app.WallpaperManager;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -10,15 +13,20 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.*;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import net.vc9ufi.cvitok.App;
 import net.vc9ufi.cvitok.R;
 import net.vc9ufi.cvitok.data.FlowerFile;
 import net.vc9ufi.cvitok.data.SaveNLoad;
 import net.vc9ufi.cvitok.petal.generator.FlowerGenerator;
+import net.vc9ufi.cvitok.service.CvitokService;
 import net.vc9ufi.cvitok.views.dialogs.FileListDialog;
-import net.vc9ufi.cvitok.views.dialogs.NameDialog;
-import net.vc9ufi.cvitok.views.fragments.*;
+import net.vc9ufi.cvitok.views.dialogs.colordialog.FileNameDialog;
+import net.vc9ufi.cvitok.views.fragments.FlowerFragment;
+import net.vc9ufi.cvitok.views.fragments.GeneratorFragment;
 import net.vc9ufi.cvitok.views.settings.PrefActivity;
 
 
@@ -28,9 +36,8 @@ public class MainActivity extends ActionBarActivity {
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
-
-    private FlowerFragment mFlowerFragment;
-    private GeneratorFragment mGeneratorFragment;
+    private FlowerFragment mFlowerFragment = new FlowerFragment();
+    private GeneratorFragment mGeneratorFragment = new GeneratorFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +52,6 @@ public class MainActivity extends ActionBarActivity {
         actionBar.setHomeButtonEnabled(true);
 
         initDrawerLayout();
-
-        mFlowerFragment = new FlowerFragment();
-        mGeneratorFragment = new GeneratorFragment();
 
         getSupportFragmentManager()
                 .beginTransaction()
@@ -122,30 +126,42 @@ public class MainActivity extends ActionBarActivity {
     }
 
 
-    private void newEmptyFlower() {
-        NameDialog flowerNameDialog = new NameDialog(MainActivity.this,
-                getString(R.string.dialog_flower_name_title),
-                getString(R.string.flower)) {
-            @Override
-            protected boolean onPositiveClick(String flowerName) {
-                if (flowerName.length() > 0) {
-                    if (SaveNLoad.isFileExists(app, flowerName)) {
-                        this.setMsg(app.getString(R.string.toast_file_exists));
-                        return false;
-                    } else {
-                        if (app.getFlower().setNewFlower(flowerName))
-                            return true;
-
-                        this.setMsg("invalid name");
-                        return false;
-                    }
-                }
-                this.setMsg(app.getString(R.string.msg_input_name));
-                return false;
-            }
-        };
-        flowerNameDialog.show();
+    private void SetUpWallpaper() {
+        Intent intent = new Intent();
+        if (Build.VERSION.SDK_INT >= 16) {
+            intent.setAction(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER);
+            intent.putExtra(WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT,
+                    new ComponentName(MainActivity.this, CvitokService.class));
+        } else {
+            intent.setAction(WallpaperManager.ACTION_LIVE_WALLPAPER_CHOOSER);
+        }
     }
+
+//TODO
+//    private void newEmptyFlower() {
+//        NameDialog flowerNameDialog = new NameDialog(MainActivity.this,
+//                getString(R.string.dialog_flower_name_title),
+//                getString(R.string.flower)) {
+//            @Override
+//            protected boolean onPositiveClick(String flowerName) {
+//                if (flowerName.length() > 0) {
+//                    if (SaveNLoad.isFileExists(app, flowerName)) {
+//                        this.setMsg(app.getString(R.string.toast_file_exists));
+//                        return false;
+//                    } else {
+//                        app.getPetalsBase().clear();)
+//                            return true;
+//
+//                        this.setMsg("invalid name");
+//                        return false;
+//                    }
+//                }
+//                this.setMsg(app.getString(R.string.msg_input_name));
+//                return false;
+//            }
+//        };
+//        flowerNameDialog.show();
+//    }
 
     private void showSettingsOfGenerator() {
         if (!mGeneratorFragment.isAdded())
@@ -162,40 +178,23 @@ public class MainActivity extends ActionBarActivity {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             switch (position) {
                 case 0:
-                    String name = app.getFlower().getName();
+                    String name = app.getFlower().name;
                     if ((name == null) || (name.length() == 0)) {
-                        NameDialog flowerNameDialog = new NameDialog(MainActivity.this,
-                                getString(R.string.dialog_flower_name_title),
-                                getString(R.string.flower)) {
+                        (new FileNameDialog(app) {
+
                             @Override
-                            protected boolean onPositiveClick(String flowerName) {
-                                if (flowerName.length() > 0) {
-                                    if (SaveNLoad.isFileExists(app, flowerName)) {
-                                        this.setMsg(app.getString(R.string.toast_file_exists));
-                                        return false;
-                                    } else {
-                                        if (app.getFlower().setName(flowerName)) {
-                                            SaveNLoad.save(app);
-                                            return true;
-                                        }
-
-                                        this.setMsg("invalid name");
-                                        return false;
-                                    }
-                                }
-                                this.setMsg(app.getString(R.string.msg_input_name));
-                                return false;
+                            protected void haveValidName(String name) {
+                                app.getFlower().name = name;
+                                SaveNLoad.save(app);
                             }
-                        };
-                        flowerNameDialog.show();
+                        }).show();
                     } else SaveNLoad.save(app);
-
                     break;
                 case 1:
                     (new FileListDialog(MainActivity.this)).show();
                     break;
                 case 2:
-                    newEmptyFlower();
+                    //newEmptyFlower();
                     break;
                 case 3:
                     new AsyncTask<Void, Void, FlowerFile>() {
@@ -207,12 +206,16 @@ public class MainActivity extends ActionBarActivity {
                         @Override
                         protected void onPostExecute(FlowerFile flowerFile) {
                             super.onPostExecute(flowerFile);
-                            app.getFlower().setFlower(flowerFile);
+                            app.setFlower(flowerFile);
                         }
                     }.execute();
                     break;
                 case 4:
                     showSettingsOfGenerator();
+                    break;
+                case 5:
+                    SetUpWallpaper();
+                    System.out.println("myout: set up wallpaper" );
                     break;
             }
             mDrawerLayout.closeDrawers();

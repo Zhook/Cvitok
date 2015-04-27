@@ -4,6 +4,8 @@ import java.nio.FloatBuffer;
 
 public class Triangle {
 
+    public final int TAG;
+
     public VertexInTriangle v1;
     public VertexInTriangle v2;
     public VertexInTriangle v3;
@@ -14,14 +16,15 @@ public class Triangle {
     public float[] c2;
     public float[] c3;
 
-    public Triangle(VertexInTriangle v1, VertexInTriangle v2, VertexInTriangle v3, float[] c1, float[] c2, float[] c3) {
+    public Triangle(VertexInTriangle v1, VertexInTriangle v2, VertexInTriangle v3, float[] c1, float[] c2, float[] c3, int tag) {
         setV1(v1);
         setV2(v2);
         setV3(v3);
-        n = VertexInTriangle.calculateNotNormalizeNormal(v1, v2, v3);
+        n = calculateNotNormalizeNormal(v1, v2, v3);
         this.c1 = c1;
         this.c2 = c2;
         this.c3 = c3;
+        TAG = tag;
     }
 
     public void setV1(VertexInTriangle v1) {
@@ -91,30 +94,15 @@ public class Triangle {
         return offset;
     }
 
-//    public void rotate(Quaternion q) {
-//        v1 = new Vertex(Quaternion.Rotate(v1.p, q));
-//        v1.addTriangle(this);
-//        v2 = new Vertex(Quaternion.Rotate(v2.p, q));
-//        v2.addTriangle(this);
-//        v3 = new Vertex(Quaternion.Rotate(v3.p, q));
-//        v3.addTriangle(this);
-//        n = new Vertex(Quaternion.Rotate(n.p, q));
-//        n1 = new Vertex(Quaternion.Rotate(n1.p, q));
-//        n2 = new Vertex(Quaternion.Rotate(n2.p, q));
-//        n3 = new Vertex(Quaternion.Rotate(n3.p, q));
-//    }
-//
-//    public static Triangle rotate(Triangle triangle, Quaternion q) {
-//        Triangle result = new Triangle();
-//        result.v1 = new Vertex(Quaternion.Rotate(triangle.v1.p, q));
-//        result.v2 = new Vertex(Quaternion.Rotate(triangle.v2.p, q));
-//        result.v3 = new Vertex(Quaternion.Rotate(triangle.v3.p, q));
-//        result.n1 = new Vertex(Quaternion.Rotate(triangle.n1.p, q));
-//        result.n2 = new Vertex(Quaternion.Rotate(triangle.n2.p, q));
-//        result.n3 = new Vertex(Quaternion.Rotate(triangle.n3.p, q));
-//        result.c1 = triangle.c1.clone();
-//        result.c2 = triangle.c3.clone();
-//        result.c3 = triangle.c2.clone();
-//        return result;
-//    }
+    public static Vertex calculateNotNormalizeNormal(Vertex v1, Vertex v2, Vertex v3) {
+        float[] v1_ = new float[]{v1.p[0] - v2.p[0], v1.p[1] - v2.p[1], v1.p[2] - v2.p[2]};
+        float[] v2_ = new float[]{v1.p[0] - v3.p[0], v1.p[1] - v3.p[1], v1.p[2] - v3.p[2]};
+
+        float[] n = new float[3];
+        n[0] = v1_[1] * v2_[2] - v1_[2] * v2_[1];
+        n[1] = v1_[2] * v2_[0] - v1_[0] * v2_[2];
+        n[2] = v1_[0] * v2_[1] - v1_[1] * v2_[0];
+
+        return new Vertex(n);
+    }
 }

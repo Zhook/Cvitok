@@ -31,7 +31,7 @@ public class Setting {
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
             if (key.equals(mApp.getString(R.string.preference_key_quality))) {
-                mApp.getFlower().setQuality(getQuality());
+
             }
         }
     };

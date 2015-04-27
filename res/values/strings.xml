@@ -60,5 +60,6 @@
     <string name="drawer_open" translatable="false">open</string>
     <string name="drawer_close" translatable="false">close</string>
     <string name="generator_button_build">Generate</string>
+    <string name="bokeh_desc">Bokeh_desc</string>
 
 </resources>

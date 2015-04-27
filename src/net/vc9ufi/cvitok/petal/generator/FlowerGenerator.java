@@ -3,11 +3,11 @@ package net.vc9ufi.cvitok.petal.generator;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import net.vc9ufi.cvitok.R;
 import net.vc9ufi.cvitok.data.FlowerFile;
 import net.vc9ufi.cvitok.data.Light;
 import net.vc9ufi.cvitok.data.Parameters;
-import net.vc9ufi.cvitok.views.settings.Setting;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ public class FlowerGenerator {
 
     public FlowerFile generate() {
         FlowerFile flower = new FlowerFile();
-        SharedPreferences sharedPreferences = Setting.getInstance().getSharedPreferences();
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         flower.background = rowBackground(sharedPreferences);
         flower.light = new Light();
@@ -87,7 +87,7 @@ public class FlowerGenerator {
 
         RandomParameters p;
         for (int i = 0; i < circles; i++) {
-            p = new RandomParameters("Petal" + String.valueOf(i), packAngles[i]);
+            p = new RandomParameters(packAngles[i]);
             p.setRandomSize(minRadius, maxRadius);
             p.setRandomConvex(minConvex, maxConvex);
             p.setRandomQuantity(minQuantity, maxQuantity);

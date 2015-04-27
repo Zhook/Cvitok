@@ -6,6 +6,7 @@
         <item>Новый пустой</item>
         <item>Сгенерировать</item>
         <item>Настройки генератора</item>
+        <item>Set wallpaper</item>
     </string-array>
     <string-array name="navdrawer_menu_sub">
         <item>Настройки программы</item>
