@@ -1,23 +1,22 @@
 package net.vc9ufi.cvitok.views.fragments;
 
 import android.app.AlertDialog;
-import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.*;
-import net.vc9ufi.cvitok.App;
+import android.widget.AdapterView;
+import android.widget.ImageButton;
+import android.widget.Spinner;
+import android.widget.TextView;
 import net.vc9ufi.cvitok.R;
-
 import net.vc9ufi.cvitok.views.dialogs.NameDialog;
 
-import java.util.List;
-
 public class FragmentPetalsTools extends Fragment {
-    private App app;
+
     private Context context;
     private FragmentVerticesTools frag_vertices;
 
@@ -27,7 +26,6 @@ public class FragmentPetalsTools extends Fragment {
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_petals_tools, container, false);
         context = inflater.getContext();
-        app = (App) context.getApplicationContext();
 
 
         frag_vertices = new FragmentVerticesTools();

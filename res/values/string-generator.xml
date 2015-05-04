@@ -1,16 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="generator_title">Generator</string>
+    <string name="generator_summary">Settings of generator</string>
 
     <string name="generator_min">Minimum</string>
     <string name="generator_max">Maximum</string>
 
-    <string name="generator_title_circles">Quantity of circles</string>
-    <string name="generator_title_radius">Radius of circles</string>
-    <string name="generator_title_theta">Polar angle</string>
-    <string name="generator_title_quantity_petals">Quantity of petal in circle</string>
-    <string name="generator_title_background_brightness">Background brightness</string>
-    <string name="generator_title_petals_brightness">Petals brightness</string>
-    <string name="generator_title_petals_convex">Petals convex</string>
+    <string name="generator_background_brightness_category_title">Background brightness</string>
+    <string name="generator_background_brightness_min_title">Minimum background brightness</string>
+    <string name="generator_background_brightness_min_summaryFormat">brightness %d%%</string>
+    <string name="generator_background_brightness_max_title">Maximum background brightness</string>
+    <string name="generator_background_brightness_max_summaryFormat">brightness %d%%</string>
+    <string name="generator_background_brightness_postfix" translatable="false">%</string>
+
+    <string name="generator_circles_category_title">Quantity of circles</string>
+    <string name="generator_circles_min_title">Minimum quantity of circles</string>
+    <string name="generator_circles_max_title">Maximum quantity of circles</string>
+
+    <string name="generator_theta_category_title">Vertical angle</string>
+    <string name="generator_theta_min_title">Minimum vertical angle</string>
+    <string name="generator_theta_max_title">Maximum vertical angle</string>
+    <string name="generator_theta_postfix" translatable="false">°</string>
+
+    <string name="generator_radius_category_title">Radius of circles</string>
+    <string name="generator_radius_min_title">Minimum radius of circles</string>
+    <string name="generator_radius_max_title">Maximum radius of circles</string>
+    <string name="generator_radius_postfix" translatable="false">%</string>
+
+    <string name="generator_quantity_petals_category_title">Quantity of petal in circle</string>
+    <string name="generator_quantity_petals_min_title">Minimum quantity of petal in circle</string>
+    <string name="generator_quantity_petals_max_title">Maximum quantity of petal in circle</string>
+
+    <string name="generator_petals_convex_category_title">Petals convex</string>
+    <string name="generator_petals_convex_min_title">Minimum petals convex</string>
+    <string name="generator_petals_convex_max_title">Maximum petals convex</string>
+    <string name="generator_petals_convex_postfix" translatable="false">%</string>
+
+    <string name="generator_petals_brightness_category_title">Petals brightness</string>
+    <string name="generator_petals_brightness_min_title">Minimum petals brightness</string>
+    <string name="generator_petals_brightness_max_title">Maximum petals brightness</string>
+    <string name="generator_petals_brightness_postfix" translatable="false">%</string>
+
+
 
 </resources>

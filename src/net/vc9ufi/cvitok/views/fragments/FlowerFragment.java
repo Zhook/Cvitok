@@ -25,6 +25,7 @@ import net.vc9ufi.geometry.TrianglesBase;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class FlowerFragment extends Fragment {
 
@@ -60,6 +61,7 @@ public class FlowerFragment extends Fragment {
             @Override
             public void result(float[] camera, float[] target, float[] up) {
                 trianglesBase.setLookAt(camera, target, up);
+                System.out.println("myout: " + Arrays.toString(camera));
             }
         };
         glSurfaceView.setOnTouchListener(lookAt);
@@ -116,7 +118,6 @@ public class FlowerFragment extends Fragment {
         initActionBar();
 
 
-
         return view;
     }
 
@@ -155,7 +156,7 @@ public class FlowerFragment extends Fragment {
     }
 
 
-    public void addFlowerToolsFragment() {
+    private void addFlowerToolsFragment() {
         if (mFlowerTools.isAdded()) {
             setToolsFrame(PLACEHOLDER);
 
@@ -164,7 +165,7 @@ public class FlowerFragment extends Fragment {
         }
     }
 
-    public void addPetalsToolsFragment() {
+    private void addPetalsToolsFragment() {
         if (mPetalTools.isAdded()) {
             setToolsFrame(PLACEHOLDER);
 

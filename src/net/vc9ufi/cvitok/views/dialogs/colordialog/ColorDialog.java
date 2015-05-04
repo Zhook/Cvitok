@@ -13,11 +13,8 @@ import net.vc9ufi.geometry.TrianglesBase;
 
 public abstract class ColorDialog {
 
-    Context context;
-    TrianglesBase trianglesBase;
-
-    GLSurfaceView surface;
-    SeekBar alphaBar;
+    private Context context;
+    private TrianglesBase trianglesBase;
 
 
     public ColorDialog(Context context, TrianglesBase trianglesBase) {
@@ -31,7 +28,7 @@ public abstract class ColorDialog {
 
         View view = View.inflate(context, R.layout.dialog_choice_color, null);
 
-        surface = (GLSurfaceView) view.findViewById(R.id.colorDialog_glColor);
+        GLSurfaceView surface = (GLSurfaceView) view.findViewById(R.id.colorDialog_glColor);
 
         final ImplRenderer renderer = new ImplRenderer(trianglesBase){
 
@@ -45,7 +42,7 @@ public abstract class ColorDialog {
             }
         });
 
-        alphaBar = (SeekBar) view.findViewById(R.id.colorDialog_seekBarAlpha);
+        SeekBar alphaBar = (SeekBar) view.findViewById(R.id.colorDialog_seekBarAlpha);
         alphaBar.setProgress(100);
 
         dialog.setView(view);

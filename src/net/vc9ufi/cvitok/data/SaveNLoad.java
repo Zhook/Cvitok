@@ -1,13 +1,17 @@
 package net.vc9ufi.cvitok.data;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.widget.Toast;
 import net.vc9ufi.cvitok.App;
 import net.vc9ufi.cvitok.R;
-import net.vc9ufi.cvitok.views.settings.Setting;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 
@@ -35,7 +39,7 @@ public class SaveNLoad {
     }
 
     public static void save(Context context) {
-        FlowerFile flower = ((App)context.getApplicationContext()).getFlower();
+        FlowerFile flower = ((App) context.getApplicationContext()).getFlower();
         if (flower == null) return;
         String filename = flower.name + EXT;
         String json = flower.toJSON();
@@ -48,8 +52,8 @@ public class SaveNLoad {
         FlowerFile flower = FlowerFile.fromJson(file);
 
         if (flower == null) return false;
-        ((App)context.getApplicationContext()).setFlower(flower);
-        Setting.getInstance().setLastFlower(name);
+        ((App) context.getApplicationContext()).setFlower(flower);
+        setLastFlower(context, name);
         return true;
     }
 
@@ -99,9 +103,15 @@ public class SaveNLoad {
     }
 
     public static boolean isFileExists(Context context, String name) {
-        return context.getFileStreamPath(name+EXT).exists();
+        return context.getFileStreamPath(name + EXT).exists();
     }
 
+
+    public static void setLastFlower(Context context, String name) {
+        SharedPreferences.Editor editPref = PreferenceManager.getDefaultSharedPreferences(context).edit();
+        editPref.putString(context.getString(R.string.preference_key_lastfile), name);
+        editPref.apply();
+    }
 
     final static String EXT = ".flower.json";
 }

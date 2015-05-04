@@ -17,4 +17,14 @@
     <string name="pref_background_color_title">Background color</string>
 
     <string name="pref_title_controls">Controls</string>
+
+    <string name="pref_gen_period_title">Generate period</string>
+    <string name="pref_gen_period_summary">Generate period</string>
+
+
+    <string name="pref_gen_inshadow_title">Generate in shadow</string>
+    <string name="pref_gen_inshadow_textoff">On</string>
+    <string name="pref_gen_inshadow_texton">Off</string>
+    <string name="pref_gen_inshadow_summary_off">Off</string>
+    <string name="pref_gen_inshadow_summary_on">On</string>
 </resources>

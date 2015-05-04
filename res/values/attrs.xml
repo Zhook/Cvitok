@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="DecoratedSeekBar">
+        <attr name="description" format="string"/>
+        <attr name="minValue" format="integer"/>
+        <attr name="maxValue" format="integer"/>
+        <attr name="defValue" format="integer"/>
+        <attr name="postfix" format="string"/>
+    </declare-styleable>
+    <declare-styleable name="Preference">
+        <attr name="summaryFormat" format="string"/>
+    </declare-styleable>
+</resources>

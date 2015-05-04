@@ -6,17 +6,17 @@ public class Triangle {
 
     public final int TAG;
 
-    public VertexInTriangle v1;
-    public VertexInTriangle v2;
-    public VertexInTriangle v3;
+    public Vector3fInTriangle v1;
+    public Vector3fInTriangle v2;
+    public Vector3fInTriangle v3;
 
-    public Vertex n;
+    public Vector3f n;
 
     public float[] c1;
     public float[] c2;
     public float[] c3;
 
-    public Triangle(VertexInTriangle v1, VertexInTriangle v2, VertexInTriangle v3, float[] c1, float[] c2, float[] c3, int tag) {
+    public Triangle(Vector3fInTriangle v1, Vector3fInTriangle v2, Vector3fInTriangle v3, float[] c1, float[] c2, float[] c3, int tag) {
         setV1(v1);
         setV2(v2);
         setV3(v3);
@@ -27,17 +27,17 @@ public class Triangle {
         TAG = tag;
     }
 
-    public void setV1(VertexInTriangle v1) {
+    public void setV1(Vector3fInTriangle v1) {
         this.v1 = v1;
         v1.addTriangle(this);
     }
 
-    public void setV2(VertexInTriangle v2) {
+    public void setV2(Vector3fInTriangle v2) {
         this.v2 = v2;
         v2.addTriangle(this);
     }
 
-    public void setV3(VertexInTriangle v3) {
+    public void setV3(Vector3fInTriangle v3) {
         this.v3 = v3;
         v3.addTriangle(this);
     }
@@ -94,7 +94,7 @@ public class Triangle {
         return offset;
     }
 
-    public static Vertex calculateNotNormalizeNormal(Vertex v1, Vertex v2, Vertex v3) {
+    public static Vector3f calculateNotNormalizeNormal(Vector3f v1, Vector3f v2, Vector3f v3) {
         float[] v1_ = new float[]{v1.p[0] - v2.p[0], v1.p[1] - v2.p[1], v1.p[2] - v2.p[2]};
         float[] v2_ = new float[]{v1.p[0] - v3.p[0], v1.p[1] - v3.p[1], v1.p[2] - v3.p[2]};
 
@@ -103,6 +103,6 @@ public class Triangle {
         n[1] = v1_[2] * v2_[0] - v1_[0] * v2_[2];
         n[2] = v1_[0] * v2_[1] - v1_[1] * v2_[0];
 
-        return new Vertex(n);
+        return new Vector3f(n);
     }
 }

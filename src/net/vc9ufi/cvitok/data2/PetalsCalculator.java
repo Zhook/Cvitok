@@ -61,23 +61,23 @@ public class PetalsCalculator extends Calculator {
     }
 
     static void calcPetal(LinkedList<Triangle> triangles, Parameters.Coordinates line1, Parameters.Coordinates line2, float[][][] color, int precision, float convex, int tag) {
-        Vertex[] startLine1 = Bezier.getCurve(line1.toParamBezier(), precision);
-        Vertex[] startLine2 = Bezier.getCurve(line2.toParamBezier(), precision);
-        Vertex[] startVertexConvex = getConvexVertexLine(startLine1, startLine2, convex);
-        VertexInTriangle[][] vertices = getGrid(startLine1, startVertexConvex, startVertexConvex, startLine2, precision);
+        Vector3f[] startLine1 = Bezier.getCurve(line1.toParamBezier(), precision);
+        Vector3f[] startLine2 = Bezier.getCurve(line2.toParamBezier(), precision);
+        Vector3f[] startVertexConvex = getConvexVertexLine(startLine1, startLine2, convex);
+        Vector3fInTriangle[][] vertices = getGrid(startLine1, startVertexConvex, startVertexConvex, startLine2, precision);
         makeTrianglesFromVertexArray(triangles, vertices, color, precision, tag);
     }
 
 
-    static Vertex[] getConvexVertexLine(Vertex[] line1, Vertex[] line2, float convex) {
+    static Vector3f[] getConvexVertexLine(Vector3f[] line1, Vector3f[] line2, float convex) {
         if ((line1 == null) || (line2 == null)) return null;
         if (line1.length != line2.length) throw new RuntimeException("different size arrays");
         int length = line1.length;
-        Vertex[] result = new Vertex[length];
+        Vector3f[] result = new Vector3f[length];
 
-        Vertex sum;
-        Vertex sub;
-        Vertex normal;
+        Vector3f sum;
+        Vector3f sub;
+        Vector3f normal;
         float convexSize;
         for (int i = 0; i < length; i++) {
             sum = line1[i].middle(line2[i]);
@@ -91,19 +91,19 @@ public class PetalsCalculator extends Calculator {
         return result;
     }
 
-    static VertexInTriangle[][] getGrid(Vertex[] start, Vertex[] p1, Vertex[] p2, Vertex[] finish, int precision) {
-        VertexInTriangle[][] grid = new VertexInTriangle[precision][];
+    static Vector3fInTriangle[][] getGrid(Vector3f[] start, Vector3f[] p1, Vector3f[] p2, Vector3f[] finish, int precision) {
+        Vector3fInTriangle[][] grid = new Vector3fInTriangle[precision][];
         for (int i = 0; i < precision; i++) {
             float[][] line = Bezier.getCurve(start[i].p, p1[i].p, p2[i].p, finish[i].p, precision);
-            grid[i] = new VertexInTriangle[precision];
+            grid[i] = new Vector3fInTriangle[precision];
             for (int j = 0; j < precision; j++) {
-                grid[i][j] = new VertexInTriangle(line[j]);
+                grid[i][j] = new Vector3fInTriangle(line[j]);
             }
         }
         return grid;
     }
 
-    static void makeTrianglesFromVertexArray(LinkedList<Triangle> triangles, VertexInTriangle[][] vertices, float[][][] colors, int precision, int tag) {
+    static void makeTrianglesFromVertexArray(LinkedList<Triangle> triangles, Vector3fInTriangle[][] vertices, float[][][] colors, int precision, int tag) {
         for (int i = 0; i < precision - 1; i++) {
             for (int j = 0; j < precision - 1; j++) {
                 triangles.add(new Triangle(

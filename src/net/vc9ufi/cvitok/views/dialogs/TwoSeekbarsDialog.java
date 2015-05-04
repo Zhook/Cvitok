@@ -1,95 +1,63 @@
 package net.vc9ufi.cvitok.views.dialogs;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.SeekBar;
-import android.widget.TextView;
 import net.vc9ufi.cvitok.R;
+import net.vc9ufi.cvitok.views.customviews.DecoratedSeekBar;
 
 
 public abstract class TwoSeekbarsDialog extends TwoIntValuesDialog {
 
-    private SeekBar seekBar1;
-    private SeekBar seekBar2;
+    private DecoratedSeekBar mSeekBar1;
+    private DecoratedSeekBar mSeekBar2;
+
+    private String mTitle = "";
+    private String mDescription1 = "";
+    private String mDescription2 = "";
+    private int mMinValue1 = 0;
+    private int mMinValue2 = 0;
+    private int mMaxValue1 = 10;
+    private int mMaxValue2 = 10;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        getDialog().setTitle(title);
+        getDialog().setTitle(mTitle);
 
         View view = inflater.inflate(R.layout.dialog_2seekbars, container, false);
 
-        TextView textViewMin1 = (TextView) view.findViewById(R.id.dialog_2seekBar_textView_min1);
-        textViewMin1.setText(String.valueOf(min1));
-        TextView textViewMin2 = (TextView) view.findViewById(R.id.dialog_2seekBar_textView_min2);
-        textViewMin2.setText(String.valueOf(min2));
-        TextView textViewMax1 = (TextView) view.findViewById(R.id.dialog_2seekBar_textView_max1);
-        textViewMax1.setText(String.valueOf(max1));
-        TextView textViewMax2 = (TextView) view.findViewById(R.id.dialog_2seekBar_textView_max2);
-        textViewMax2.setText(String.valueOf(max2));
-        final TextView textViewProgres1 = (TextView) view.findViewById(R.id.dialog_2seekBar_textView_progres1);
-        textViewProgres1.setText(String.valueOf(value1));
-        final TextView textViewProgres2 = (TextView) view.findViewById(R.id.dialog_2seekBar_textView_progres2);
-        textViewProgres2.setText(String.valueOf(value2));
-
-        final Formatter formatter1 = new Formatter(min1, max1);
-        final Formatter formatter2 = new Formatter(min2, max2);
-
-        seekBar1 = (SeekBar) view.findViewById(R.id.dialog_2seekBar_value1);
-        seekBar1.setMax(Math.abs(max1 - min1));
-        seekBar1.setProgress(formatter1.setValue(value1));
-        seekBar1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        mSeekBar1 = (DecoratedSeekBar) view.findViewById(R.id.decSeekBar1);
+        mSeekBar1.setMinValue(mMinValue1);
+        mSeekBar1.setMaxValue(mMaxValue1);
+        mSeekBar1.setValue(mValue1);
+        mSeekBar1.setDescription(mDescription1);
+        mSeekBar1.setOnChangeListener(new DecoratedSeekBar.OnChangeListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                textViewProgres1.setText(formatter1.format(seekBar.getProgress()));
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
+            public void onValueChanged(int value) {
+                mValue1 = value;
             }
         });
 
-
-        seekBar2 = (SeekBar) view.findViewById(R.id.dialog_2seekBar_value2);
-        seekBar2.setMax(Math.abs(max2 - min2));
-        seekBar2.setProgress(formatter1.setValue(value2));
-        seekBar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        mSeekBar2 = (DecoratedSeekBar) view.findViewById(R.id.decSeekBar2);
+        mSeekBar2.setMinValue(mMinValue2);
+        mSeekBar2.setMaxValue(mMaxValue2);
+        mSeekBar2.setValue(mValue2);
+        mSeekBar2.setDescription(mDescription2);
+        mSeekBar2.setOnChangeListener(new DecoratedSeekBar.OnChangeListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                textViewProgres2.setText(formatter2.format(seekBar.getProgress()));
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
+            public void onValueChanged(int value) {
+                mValue2 = value;
             }
         });
-
-        TextView textViewDes1 = (TextView) view.findViewById(R.id.dialog_2value_des1);
-        textViewDes1.setText(des1);
-        TextView textViewDes2 = (TextView) view.findViewById(R.id.dialog_2value_des2);
-        textViewDes2.setText(des2);
 
         Button buttonOk = (Button) view.findViewById(R.id.buttonOk);
         buttonOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClickOk(
-                        formatter1.getValue(seekBar1.getProgress()),
-                        formatter2.getValue(seekBar2.getProgress()));
+                onClickOk(mValue1, mValue2);
                 dismiss();
             }
         });
@@ -107,34 +75,58 @@ public abstract class TwoSeekbarsDialog extends TwoIntValuesDialog {
 
     public abstract void onClickOk(int value1, int value2);
 
-    class Formatter {
-        int min;
-        int max;
+    public void setDescription1(String description1) {
+        this.mDescription1 = description1;
+        if (mSeekBar1 != null)
+            mSeekBar1.setDescription(mDescription1);
+    }
 
-        public Formatter(int min, int max) {
-            this.max = max;
-            this.min = min;
-        }
+    public void setDescription2(String description2) {
+        this.mDescription2 = description2;
+        if (mSeekBar2 != null)
+            mSeekBar2.setDescription(mDescription2);
+    }
 
+    public void setMaxValue1(int maxValue1) {
+        this.mMaxValue1 = maxValue1;
+        if (mSeekBar1 != null)
+            mSeekBar1.setMaxValue(mMaxValue1);
+    }
 
-        public String format(int index) {
-            return Integer.toString(getValue(index));
-        }
+    public void setMaxValue2(int maxValue2) {
+        this.mMaxValue2 = maxValue2;
+        if (mSeekBar2 != null)
+            mSeekBar2.setMaxValue(mMaxValue2);
+    }
 
-        public int getValue(int index) {
-            if (max - min > 0) {
-                return index + min;
-            } else {
-                return min - index;
-            }
-        }
+    public void setMinValue1(int minValue1) {
+        this.mMinValue1 = minValue1;
+        if (mSeekBar1 != null)
+            mSeekBar1.setMinValue(mMinValue1);
+    }
 
-        public int setValue(int value) {
-            if (max - min > 0) {
-                return value - min;
-            } else {
-                return value + min;
-            }
-        }
+    public void setMinValue2(int minValue2) {
+        this.mMinValue2 = minValue2;
+        if (mSeekBar2 != null)
+            mSeekBar2.setMinValue(mMinValue2);
+    }
+
+    public void setTitle(String title) {
+        this.mTitle = title;
+        Dialog dialog = getDialog();
+        if (dialog != null)
+            dialog.setTitle(mTitle);
+    }
+
+    public void setValue1(int value1) {
+        this.mValue1 = value1;
+        if (mSeekBar1 != null)
+            mSeekBar1.setValue(mValue1);
+    }
+
+    public void setValue2(int value2) {
+        this.mValue2 = value2;
+        if (mSeekBar2 != null)
+            mSeekBar2.setValue(mValue2);
     }
 }

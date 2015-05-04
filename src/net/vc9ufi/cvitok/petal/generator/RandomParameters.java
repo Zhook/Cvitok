@@ -1,6 +1,7 @@
 package net.vc9ufi.cvitok.petal.generator;
 
 import net.vc9ufi.cvitok.data.Parameters;
+import net.vc9ufi.geometry.Quaternion;
 
 import java.security.InvalidParameterException;
 import java.util.Random;
@@ -34,8 +35,8 @@ public class RandomParameters extends Parameters {
     }
 
     public void setRandomConvex(int min, int max) {
-        this.minConvex = min * 0.05f;
-        this.maxConvex = max * 0.05f;
+        this.minConvex = min * 0.005f;
+        this.maxConvex = max * 0.005f;
     }
 
     public void setRandomQuantity(int min, int max) throws InvalidParameterException {
@@ -139,29 +140,37 @@ public class RandomParameters extends Parameters {
     private void rowGeometry() {
         ExtRandomFloat random = new ExtRandomFloat(minRadiusOfPetal, maxRadiusOfPetal);
 
+        Quaternion randomRotate = Quaternion.FromAxisAndAngle(
+                new float[]{0, 0, 1}, random.nextFloat() * angle);
+
         float radius;
         double phi;
 
         radius = random.getFloat() * 0.03f;
         phi = angle * random.nextDouble() / 2;
         left.coord.p1.p = getPoint(radius, theta[0], phi);
+        left.coord.p1 = left.coord.p1.rotate(randomRotate);
 
         radius = random.getFloat() * 0.03f;
         phi = angle * random.nextDouble() / 2;
         left.coord.p2.p = getPoint(radius, theta[1], phi);
+        left.coord.p2 = left.coord.p2.rotate(randomRotate);
 
         radius = random.getFloat() * 0.03f;
         phi = angle * random.nextDouble();
         left.coord.finish.p = getPoint(radius, theta[2], phi);
+        left.coord.finish = left.coord.finish.rotate(randomRotate);
 
 
         radius = random.getFloat() * 0.03f;
         phi = angle / 2 + angle * random.nextDouble() / 2;
         right.coord.p1.p = getPoint(radius, theta[3], phi);
+        right.coord.p1 = right.coord.p1.rotate(randomRotate);
 
         radius = random.getFloat() * 0.03f;
         phi = angle + angle * random.nextDouble() / 2;
         right.coord.p2.p = getPoint(radius, theta[4], phi);
+        right.coord.p2 = right.coord.p2.rotate(randomRotate);
 
         right.coord.finish = left.coord.finish;
     }

@@ -10,12 +10,12 @@ import java.util.Arrays;
 public class HUD {
 
 
-    float[] hudcolor;
-    FloatBuffer hudcolorbuff;
-    FloatBuffer hudvertex;
-    int hudsize;
+    private float[] hudcolor;
+    private FloatBuffer hudcolorbuff;
+    private FloatBuffer hudvertex;
+    private int hudsize;
 
-    public static FloatBuffer floatToBuffer(float[] array) {
+    private static FloatBuffer floatToBuffer(float[] array) {
         ByteBuffer bb = ByteBuffer.allocateDirect(array.length * 4);
         bb.order(ByteOrder.nativeOrder());
         FloatBuffer result = bb.asFloatBuffer();

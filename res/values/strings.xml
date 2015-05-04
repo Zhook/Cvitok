@@ -55,11 +55,11 @@
     <string name="actionBar_imageButton_screenshot_description" translatable="false">ScreenShot</string>
     <string name="toast_screenshot_error">Error writing to the SD card</string>
     <string name="des_share" translatable="false">Share</string>
-        <string name="screenshot">Screenshot</string>
+    <string name="screenshot">Screenshot</string>
     <string name="screenshot_saved">Screenshot was saved in gallery</string>
     <string name="drawer_open" translatable="false">open</string>
     <string name="drawer_close" translatable="false">close</string>
     <string name="generator_button_build">Generate</string>
-    <string name="bokeh_desc">Bokeh_desc</string>
+    <string name="bokeh_desc">Automatically generated flowers</string>
 
 </resources>

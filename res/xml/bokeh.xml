@@ -2,6 +2,4 @@
 <wallpaper xmlns:android="http://schemas.android.com/apk/res/android"
            android:thumbnail="@drawable/ic_launcher"
            android:description="@string/bokeh_desc"
-           android:settingsActivity="net.vc9ufi.cvitok.views.settings.PrefActivity"
-
-        />
+           android:settingsActivity="net.vc9ufi.cvitok.views.settings.PrefActivity"/>

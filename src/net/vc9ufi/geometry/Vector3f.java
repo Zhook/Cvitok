@@ -1,16 +1,16 @@
 package net.vc9ufi.geometry;
 
-public class Vertex implements Cloneable {
+public class Vector3f implements Cloneable {
 
     public float[] p = new float[3];
 
-    public Vertex(float x, float y, float z) {
+    public Vector3f(float x, float y, float z) {
         this.p[0] = x;
         this.p[1] = y;
         this.p[2] = z;
     }
 
-    public Vertex(float[] point) {
+    public Vector3f(float[] point) {
         if (point == null) throw new NullPointerException("point");
         if (point.length != 3) throw new RuntimeException(point.getClass().toString() + ": Wrong dimension");
         this.p = point.clone();
@@ -18,8 +18,8 @@ public class Vertex implements Cloneable {
 
 
     @Override
-    public Vertex clone() throws CloneNotSupportedException {
-        Vertex v = (Vertex) super.clone();
+    public Vector3f clone() throws CloneNotSupportedException {
+        Vector3f v = (Vector3f) super.clone();
         v.p = p.clone();
         return v;
     }
@@ -27,36 +27,36 @@ public class Vertex implements Cloneable {
 //---------------------------------------------------------
 
 
-    public Vertex add(Vertex v) {
+    public Vector3f add(Vector3f v) {
         p[0] += v.p[0];
         p[1] += v.p[1];
         p[2] += v.p[2];
         return this;
     }
 
-    public Vertex addToNew(Vertex v) {
-        return new Vertex(
+    public Vector3f addToNew(Vector3f v) {
+        return new Vector3f(
                 p[0] + v.p[0],
                 p[1] + v.p[1],
                 p[2] + v.p[2]);
     }
 
-    public Vertex middle(Vertex v) {
-        return new Vertex(
+    public Vector3f middle(Vector3f v) {
+        return new Vector3f(
                 (p[0] + v.p[0]) / 2f,
                 (p[1] + v.p[1]) / 2f,
                 (p[2] + v.p[2]) / 2f);
     }
 
-    public Vertex subtract(Vertex v) {
-        return new Vertex(
+    public Vector3f subtract(Vector3f v) {
+        return new Vector3f(
                 p[0] - v.p[0],
                 p[1] - v.p[1],
                 p[2] - v.p[2]);
     }
 
-    public Vertex crossProduct(Vertex v) {
-        return new Vertex(
+    public Vector3f crossProduct(Vector3f v) {
+        return new Vector3f(
                 p[1] * v.p[2] - p[2] * v.p[1],
                 p[2] * v.p[0] - p[0] * v.p[2],
                 p[0] * v.p[1] - p[1] * v.p[0]);
@@ -66,7 +66,7 @@ public class Vertex implements Cloneable {
         return (float) Math.sqrt(p[0] * p[0] + p[1] * p[1] + p[2] * p[2]);
     }
 
-    public Vertex setLength(float length) {
+    public Vector3f setLength(float length) {
         double d = Math.sqrt(p[0] * p[0] + p[1] * p[1] + p[2] * p[2]);
         if (d != 0) {
             double dl = length / d;
@@ -77,14 +77,14 @@ public class Vertex implements Cloneable {
         return this;
     }
 
-    public Vertex divLength(float dr) {
+    public Vector3f divLength(float dr) {
         for (int i = 0; i < 3; i++) {
             p[i] = p[i] + p[i] * dr;
         }
         return this;
     }
 
-    public Vertex normalize() {
+    public Vector3f normalize() {
         double d = Math.sqrt(p[0] * p[0] + p[1] * p[1] + p[2] * p[2]);
         if (d != 0) {
             for (int i = 0; i < 3; i++) {
@@ -94,7 +94,7 @@ public class Vertex implements Cloneable {
         return this;
     }
 
-    public Vertex rotate(Quaternion q) {
-        return new Vertex(Quaternion.Rotate(p, q));
+    public Vector3f rotate(Quaternion q) {
+        return new Vector3f(Quaternion.Rotate(p, q));
     }
 }

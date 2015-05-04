@@ -19,15 +19,15 @@ public class Icosahedron {
     public static int CalcIcosahedron(LinkedList<Triangle> trians, float radius, int division) {
         int count = 0;
         for (int i = 0; i < 20; i++) {
-            VertexInTriangle v1 = new VertexInTriangle(
+            Vector3fInTriangle v1 = new Vector3fInTriangle(
                     radius * VDATA[TINDICES[i][0]][0],
                     radius * VDATA[TINDICES[i][0]][1],
                     radius * VDATA[TINDICES[i][0]][2]);
-            VertexInTriangle v2 = new VertexInTriangle(
+            Vector3fInTriangle v2 = new Vector3fInTriangle(
                     radius * VDATA[TINDICES[i][1]][0],
                     radius * VDATA[TINDICES[i][1]][1],
                     radius * VDATA[TINDICES[i][1]][2]);
-            VertexInTriangle v3 = new VertexInTriangle(
+            Vector3fInTriangle v3 = new Vector3fInTriangle(
                     radius * VDATA[TINDICES[i][2]][0],
                     radius * VDATA[TINDICES[i][2]][1],
                     radius * VDATA[TINDICES[i][2]][2]);
@@ -36,14 +36,14 @@ public class Icosahedron {
         return count;
     }
 
-    private static int Subdivide(LinkedList<Triangle> trians, float radius, VertexInTriangle v1, VertexInTriangle v2, VertexInTriangle v3, int depth) {
+    private static int Subdivide(LinkedList<Triangle> trians, float radius, Vector3fInTriangle v1, Vector3fInTriangle v2, Vector3fInTriangle v3, int depth) {
         if (depth == 0) {
             trians.add(new Triangle(v1, v2, v3, COLOR_PLACEHOLDER, COLOR_PLACEHOLDER, COLOR_PLACEHOLDER, 0));
             return 1;
         } else {
-            VertexInTriangle v12 = new VertexInTriangle(v1.addToNew(v2).p);
-            VertexInTriangle v23 = new VertexInTriangle(v2.addToNew(v3).p);
-            VertexInTriangle v31 = new VertexInTriangle(v3.addToNew(v1).p);
+            Vector3fInTriangle v12 = new Vector3fInTriangle(v1.addToNew(v2).p);
+            Vector3fInTriangle v23 = new Vector3fInTriangle(v2.addToNew(v3).p);
+            Vector3fInTriangle v31 = new Vector3fInTriangle(v3.addToNew(v1).p);
             v12.setLength(radius);
             v23.setLength(radius);
             v31.setLength(radius);

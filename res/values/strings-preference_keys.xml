@@ -11,4 +11,7 @@
     <string name="preference_key_light_switch" translatable="false">preference_key_light_switch</string>
 
     <string name="preference_key_controls" translatable="false">preference_key_controls</string>
+
+    <string name="preference_key_gen_period" translatable="false">preference_key_gen_period</string>
+    <string name="preference_key_gen_inshadow" translatable="false">preference_key_gen_inshadow</string>
 </resources>

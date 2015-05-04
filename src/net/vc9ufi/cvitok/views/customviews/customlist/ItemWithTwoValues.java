@@ -1,4 +1,4 @@
-package net.vc9ufi.cvitok.views.customlist;
+package net.vc9ufi.cvitok.views.customviews.customlist;
 
 
 import android.view.LayoutInflater;

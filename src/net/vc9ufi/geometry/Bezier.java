@@ -41,12 +41,12 @@ public class Bezier {
         return vertices;
     }
 
-    public static Vertex[] getCurve(Vertex[] param, int precision) {
+    public static Vector3f[] getCurve(Vector3f[] param, int precision) {
         if (param == null) throw new NullPointerException("param");
         float[][] curve = getCurve(param[0].p, param[1].p, param[2].p, param[3].p, precision);
-        Vertex[] vertices = new Vertex[precision];
+        Vector3f[] vertices = new Vector3f[precision];
         for (int i = 0; i < vertices.length; i++)
-            vertices[i] = new Vertex(curve[i]);
+            vertices[i] = new Vector3f(curve[i]);
         return vertices;
     }
 }

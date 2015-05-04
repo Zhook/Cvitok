@@ -2,36 +2,35 @@ package net.vc9ufi.cvitok.control;
 
 
 import net.vc9ufi.geometry.Quaternion;
-import net.vc9ufi.geometry.Vector3D;
+import net.vc9ufi.geometry.Vector3f;
 
 import java.security.InvalidParameterException;
 
 public abstract class Camera4WallpaperService extends Motion implements LookAt, Runnable {
     private final float[] START_POINT;
     private final float[] TARGET;
-    private final float[] UP;
-    private static final float[] DEF_UP = new float[]{0, 0, 1};
+    private static final Vector3f DEF_UP2 = new Vector3f(0, 0, 1);
 
-
-    private float[] camera = new float[]{0, 5, 5};
+    private Vector3f mCamera = new Vector3f(0, 5, 5);
 
 
     private static final float STEP_ANGLE = 0.001f;
     private static final float DELTA_PHI = (float) (Math.PI * 60 / 180);
     private static final float DELTA_THETA = (float) (Math.PI * 20 / 180);
 
-    volatile private float camera_fb;
-    volatile private float camera_lr;
+    volatile private float mCameraForwardBack;
+    volatile private float mCameraLeftRight;
 
-    boolean terminate = false;
+    private boolean terminate = false;
 
-    public static final int DELAY = 20;
+    private boolean mWork = true;
 
-    public Camera4WallpaperService(float[] camera, float[] target, float[] up) {
-        if (camera == null || camera.length != 3) throw new InvalidParameterException("camera.length!=3");
+    private static final int DELAY = 20;
+
+    public Camera4WallpaperService(float[] camera, float[] target) {
+        if (camera == null || camera.length != 3) throw new InvalidParameterException("mCamera.length!=3");
         START_POINT = camera;
         TARGET = target;
-        UP = up;
         new Thread(this).start();
     }
 
@@ -41,35 +40,43 @@ public abstract class Camera4WallpaperService extends Motion implements LookAt, 
     }
 
     public synchronized void setXOffset(float xOffset) {
-        camera_lr = -DELTA_PHI * xOffset;
+        mCameraLeftRight = -DELTA_PHI * xOffset;
     }
 
-    public synchronized void setDy(float dy) {
-        camera_fb -= dy * STEP_ANGLE;
-        if (camera_fb > DELTA_THETA) camera_fb = DELTA_THETA;
-        if (camera_fb < -DELTA_THETA) camera_fb = -DELTA_THETA;
+    private synchronized void setDy(float dy) {
+        mCameraForwardBack -= dy * STEP_ANGLE;
+        if (mCameraForwardBack > DELTA_THETA) mCameraForwardBack = DELTA_THETA;
+        if (mCameraForwardBack < -DELTA_THETA) mCameraForwardBack = -DELTA_THETA;
     }
 
     @Override
     public void run() {
         Quaternion q;
-        float[] orto;
 
-        float camera_lr_;
-        float camera_fb_;
+        Vector3f orto;
+
+        float camera_lr_ = 0;
+        float camera_fb_ = 0;
         while (!terminate) {
-            camera_fb_ = camera_fb;
-            camera_lr_ = camera_lr;
+            if (camera_fb_ != mCameraForwardBack || camera_lr_ != mCameraLeftRight) {
+                camera_fb_ = mCameraForwardBack;
+                camera_lr_ = mCameraLeftRight;
+                mWork = true;
+            }
 
-            orto = Vector3D.normalizeF(Vector3D.cross(DEF_UP, camera));
-            q = Quaternion.Product(
-                    Quaternion.FromAxisAndAngle(DEF_UP, camera_lr_),
-                    Quaternion.FromAxisAndAngle(orto, camera_fb_));
+            if (mWork) {
+                orto = DEF_UP2.crossProduct(mCamera).normalize();
+                q = Quaternion.Product(
+                        Quaternion.FromAxisAndAngle(DEF_UP2.p, camera_lr_),
+                        Quaternion.FromAxisAndAngle(orto.p, camera_fb_));
 
-            camera = Quaternion.Rotate(START_POINT, q);
+                mCamera.p = Quaternion.Rotate(START_POINT, q);
 
-            result(camera, TARGET, DEF_UP);
+                result(mCamera.p, TARGET, DEF_UP2.p);
+                mWork = false;
+            }
             wait(DELAY);
+
         }
     }
 

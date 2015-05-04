@@ -8,7 +8,7 @@ import net.vc9ufi.cvitok.views.dialogs.NameDialog;
 
 public abstract class FileNameDialog extends NameDialog {
 
-    Context context;
+    private Context context;
 
     public FileNameDialog(Context context) {
         super(context, context.getString(R.string.dialog_flower_name_title), context.getString(R.string.flower));

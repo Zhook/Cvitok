@@ -50,7 +50,7 @@ public class Motion implements View.OnTouchListener {
         return true;
     }
 
-    public void singleMove(float dx, float dy){};
+    public void singleMove(float dx, float dy){}
 
-    public void multiMove(float dr, float dx, float dy){};
+    public void multiMove(float dr, float dx, float dy){}
 }

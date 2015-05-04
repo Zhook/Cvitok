@@ -3,10 +3,8 @@
     <string-array name="navdrawer_menu_main">
         <item>Сохранить</item>
         <item>Загрузить</item>
-        <item>Новый пустой</item>
         <item>Сгенерировать</item>
-        <item>Настройки генератора</item>
-        <item>Set wallpaper</item>
+        <item>Установить обои</item>
     </string-array>
     <string-array name="navdrawer_menu_sub">
         <item>Настройки программы</item>

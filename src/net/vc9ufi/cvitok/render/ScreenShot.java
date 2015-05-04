@@ -52,7 +52,7 @@ public class ScreenShot {
         return bitmap;
     }
 
-    public static File createImageFile(String name, String exp) throws IOException {
+    public static File createImageFile(String name, String exp){
         File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
 
         if (!storageDir.exists())

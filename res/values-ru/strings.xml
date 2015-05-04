@@ -51,14 +51,30 @@
     <string name="menu_files_new_random">Новый случайный</string>
     <string name="generator_max">Максимум</string>
     <string name="generator_min">Минимум</string>
-    <string name="generator_title_background_brightness">Яркость фона</string>
-    <string name="generator_title_circles">Количество кругов</string>
-    <string name="generator_title_petals_brightness">Яркость лепестков</string>
-    <string name="generator_title_radius">Радиус лепестков</string>
-    <string name="generator_title_quantity_petals">Количество лепестков в круге</string>
-    <string name="generator_title_theta">Полярный угол</string>
+    <string name="generator_background_brightness_category_title">Яркость фона</string>
+    <string name="generator_circles_category_title">Количество кругов</string>
+    <string name="generator_petals_brightness_category_title">Яркость лепестков</string>
+    <string name="generator_radius_category_title">Радиус лепестков</string>
+    <string name="generator_quantity_petals_category_title">Количество лепестков в круге</string>
+    <string name="generator_theta_category_title">Вертикальный угол</string>
     <string name="generator_title">Генератор</string>
     <string name="generator_button_build">Сгенерировать</string>
-    <string name="generator_title_petals_convex">Рельеф лепестка</string>
+    <string name="generator_petals_convex_category_title">Рельеф лепестка</string>
+    <string name="bokeh_desc">Автоматически генерируемые цветы</string>
+    <string name="generator_background_brightness_max_title">Максимум яркости фона</string>
+    <string name="generator_background_brightness_min_title">Минимум яркости фона</string>
+    <string name="generator_circles_max_title">Максимум количества кругов</string>
+    <string name="generator_circles_min_title">Минимум количества кругов</string>
+    <string name="generator_petals_brightness_max_title">Максимум яркости лепестков</string>
+    <string name="generator_petals_brightness_min_title">Минимум яркости лепестков</string>
+    <string name="generator_petals_convex_max_title">Максимум выпуклости лепестка</string>
+    <string name="generator_petals_convex_min_title">Минимум выпуклости лепестка</string>
+    <string name="generator_quantity_petals_max_title">Максимум количества лепестков</string>
+    <string name="generator_quantity_petals_min_title">Минимум количества лепестков</string>
+    <string name="generator_summary">Насктройки генератора</string>
+    <string name="generator_radius_max_title">Максимум раддиуса цветка</string>
+    <string name="generator_radius_min_title">Минимум радиуса цветка</string>
+    <string name="generator_theta_max_title">Максиммум вертикального угла</string>
+    <string name="generator_theta_min_title">Минимум вертикального угла</string>
 
 </resources>

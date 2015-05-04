@@ -2,17 +2,17 @@ package net.vc9ufi.geometry;
 
 import java.util.ArrayList;
 
-public class VertexInTriangle extends Vertex {
+public class Vector3fInTriangle extends Vector3f {
 
     public ArrayList<Triangle> triangles;
     private boolean hasNormal = false;
-    public Vertex normal;
+    public Vector3f normal;
 
-    public VertexInTriangle(float x, float y, float z) {
+    public Vector3fInTriangle(float x, float y, float z) {
         super(x, y, z);
     }
 
-    public VertexInTriangle(float[] point) {
+    public Vector3fInTriangle(float[] point) {
         super(point);
     }
 
@@ -23,7 +23,7 @@ public class VertexInTriangle extends Vertex {
 
     public void calcVertexNormal() {
         if (!hasNormal) {
-            normal = new Vertex(0, 0, 0);
+            normal = new Vector3f(0, 0, 0);
             for (Triangle triangle : triangles) {
                 normal = normal.addToNew(triangle.n);
             }

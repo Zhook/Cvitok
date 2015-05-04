@@ -1,20 +1,20 @@
 package net.vc9ufi.cvitok.control;
 
 import net.vc9ufi.geometry.Quaternion;
-import net.vc9ufi.geometry.Vector3D;
+import net.vc9ufi.geometry.Vector3f;
 
-public abstract class RotatingCamera extends Motion implements LookAt, Runnable{
+public abstract class RotatingCamera extends Motion implements LookAt, Runnable {
 
-    private float[] camera = new float[]{0, 5, 5};
-    private float[] target = new float[]{0, 0, 0};
-    private float[] up = new float[]{0, 0, 1};
+    private Vector3f mCamera = new Vector3f(0, 5, 5);
+    private Vector3f mTarget = new Vector3f(0, 0, 0);
+    private Vector3f mUp = new Vector3f(0, 0, 1);
 
     private static final float STEP_ANGLE = 0.003f;
     private static final float STEP_RADIUS = 0.01f;
 
-    private float camera_fb;
-    private float camera_lr;
-    private float camera_r;
+    private float mCameraForwardBack;
+    private float mCameraLeftRight;
+    private float mCameraRadius;
 
     boolean terminate = false;
 
@@ -25,8 +25,8 @@ public abstract class RotatingCamera extends Motion implements LookAt, Runnable{
     }
 
     public synchronized void setAngle(float x, float y) {
-        camera_fb -= y;
-        camera_lr -= x;
+        mCameraForwardBack -= y;
+        mCameraLeftRight -= x;
     }
 
 
@@ -37,44 +37,47 @@ public abstract class RotatingCamera extends Motion implements LookAt, Runnable{
 
     @Override
     public void multiMove(float dr, float dx, float dy) {
-        camera_r -= dr;
+        mCameraRadius -= dr;
     }
 
     @Override
     public void run() {
         Quaternion q;
-        float[] orto;
-        boolean work = false;
+        Vector3f orto;
+
+        boolean work = true;
         while (!terminate) {
-            float camera_fb_ = 0;
-            float camera_lr_ = 0;
-            float camera_r_ = 0;
-            if (camera_fb != 0 || camera_lr != 0 || camera_r != 0) {
+            float cameraForwardBack_ = 0;
+            float cameraLeftRight_ = 0;
+            float cameraRadius_ = 0;
+            if (mCameraForwardBack != 0 || mCameraLeftRight != 0 || mCameraRadius != 0) {
                 work = true;
-                camera_fb_ = camera_fb;
-                camera_lr_ = camera_lr;
-                camera_r_ = camera_r;
-                camera_fb = 0;
-                camera_lr = 0;
-                camera_r = 0;
+                cameraForwardBack_ = mCameraForwardBack;
+                cameraLeftRight_ = mCameraLeftRight;
+                cameraRadius_ = mCameraRadius;
+                mCameraForwardBack = 0;
+                mCameraLeftRight = 0;
+                mCameraRadius = 0;
             }
             if (work) {
-                camera_fb_ *= STEP_ANGLE;
-                camera_lr_ *= STEP_ANGLE;
-                camera_r_ *= STEP_RADIUS;
+                cameraForwardBack_ *= STEP_ANGLE;
+                cameraLeftRight_ *= STEP_ANGLE;
+                cameraRadius_ *= STEP_RADIUS;
 
-                orto = Vector3D.normalizeF(Vector3D.cross(up, camera));
+                orto = mUp.crossProduct(mCamera).normalize();
+
                 q = Quaternion.Product(
-                        Quaternion.FromAxisAndAngle(up, camera_lr_),
-                        Quaternion.FromAxisAndAngle(orto, camera_fb_));
+                        Quaternion.FromAxisAndAngle(mUp.p, cameraLeftRight_),
+                        Quaternion.FromAxisAndAngle(orto.p, cameraForwardBack_));
 
-                camera = Quaternion.Rotate(camera, q);
-                up = Quaternion.Rotate(up, q);
+                mCamera.p = Quaternion.Rotate(mCamera.p, q);
+                mUp.p = Quaternion.Rotate(mUp.p, q);
 
-                Vector3D.dLength(camera, camera_r_);
+                mCamera.divLength(cameraRadius_);
+                work = false;
+                result(mCamera.p, mTarget.p, mUp.p);
             }
 
-            result(camera, target, up);
             wait(DELAY);
         }
     }

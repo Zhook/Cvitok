@@ -3,7 +3,7 @@ package net.vc9ufi.cvitok.views.dialogs.colordialog;
 import net.vc9ufi.cvitok.data2.utils.Calculator;
 import net.vc9ufi.geometry.Icosahedron;
 import net.vc9ufi.geometry.Triangle;
-import net.vc9ufi.geometry.Vertex;
+import net.vc9ufi.geometry.Vector3f;
 
 import java.util.LinkedList;
 
@@ -12,7 +12,6 @@ public class ColorSphereCalculator extends Calculator {
     private final float RADIUS;
     private final int QUALITY;
 
-    int quantity = 0;                   // = 20*(4^QUALITY)
 
 
     public ColorSphereCalculator(float radius, int quality) {
@@ -23,7 +22,7 @@ public class ColorSphereCalculator extends Calculator {
     @Override
     public LinkedList<Triangle> calculate() {
         LinkedList<Triangle> triangles = new LinkedList<>();
-        quantity = Icosahedron.CalcIcosahedron(triangles, RADIUS, QUALITY);
+        Icosahedron.CalcIcosahedron(triangles, RADIUS, QUALITY);
 
         for (Triangle t : triangles) {
             for (int j = 0; j < 3; j++) {
@@ -40,7 +39,7 @@ public class ColorSphereCalculator extends Calculator {
     }
 
 
-    static float[] colorFromNorm(Vertex n) {
+    static float[] colorFromNorm(Vector3f n) {
         float[] color = new float[4];
         color[0] = 0.5f + n.p[0];
         color[1] = 0.5f + n.p[1];

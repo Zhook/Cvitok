@@ -9,33 +9,25 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import net.vc9ufi.cvitok.App;
 import net.vc9ufi.cvitok.R;
-
 import net.vc9ufi.cvitok.data.SelectedVertices;
 
 
 public class ChoiceOfVertices {
-    Context context;
-    App app;
-     SelectedVertices left;
-     SelectedVertices right;
+    private Context context;
+    private SelectedVertices left;
+    private SelectedVertices right;
 
-    CheckBox cb_tip;
+    private CheckBox cb_leftUpSide;
+    private CheckBox cb_rightUpSide;
 
-    CheckBox cb_leftUpSide;
-    Button b_upSide;
-    CheckBox cb_rightUpSide;
+    private CheckBox cb_leftDownSide;
+    private CheckBox cb_rightDownSide;
 
-    CheckBox cb_leftDownSide;
-    Button b_downSide;
-    CheckBox cb_rightDownSide;
-
-    CheckBox cb_leftFoot;
-    Button b_foot;
-    CheckBox cb_rightFoot;
+    private CheckBox cb_leftFoot;
+    private CheckBox cb_rightFoot;
 
     public ChoiceOfVertices(Context context) {
         this.context = context;
-        this.app = (App) context.getApplicationContext();
     }
 
     public void show() {
@@ -61,7 +53,7 @@ public class ChoiceOfVertices {
     }
 
     private void buttonsInit(View view) {
-        cb_tip = (CheckBox) view.findViewById(R.id.cofv_checkbox_tip);
+        CheckBox cb_tip = (CheckBox) view.findViewById(R.id.cofv_checkbox_tip);
         cb_tip.setChecked(left.finish);
         cb_tip.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -81,7 +73,7 @@ public class ChoiceOfVertices {
             }
         });
 
-        b_upSide = (Button) view.findViewById(R.id.cofv_button_upside);
+        Button b_upSide = (Button) view.findViewById(R.id.cofv_button_upside);
         b_upSide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,7 +106,7 @@ public class ChoiceOfVertices {
             }
         });
 
-        b_downSide = (Button) view.findViewById(R.id.cofv_button_downside);
+        Button b_downSide = (Button) view.findViewById(R.id.cofv_button_downside);
         b_downSide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -147,7 +139,7 @@ public class ChoiceOfVertices {
             }
         });
 
-        b_foot = (Button) view.findViewById(R.id.cofv_button_foot);
+        Button b_foot = (Button) view.findViewById(R.id.cofv_button_foot);
         b_foot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

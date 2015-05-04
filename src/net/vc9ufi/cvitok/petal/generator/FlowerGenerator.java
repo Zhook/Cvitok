@@ -16,7 +16,7 @@ import java.util.Random;
 
 public class FlowerGenerator {
 
-    Context context;
+    private Context context;
 
     public FlowerGenerator(Context context) {
         this.context = context;

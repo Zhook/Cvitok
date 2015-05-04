@@ -20,13 +20,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".views.settings.PrefActivity"
-                  android:label="@string/menu_settings">
+                  android:label="@string/menu_settings"
+                  android:exported="true">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
         <service android:name=".service.CvitokService"
-                 android:label="@string/bokeh_desc"
+                 android:label="@string/app_name"
                  android:enabled="true"
                  android:permission="android.permission.BIND_WALLPAPER">
             <intent-filter>

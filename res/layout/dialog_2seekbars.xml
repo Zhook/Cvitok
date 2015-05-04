@@ -1,114 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:decoratedseekbar="http://schemas.android.com/apk/res/net.vc9ufi.cvitok"
               android:orientation="vertical"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:baselineAligned="false">
-    <LinearLayout
-            android:orientation="vertical"
+              android:baselineAligned="false"
+              style="?android:attr/buttonBarStyle">
+    <net.vc9ufi.cvitok.views.customviews.DecoratedSeekBar
+            android:id="@+id/decSeekBar1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp">
-        <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/dialog_2value_des1"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"/>
-        <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:id="@+id/dialog_2seekBar_textView_min1"
-                    android:gravity="start"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="10dp"/>
-            <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:id="@+id/dialog_2seekBar_textView_progres1"
-                    android:gravity="center_horizontal"
-                    android:layout_weight="1"/>
-            <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:id="@+id/dialog_2seekBar_textView_max1"
-                    android:gravity="end"
-                    android:layout_weight="1"
-                    android:layout_marginRight="10dp"/>
-        </LinearLayout>
-        <SeekBar
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/dialog_2seekBar_value1"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="1"/>
-    </LinearLayout>
-    <LinearLayout
-            android:orientation="vertical"
+            decoratedseekbar:minValue="-10"
+            decoratedseekbar:maxValue="10"/>
+    <net.vc9ufi.cvitok.views.customviews.DecoratedSeekBar
+            android:id="@+id/decSeekBar2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp">
-        <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/dialog_2value_des2"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"/>
-        <LinearLayout android:orientation="horizontal"
-                      android:layout_width="match_parent"
-                      android:layout_height="wrap_content">
-            <TextView android:layout_width="0dp"
-                      android:layout_height="wrap_content"
-                      android:textAppearance="?android:attr/textAppearanceSmall"
-                      android:id="@+id/dialog_2seekBar_textView_min2"
-                      android:gravity="start"
-                      android:layout_weight="1"
-                      android:layout_marginLeft="10dp"/>
-            <TextView android:layout_width="0dp"
-                      android:layout_height="wrap_content"
-                      android:textAppearance="?android:attr/textAppearanceSmall"
-                      android:id="@+id/dialog_2seekBar_textView_progres2"
-                      android:gravity="center_horizontal"
-                      android:layout_weight="1"/>
-            <TextView android:layout_width="0dp"
-                      android:layout_height="wrap_content"
-                      android:textAppearance="?android:attr/textAppearanceSmall"
-                      android:id="@+id/dialog_2seekBar_textView_max2"
-                      android:gravity="end"
-                      android:layout_weight="1"
-                      android:layout_marginLeft="10dp"/>
-        </LinearLayout>
-        <SeekBar
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/dialog_2seekBar_value2"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="1"/>
-    </LinearLayout>
+            decoratedseekbar:minValue="-20"
+            decoratedseekbar:maxValue="20"/>
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp">
+            style="?android:attr/buttonBarStyle">
         <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/Cancel"
                 android:id="@+id/buttonCancel"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                style="?android:attr/buttonBarButtonStyle"/>
         <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/Ok"
                 android:id="@+id/buttonOk"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                style="?android:attr/buttonBarButtonStyle"/>
 
     </LinearLayout>
 </LinearLayout>

@@ -2,7 +2,7 @@ package net.vc9ufi.cvitok.data;
 
 import com.google.gson.annotations.SerializedName;
 import net.vc9ufi.geometry.Quaternion;
-import net.vc9ufi.geometry.Vertex;
+import net.vc9ufi.geometry.Vector3f;
 
 public class Parameters implements Cloneable {
 
@@ -36,10 +36,10 @@ public class Parameters implements Cloneable {
                 new float[]{1.0f, 0.8f, 0.8f, 0.6f},
                 new float[]{1.0f, 0.8f, 0.8f, 0.2f});
         Coordinates crLeft = new Coordinates(
-                new Vertex(0, 0, 0),
-                new Vertex(0.5f, 0.5f, 0),
-                new Vertex(0.5f, 1, 0.5f),
-                new Vertex(0, 1, 1));
+                new Vector3f(0, 0, 0),
+                new Vector3f(0.5f, 0.5f, 0),
+                new Vector3f(0.5f, 1, 0.5f),
+                new Vector3f(0, 1, 1));
         left = new Line(clLeft, crLeft);
 
         Colors clRight = new Colors(
@@ -48,10 +48,10 @@ public class Parameters implements Cloneable {
                 new float[]{1.0f, 0.8f, 0.8f, 0.6f},
                 new float[]{1.0f, 0.8f, 0.8f, 0.2f});
         Coordinates crRight = new Coordinates(
-                new Vertex(0, 0, 0),
-                new Vertex(-0.5f, 0.5f, 0),
-                new Vertex(-0.5f, 1, 0.5f),
-                new Vertex(0, 1, 1));
+                new Vector3f(0, 0, 0),
+                new Vector3f(-0.5f, 0.5f, 0),
+                new Vector3f(-0.5f, 1, 0.5f),
+                new Vector3f(0, 1, 1));
         right = new Line(clRight, crRight);
     }
 
@@ -80,9 +80,8 @@ public class Parameters implements Cloneable {
         if (quantity != that.quantity) return false;
         if (Float.compare(that.quantityf, quantityf) != 0) return false;
         if (left != null ? !left.equals(that.left) : that.left != null) return false;
-        if (right != null ? !right.equals(that.right) : that.right != null) return false;
+        return !(right != null ? !right.equals(that.right) : that.right != null);
 
-        return true;
     }
 
     public void changeQuantity(float d_quantity) {
@@ -130,9 +129,8 @@ public class Parameters implements Cloneable {
             Line line = (Line) o;
 
             if (!colors.equals(line.colors)) return false;
-            if (!coord.equals(line.coord)) return false;
+            return coord.equals(line.coord);
 
-            return true;
         }
 
         @Override
@@ -151,18 +149,18 @@ public class Parameters implements Cloneable {
 
     public static class Coordinates implements Cloneable {
         @SerializedName("start")
-        public Vertex start;
+        public Vector3f start;
 
         @SerializedName("p1")
-        public Vertex p1;
+        public Vector3f p1;
 
         @SerializedName("p2")
-        public Vertex p2;
+        public Vector3f p2;
 
         @SerializedName("finish")
-        public Vertex finish;
+        public Vector3f finish;
 
-        public Coordinates(Vertex start, Vertex p1, Vertex p2, Vertex finish) {
+        public Coordinates(Vector3f start, Vector3f p1, Vector3f p2, Vector3f finish) {
             this.finish = finish;
             this.p1 = p1;
             this.p2 = p2;
@@ -179,8 +177,8 @@ public class Parameters implements Cloneable {
             return cl;
         }
 
-        public Vertex[] toParamBezier() {
-            Vertex[] param = new Vertex[4];
+        public Vector3f[] toParamBezier() {
+            Vector3f[] param = new Vector3f[4];
             param[0] = start;
             param[1] = p1;
             param[2] = p2;

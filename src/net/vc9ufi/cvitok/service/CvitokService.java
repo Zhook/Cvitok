@@ -1,7 +1,6 @@
 package net.vc9ufi.cvitok.service;
 
-import android.content.SharedPreferences;
-import android.os.AsyncTask;
+import android.content.*;
 import android.preference.PreferenceManager;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -14,41 +13,34 @@ import net.vc9ufi.cvitok.petal.generator.FlowerGenerator;
 import net.vc9ufi.cvitok.render.ImplRenderer;
 import net.vc9ufi.geometry.TrianglesBase;
 
-import java.util.concurrent.TimeUnit;
-
 public class CvitokService extends GLWallpaperService {
 
-    FlowerFile mFlower = new FlowerFile();
-    TrianglesBase petalsBase = new TrianglesBase();
-    Camera4WallpaperService mCamera;
+    private FlowerFile mFlower = new FlowerFile();
+    private TrianglesBase mPetalsBase = new TrianglesBase();
+    private Camera4WallpaperService mCamera;
+    private FlowerGenerator flowerGenerator = new FlowerGenerator(CvitokService.this);
+//    private boolean mNeedWorkInShadow = false;
+
 
     @Override
     public void onCreate() {
         super.onCreate();
 
-        petalsBase.setTransparency(true);
-        mCamera = new Camera4WallpaperService(new float[]{0, 5, 5}, new float[]{0, 0, 0}, new float[]{0, 0.3f, 0.3f}) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPreferences.registerOnSharedPreferenceChangeListener(onSharedPreferenceChangeListener);
+
+        mPetalsBase.setTransparency(sharedPreferences.getBoolean(getString(R.string.preference_key_transparency), true));
+
+        mCamera = new Camera4WallpaperService(new float[]{0, 5, 5}, new float[]{0, 0, 0}) {
 
             @Override
             public void result(float[] camera, float[] target, float[] up) {
-                petalsBase.setLookAt(camera, target, up);
+                mPetalsBase.setLookAt(camera, target, up);
             }
         };
+        setFlower(flowerGenerator.generate());
 
-        final FlowerGenerator flowerGenerator = new FlowerGenerator(CvitokService.this);
-        new Thread() {
-            public void run() {
-                while (true) {
-                    setFlower(flowerGenerator.generate());
-                    try {
-                        Thread.sleep(TimeUnit.MINUTES.toMillis(1));
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }.start();
-
+        registerReceiver(mBroadcastReceiver, new IntentFilter(Intent.ACTION_SCREEN_OFF));
     }
 
     @Override
@@ -64,7 +56,7 @@ public class CvitokService extends GLWallpaperService {
             super.onCreate(surfaceHolder);
             setTouchEventsEnabled(true);
 
-            ImplRenderer renderer = new ImplRenderer(petalsBase);
+            ImplRenderer renderer = new ImplRenderer(mPetalsBase);
             setRenderer(renderer);
         }
 
@@ -81,54 +73,53 @@ public class CvitokService extends GLWallpaperService {
         }
     }
 
-    public void setFlower(FlowerFile flower) {
+    private void setFlower(FlowerFile flower) {
         this.mFlower = flower;
         if (mFlower != null && mFlower.petals != null) {
+            mPetalsBase.setBackgroundColor(mFlower.background);
             Parameters p;
-            int quality = getPreferenceInt(getString(R.string.preference_key_quality), 10);
+
+            int quality = PreferenceManager.getDefaultSharedPreferences(this).
+                    getInt(getString(R.string.preference_key_quality), 10);
+
             int i = 0;
             for (; i < mFlower.petals.size(); i++) {
                 p = mFlower.petals.get(i);
-                petalsBase.add(new PetalsCalculator(p, quality, i), i);
+                mPetalsBase.add(new PetalsCalculator(p, quality, i), i);
             }
-            petalsBase.deleteWithTagMoreThan(i);
+            mPetalsBase.deleteWithTagMoreThan(i);
         }
     }
 
-    public int getPreferenceInt(String key, int defValue) {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        return sharedPreferences.getInt(key, defValue);
-    }
+    BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
 
-    public long getPreferenceLong(String key, long defValue) {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        return sharedPreferences.getLong(key, defValue);
-    }
+        @Override
+        public void onReceive(Context context, Intent intent) {
 
-    private String getPreferenceString(String key, String defValue) {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        return sharedPreferences.getString(key, defValue);
-    }
-
-    private boolean getPreferenceBoolean(String key, Boolean defValue) {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        return sharedPreferences.getBoolean(key, defValue);
-    }
-
-    private void newFlower() {
-        new AsyncTask<Void, Void, FlowerFile>() {
-            @Override
-            protected FlowerFile doInBackground(Void... params) {
-                return new FlowerGenerator(CvitokService.this).generate();
+            if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
+//                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+//                String period = sharedPreferences.getString(getString(R.string.preference_key_gen_period), "1");
+                setFlower(flowerGenerator.generate());
+//                if (period.equals("1")) {
+//                    setFlower(flowerGenerator.generate());
+//                } else if (sharedPreferences.getBoolean(getString(R.string.preference_key_gen_inshadow), true)) {
+//                    if (mNeedWorkInShadow) {
+//                        setFlower(flowerGenerator.generate());
+//                        mNeedWorkInShadow = false;
+//                    }
+//                }
             }
+        }
+    };
 
-            @Override
-            protected void onPostExecute(FlowerFile flowerFile) {
-                super.onPostExecute(flowerFile);
-                setFlower(flowerFile);
+    private SharedPreferences.OnSharedPreferenceChangeListener onSharedPreferenceChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+        @Override
+        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+            String transparency = getString(R.string.preference_key_transparency);
+            if (key.equals(transparency)) {
+                mPetalsBase.setTransparency(sharedPreferences.getBoolean(transparency, true));
             }
-        }.execute();
-    }
-
+        }
+    };
 
 }

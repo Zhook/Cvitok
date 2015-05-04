@@ -6,7 +6,6 @@ import net.vc9ufi.cvitok.render.Pointers;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.ListIterator;
 

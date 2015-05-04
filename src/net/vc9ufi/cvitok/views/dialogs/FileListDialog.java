@@ -10,8 +10,8 @@ import net.vc9ufi.cvitok.data.SaveNLoad;
 
 public class FileListDialog {
 
-    Context context;
-    AlertDialog dialogFileList;
+    private Context context;
+    private AlertDialog dialogFileList;
 
     public FileListDialog(Context context) {
         this.context = context;
@@ -45,7 +45,7 @@ public class FileListDialog {
         dialogFileList.show();
     }
 
-    public static void showDeleteDialog(final Context context, final String name) {
+    private static void showDeleteDialog(final Context context, final String name) {
         AlertDialog.Builder delete_file = new AlertDialog.Builder(context);
         delete_file.setTitle(R.string.dialog_delete_file_title);
         TextView field = new TextView(context);
@@ -64,7 +64,7 @@ public class FileListDialog {
         delete_file.show();
     }
 
-    AdapterView.OnItemClickListener onFileClickListener = new AdapterView.OnItemClickListener() {
+    private AdapterView.OnItemClickListener onFileClickListener = new AdapterView.OnItemClickListener() {
         public void onItemClick(AdapterView<?> a, View v, int position, long id) {
             final String name = a.getAdapter().getItem(position).toString();
 
