@@ -1,10 +1,10 @@
 package net.vc9ufi.geometry;
 
 
-import net.vc9ufi.cvitok.data2.RangeComparator;
-import net.vc9ufi.cvitok.data2.utils.Calculator;
-import net.vc9ufi.cvitok.data2.utils.ExecutorServiceExt;
-import net.vc9ufi.cvitok.data2.utils.ThreadFactoryWithPriority;
+import net.vc9ufi.cvitok.data.RangeComparator;
+import net.vc9ufi.cvitok.data.Calculator;
+import net.vc9ufi.cvitok.data.ExecutorServiceExt;
+import net.vc9ufi.cvitok.data.ThreadFactoryWithPriority;
 import net.vc9ufi.cvitok.render.Pointers;
 
 import java.util.Collections;

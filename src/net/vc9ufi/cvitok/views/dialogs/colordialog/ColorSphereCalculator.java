@@ -1,6 +1,6 @@
 package net.vc9ufi.cvitok.views.dialogs.colordialog;
 
-import net.vc9ufi.cvitok.data2.utils.Calculator;
+import net.vc9ufi.cvitok.data.Calculator;
 import net.vc9ufi.geometry.Icosahedron;
 import net.vc9ufi.geometry.Triangle;
 import net.vc9ufi.geometry.Vector3f;

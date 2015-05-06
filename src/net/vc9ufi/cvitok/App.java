@@ -5,8 +5,9 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import net.vc9ufi.cvitok.data.FlowerFile;
 import net.vc9ufi.cvitok.data.Parameters;
-import net.vc9ufi.cvitok.data2.PetalsCalculator;
+import net.vc9ufi.cvitok.data.PetalsCalculator;
 import net.vc9ufi.cvitok.views.dialogs.colordialog.ColorSphereCalculator;
+import net.vc9ufi.cvitok.views.settings.SharedPreferenceChangeListener;
 import net.vc9ufi.geometry.TrianglesBase;
 
 public class App extends Application {
@@ -14,6 +15,7 @@ public class App extends Application {
     private FlowerFile mFlower = new FlowerFile();
     private TrianglesBase colorSphereBase;
     private TrianglesBase mPetalsBase;
+    private SharedPreferenceChangeListener sharedPreferenceChangeListener;
 
     @Override
     public void onCreate() {
@@ -23,10 +25,12 @@ public class App extends Application {
         colorSphereBase.add(new ColorSphereCalculator(1.5f, 4), 0);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        sharedPreferences.registerOnSharedPreferenceChangeListener(onSharedPreferenceChangeListener);
 
         mPetalsBase = new TrianglesBase();
         mPetalsBase.setTransparency(sharedPreferences.getBoolean(getString(R.string.preference_key_transparency), true));
+
+        sharedPreferenceChangeListener = new SharedPreferenceChangeListener(this, mPetalsBase);
+        sharedPreferences.registerOnSharedPreferenceChangeListener(sharedPreferenceChangeListener);
     }
 
     public TrianglesBase getColorSphereBase() {
@@ -60,15 +64,5 @@ public class App extends Application {
         }
     }
 
-
-    private SharedPreferences.OnSharedPreferenceChangeListener onSharedPreferenceChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
-        @Override
-        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-            String transparency = getString(R.string.preference_key_transparency);
-            if (key.equals(transparency)) {
-                mPetalsBase.setTransparency(sharedPreferences.getBoolean(transparency, true));
-            }
-        }
-    };
 
 }

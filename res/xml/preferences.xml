@@ -12,7 +12,9 @@
             android:persistent="true"
             android:defaultValue="10"
             my:minValue="3"
-            my:maxValue="30"/>
+            my:maxValue="30"
+            my:minLabel="@string/pref_quality_low"
+            my:maxLabel="@string/pref_quality_high"/>
 
     <SwitchPreference
             android:key="@string/preference_key_transparency"
@@ -24,182 +26,289 @@
             android:switchTextOn="@string/pref_on"/>
 
     <!--<SwitchPreference-->
-            <!--android:key="@string/preference_key_gen_inshadow"-->
-            <!--android:title="@string/pref_gen_inshadow_title"-->
-            <!--android:defaultValue="false"-->
-            <!--android:switchTextOff="@string/pref_gen_inshadow_textoff"-->
-            <!--android:switchTextOn="@string/pref_gen_inshadow_texton"/>-->
+    <!--android:key="@string/preference_key_gen_inshadow"-->
+    <!--android:title="@string/pref_gen_inshadow_title"-->
+    <!--android:defaultValue="false"-->
+    <!--android:switchTextOff="@string/pref_gen_inshadow_textoff"-->
+    <!--android:switchTextOn="@string/pref_gen_inshadow_texton"/>-->
 
     <!--<ListPreference-->
-            <!--android:title="@string/pref_gen_period_title"-->
-            <!--android:dependency="@string/preference_key_gen_inshadow"-->
-            <!--android:entries="@array/preference_period_list"-->
-            <!--android:entryValues="@array/preference_period_listValues"-->
-            <!--android:key="@string/preference_key_gen_period"-->
-            <!--android:defaultValue="1"-->
-            <!--android:summary="@string/pref_gen_period_summary"/>-->
-
-
+    <!--android:title="@string/pref_gen_period_title"-->
+    <!--android:dependency="@string/preference_key_gen_inshadow"-->
+    <!--android:entries="@array/preference_period_list"-->
+    <!--android:entryValues="@array/preference_period_listValues"-->
+    <!--android:key="@string/preference_key_gen_period"-->
+    <!--android:defaultValue="1"-->
+    <!--android:summary="@string/pref_gen_period_summary"/>-->
     <PreferenceScreen
             android:title="@string/generator_title"
             android:summary="@string/generator_summary">
 
-        <PreferenceCategory android:title="@string/generator_background_brightness_category_title">
-            <net.vc9ufi.cvitok.views.settings.PreferenceDialogDecorSeekBar
-                    android:key="@string/generator_key_min_background_brightness"
-                    android:title="@string/generator_background_brightness_min_title"
-                    android:dialogTitle="@string/generator_background_brightness_category_title"
-                    android:persistent="true"
-                    android:defaultValue="60"
-                    my:description="@string/generator_background_brightness_min_title"
-                    my:minValue="0"
-                    my:maxValue="100"
-                    my:postfix="@string/generator_background_brightness_postfix"/>
-            <net.vc9ufi.cvitok.views.settings.PreferenceDialogDecorSeekBar
-                    android:key="@string/generator_key_max_background_brightness"
-                    android:title="@string/generator_background_brightness_max_title"
-                    android:dialogTitle="@string/generator_background_brightness_category_title"
-                    android:persistent="true"
-                    android:defaultValue="90"
-                    my:description="@string/generator_background_brightness_max_title"
-                    my:minValue="0"
-                    my:maxValue="100"
-                    my:postfix="@string/generator_background_brightness_postfix"/>
-        </PreferenceCategory>
+        <net.vc9ufi.cvitok.views.settings.PreferenceDialogDecorSeekBar
+                android:key="@string/generator_key_background_brightness"
+                android:title="@string/generator_background_brightness_category_title"
+                android:dialogTitle="@string/generator_background_brightness_category_title"
+                android:persistent="true"
+                android:defaultValue="90"
+                my:minValue="0"
+                my:maxValue="100"
+                my:minLabel="@string/generator_brightness_low"
+                my:maxLabel="@string/generator_brightness_high"/>
 
-        <PreferenceCategory android:title="@string/generator_circles_category_title">
-            <net.vc9ufi.cvitok.views.settings.PreferenceDialogDecorSeekBar
-                    android:key="@string/generator_key_min_circles"
-                    android:title="@string/generator_circles_min_title"
-                    android:dialogTitle="@string/generator_circles_category_title"
-                    android:persistent="true"
-                    android:defaultValue="3"
-                    my:description="@string/generator_circles_min_title"
-                    my:minValue="1"
-                    my:maxValue="10"/>
-            <net.vc9ufi.cvitok.views.settings.PreferenceDialogDecorSeekBar
-                    android:key="@string/generator_key_max_circles"
-                    android:title="@string/generator_circles_max_title"
-                    android:dialogTitle="@string/generator_circles_category_title"
-                    android:persistent="true"
-                    android:defaultValue="6"
-                    my:description="@string/generator_circles_max_title"
-                    my:minValue="1"
-                    my:maxValue="10"/>
-        </PreferenceCategory>
+        <net.vc9ufi.cvitok.views.settings.PreferenceDialogDecorSeekBar
+                android:key="@string/generator_key_petals"
+                android:title="@string/generator_quantity_petals_title"
+                android:dialogTitle="@string/generator_quantity_petals_title"
+                android:persistent="true"
+                android:defaultValue="20"
+                my:minValue="1"
+                my:maxValue="100"
+                my:minLabel="@string/generator_quantity_petals_low"
+                my:maxLabel="@string/generator_quantity_petals_high"/>
 
-        <PreferenceCategory android:title="@string/generator_theta_category_title">
-            <net.vc9ufi.cvitok.views.settings.PreferenceDialogDecorSeekBar
-                    android:key="@string/generator_key_min_theta"
-                    android:title="@string/generator_theta_min_title"
-                    android:dialogTitle="@string/generator_theta_category_title"
-                    android:persistent="true"
-                    android:defaultValue="20"
-                    my:description="@string/generator_theta_min_title"
-                    my:minValue="0"
-                    my:maxValue="180"
-                    my:postfix="@string/generator_theta_postfix"/>
-            <net.vc9ufi.cvitok.views.settings.PreferenceDialogDecorSeekBar
-                    android:key="@string/generator_key_max_theta"
-                    android:title="@string/generator_theta_max_title"
-                    android:dialogTitle="@string/generator_theta_category_title"
-                    android:persistent="true"
-                    android:defaultValue="120"
-                    my:description="@string/generator_theta_max_title"
-                    my:minValue="0"
-                    my:maxValue="180"
-                    my:postfix="@string/generator_theta_postfix"/>
-        </PreferenceCategory>
+        <net.vc9ufi.cvitok.views.settings.PreferenceDialogDecorSeekBar
+                android:key="@string/generator_key_petals_brightness"
+                android:title="@string/generator_petals_brightness_category_title"
+                android:dialogTitle="@string/generator_petals_brightness_category_title"
+                android:persistent="true"
+                android:defaultValue="20"
+                my:minValue="0"
+                my:maxValue="100"
+                my:minLabel="@string/generator_brightness_low"
+                my:maxLabel="@string/generator_brightness_high"/>
 
-        <PreferenceCategory android:title="@string/generator_radius_category_title">
-            <net.vc9ufi.cvitok.views.settings.PreferenceDialogDecorSeekBar
-                    android:key="@string/generator_key_min_radius_of_petals"
-                    android:title="@string/generator_radius_min_title"
-                    android:dialogTitle="@string/generator_radius_category_title"
-                    android:persistent="true"
-                    android:defaultValue="20"
-                    my:description="@string/generator_radius_min_title"
-                    my:minValue="0"
-                    my:maxValue="100"
-                    my:postfix="@string/generator_radius_postfix"/>
-            <net.vc9ufi.cvitok.views.settings.PreferenceDialogDecorSeekBar
-                    android:key="@string/generator_key_max_radius_of_petals"
-                    android:title="@string/generator_theta_max_title"
-                    android:dialogTitle="@string/generator_radius_category_title"
-                    android:persistent="true"
-                    android:defaultValue="100"
-                    my:description="@string/generator_radius_max_title"
-                    my:minValue="0"
-                    my:maxValue="100"
-                    my:postfix="@string/generator_radius_postfix"/>
-        </PreferenceCategory>
+        <PreferenceScreen android:title="@string/generator_adv_title">
 
-        <PreferenceCategory android:title="@string/generator_quantity_petals_category_title">
-            <net.vc9ufi.cvitok.views.settings.PreferenceDialogDecorSeekBar
-                    android:key="@string/generator_key_min_petals_in_circles"
-                    android:title="@string/generator_quantity_petals_min_title"
-                    android:dialogTitle="@string/generator_quantity_petals_category_title"
-                    android:persistent="true"
-                    android:defaultValue="5"
-                    my:description="@string/generator_quantity_petals_min_title"
-                    my:minValue="1"
-                    my:maxValue="30"/>
-            <net.vc9ufi.cvitok.views.settings.PreferenceDialogDecorSeekBar
-                    android:key="@string/generator_key_max_petals_in_circles"
-                    android:title="@string/generator_quantity_petals_max_title"
-                    android:dialogTitle="@string/generator_quantity_petals_category_title"
-                    android:persistent="true"
-                    android:defaultValue="11"
-                    my:description="@string/generator_quantity_petals_max_title"
-                    my:minValue="1"
-                    my:maxValue="30"/>
-        </PreferenceCategory>
+            <PreferenceScreen android:title="@string/generator_background_brightness_category_title">
+                <net.vc9ufi.cvitok.views.settings.PreferenceDialogDecorSeekBar
+                        android:key="@string/generator_key_adv_min_background_brightness"
+                        android:title="@string/generator_background_brightness_min_title"
+                        android:dialogTitle="@string/generator_background_brightness_category_title"
+                        android:persistent="true"
+                        android:defaultValue="60"
+                        my:description="@string/generator_background_brightness_min_title"
+                        my:minValue="0"
+                        my:maxValue="100"
+                        my:postfix="@string/generator_background_brightness_postfix"/>
+                <net.vc9ufi.cvitok.views.settings.PreferenceDialogDecorSeekBar
+                        android:key="@string/generator_key_adv_max_background_brightness"
+                        android:title="@string/generator_background_brightness_max_title"
+                        android:dialogTitle="@string/generator_background_brightness_category_title"
+                        android:persistent="true"
+                        android:defaultValue="90"
+                        my:description="@string/generator_background_brightness_max_title"
+                        my:minValue="0"
+                        my:maxValue="100"
+                        my:postfix="@string/generator_background_brightness_postfix"/>
+            </PreferenceScreen>
 
-        <PreferenceCategory android:title="@string/generator_petals_convex_category_title">
-            <net.vc9ufi.cvitok.views.settings.PreferenceDialogDecorSeekBar
-                    android:key="@string/generator_key_min_petals_convex"
-                    android:title="@string/generator_petals_convex_min_title"
-                    android:dialogTitle="@string/generator_petals_convex_category_title"
-                    android:persistent="true"
-                    android:defaultValue="-30"
-                    my:description="@string/generator_petals_convex_min_title"
-                    my:minValue="-100"
-                    my:maxValue="100"
-                    my:postfix="@string/generator_petals_convex_postfix"/>
-            <net.vc9ufi.cvitok.views.settings.PreferenceDialogDecorSeekBar
-                    android:key="@string/generator_key_max_petals_convex"
-                    android:title="@string/generator_petals_convex_max_title"
-                    android:dialogTitle="@string/generator_petals_convex_category_title"
-                    android:persistent="true"
-                    android:defaultValue="30"
-                    my:description="@string/generator_petals_convex_max_title"
-                    my:minValue="-100"
-                    my:maxValue="100"
-                    my:postfix="@string/generator_petals_convex_postfix"/>
-        </PreferenceCategory>
+            <PreferenceScreen android:title="@string/generator_circles_category_title">
+                <net.vc9ufi.cvitok.views.settings.PreferenceDialogDecorSeekBar
+                        android:key="@string/generator_key_adv_min_circles"
+                        android:title="@string/generator_circles_min_title"
+                        android:dialogTitle="@string/generator_circles_category_title"
+                        android:persistent="true"
+                        android:defaultValue="3"
+                        my:description="@string/generator_circles_min_title"
+                        my:minValue="1"
+                        my:maxValue="10"/>
+                <net.vc9ufi.cvitok.views.settings.PreferenceDialogDecorSeekBar
+                        android:key="@string/generator_key_adv_max_circles"
+                        android:title="@string/generator_circles_max_title"
+                        android:dialogTitle="@string/generator_circles_category_title"
+                        android:persistent="true"
+                        android:defaultValue="6"
+                        my:description="@string/generator_circles_max_title"
+                        my:minValue="1"
+                        my:maxValue="10"/>
+            </PreferenceScreen>
 
-        <PreferenceCategory android:title="@string/generator_petals_brightness_category_title">
-            <net.vc9ufi.cvitok.views.settings.PreferenceDialogDecorSeekBar
-                    android:key="@string/generator_key_min_petals_brightness"
-                    android:title="@string/generator_petals_brightness_min_title"
-                    android:dialogTitle="@string/generator_petals_brightness_category_title"
-                    android:persistent="true"
-                    android:defaultValue="10"
-                    my:description="@string/generator_petals_brightness_min_title"
-                    my:minValue="0"
-                    my:maxValue="100"
-                    my:postfix="@string/generator_petals_brightness_postfix"/>
-            <net.vc9ufi.cvitok.views.settings.PreferenceDialogDecorSeekBar
-                    android:key="@string/generator_key_max_petals_brightness"
-                    android:title="@string/generator_petals_brightness_max_title"
-                    android:dialogTitle="@string/generator_petals_brightness_category_title"
-                    android:persistent="true"
-                    android:defaultValue="90"
-                    my:description="@string/generator_petals_brightness_max_title"
-                    my:minValue="0"
-                    my:maxValue="100"
-                    my:postfix="@string/generator_petals_brightness_postfix"/>
-        </PreferenceCategory>
+            <PreferenceScreen android:title="@string/generator_theta_category_title">
+                <net.vc9ufi.cvitok.views.settings.PreferenceDialogDecorSeekBar
+                        android:key="@string/generator_key_adv_min_theta"
+                        android:title="@string/generator_theta_min_title"
+                        android:dialogTitle="@string/generator_theta_category_title"
+                        android:persistent="true"
+                        android:defaultValue="20"
+                        my:description="@string/generator_theta_min_title"
+                        my:minValue="0"
+                        my:maxValue="180"
+                        my:postfix="@string/generator_theta_postfix"/>
+                <net.vc9ufi.cvitok.views.settings.PreferenceDialogDecorSeekBar
+                        android:key="@string/generator_key_adv_max_theta"
+                        android:title="@string/generator_theta_max_title"
+                        android:dialogTitle="@string/generator_theta_category_title"
+                        android:persistent="true"
+                        android:defaultValue="120"
+                        my:description="@string/generator_theta_max_title"
+                        my:minValue="0"
+                        my:maxValue="180"
+                        my:postfix="@string/generator_theta_postfix"/>
+            </PreferenceScreen>
 
+            <PreferenceScreen android:title="@string/generator_radius_category_title">
+                <net.vc9ufi.cvitok.views.settings.PreferenceDialogDecorSeekBar
+                        android:key="@string/generator_key_min_adv_radius_of_petals"
+                        android:title="@string/generator_radius_min_title"
+                        android:dialogTitle="@string/generator_radius_category_title"
+                        android:persistent="true"
+                        android:defaultValue="20"
+                        my:description="@string/generator_radius_min_title"
+                        my:minValue="0"
+                        my:maxValue="100"
+                        my:postfix="@string/generator_radius_postfix"/>
+                <net.vc9ufi.cvitok.views.settings.PreferenceDialogDecorSeekBar
+                        android:key="@string/generator_key_max_adv_radius_of_petals"
+                        android:title="@string/generator_theta_max_title"
+                        android:dialogTitle="@string/generator_radius_category_title"
+                        android:persistent="true"
+                        android:defaultValue="100"
+                        my:description="@string/generator_radius_max_title"
+                        my:minValue="0"
+                        my:maxValue="100"
+                        my:postfix="@string/generator_radius_postfix"/>
+            </PreferenceScreen>
+
+            <PreferenceScreen android:title="@string/generator_quantity_petals_category_title">
+                <net.vc9ufi.cvitok.views.settings.PreferenceDialogDecorSeekBar
+                        android:key="@string/generator_key_adv_min_petals_in_circles"
+                        android:title="@string/generator_quantity_petals_min_title"
+                        android:dialogTitle="@string/generator_quantity_petals_category_title"
+                        android:persistent="true"
+                        android:defaultValue="5"
+                        my:description="@string/generator_quantity_petals_min_title"
+                        my:minValue="1"
+                        my:maxValue="30"/>
+                <net.vc9ufi.cvitok.views.settings.PreferenceDialogDecorSeekBar
+                        android:key="@string/generator_key_adv_max_petals_in_circles"
+                        android:title="@string/generator_quantity_petals_max_title"
+                        android:dialogTitle="@string/generator_quantity_petals_category_title"
+                        android:persistent="true"
+                        android:defaultValue="11"
+                        my:description="@string/generator_quantity_petals_max_title"
+                        my:minValue="1"
+                        my:maxValue="30"/>
+            </PreferenceScreen>
+
+            <PreferenceScreen android:title="@string/generator_petals_convex_category_title">
+                <net.vc9ufi.cvitok.views.settings.PreferenceDialogDecorSeekBar
+                        android:key="@string/generator_key_adv_min_petals_convex"
+                        android:title="@string/generator_petals_convex_min_title"
+                        android:dialogTitle="@string/generator_petals_convex_category_title"
+                        android:persistent="true"
+                        android:defaultValue="-30"
+                        my:description="@string/generator_petals_convex_min_title"
+                        my:minValue="-100"
+                        my:maxValue="100"
+                        my:postfix="@string/generator_petals_convex_postfix"/>
+                <net.vc9ufi.cvitok.views.settings.PreferenceDialogDecorSeekBar
+                        android:key="@string/generator_key_adv_max_petals_convex"
+                        android:title="@string/generator_petals_convex_max_title"
+                        android:dialogTitle="@string/generator_petals_convex_category_title"
+                        android:persistent="true"
+                        android:defaultValue="30"
+                        my:description="@string/generator_petals_convex_max_title"
+                        my:minValue="-100"
+                        my:maxValue="100"
+                        my:postfix="@string/generator_petals_convex_postfix"/>
+            </PreferenceScreen>
+
+            <PreferenceScreen android:title="@string/generator_petals_brightness_category_title">
+                <net.vc9ufi.cvitok.views.settings.PreferenceDialogDecorSeekBar
+                        android:key="@string/generator_key_adv_min_petals_brightness"
+                        android:title="@string/generator_petals_brightness_min_title"
+                        android:dialogTitle="@string/generator_petals_brightness_category_title"
+                        android:persistent="true"
+                        android:defaultValue="10"
+                        my:description="@string/generator_petals_brightness_min_title"
+                        my:minValue="0"
+                        my:maxValue="100"
+                        my:postfix="@string/generator_petals_brightness_postfix"/>
+                <net.vc9ufi.cvitok.views.settings.PreferenceDialogDecorSeekBar
+                        android:key="@string/generator_key_adv_max_petals_brightness"
+                        android:title="@string/generator_petals_brightness_max_title"
+                        android:dialogTitle="@string/generator_petals_brightness_category_title"
+                        android:persistent="true"
+                        android:defaultValue="90"
+                        my:description="@string/generator_petals_brightness_max_title"
+                        my:minValue="0"
+                        my:maxValue="100"
+                        my:postfix="@string/generator_petals_brightness_postfix"/>
+            </PreferenceScreen>
+
+            <PreferenceScreen android:title="@string/generator_petals_transparency_screen_title">
+
+                <PreferenceScreen android:title="@string/generator_petals_transparency_category_title">
+                    <net.vc9ufi.cvitok.views.settings.PreferenceDialogDecorSeekBar
+                            android:key="@string/generator_key_adv_min_petals_transparency"
+                            android:title="@string/generator_petals_transparency_min_title"
+                            android:dialogTitle="@string/generator_petals_transparency_category_title"
+                            android:persistent="true"
+                            android:defaultValue="10"
+                            my:description="@string/generator_petals_transparency_min_title"
+                            my:minValue="0"
+                            my:maxValue="100"
+                            my:postfix="@string/generator_petals_transparency_postfix"/>
+                    <net.vc9ufi.cvitok.views.settings.PreferenceDialogDecorSeekBar
+                            android:key="@string/generator_key_adv_max_petals_transparency"
+                            android:title="@string/generator_petals_transparency_max_title"
+                            android:dialogTitle="@string/generator_petals_transparency_category_title"
+                            android:persistent="true"
+                            android:defaultValue="50"
+                            my:description="@string/generator_petals_transparency_max_title"
+                            my:minValue="0"
+                            my:maxValue="100"
+                            my:postfix="@string/generator_petals_transparency_postfix"/>
+                </PreferenceScreen>
+
+                <PreferenceScreen android:title="@string/generator_quantity_transparency_petals_category_title">
+                    <net.vc9ufi.cvitok.views.settings.PreferenceDialogDecorSeekBar
+                            android:key="@string/generator_key_adv_min_quantity_transparency_petals"
+                            android:title="@string/generator_quantity_transparency_petals_min_title"
+                            android:dialogTitle="@string/generator_quantity_transparency_petals_category_title"
+                            android:persistent="true"
+                            android:defaultValue="10"
+                            my:description="@string/generator_quantity_transparency_petals_min_title"
+                            my:minValue="0"
+                            my:maxValue="100"
+                            my:postfix="@string/generator_quantity_transparency_petals_postfix"/>
+                    <net.vc9ufi.cvitok.views.settings.PreferenceDialogDecorSeekBar
+                            android:key="@string/generator_key_adv_max_quantity_transparency_petals"
+                            android:title="@string/generator_quantity_transparency_petals_max_title"
+                            android:dialogTitle="@string/generator_quantity_transparency_petals_category_title"
+                            android:persistent="true"
+                            android:defaultValue="40"
+                            my:description="@string/generator_quantity_transparency_petals_max_title"
+                            my:minValue="0"
+                            my:maxValue="100"
+                            my:postfix="@string/generator_quantity_transparency_petals_postfix"/>
+                </PreferenceScreen>
+
+                <PreferenceScreen android:title="@string/generator_portion_transparency_petal_category_title">
+                    <net.vc9ufi.cvitok.views.settings.PreferenceDialogDecorSeekBar
+                            android:key="@string/generator_key_adv_min_portion_transparency_petal"
+                            android:title="@string/generator_portion_transparency_petal_min_title"
+                            android:dialogTitle="@string/generator_portion_transparency_petal_category_title"
+                            android:persistent="true"
+                            android:defaultValue="10"
+                            my:description="@string/generator_portion_transparency_petal_min_title"
+                            my:minValue="0"
+                            my:maxValue="100"
+                            my:postfix="@string/generator_portion_transparency_petal_postfix"/>
+                    <net.vc9ufi.cvitok.views.settings.PreferenceDialogDecorSeekBar
+                            android:key="@string/generator_key_adv_max_portion_transparency_petal"
+                            android:title="@string/generator_portion_transparency_petal_max_title"
+                            android:dialogTitle="@string/generator_portion_transparency_petal_category_title"
+                            android:persistent="true"
+                            android:defaultValue="40"
+                            my:description="@string/generator_portion_transparency_petal_max_title"
+                            my:minValue="0"
+                            my:maxValue="100"
+                            my:postfix="@string/generator_portion_transparency_petal_postfix"/>
+                </PreferenceScreen>
+
+            </PreferenceScreen>
+
+        </PreferenceScreen>
     </PreferenceScreen>
 </PreferenceScreen>

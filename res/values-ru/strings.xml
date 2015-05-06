@@ -76,5 +76,23 @@
     <string name="generator_radius_min_title">Минимум радиуса цветка</string>
     <string name="generator_theta_max_title">Максиммум вертикального угла</string>
     <string name="generator_theta_min_title">Минимум вертикального угла</string>
+    <string name="generator_quantity_petals_high">Много</string>
+    <string name="generator_adv_title">Продвинутые настройки</string>
+    <string name="pref_quality_high">Высокое</string>
+    <string name="pref_quality_low">Низкое</string>
+    <string name="generator_quantity_petals_low">Мало</string>
+    <string name="generator_petals_transparency_category_title">Прозрачность лепестков</string>
+    <string name="generator_petals_transparency_max_title">Максимум прозрачности лепестков</string>
+    <string name="generator_petals_transparency_min_title">Минимум прозрачности лепестков</string>
+    <string name="generator_brightness_high">Светлый</string>
+    <string name="generator_brightness_low">Темный</string>
+    <string name="generator_petals_transparency_screen_title">Прозрачность</string>
+    <string name="generator_portion_transparency_petal_category_title">Доля прозрачного лепестка</string>
+    <string name="generator_portion_transparency_petal_max_title">Максимальная доля прозрачности лепестка</string>
+    <string name="generator_portion_transparency_petal_min_title">Минимальная доля прозрачности лепестка</string>
+    <string name="generator_quantity_petals_title">Количество лепестков</string>
+    <string name="generator_quantity_transparency_petals_category_title">Количество прозрачных лепестков</string>
+    <string name="generator_quantity_transparency_petals_max_title">Максимальное количество прозрачных лепестков</string>
+    <string name="generator_quantity_transparency_petals_min_title">Минимальное количество прозрачных лепестков</string>
 
 </resources>

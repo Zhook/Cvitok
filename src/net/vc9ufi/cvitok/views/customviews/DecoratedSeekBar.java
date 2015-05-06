@@ -23,6 +23,10 @@ public class DecoratedSeekBar extends LinearLayout {
     private int mMinValue = DEF_MIN_VALUE;
     private int mMaxValue = DEF_MAX_VALUE;
 
+    private String mMinLabel;
+    private String mMaxLabel;
+    private boolean mTextLabel = false;
+
     private int mValue = DEF_VALUE;
 
     private String mDescription = DEF_DESCRIPTION;
@@ -71,6 +75,9 @@ public class DecoratedSeekBar extends LinearLayout {
             mMaxValue = attributesArray.getInt(R.styleable.DecoratedSeekBar_maxValue, DEF_MAX_VALUE);
             mValue = attributesArray.getInt(R.styleable.DecoratedSeekBar_defValue, DEF_VALUE);
             mDescription = attributesArray.getString(R.styleable.DecoratedSeekBar_description);
+            mMinLabel = attributesArray.getString(R.styleable.DecoratedSeekBar_minLabel);
+            mMaxLabel = attributesArray.getString(R.styleable.DecoratedSeekBar_maxLabel);
+            mTextLabel = mMinLabel != null || mMaxLabel != null;
             if (mDescription == null) mDescription = "";
             mPostfix = attributesArray.getString(R.styleable.DecoratedSeekBar_postfix);
             if (mPostfix == null) mPostfix = "";
@@ -78,18 +85,21 @@ public class DecoratedSeekBar extends LinearLayout {
             attributesArray.recycle();
         }
 
-
         LayoutInflater.from(context).inflate(DEFAULT_LAYOUT_RESOURCE_ID, this);
 
         mTextViewMin = (TextView) findViewById(R.id.decoratedSeekBar_textView_min);
-        mTextViewMin.setText(getStringValue(mMinValue));
-
         mTextViewMax = (TextView) findViewById(R.id.decoratedSeekBar_textView_max);
-        mTextViewMax.setText(getStringValue(mMaxValue));
-
         mTextViewValue = (TextView) findViewById(R.id.decoratedSeekBar_textView_value);
-        mTextViewValue.setText(getStringValue(mValue));
 
+        if (mTextLabel) {
+            mTextViewMin.setText(mMinLabel);
+            mTextViewMax.setText(mMaxLabel);
+            mTextViewValue.setText("");
+        } else {
+            mTextViewMin.setText(getStringValue(mMinValue));
+            mTextViewMax.setText(getStringValue(mMaxValue));
+            mTextViewValue.setText(getStringValue(mValue));
+        }
         mTextViewDescription = (TextView) findViewById(R.id.decoratedSeekBar_textView_description);
         mTextViewDescription.setText(mDescription);
 
@@ -100,7 +110,10 @@ public class DecoratedSeekBar extends LinearLayout {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 mValue = formatter.getValue(seekBar.getProgress());
-                mTextViewValue.setText(getStringValue(mValue));
+
+                if (!mTextLabel)
+                    mTextViewValue.setText(getStringValue(mValue));
+
                 if (mOnChangeListener != null)
                     mOnChangeListener.onValueChanged(mValue);
             }
@@ -181,6 +194,17 @@ public class DecoratedSeekBar extends LinearLayout {
             mTextViewMin.setText(getStringValue(mMinValue));
         if (mTextViewValue != null)
             mTextViewValue.setText(getStringValue(mValue));
+    }
+
+    public void setLabels(String minLabel, String maxLabel) {
+        mMinLabel = minLabel;
+        mMaxLabel = maxLabel;
+        mTextLabel = mMinLabel != null || mMaxLabel != null;
+        if (mTextLabel) {
+            mTextViewMin.setText(mMinLabel);
+            mTextViewMax.setText(mMaxLabel);
+            mTextViewValue.setText("");
+        }
     }
 
 

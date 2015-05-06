@@ -4,6 +4,8 @@
         <attr name="description" format="string"/>
         <attr name="minValue" format="integer"/>
         <attr name="maxValue" format="integer"/>
+        <attr name="minLabel" format="string"/>
+        <attr name="maxLabel" format="string"/>
         <attr name="defValue" format="integer"/>
         <attr name="postfix" format="string"/>
     </declare-styleable>

@@ -21,7 +21,7 @@ import net.vc9ufi.cvitok.App;
 import net.vc9ufi.cvitok.R;
 import net.vc9ufi.cvitok.data.FlowerFile;
 import net.vc9ufi.cvitok.data.SaveNLoad;
-import net.vc9ufi.cvitok.petal.generator.FlowerGenerator;
+import net.vc9ufi.cvitok.generator.FlowerGenerator;
 import net.vc9ufi.cvitok.service.CvitokService;
 import net.vc9ufi.cvitok.views.dialogs.FileListDialog;
 import net.vc9ufi.cvitok.views.dialogs.colordialog.FileNameDialog;
@@ -36,6 +36,7 @@ public class MainActivity extends ActionBarActivity {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
     private FlowerFragment mFlowerFragment = new FlowerFragment();
+    final static String WALLPAPER = "wallpaper";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,6 +126,7 @@ public class MainActivity extends ActionBarActivity {
 
 
     private void SetUpWallpaper() {
+        SaveNLoad.save(this, app.getFlower(), WALLPAPER);
         Intent intent = new Intent();
         if (Build.VERSION.SDK_INT >= 16) {
             intent.setAction(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER);
@@ -173,7 +175,6 @@ public class MainActivity extends ActionBarActivity {
                     break;
                 case 3:
                     SetUpWallpaper();
-                    System.out.println("myout: set up wallpaper");
                     break;
             }
             mDrawerLayout.closeDrawers();

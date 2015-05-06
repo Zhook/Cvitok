@@ -8,9 +8,10 @@ import net.vc9ufi.cvitok.R;
 import net.vc9ufi.cvitok.control.Camera4WallpaperService;
 import net.vc9ufi.cvitok.data.FlowerFile;
 import net.vc9ufi.cvitok.data.Parameters;
-import net.vc9ufi.cvitok.data2.PetalsCalculator;
-import net.vc9ufi.cvitok.petal.generator.FlowerGenerator;
+import net.vc9ufi.cvitok.data.PetalsCalculator;
+import net.vc9ufi.cvitok.generator.FlowerGenerator;
 import net.vc9ufi.cvitok.render.ImplRenderer;
+import net.vc9ufi.cvitok.views.settings.SharedPreferenceChangeListener;
 import net.vc9ufi.geometry.TrianglesBase;
 
 public class CvitokService extends GLWallpaperService {
@@ -19,17 +20,18 @@ public class CvitokService extends GLWallpaperService {
     private TrianglesBase mPetalsBase = new TrianglesBase();
     private Camera4WallpaperService mCamera;
     private FlowerGenerator flowerGenerator = new FlowerGenerator(CvitokService.this);
-//    private boolean mNeedWorkInShadow = false;
-
+    SharedPreferenceChangeListener sharedPreferenceChangeListener;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        sharedPreferences.registerOnSharedPreferenceChangeListener(onSharedPreferenceChangeListener);
 
         mPetalsBase.setTransparency(sharedPreferences.getBoolean(getString(R.string.preference_key_transparency), true));
+
+        sharedPreferenceChangeListener = new SharedPreferenceChangeListener(this, mPetalsBase);
+        sharedPreferences.registerOnSharedPreferenceChangeListener(sharedPreferenceChangeListener);
 
         mCamera = new Camera4WallpaperService(new float[]{0, 5, 5}, new float[]{0, 0, 0}) {
 
@@ -63,12 +65,13 @@ public class CvitokService extends GLWallpaperService {
         @Override
         public void onTouchEvent(MotionEvent event) {
             mCamera.onTouch(null, event);
-            super.onTouchEvent(event);
+            if (isPreview()) {
+
+            }
         }
 
         @Override
         public void onOffsetsChanged(float xOffset, float yOffset, float xOffsetStep, float yOffsetStep, int xPixelOffset, int yPixelOffset) {
-            super.onOffsetsChanged(xOffset, yOffset, xOffsetStep, yOffsetStep, xPixelOffset, yPixelOffset);
             mCamera.setXOffset(xOffset);
         }
     }
@@ -97,29 +100,10 @@ public class CvitokService extends GLWallpaperService {
         public void onReceive(Context context, Intent intent) {
 
             if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
-//                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-//                String period = sharedPreferences.getString(getString(R.string.preference_key_gen_period), "1");
                 setFlower(flowerGenerator.generate());
-//                if (period.equals("1")) {
-//                    setFlower(flowerGenerator.generate());
-//                } else if (sharedPreferences.getBoolean(getString(R.string.preference_key_gen_inshadow), true)) {
-//                    if (mNeedWorkInShadow) {
-//                        setFlower(flowerGenerator.generate());
-//                        mNeedWorkInShadow = false;
-//                    }
-//                }
             }
         }
     };
 
-    private SharedPreferences.OnSharedPreferenceChangeListener onSharedPreferenceChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
-        @Override
-        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-            String transparency = getString(R.string.preference_key_transparency);
-            if (key.equals(transparency)) {
-                mPetalsBase.setTransparency(sharedPreferences.getBoolean(transparency, true));
-            }
-        }
-    };
 
 }

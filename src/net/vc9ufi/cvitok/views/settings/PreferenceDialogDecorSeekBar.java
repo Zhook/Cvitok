@@ -16,6 +16,8 @@ public class PreferenceDialogDecorSeekBar extends DialogPreference {
     private int mMinValue = DecoratedSeekBar.DEF_MIN_VALUE;
     private int mMaxValue = DecoratedSeekBar.DEF_MAX_VALUE;
     private int mDefValue = DecoratedSeekBar.DEF_VALUE;
+    private String mMinLabel;
+    private String mMaxLabel;
     private String mPostfix = "";
     private String mSummaryFormat = "";
 
@@ -51,6 +53,8 @@ public class PreferenceDialogDecorSeekBar extends DialogPreference {
             mMaxValue = attArrDecSeekBar.getInt(R.styleable.DecoratedSeekBar_maxValue, 100);
             mDescription = attArrDecSeekBar.getString(R.styleable.DecoratedSeekBar_description);
             mPostfix = attArrDecSeekBar.getString(R.styleable.DecoratedSeekBar_postfix);
+            mMinLabel = attArrDecSeekBar.getString(R.styleable.DecoratedSeekBar_minLabel);
+            mMaxLabel = attArrDecSeekBar.getString(R.styleable.DecoratedSeekBar_maxLabel);
         } finally {
             attArrDecSeekBar.recycle();
         }
@@ -84,6 +88,7 @@ public class PreferenceDialogDecorSeekBar extends DialogPreference {
         mDecoratedSeekBar.setMaxValue(mMaxValue);
         mDecoratedSeekBar.setValue(value);
         mDecoratedSeekBar.setPostfix(mPostfix);
+        mDecoratedSeekBar.setLabels(mMinLabel, mMaxLabel);
 
         return view;
     }

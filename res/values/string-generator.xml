@@ -3,15 +3,25 @@
     <string name="generator_title">Generator</string>
     <string name="generator_summary">Settings of generator</string>
 
+    <string name="generator_brightness_low">dark</string>
+    <string name="generator_brightness_high">light</string>
+
+    <string name="generator_quantity_petals_title">Quantity of petal</string>
+    <string name="generator_quantity_petals_low">Few</string>
+    <string name="generator_quantity_petals_high">Lot</string>
+
+
+    <string name="generator_adv_title">Advanced settings</string>
+
+
     <string name="generator_min">Minimum</string>
     <string name="generator_max">Maximum</string>
 
     <string name="generator_background_brightness_category_title">Background brightness</string>
     <string name="generator_background_brightness_min_title">Minimum background brightness</string>
-    <string name="generator_background_brightness_min_summaryFormat">brightness %d%%</string>
     <string name="generator_background_brightness_max_title">Maximum background brightness</string>
-    <string name="generator_background_brightness_max_summaryFormat">brightness %d%%</string>
     <string name="generator_background_brightness_postfix" translatable="false">%</string>
+
 
     <string name="generator_circles_category_title">Quantity of circles</string>
     <string name="generator_circles_min_title">Minimum quantity of circles</string>
@@ -41,6 +51,21 @@
     <string name="generator_petals_brightness_max_title">Maximum petals brightness</string>
     <string name="generator_petals_brightness_postfix" translatable="false">%</string>
 
+    <string name="generator_petals_transparency_screen_title">Transparency</string>
 
+    <string name="generator_petals_transparency_category_title">Petals transparency</string>
+    <string name="generator_petals_transparency_min_title">Minimum petals transparency</string>
+    <string name="generator_petals_transparency_max_title">Maximum petals transparency</string>
+    <string name="generator_petals_transparency_postfix" translatable="false">%</string>
+
+    <string name="generator_quantity_transparency_petals_category_title">Quantity of transparency petals</string>
+    <string name="generator_quantity_transparency_petals_min_title">Minimum transparency petals</string>
+    <string name="generator_quantity_transparency_petals_max_title">Maximum transparency petals</string>
+    <string name="generator_quantity_transparency_petals_postfix" translatable="false">%</string>
+
+    <string name="generator_portion_transparency_petal_category_title">Portion transparency petal</string>
+    <string name="generator_portion_transparency_petal_min_title">Minimum portion transparency petal</string>
+    <string name="generator_portion_transparency_petal_max_title">Maximum portion transparency petal</string>
+    <string name="generator_portion_transparency_petal_postfix" translatable="false">%</string>
 
 </resources>

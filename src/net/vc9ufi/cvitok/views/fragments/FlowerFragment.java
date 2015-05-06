@@ -61,7 +61,6 @@ public class FlowerFragment extends Fragment {
             @Override
             public void result(float[] camera, float[] target, float[] up) {
                 trianglesBase.setLookAt(camera, target, up);
-                System.out.println("myout: " + Arrays.toString(camera));
             }
         };
         glSurfaceView.setOnTouchListener(lookAt);

@@ -6,7 +6,6 @@ import android.preference.PreferenceManager;
 import android.widget.Toast;
 import net.vc9ufi.cvitok.App;
 import net.vc9ufi.cvitok.R;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -46,6 +45,13 @@ public class SaveNLoad {
         SaveNLoad.writeFile(context, filename, json);
     }
 
+    public static void save(Context context, FlowerFile flower, String name) {
+        if (flower == null) return;
+        String filename = name + EXT;
+        String json = flower.toJSON();
+        SaveNLoad.writeFile(context, filename, json);
+    }
+
     public static boolean load(Context context, String name) {
         if (!isFileNameValid(name)) throw new InvalidParameterException("file name invalid");
         String file = SaveNLoad.readFile(context, name + EXT);
@@ -57,10 +63,10 @@ public class SaveNLoad {
         return true;
     }
 
-    @NotNull
     public static String readFile(Context context, String name) {
+        FileInputStream fis;
         try {
-            FileInputStream fis = context.openFileInput(name);
+            fis = context.openFileInput(name);
 
             int count = fis.available();
             if (count == 0) return "";
@@ -113,5 +119,7 @@ public class SaveNLoad {
         editPref.apply();
     }
 
+
     final static String EXT = ".flower.json";
+
 }
