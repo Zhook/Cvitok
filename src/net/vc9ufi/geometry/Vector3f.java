@@ -62,6 +62,13 @@ public class Vector3f implements Cloneable {
                 p[0] * v.p[1] - p[1] * v.p[0]);
     }
 
+    public static float[] crossProduct(float[] v1, float[] v2) {
+        return new float[]{
+                v1[1] * v2[2] - v1[2] * v2[1],
+                v1[2] * v2[0] - v1[0] * v2[2],
+                v1[0] * v2[1] - v1[1] * v2[0]};
+    }
+
     public float getLength() {
         return (float) Math.sqrt(p[0] * p[0] + p[1] * p[1] + p[2] * p[2]);
     }
@@ -77,24 +84,43 @@ public class Vector3f implements Cloneable {
         return this;
     }
 
+
     public Vector3f divLength(float dr) {
-        for (int i = 0; i < 3; i++) {
-            p[i] = p[i] + p[i] * dr;
-        }
+        p[0] = p[0] + p[0] * dr;
+        p[1] = p[1] + p[1] * dr;
+        p[2] = p[2] + p[2] * dr;
         return this;
     }
+
+    public static float[] divLength(float[] p, float dr) {
+        p[0] = p[0] + p[0] * dr;
+        p[1] = p[1] + p[1] * dr;
+        p[2] = p[2] + p[2] * dr;
+        return p;
+    }
+
 
     public Vector3f normalize() {
-        double d = Math.sqrt(p[0] * p[0] + p[1] * p[1] + p[2] * p[2]);
+        float d = (float) Math.sqrt(p[0] * p[0] + p[1] * p[1] + p[2] * p[2]);
         if (d != 0) {
-            for (int i = 0; i < 3; i++) {
-                p[i] = (float) (p[i] / d);
-            }
+            p[0] = p[0] / d;
+            p[1] = p[1] / d;
+            p[2] = p[2] / d;
         }
         return this;
     }
 
+    public static void normalize(float[] p) {
+        float d = (float) Math.sqrt(p[0] * p[0] + p[1] * p[1] + p[2] * p[2]);
+        if (d != 0) {
+            p[0] = p[0] / d;
+            p[1] = p[1] / d;
+            p[2] = p[2] / d;
+        }
+    }
+
+
     public Vector3f rotate(Quaternion q) {
-        return new Vector3f(Quaternion.Rotate(p, q));
+        return new Vector3f(Quaternion.rotate(p, q));
     }
 }

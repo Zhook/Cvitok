@@ -7,6 +7,7 @@ import android.opengl.GLSurfaceView;
 import android.view.View;
 import android.widget.SeekBar;
 import net.vc9ufi.cvitok.R;
+import net.vc9ufi.cvitok.control.Camera;
 import net.vc9ufi.cvitok.control.RotatingCamera;
 import net.vc9ufi.cvitok.render.ImplRenderer;
 import net.vc9ufi.geometry.TrianglesBase;
@@ -35,10 +36,12 @@ public abstract class ColorDialog {
         };
         surface.setRenderer(renderer);
         surface.setZOrderOnTop(true);
-        surface.setOnTouchListener(new RotatingCamera() {
+        Camera camera = new Camera();
+        camera.set(new float[]{0, 5, 5}, new float[]{0, 0, 0}, new float[]{0, 0, 1});
+        surface.setOnTouchListener(new RotatingCamera(camera) {
             @Override
-            public void result(float[] camera, float[] target, float[] up) {
-                trianglesBase.setLookAt(camera, target, up);
+            public void result(Camera camera) {
+                trianglesBase.setLookAt(camera);
             }
         });
 

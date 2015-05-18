@@ -53,6 +53,7 @@
     <string name="fragment_flower_light">Light</string>
 
     <string name="actionBar_imageButton_screenshot_description" translatable="false">ScreenShot</string>
+    <string name="actionBar_imageButton_repaint_description" translatable="false">Repaint</string>
     <string name="toast_screenshot_error">Error writing to the SD card</string>
     <string name="des_share" translatable="false">Share</string>
     <string name="screenshot">Screenshot</string>

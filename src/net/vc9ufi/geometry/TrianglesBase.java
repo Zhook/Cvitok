@@ -1,9 +1,10 @@
 package net.vc9ufi.geometry;
 
 
-import net.vc9ufi.cvitok.data.RangeComparator;
+import net.vc9ufi.cvitok.control.Camera;
 import net.vc9ufi.cvitok.data.Calculator;
 import net.vc9ufi.cvitok.data.ExecutorServiceExt;
+import net.vc9ufi.cvitok.data.RangeComparator;
 import net.vc9ufi.cvitok.data.ThreadFactoryWithPriority;
 import net.vc9ufi.cvitok.render.Pointers;
 
@@ -20,23 +21,30 @@ public class TrianglesBase {
         @Override
         public void allFinished() {
             synchronized (triangles) {
-                Collections.sort(triangles, new RangeComparator(camera.clone()));
-                pointers = triangles.getPointers();
+                long start = System.currentTimeMillis();
+                float[] c;
+                if (camera != null) {
+                    c = camera.getCamera();
+                } else {
+                    c = new float[]{0, 0, 0};
+                }
+                Collections.sort(triangles, new RangeComparator(c));
+                System.out.println("myout: " + String.valueOf(System.currentTimeMillis() - start));
+                start = System.currentTimeMillis();
+                mPointers = triangles.getPointers();
+                System.out.println("myout: " + String.valueOf(System.currentTimeMillis() - start));
             }
         }
     };
 
-    final Triangles triangles = new Triangles();
+    final TrianglesList triangles = new TrianglesList();
 
     volatile boolean mTransparency = false;
     volatile float[] mBackground = new float[]{1, 1, 1, 1};
 
-    volatile float[] camera = new float[]{0, 0, 0};
-    volatile float[] target = new float[]{0, 0, 0};
-    volatile float[] up = new float[]{0, 0, 0};
+    volatile Camera camera = new Camera();
 
-    volatile Pointers pointers;
-
+    volatile LinkedList<Pointers> mPointers;
 
     public void setBackgroundColor(float[] color) {
         mBackground = color;
@@ -54,33 +62,21 @@ public class TrianglesBase {
         this.mTransparency = transparency;
     }
 
-    public void setLookAt(float[] camera, float[] target, float[] up) {
+    public void setLookAt(Camera camera) {
         this.camera = camera;
-        this.target = target;
-        this.up = up;
     }
 
-    public void setLookAt(float[] camera, float[] target, float[] up, boolean sort) {
+    public void setLookAt(Camera camera, boolean sort) {
         this.camera = camera;
-        this.target = target;
-        this.up = up;
         if (sort) sort();
     }
 
-    public float[] getCamera() {
+    public Camera getCamera() {
         return camera;
     }
 
-    public float[] getTarget() {
-        return target;
-    }
-
-    public float[] getUp() {
-        return up;
-    }
-
-    public Pointers getPointers() {
-        return pointers;
+    public LinkedList<Pointers> getTrianglesPointers() {
+        return mPointers;
     }
 
 

@@ -17,7 +17,6 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 import net.vc9ufi.cvitok.App;
 import net.vc9ufi.cvitok.R;
-import net.vc9ufi.cvitok.control.RotatingCamera;
 import net.vc9ufi.cvitok.render.ImplRenderer;
 import net.vc9ufi.cvitok.render.ScreenShot;
 import net.vc9ufi.cvitok.views.dialogs.ScreenshotDialog;
@@ -25,7 +24,6 @@ import net.vc9ufi.geometry.TrianglesBase;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
 
 public class FlowerFragment extends Fragment {
 
@@ -57,16 +55,10 @@ public class FlowerFragment extends Fragment {
 
         GLSurfaceView glSurfaceView = (GLSurfaceView) view.findViewById(R.id.glFlower);
         trianglesBase = app.getPetalsBase();
-        RotatingCamera lookAt = new RotatingCamera() {
-            @Override
-            public void result(float[] camera, float[] target, float[] up) {
-                trianglesBase.setLookAt(camera, target, up);
-            }
-        };
-        glSurfaceView.setOnTouchListener(lookAt);
+
+        glSurfaceView.setOnTouchListener(app.getPreviewCamera());
 
         mFlowerRenderer = new ImplRenderer(trianglesBase) {
-
             @Override
             public void onCaptureScreenShot(final Bitmap bitmap) {
                 getActivity().runOnUiThread(new Runnable() {
@@ -134,6 +126,14 @@ public class FlowerFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 mFlowerRenderer.makeScreenshot();
+            }
+        });
+
+        ImageButton b_repaint = (ImageButton) customActionBarView.findViewById(R.id.actionBar_imageButton_repaint);
+        b_repaint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                app.sort();
             }
         });
 

@@ -162,7 +162,7 @@ public class RandomParameters extends Parameters {
     private void rowGeometry() {
         ExtRandomFloat random = new ExtRandomFloat(minRadiusOfPetal, maxRadiusOfPetal);
 
-        Quaternion randomRotate = Quaternion.FromAxisAndAngle(
+        Quaternion randomRotate = Quaternion.fromAxisAndAngle(
                 new float[]{0, 0, 1}, random.nextFloat() * angle);
 
         float radius;

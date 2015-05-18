@@ -4,12 +4,14 @@ import android.graphics.Bitmap;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLU;
+import net.vc9ufi.cvitok.control.Camera;
 import net.vc9ufi.geometry.TrianglesBase;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.util.LinkedList;
 
 
 public class ImplRenderer implements GLSurfaceView.Renderer {
@@ -61,9 +63,10 @@ public class ImplRenderer implements GLSurfaceView.Renderer {
 
         setupPerspective(gl);
 
-        float[] c = mTrianglesBase.getCamera();
-        float[] t = mTrianglesBase.getTarget();
-        float[] u = mTrianglesBase.getUp();
+        Camera camera = mTrianglesBase.getCamera();
+        float[] c = camera.getCamera();
+        float[] t = camera.getTarget();
+        float[] u = camera.getUp();
         GLU.gluLookAt(gl, c[0], c[1], c[2], t[0], t[1], t[2], u[0], u[1], u[2]);
 
 
@@ -75,13 +78,12 @@ public class ImplRenderer implements GLSurfaceView.Renderer {
 //        gl.glMaterialfv(GL10.GL_FRONT_AND_BACK, GL10.GL_AMBIENT, new float[]{0.2f, 0.2f, 0.2f, 0.2f}, 0);
 //        gl.glMaterialfv(GL10.GL_FRONT_AND_BACK, GL10.GL_DIFFUSE, new float[]{1.0f, 1.0f, 1.0f, 1}, 0);
 //        gl.glMaterialfv(GL10.GL_FRONT_AND_BACK, GL10.GL_SPECULAR, new float[]{0.2f, 0.2f, 0.2f, 1}, 0);
-        Pointers pointers = mTrianglesBase.getPointers();
-        if (pointers != null && pointers.getSize() != 0) {
-            gl.glVertexPointer(3, GL10.GL_FLOAT, 0, pointers.getVertex());
-            gl.glColorPointer(4, GL10.GL_FLOAT, 0, pointers.getColor());
-            gl.glNormalPointer(GL10.GL_FLOAT, 0, pointers.getNormal());
-            gl.glDrawArrays(GL10.GL_TRIANGLES, 0, pointers.getSize());
-        }
+        LinkedList<Pointers> pointers = mTrianglesBase.getTrianglesPointers();
+        if (pointers != null)
+            for (Pointers p : pointers) {
+                if (p != null)
+                    p.paint(gl);
+            }
 
         if (screenshot) {
             ScreenShot screenShot = new ScreenShot(gl, width, height);

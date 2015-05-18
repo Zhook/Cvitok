@@ -1,10 +1,12 @@
 package net.vc9ufi.geometry;
 
+import net.vc9ufi.geometry.temp.GlObject;
+
 import java.nio.FloatBuffer;
 
-public class Triangle {
+public class Triangle extends GlObject {
 
-    public final int TAG;
+
 
     public Vector3fInTriangle v1;
     public Vector3fInTriangle v2;
@@ -17,6 +19,7 @@ public class Triangle {
     public float[] c3;
 
     public Triangle(Vector3fInTriangle v1, Vector3fInTriangle v2, Vector3fInTriangle v3, float[] c1, float[] c2, float[] c3, int tag) {
+        super(tag);
         setV1(v1);
         setV2(v2);
         setV3(v3);
@@ -24,7 +27,6 @@ public class Triangle {
         this.c1 = c1;
         this.c2 = c2;
         this.c3 = c3;
-        TAG = tag;
     }
 
     public void setV1(Vector3fInTriangle v1) {
@@ -104,5 +106,33 @@ public class Triangle {
         n[2] = v1_[0] * v2_[1] - v1_[1] * v2_[0];
 
         return new Vector3f(n);
+    }
+
+    public float calcRange(Vector3f point) {
+        float temp;
+        float result;
+
+        temp = v1.p[0] - point.p[0];
+        result = temp * temp;
+        temp = v1.p[1] - point.p[1];
+        result += temp * temp;
+        temp = v1.p[2] - point.p[2];
+        result += temp * temp;
+
+        temp = v2.p[0] - point.p[0];
+        result += temp * temp;
+        temp = v2.p[1] - point.p[1];
+        result += temp * temp;
+        temp = v2.p[2] - point.p[2];
+        result += temp * temp;
+
+        temp = v3.p[0] - point.p[0];
+        result += temp * temp;
+        temp = v3.p[1] - point.p[1];
+        result += temp * temp;
+        temp = v3.p[2] - point.p[2];
+        result += temp * temp;
+
+        return result;
     }
 }

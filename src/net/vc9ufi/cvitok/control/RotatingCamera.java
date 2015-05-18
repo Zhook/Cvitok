@@ -3,25 +3,21 @@ package net.vc9ufi.cvitok.control;
 import net.vc9ufi.geometry.Quaternion;
 import net.vc9ufi.geometry.Vector3f;
 
-public abstract class RotatingCamera extends Motion implements LookAt, Runnable {
-
-    private Vector3f mCamera = new Vector3f(0, 5, 5);
-    private Vector3f mTarget = new Vector3f(0, 0, 0);
-    private Vector3f mUp = new Vector3f(0, 0, 1);
+public abstract class RotatingCamera extends Camera4Renderer {
 
     private static final float STEP_ANGLE = 0.003f;
-    private static final float STEP_RADIUS = 0.01f;
+    private static final float STEP_RADIUS = 0.005f;
 
     private float mCameraForwardBack;
     private float mCameraLeftRight;
     private float mCameraRadius;
 
-    boolean terminate = false;
+    private float cameraForwardBack_ = 0;
+    private float cameraLeftRight_ = 0;
+    private float cameraRadius_ = 0;
 
-    public static final int DELAY = 20;
-
-    public RotatingCamera() {
-        new Thread(this).start();
+    public RotatingCamera(Camera camera) {
+        super(camera, 20);
     }
 
     public synchronized void setAngle(float x, float y) {
@@ -40,58 +36,43 @@ public abstract class RotatingCamera extends Motion implements LookAt, Runnable 
         mCameraRadius -= dr;
     }
 
+
     @Override
-    public void run() {
-        Quaternion q;
-        Vector3f orto;
+    void work(Camera camera) {
+        cameraForwardBack_ *= STEP_ANGLE;
+        cameraLeftRight_ *= STEP_ANGLE;
+        cameraRadius_ *= STEP_RADIUS;
 
-        boolean work = true;
-        while (!terminate) {
-            float cameraForwardBack_ = 0;
-            float cameraLeftRight_ = 0;
-            float cameraRadius_ = 0;
-            if (mCameraForwardBack != 0 || mCameraLeftRight != 0 || mCameraRadius != 0) {
-                work = true;
-                cameraForwardBack_ = mCameraForwardBack;
-                cameraLeftRight_ = mCameraLeftRight;
-                cameraRadius_ = mCameraRadius;
-                mCameraForwardBack = 0;
-                mCameraLeftRight = 0;
-                mCameraRadius = 0;
-            }
-            if (work) {
-                cameraForwardBack_ *= STEP_ANGLE;
-                cameraLeftRight_ *= STEP_ANGLE;
-                cameraRadius_ *= STEP_RADIUS;
+        float[] c = camera.getCamera();
+        float[] u = camera.getUp();
 
-                orto = mUp.crossProduct(mCamera).normalize();
+        float[] orto = Vector3f.crossProduct(u, c);
+        Vector3f.normalize(orto);
 
-                q = Quaternion.Product(
-                        Quaternion.FromAxisAndAngle(mUp.p, cameraLeftRight_),
-                        Quaternion.FromAxisAndAngle(orto.p, cameraForwardBack_));
+        Quaternion q = Quaternion.product(
+                Quaternion.fromAxisAndAngle(u, cameraLeftRight_),
+                Quaternion.fromAxisAndAngle(orto, cameraForwardBack_));
 
-                mCamera.p = Quaternion.Rotate(mCamera.p, q);
-                mUp.p = Quaternion.Rotate(mUp.p, q);
+        c = Quaternion.rotate(c, q);
+        Vector3f.divLength(c, cameraRadius_);
+        camera.setCamera(c);
 
-                mCamera.divLength(cameraRadius_);
-                work = false;
-                result(mCamera.p, mTarget.p, mUp.p);
-            }
-
-            wait(DELAY);
-        }
+        u = Quaternion.rotate(u, q);
+        camera.setUp(u);
     }
 
-    private void wait(int t) {
-        synchronized (Thread.currentThread()) {
-            try {
-                Thread.currentThread().wait(t);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+    @Override
+    boolean workCondition() {
+        if (mCameraForwardBack != 0 || mCameraLeftRight != 0 || mCameraRadius != 0) {
+            cameraForwardBack_ = mCameraForwardBack;
+            cameraLeftRight_ = mCameraLeftRight;
+            cameraRadius_ = mCameraRadius;
+            mCameraForwardBack = 0;
+            mCameraLeftRight = 0;
+            mCameraRadius = 0;
+            return true;
         }
+        return false;
     }
-
-
 }
 

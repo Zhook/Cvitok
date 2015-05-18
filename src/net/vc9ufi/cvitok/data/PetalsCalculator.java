@@ -42,7 +42,7 @@ public class PetalsCalculator extends Calculator {
         Parameters.Coordinates leftParamCoord;
         Parameters.Coordinates rightParamCoord;
         for (int i = 0; i < petalQuantity; i++) {
-            q = Quaternion.FromAxisAndAngle(UP, i * PETAL.angle);
+            q = Quaternion.fromAxisAndAngle(UP, i * PETAL.angle);
             leftParamCoord = PETAL.left.coord.rotate(q);
             rightParamCoord = PETAL.right.coord.rotate(q);
 

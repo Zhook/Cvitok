@@ -12,7 +12,9 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import net.vc9ufi.cvitok.App;
 import net.vc9ufi.cvitok.R;
+import net.vc9ufi.cvitok.data.FlowerFile;
 import net.vc9ufi.cvitok.views.dialogs.NameDialog;
 
 public class FragmentPetalsTools extends Fragment {
@@ -26,7 +28,7 @@ public class FragmentPetalsTools extends Fragment {
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_petals_tools, container, false);
         context = inflater.getContext();
-
+        FlowerFile flower = ((App) context.getApplicationContext()).getFlower();
 
         frag_vertices = new FragmentVerticesTools();
 
@@ -48,7 +50,7 @@ public class FragmentPetalsTools extends Fragment {
         b_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showNameDialog();
+
             }
         });
 
@@ -66,23 +68,6 @@ public class FragmentPetalsTools extends Fragment {
         return view;
     }
 
-
-
-    void showNameDialog() {
-        final NameDialog nameDialog = new NameDialog(context, getString(R.string.dialog_petal_name_title), getString(R.string.petal)) {
-            @Override
-            protected boolean onPositiveClick(String name) {
-                if (name.length() > 0) {
-
-                    this.setMsg(context.getString(R.string.msg_petal_exists));
-                    return false;
-                }
-                this.setMsg(context.getString(R.string.msg_input_name));
-                return false;
-            }
-        };
-        nameDialog.show();
-    }
 
     class OnDeleteClickListener implements View.OnClickListener {
         @Override

@@ -3,6 +3,9 @@ package net.vc9ufi.cvitok;
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import net.vc9ufi.cvitok.control.Camera;
+import net.vc9ufi.cvitok.control.Camera4WallpaperService;
+import net.vc9ufi.cvitok.control.RotatingCamera;
 import net.vc9ufi.cvitok.data.FlowerFile;
 import net.vc9ufi.cvitok.data.Parameters;
 import net.vc9ufi.cvitok.data.PetalsCalculator;
@@ -16,6 +19,8 @@ public class App extends Application {
     private TrianglesBase colorSphereBase;
     private TrianglesBase mPetalsBase;
     private SharedPreferenceChangeListener sharedPreferenceChangeListener;
+    private Camera4WallpaperService mWallpaperCamera;
+    private RotatingCamera mPreviewCamera;
 
     @Override
     public void onCreate() {
@@ -31,6 +36,27 @@ public class App extends Application {
 
         sharedPreferenceChangeListener = new SharedPreferenceChangeListener(this, mPetalsBase);
         sharedPreferences.registerOnSharedPreferenceChangeListener(sharedPreferenceChangeListener);
+
+        Camera camera = new Camera();
+        camera.set(new float[]{0, 5, 5}, new float[]{0, 0, 0}, new float[]{0, 0, 1});
+
+        mWallpaperCamera = new Camera4WallpaperService(camera) {
+            @Override
+            public void result(Camera camera) {
+                mPetalsBase.setLookAt(camera);
+            }
+        };
+        mPreviewCamera = new RotatingCamera(camera) {
+            @Override
+            public void result(Camera camera) {
+                mPetalsBase.setLookAt(camera);
+                try {
+                    mWallpaperCamera.setStartCameraPoint(camera.clone());
+                } catch (CloneNotSupportedException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
     }
 
     public TrianglesBase getColorSphereBase() {
@@ -64,5 +90,16 @@ public class App extends Application {
         }
     }
 
+    public void sort() {
+        mPetalsBase.sort();
+    }
 
+
+    public Camera4WallpaperService getWallpaperCamera() {
+        return mWallpaperCamera;
+    }
+
+    public RotatingCamera getPreviewCamera() {
+        return mPreviewCamera;
+    }
 }

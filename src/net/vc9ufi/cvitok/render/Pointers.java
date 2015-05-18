@@ -1,36 +1,46 @@
 package net.vc9ufi.cvitok.render;
 
+import net.vc9ufi.geometry.Painter;
+
+import javax.microedition.khronos.opengles.GL10;
 import java.nio.FloatBuffer;
 
 public class Pointers {
 
-    private FloatBuffer vertex;
-    private FloatBuffer color;
-    private FloatBuffer normal;
+    private FloatBuffer mVertex;
+    private FloatBuffer mColor;
+    private FloatBuffer mNormal;
 
-    private int size = 0;
+    private Painter mPainter;
 
-    public Pointers(FloatBuffer color, FloatBuffer normal, FloatBuffer vertex, int size) {
-        this.color = color;
-        this.normal = normal;
-        this.vertex = vertex;
-        this.size = size;
+    private int mSize = 0;
+
+    public Pointers(FloatBuffer color, FloatBuffer normal, FloatBuffer vertex, int size, Painter painter) {
+        this.mColor = color;
+        this.mNormal = normal;
+        this.mVertex = vertex;
+        this.mSize = size;
+        mPainter = painter;
     }
 
     public FloatBuffer getColor() {
-        return color;
+        return mColor;
     }
 
     public FloatBuffer getNormal() {
-        return normal;
+        return mNormal;
     }
 
     public FloatBuffer getVertex() {
-        return vertex;
+        return mVertex;
     }
 
     public int getSize() {
-        return size;
+        return mSize;
     }
 
+    public void paint(GL10 gl) {
+        if (mPainter != null)
+            mPainter.paint(gl, mVertex, mColor, mNormal, mSize);
+    }
 }
