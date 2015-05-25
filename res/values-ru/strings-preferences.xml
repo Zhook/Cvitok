@@ -14,5 +14,4 @@
     <string name="pref_light_off">Свет выключен</string>
     <string name="pref_light_on">Свет включен</string>
 
-    <string name="pref_title_controls">Управление</string>
 </resources>

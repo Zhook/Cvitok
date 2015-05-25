@@ -17,11 +17,6 @@
     <string name="generator_min">Minimum</string>
     <string name="generator_max">Maximum</string>
 
-    <string name="generator_background_brightness_category_title">Background brightness</string>
-    <string name="generator_background_brightness_min_title">Minimum background brightness</string>
-    <string name="generator_background_brightness_max_title">Maximum background brightness</string>
-    <string name="generator_background_brightness_postfix" translatable="false">%</string>
-
 
     <string name="generator_circles_category_title">Quantity of circles</string>
     <string name="generator_circles_min_title">Minimum quantity of circles</string>
@@ -46,10 +41,7 @@
     <string name="generator_petals_convex_max_title">Maximum petals convex</string>
     <string name="generator_petals_convex_postfix" translatable="false">%</string>
 
-    <string name="generator_petals_brightness_category_title">Petals brightness</string>
-    <string name="generator_petals_brightness_min_title">Minimum petals brightness</string>
-    <string name="generator_petals_brightness_max_title">Maximum petals brightness</string>
-    <string name="generator_petals_brightness_postfix" translatable="false">%</string>
+
 
     <string name="generator_petals_transparency_screen_title">Transparency</string>
 

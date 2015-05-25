@@ -2,6 +2,7 @@ package net.vc9ufi.cvitok.views.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,16 +11,15 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import net.vc9ufi.cvitok.App;
 import net.vc9ufi.cvitok.R;
-
-import net.vc9ufi.cvitok.views.dialogs.colordialog.ColorDialog;
-import net.vc9ufi.geometry.TrianglesBase;
+import net.vc9ufi.cvitok.views.dialogs.ColorDialog;
 
 public class FragmentFlowerTools extends Fragment {
 
     App app;
     Context context;
 
-        TextView tv_flowerName;
+    TextView tv_flowerName;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -64,20 +64,11 @@ public class FragmentFlowerTools extends Fragment {
     View.OnClickListener backgroundOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            TrianglesBase trianglesBase = app.getColorSphereBase();
-            ColorDialog colorDialog = new ColorDialog(context, trianglesBase) {
-                @Override
-                public void onClickPositiveButton(float[] color) {
-
-                }
-
-                @Override
-                public void onClickNegativeButton() {
-
-                }
-
-            };
-            colorDialog.show();
+            ColorDialog.showPreference(
+                    getFragmentManager(),
+                    PreferenceManager.getDefaultSharedPreferences(context),
+                    getString(R.string.prefkey_def_background),
+                    getString(R.string.pref_def_background_title));
         }
     };
 

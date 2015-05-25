@@ -9,14 +9,12 @@ import net.vc9ufi.cvitok.control.RotatingCamera;
 import net.vc9ufi.cvitok.data.FlowerFile;
 import net.vc9ufi.cvitok.data.Parameters;
 import net.vc9ufi.cvitok.data.PetalsCalculator;
-import net.vc9ufi.cvitok.views.dialogs.colordialog.ColorSphereCalculator;
 import net.vc9ufi.cvitok.views.settings.SharedPreferenceChangeListener;
 import net.vc9ufi.geometry.TrianglesBase;
 
 public class App extends Application {
 
     private FlowerFile mFlower = new FlowerFile();
-    private TrianglesBase colorSphereBase;
     private TrianglesBase mPetalsBase;
     private SharedPreferenceChangeListener sharedPreferenceChangeListener;
     private Camera4WallpaperService mWallpaperCamera;
@@ -26,13 +24,11 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
 
-        colorSphereBase = new TrianglesBase();
-        colorSphereBase.add(new ColorSphereCalculator(1.5f, 4), 0);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         mPetalsBase = new TrianglesBase();
-        mPetalsBase.setTransparency(sharedPreferences.getBoolean(getString(R.string.preference_key_transparency), true));
+        mPetalsBase.setTransparency(sharedPreferences.getBoolean(getString(R.string.prefkey_transparency), true));
 
         sharedPreferenceChangeListener = new SharedPreferenceChangeListener(this, mPetalsBase);
         sharedPreferences.registerOnSharedPreferenceChangeListener(sharedPreferenceChangeListener);
@@ -59,10 +55,6 @@ public class App extends Application {
         };
     }
 
-    public TrianglesBase getColorSphereBase() {
-        return colorSphereBase;
-    }
-
     public TrianglesBase getPetalsBase() {
         return mPetalsBase;
     }
@@ -79,7 +71,7 @@ public class App extends Application {
             mPetalsBase.setBackgroundColor(mFlower.background);
 
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-            int quality = sharedPreferences.getInt(getString(R.string.preference_key_quality), 10);
+            int quality = sharedPreferences.getInt(getString(R.string.prefkey_quality), 10);
 
             int i = 0;
             for (; i < mFlower.petals.size(); i++) {
@@ -101,5 +93,9 @@ public class App extends Application {
 
     public RotatingCamera getPreviewCamera() {
         return mPreviewCamera;
+    }
+
+    public boolean hasFlower() {
+        return mFlower.petals.size() > 0;
     }
 }

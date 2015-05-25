@@ -10,8 +10,7 @@ import android.widget.ImageButton;
 import net.vc9ufi.cvitok.App;
 import net.vc9ufi.cvitok.R;
 import net.vc9ufi.cvitok.views.dialogs.ChoiceOfVertices;
-import net.vc9ufi.cvitok.views.dialogs.colordialog.ColorDialog;
-import net.vc9ufi.geometry.TrianglesBase;
+import net.vc9ufi.cvitok.views.dialogs.ColorDialog;
 
 
 public class FragmentVerticesTools extends Fragment {
@@ -43,21 +42,15 @@ public class FragmentVerticesTools extends Fragment {
     View.OnClickListener colorOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            TrianglesBase trianglesBase = app.getColorSphereBase();
-
-
-            ColorDialog colorDialog = new ColorDialog(context, trianglesBase) {
+            ColorDialog colorDialog = new ColorDialog() {
                 @Override
-                public void onClickPositiveButton(float[] color) {
-
-                }
-
-                @Override
-                public void onClickNegativeButton() {
-
+                public boolean onClickOk(float[] color) {
+                    return true;
                 }
             };
-            colorDialog.show();
+
+            colorDialog.setColor(new float[]{0.3f, 0.5f, 0.7f, 1});
+            colorDialog.show(getFragmentManager().beginTransaction(), "dialog");
         }
     };
 }

@@ -1,17 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="preference_key_lastfile" translatable="false">preference_key_last_flower</string>
+    <string name="prefkey_lastfile" translatable="false">preference_key_last_flower</string>
 
-    <string name="preference_key_graphics" translatable="false">preference_key_graphics</string>
+    <string name="prefkey_graphics" translatable="false">preference_key_graphics</string>
 
-    <string name="preference_key_transparency" translatable="false">preference_key_transparency</string>
-    <string name="preference_key_quality" translatable="false">preference_key_quality</string>
+    <string name="prefkey_transparency" translatable="false">preference_key_transparency</string>
+    <string name="prefkey_quality" translatable="false">preference_key_quality</string>
 
-    <string name="preference_key_light_setting" translatable="false">preference_key_light_settings</string>
-    <string name="preference_key_light_switch" translatable="false">preference_key_light_switch</string>
+    <!--<string name="prefkey_light_setting" translatable="false">preference_key_light_settings</string>-->
+    <!--<string name="prefkey_light_switch" translatable="false">preference_key_light_switch</string>-->
 
-    <string name="preference_key_controls" translatable="false">preference_key_controls</string>
+    <!--<string name="prefkey_controls" translatable="false">preference_key_controls</string>-->
 
-    <string name="preference_key_gen_period" translatable="false">preference_key_gen_period</string>
-    <string name="preference_key_gen_inshadow" translatable="false">preference_key_gen_inshadow</string>
+    <!-- Generator settings-->
+
+    <!--Background-->
+    <string name="prefkey_def_background" translatable="false">preference_key_def_background</string>
+    <string name="prefkey_gen_background" translatable="false">preference_key_gen_background</string>
+    <string name="prefkey_generator_min_background_brightness" translatable="false">generator_key_adv_min_background_brightness</string>
+    <string name="prefkey_generator_max_background_brightness" translatable="false">generator_key_adv_max_background_brightness</string>
+
+    <!--Petals Color-->
+    <string name="prefkey_generator_petals_brightness" translatable="false">generator_key_adv_min_petals_brightness</string>
+    <string name="prefkey_generator_min_petals_brightness" translatable="false">generator_key_adv_min_petals_brightness</string>
+    <string name="prefkey_generator_max_petals_brightness" translatable="false">generator_key_adv_max_petals_brightness</string>
+
+    <string name="prefkey_generator_petals_red" translatable="false">prefkey_generator_petals_red</string>
+    <string name="prefkey_generator_petals_min_red" translatable="false">prefkey_generator_min_petals_min_red</string>
+    <string name="prefkey_generator_petals_max_red" translatable="false">prefkey_generator_min_petals_max_red</string>
+    <string name="prefkey_generator_petals_green" translatable="false">prefkey_generator_petals_green</string>
+    <string name="prefkey_generator_petals_min_green" translatable="false">prefkey_generator_min_petals_min_green</string>
+    <string name="prefkey_generator_petals_max_green" translatable="false">prefkey_generator_min_petals_max_green</string>
+    <string name="prefkey_generator_petals_blue" translatable="false">prefkey_generator_petals_blue</string>
+    <string name="prefkey_generator_petals_min_blue" translatable="false">prefkey_generator_min_petals_min_blue</string>
+    <string name="prefkey_generator_petals_max_blue" translatable="false">prefkey_generator_min_petals_max_blue</string>
+
+    <!-- -->
+    <string name="prefkey_generator_min_circles" translatable="false">generator_key_adv_min_circles</string>
+    <string name="prefkey_generator_max_circles" translatable="false">generator_key_adv_max_circles</string>
+
+    <string name="prefkey_generator_min_radius_of_petals" translatable="false">generator_key_adv_min_radius_of_petals</string>
+    <string name="prefkey_generator_max_radius_of_petals" translatable="false">generator_key_adv_max_radius_of_petals</string>
+
+    <string name="prefkey_generator_min_theta" translatable="false">generator_key_adv_min_theta</string>
+    <string name="prefkey_generator_adv_max_theta" translatable="false">generator_key_adv_max_theta</string>
+
+    <string name="prefkey_generator_min_petals_in_circles" translatable="false">generator_key_adv_min_petals_in_circles</string>
+    <string name="prefkey_generator_max_petals_in_circles" translatable="false">generator_key_adv_max_petals_in_circles</string>
+
+    <string name="prefkey_generator_min_petals_convex" translatable="false">generator_key_adv_min_petals_convex</string>
+    <string name="prefkey_generator_max_petals_convex" translatable="false">generator_key_adv_max_petals_convex</string>
+
+    <!--Transparency-->
+    <string name="prefkey_generator_min_petals_transparency" translatable="false">generator_key_adv_min_petals_transparency</string>
+    <string name="prefkey_generator_max_petals_transparency" translatable="false">generator_key_adv_max_petals_transparency</string>
+    <string name="prefkey_generator_min_quantity_transparency_petals" translatable="false">generator_key_adv_min_quantity_transparency_petals</string>
+    <string name="prefkey_generator_max_quantity_transparency_petals" translatable="false">generator_key_adv_max_quantity_transparency_petals</string>
+    <string name="prefkey_generator_min_portion_transparency_petal" translatable="false">generator_key_adv_min_portion_transparency_petal</string>
+    <string name="prefkey_generator_max_portion_transparency_petal" translatable="false">generator_key_adv_max_portion_transparency_petal</string>
 </resources>

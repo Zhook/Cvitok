@@ -1,4 +1,4 @@
-package net.vc9ufi.cvitok.views.dialogs.colordialog;
+package net.vc9ufi.cvitok.views.dialogs;
 
 import android.content.Context;
 import net.vc9ufi.cvitok.R;

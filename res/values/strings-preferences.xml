@@ -16,17 +16,46 @@
     <string name="pref_light_off">Light off</string>
     <string name="pref_light_on">Light on</string>
 
-    <string name="pref_background_color_title">Background color</string>
-
-    <string name="pref_title_controls">Controls</string>
-
-    <string name="pref_gen_period_title">Generate period</string>
-    <string name="pref_gen_period_summary">Generate period</string>
 
 
-    <string name="pref_gen_inshadow_title">Generate in shadow</string>
-    <string name="pref_gen_inshadow_textoff">On</string>
-    <string name="pref_gen_inshadow_texton">Off</string>
-    <string name="pref_gen_inshadow_summary_off">Off</string>
-    <string name="pref_gen_inshadow_summary_on">On</string>
+    <string name="pref_background_title">Background</string>
+    <string name="pref_background_summary">Settings of background brightness</string>
+
+    <string name="pref_def_background_title">Default color</string>
+
+    <string name="pref_gen_background_title">Generate background</string>
+    <string name="pref_gen_background_off">No</string>
+    <string name="pref_gen_background_on">Yes</string>
+    <string name="pref_gen_background_summary_on">Background color will be generated</string>
+    <string name="pref_gen_background_summary_off">Background color will be default</string>
+
+    <string name="pref_gen_background_brightness_title">Background brightness</string>
+    <string name="pref_gen_background_brightness_min_des">Minimum background brightness</string>
+    <string name="pref_gen_background_brightness_max_des">Maximum background brightness</string>
+    <string name="pref_gen_background_brightness_postfix" translatable="false">%</string>
+
+
+    <string name="pref_gen_petals_color_screen_title">Color of petals</string>
+    <string name="pref_gen_petals_color_screen_summary">Setting of color of petals</string>
+
+    <string name="pref_gen_petals_brightness_title">Petals brightness</string>
+    <string name="pref_gen_petals_brightness_summary">Settings of petals brightness</string>
+    <string name="pref_gen_petals_brightness_min_title">Minimum petals brightness</string>
+    <string name="pref_gen_petals_brightness_max_title">Maximum petals brightness</string>
+    <string name="pref_gen_petals_brightness_postfix" translatable="false">%</string>
+
+    <string name="pref_gen_petals_red_title">Red</string>
+    <string name="pref_gen_petals_red_min_title">Minimum red</string>
+    <string name="pref_gen_petals_red_max_title">Maximum red</string>
+
+    <string name="pref_gen_petals_green_title">Green</string>
+    <string name="pref_gen_petals_green_min_title">Minimum green</string>
+    <string name="pref_gen_petals_green_max_title">Maximum green</string>
+
+    <string name="pref_gen_petals_blue_title">Blue</string>
+    <string name="pref_gen_petals_blue_min_title">Minimum blue</string>
+    <string name="pref_gen_petals_blue_max_title">Maximum blue</string>
+
+    <string name="pref_gen_petals_color_postfix" translatable="false">%</string>
+
 </resources>

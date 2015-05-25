@@ -172,12 +172,12 @@ public class DecoratedSeekBar extends LinearLayout {
         return mValue;
     }
 
-    public void setValue(int mValue) {
-        this.mValue = mValue;
+    public void setValue(int value) {
+        this.mValue = value;
         if (mTextViewValue != null)
-            mTextViewValue.setText(getStringValue(mValue));
+            mTextViewValue.setText(getStringValue(value));
         if (mSeekBarValue != null) {
-            mSeekBarValue.setProgress(formatter.setValue(mValue));
+            mSeekBarValue.setProgress(formatter.setValue(value));
         }
     }
 

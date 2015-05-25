@@ -1,4 +1,4 @@
-package net.vc9ufi.cvitok.views.settings;
+package net.vc9ufi.cvitok.views.settings.dialogs;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -22,7 +22,6 @@ public class PreferenceDialogDecorSeekBar extends DialogPreference {
     private String mSummaryFormat = "";
 
     private DecoratedSeekBar mDecoratedSeekBar;
-
 
     public PreferenceDialogDecorSeekBar(Context context, AttributeSet attrs) {
         super(context, attrs);

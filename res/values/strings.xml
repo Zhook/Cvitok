@@ -16,7 +16,6 @@
     <string name="dialog_petal_name_title">Name of petal</string>
     <string name="msg_input_name">Input name</string>
     <string name="msg_petal_exists">Petal with the same name already exists</string>
-    <string name="dialog_first_petal_name_title">Name of first petal</string>
     <string name="dialog_delete_petal_title">Delete petal?</string>
 
     <string name="dialog_files_title">Files</string>
@@ -49,7 +48,6 @@
 
     <string name="fragment_flower_background">Background</string>
     <string name="fragment_flower_petals">Petals</string>
-    <string name="fragment_flower_text_flower">Flower</string>
     <string name="fragment_flower_light">Light</string>
 
     <string name="actionBar_imageButton_screenshot_description" translatable="false">ScreenShot</string>
@@ -62,5 +60,16 @@
     <string name="drawer_close" translatable="false">close</string>
     <string name="generator_button_build">Generate</string>
     <string name="bokeh_desc">Automatically generated flowers</string>
+
+    <!--Color Dialog-->
+    <string name="color_dialog_value_postfix" translatable="false">%</string>
+    <string name="color_dialog_field">Color</string>
+    <string name="color_dialog_description_red">Red</string>
+    <string name="color_dialog_description_green">Green</string>
+    <string name="color_dialog_description_blue">Blue</string>
+    <string name="color_dialog_description_transparency">Transparency</string>
+
+
+
 
 </resources>

@@ -115,7 +115,7 @@ public class SaveNLoad {
 
     public static void setLastFlower(Context context, String name) {
         SharedPreferences.Editor editPref = PreferenceManager.getDefaultSharedPreferences(context).edit();
-        editPref.putString(context.getString(R.string.preference_key_lastfile), name);
+        editPref.putString(context.getString(R.string.prefkey_lastfile), name);
         editPref.apply();
     }
 

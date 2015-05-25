@@ -24,7 +24,7 @@ import net.vc9ufi.cvitok.data.SaveNLoad;
 import net.vc9ufi.cvitok.generator.FlowerGenerator;
 import net.vc9ufi.cvitok.service.CvitokService;
 import net.vc9ufi.cvitok.views.dialogs.FileListDialog;
-import net.vc9ufi.cvitok.views.dialogs.colordialog.FileNameDialog;
+import net.vc9ufi.cvitok.views.dialogs.FileNameDialog;
 import net.vc9ufi.cvitok.views.fragments.FlowerFragment;
 import net.vc9ufi.cvitok.views.settings.PrefActivity;
 
