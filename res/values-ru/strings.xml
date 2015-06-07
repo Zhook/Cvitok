@@ -71,13 +71,12 @@
     <string name="generator_petals_convex_min_title">Минимум выпуклости лепестка</string>
     <string name="generator_quantity_petals_max_title">Максимум количества лепестков</string>
     <string name="generator_quantity_petals_min_title">Минимум количества лепестков</string>
-    <string name="generator_summary">Насктройки генератора</string>
+    <string name="generator_summary">Настройки генератора</string>
     <string name="generator_radius_max_title">Максимум раддиуса цветка</string>
     <string name="generator_radius_min_title">Минимум радиуса цветка</string>
     <string name="generator_theta_max_title">Максиммум вертикального угла</string>
     <string name="generator_theta_min_title">Минимум вертикального угла</string>
     <string name="generator_quantity_petals_high">Много</string>
-    <string name="generator_adv_title">Продвинутые настройки</string>
     <string name="pref_quality_high">Высокое</string>
     <string name="pref_quality_low">Низкое</string>
     <string name="generator_quantity_petals_low">Мало</string>
@@ -119,5 +118,6 @@
     <string name="pref_gen_petals_red_max_title">Максимум красного</string>
     <string name="pref_gen_petals_red_min_title">Минимум красного</string>
     <string name="pref_gen_petals_red_title">Красный</string>
+    <string name="pref_background_color_title">Цвет фона</string>
 
 </resources>

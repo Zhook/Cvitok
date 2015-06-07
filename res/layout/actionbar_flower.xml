@@ -13,37 +13,15 @@
             android:layout_alignParentStart="true"
             style="?android:attr/buttonBarButtonStyle"
             android:contentDescription="@string/actionBar_imageButton_screenshot_description"/>
-    <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/actionBar_imageButton_repaint"
-            android:src="@drawable/ic_action_refresh"
-            android:contentDescription="@string/actionBar_imageButton_repaint_description"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/actionBar_imageButton_screenshot"
-            android:layout_toEndOf="@+id/actionBar_imageButton_screenshot"
-            android:layout_alignBottom="@+id/actionBar_imageButton_petals"
-            style="?android:attr/buttonBarButtonStyle"/>
 
     <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/actionBar_imageButton_flower"
-            android:src="@drawable/ic_action_flower"
-            android:contentDescription="@string/fragment_flower_background"
-            android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/actionBar_imageButton_petals"
-            android:layout_toStartOf="@+id/actionBar_imageButton_petals"
-            android:layout_alignBottom="@+id/actionBar_imageButton_petals"
-            style="?android:attr/buttonBarButtonStyle"/>
-    <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/actionBar_imageButton_petals"
-            android:src="@drawable/ic_action_petal"
+            android:id="@+id/actionBar_imageButton_generate"
+            android:src="@drawable/ic_action_refresh"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:contentDescription="@string/fragment_flower_petals"
-            style="?android:attr/buttonBarButtonStyle"/>
+            style="?android:attr/buttonBarButtonStyle"
+            android:contentDescription="@string/actionBar_imageButton_screenshot_description"/>
 </RelativeLayout>

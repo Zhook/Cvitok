@@ -1,0 +1,11 @@
+<net.vc9ufi.cvitok.views.customviews.seekbars.DecoratedIntRangeSeekBar
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:my="http://schemas.android.com/apk/res/net.vc9ufi.cvitok"
+        android:id="@+id/decRangeSeekBar"
+        my:textSize="14sp"
+        my:textColor="0xFFFFFFFF"
+        my:activeLineWidth="4dp"
+        my:inactiveLineWidth="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"/>

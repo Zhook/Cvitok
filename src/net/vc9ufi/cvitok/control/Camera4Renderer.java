@@ -22,10 +22,10 @@ public abstract class Camera4Renderer extends Motion implements LookAt, Runnable
     @Override
     public void run() {
         while (!terminate) {
-            if (workCondition()) mWork = true;
+            if (needCalculate()) mWork = true;
 
             if (mWork) {
-                work(mCamera);
+                mCamera = calculate(mCamera);
                 result(mCamera);
                 mWork = false;
             }
@@ -43,11 +43,11 @@ public abstract class Camera4Renderer extends Motion implements LookAt, Runnable
         }
     }
 
-    abstract boolean workCondition();
+    abstract boolean needCalculate();
 
-    abstract void work(Camera camera);
+    abstract Camera calculate(Camera oldCamera);
 
-    public Camera getCamera(){
+    public Camera getCamera() {
         return mCamera;
     }
 }

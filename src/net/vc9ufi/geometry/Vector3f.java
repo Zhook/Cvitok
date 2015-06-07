@@ -2,6 +2,8 @@ package net.vc9ufi.geometry;
 
 public class Vector3f implements Cloneable {
 
+    private static float[] v1;
+    private static float[] v2;
     public float[] p = new float[3];
 
     public Vector3f(float x, float y, float z) {
@@ -41,6 +43,15 @@ public class Vector3f implements Cloneable {
                 p[2] + v.p[2]);
     }
 
+    public static float[] add(float[] in1, float[] in2) {
+        float[] out = new float[3];
+        out[0] = in1[0] + in2[0];
+        out[1] = in1[1] + in2[1];
+        out[2] = in1[2] + in2[2];
+        return out;
+    }
+
+
     public Vector3f middle(Vector3f v) {
         return new Vector3f(
                 (p[0] + v.p[0]) / 2f,
@@ -48,12 +59,19 @@ public class Vector3f implements Cloneable {
                 (p[2] + v.p[2]) / 2f);
     }
 
+
     public Vector3f subtract(Vector3f v) {
-        return new Vector3f(
-                p[0] - v.p[0],
-                p[1] - v.p[1],
-                p[2] - v.p[2]);
+        return new Vector3f(subtract(p, v.p));
     }
+
+    public static float[] subtract(float[] minuend, float[] subtrahend) {
+        float[] result = new float[3];
+        result[0] = minuend[0] - subtrahend[0];
+        result[1] = minuend[1] - subtrahend[1];
+        result[2] = minuend[2] - subtrahend[2];
+        return result;
+    }
+
 
     public Vector3f crossProduct(Vector3f v) {
         return new Vector3f(
@@ -73,15 +91,28 @@ public class Vector3f implements Cloneable {
         return (float) Math.sqrt(p[0] * p[0] + p[1] * p[1] + p[2] * p[2]);
     }
 
+
     public Vector3f setLength(float length) {
         double d = Math.sqrt(p[0] * p[0] + p[1] * p[1] + p[2] * p[2]);
         if (d != 0) {
             double dl = length / d;
-            for (int i = 0; i < 3; i++) {
-                p[i] = (float) (p[i] * dl);
-            }
+            p[0] = (float) (p[0] * dl);
+            p[1] = (float) (p[1] * dl);
+            p[2] = (float) (p[2] * dl);
         }
         return this;
+    }
+
+    public static float[] setLength(float[] in, float length) {
+        float[] out = in.clone();
+        double d = Math.sqrt(out[0] * out[0] + out[1] * out[1] + out[2] * out[2]);
+        if (d != 0) {
+            double dl = length / d;
+            out[0] = (float) (out[0] * dl);
+            out[1] = (float) (out[1] * dl);
+            out[2] = (float) (out[2] * dl);
+        }
+        return out;
     }
 
 

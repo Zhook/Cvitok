@@ -6,17 +6,44 @@
         <attr name="maxValue" format="integer"/>
         <attr name="minLabel" format="string"/>
         <attr name="maxLabel" format="string"/>
+        <attr name="showMinMax" format="boolean"/>
         <attr name="defValue" format="integer"/>
+        <attr name="defFirstValue" format="integer"/>
+        <attr name="defSecondValue" format="integer"/>
         <attr name="postfix" format="string"/>
+        <attr name="textSize" format="dimension"/>
+        <attr name="textColor" format="integer"/>
+        <!-- engine-->
+        <attr name="thumbNormal" format="integer"/>
+        <attr name="thumbPressed" format="integer"/>
+        <attr name="progressColor" format="integer"/>
+        <attr name="backgroundLineColor" format="integer"/>
+        <attr name="activeLineWidth" format="dimension"/>
+        <attr name="inactiveLineWidth" format="dimension"/>
+        <attr name="thumbPosition" format="enum">
+            <enum name="Above" value="1"/>
+            <enum name="Center" value="0"/>
+            <enum name="Under" value="-1"/>
+        </attr>
+        <attr name="defFirstValueF" format="float"/>
+        <attr name="defSecondValueF" format="float"/>
     </declare-styleable>
     <declare-styleable name="Preference">
         <attr name="summaryFormat" format="string"/>
     </declare-styleable>
     <declare-styleable name="ColorPickerLayout">
-         <attr name="defRed" format="float"/>
+        <attr name="defRed" format="float"/>
         <attr name="defGreen" format="float"/>
         <attr name="defBlue" format="float"/>
         <attr name="defAlpha" format="float"/>
+    </declare-styleable>
+    <declare-styleable name="ColorRangePickerLayout">
+        <attr name="defMinRed" format="integer"/>
+        <attr name="defMaxRed" format="integer"/>
+        <attr name="defMinGreen" format="integer"/>
+        <attr name="defMaxGreen" format="integer"/>
+        <attr name="defMinBlue" format="integer"/>
+        <attr name="defMaxBlue" format="integer"/>
     </declare-styleable>
     <declare-styleable name="TwoDecoratedSeekBars">
         <attr name="key1" format="string"/>

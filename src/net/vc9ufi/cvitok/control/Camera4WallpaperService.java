@@ -30,7 +30,7 @@ public abstract class Camera4WallpaperService extends Camera4Renderer {
     }
 
     @Override
-    boolean workCondition() {
+    boolean needCalculate() {
         if (camera_lr_ != mMoveLeftOrRight) {
             camera_lr_ = mMoveLeftOrRight;
             return true;
@@ -39,11 +39,14 @@ public abstract class Camera4WallpaperService extends Camera4Renderer {
     }
 
     @Override
-    void work(Camera camera) {
+    Camera calculate(Camera oldCamera) {
         Quaternion q = Quaternion.fromAxisAndAngle(DEF_UP, camera_lr_);
 
-        camera.setCamera(Quaternion.rotate(mStartCamera.getCamera(), q));
-        camera.setUp(Quaternion.rotate(mStartCamera.getUp(), q));
+        oldCamera.setCamera(Quaternion.rotate(mStartCamera.getCamera(), q));
+        oldCamera.setTarget(Quaternion.rotate(mStartCamera.getTarget(), q));
+        oldCamera.setUp(Quaternion.rotate(mStartCamera.getUp(), q));
+
+        return oldCamera;
     }
 
 }

@@ -4,7 +4,7 @@ import java.security.InvalidParameterException;
 
 public class Camera implements Cloneable {
 
-    private volatile float[] camera = new float[]{0, 5, 5};
+    private volatile float[] camera = new float[]{0, 8, 0};
     private volatile float[] target = new float[]{0, 0, 0};
     private volatile float[] up = new float[]{0, 0, 1};
 

@@ -59,16 +59,6 @@ public class RandomParameters extends Parameters {
         this.maxRadiusOfPetal = max;
     }
 
-    public void setRandomBrightness(int min, int max) throws InvalidParameterException {
-        if (min < 0) throw new InvalidParameterException("min Brightness < 0");
-        if (max < 0) throw new InvalidParameterException("max Brightness < 0");
-        if (min > 100) throw new InvalidParameterException("min Brightness > 100");
-        if (max > 100) throw new InvalidParameterException("max Brightness > 100");
-
-        this.minBrightness = min;
-        this.maxBrightness = max;
-    }
-
     public void setRandomColor(int min, int max) throws InvalidParameterException {
         if (min < 0) throw new InvalidParameterException("min Color < 0");
         if (max < 0) throw new InvalidParameterException("max Color < 0");
@@ -218,8 +208,6 @@ public class RandomParameters extends Parameters {
         float[] color = new float[4];
         ExtRandomFloat random = new ExtRandomFloat();
 
-        float brightness = random.getFloat(minBrightness, maxBrightness) / 100;
-
         color[0] = random.getFloat(minRed, maxRed) / 100;
         color[1] = random.getFloat(minGreen, maxGreen) / 100;
         color[2] = random.getFloat(minBlue, maxBlue) / 100;
@@ -229,11 +217,6 @@ public class RandomParameters extends Parameters {
             color[3] = 1;
         }
 
-        float k = 3 * brightness / (color[0] + color[1] + color[2]);
-        for (int i = 0; i < 3; i++) {
-            color[i] *= k;
-            if (color[i] > 1) color[1] = 1;
-        }
         return color;
     }
 

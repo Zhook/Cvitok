@@ -8,17 +8,21 @@ import android.opengl.GLSurfaceView;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
+import android.widget.CompoundButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 import net.vc9ufi.cvitok.App;
 import net.vc9ufi.cvitok.R;
+import net.vc9ufi.cvitok.control.RotatingCamera;
 import net.vc9ufi.cvitok.render.ImplRenderer;
 import net.vc9ufi.cvitok.render.ScreenShot;
+import net.vc9ufi.cvitok.views.customviews.seekbars.DecoratedIntRangeSeekBar;
+import net.vc9ufi.cvitok.views.customviews.seekbars.SimpleRangeSeekBar;
 import net.vc9ufi.cvitok.views.dialogs.ScreenshotDialog;
 import net.vc9ufi.geometry.TrianglesBase;
 
@@ -39,6 +43,8 @@ public class FlowerFragment extends Fragment {
 
     private ProgressBar progressBar;
 
+    private RotatingCamera mCamera;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,11 +58,12 @@ public class FlowerFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_flower, container, false);
         context = inflater.getContext();
         app = (App) context.getApplicationContext();
+        mCamera = app.getPreviewCamera();
 
         GLSurfaceView glSurfaceView = (GLSurfaceView) view.findViewById(R.id.glFlower);
         trianglesBase = app.getPetalsBase();
 
-        glSurfaceView.setOnTouchListener(app.getPreviewCamera());
+        glSurfaceView.setOnTouchListener(mCamera);
 
         mFlowerRenderer = new ImplRenderer(trianglesBase) {
             @Override
@@ -106,52 +113,27 @@ public class FlowerFragment extends Fragment {
 
         progressBar = (ProgressBar) view.findViewById(R.id.mainActivity_progressBar);
 
-        initActionBar();
-
+        ToggleButton controlButton = (ToggleButton) view.findViewById(R.id.controlButton);
+        switch (mCamera.getMode()) {
+            case ROTATE:
+                controlButton.setChecked(true);
+                break;
+            case MOVE:
+                controlButton.setChecked(false);
+                break;
+        }
+        controlButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    mCamera.setMode(RotatingCamera.MODE.ROTATE);
+                } else {
+                    mCamera.setMode(RotatingCamera.MODE.MOVE);
+                }
+            }
+        });
 
         return view;
-    }
-
-    private void initActionBar() {
-        android.support.v7.app.ActionBar actionBar = ((ActionBarActivity) getActivity()).getSupportActionBar();
-        assert actionBar != null;
-
-        View customActionBarView = View.inflate(context, R.layout.actionbar_flower, null);
-
-        actionBar.setCustomView(customActionBarView);
-        actionBar.setDisplayShowCustomEnabled(true);
-
-        ImageButton b_screenshot = (ImageButton) customActionBarView.findViewById(R.id.actionBar_imageButton_screenshot);
-        b_screenshot.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mFlowerRenderer.makeScreenshot();
-            }
-        });
-
-        ImageButton b_repaint = (ImageButton) customActionBarView.findViewById(R.id.actionBar_imageButton_repaint);
-        b_repaint.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                app.sort();
-            }
-        });
-
-        ImageButton b_flower = (ImageButton) customActionBarView.findViewById(R.id.actionBar_imageButton_flower);
-        b_flower.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addFlowerToolsFragment();
-            }
-        });
-
-        ImageButton b_petals = (ImageButton) customActionBarView.findViewById(R.id.actionBar_imageButton_petals);
-        b_petals.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addPetalsToolsFragment();
-            }
-        });
     }
 
 
@@ -174,10 +156,10 @@ public class FlowerFragment extends Fragment {
     }
 
     private void setToolsFrame(android.support.v4.app.Fragment fragment) {
-        getActivity().getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.fragmentFlower_toolsFrame, fragment)
-                .commit();
+//        getActivity().getSupportFragmentManager()
+//                .beginTransaction()
+//                .replace(R.id.fragmentFlower_toolsFrame, fragment)
+//                .commit();
     }
 
 

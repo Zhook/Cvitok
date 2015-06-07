@@ -7,7 +7,7 @@ import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.util.Arrays;
 
-public class HUD {
+public class Sight {
 
 
     private float[] hudcolor;

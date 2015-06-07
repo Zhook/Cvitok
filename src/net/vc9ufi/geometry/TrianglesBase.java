@@ -7,6 +7,7 @@ import net.vc9ufi.cvitok.data.ExecutorServiceExt;
 import net.vc9ufi.cvitok.data.RangeComparator;
 import net.vc9ufi.cvitok.data.ThreadFactoryWithPriority;
 import net.vc9ufi.cvitok.render.Pointers;
+import net.vc9ufi.geometry.temp.HUD;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -40,6 +41,9 @@ public class TrianglesBase {
     final TrianglesList triangles = new TrianglesList();
 
     volatile boolean mTransparency = false;
+    volatile boolean mPaintHUD = false;
+    private HUD mHUD;
+    volatile private boolean mScreenshot = false;
     volatile float[] mBackground = new float[]{1, 1, 1, 1};
 
     volatile Camera camera = new Camera();
@@ -77,6 +81,34 @@ public class TrianglesBase {
 
     public LinkedList<Pointers> getTrianglesPointers() {
         return mPointers;
+    }
+
+
+    public boolean isScreenshot() {
+        boolean result = mScreenshot;
+        mScreenshot = false;
+        return result;
+    }
+
+    public void makeScreenshot() {
+        mScreenshot = true;
+    }
+
+
+    public boolean isPaindHUD() {
+        return mPaintHUD;
+    }
+
+    public void setPaintHUD(boolean hud) {
+        this.mPaintHUD = hud;
+    }
+
+    public HUD getHUD() {
+        return mHUD;
+    }
+
+    public void setHUD(HUD mHUD) {
+        this.mHUD = mHUD;
     }
 
 

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="navdrawer_menu_main">
+        <item>Перерисовать</item>
         <item>Сохранить</item>
         <item>Загрузить</item>
-        <item>Сгенерировать</item>
+        <item>Новый</item>
         <item>Установить обои</item>
     </string-array>
     <string-array name="navdrawer_menu_sub">
-        <item>Настройки программы</item>
+        <item>Настройки</item>
         <item>О программе</item>
     </string-array>
 </resources>

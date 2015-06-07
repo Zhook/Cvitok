@@ -17,6 +17,7 @@
     <string name="pref_light_on">Light on</string>
 
 
+    <string name="pref_background_color_title">Background color</string>
 
     <string name="pref_background_title">Background</string>
     <string name="pref_background_summary">Settings of background brightness</string>

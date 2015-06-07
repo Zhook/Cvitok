@@ -1,37 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="navdrawer_menu_main">
+        <item>Repaint</item>
         <item>Save</item>
         <item>Load</item>
-        <item>Generate</item>
+        <item>New</item>
         <item>Set wallpaper</item>
     </string-array>
     <string-array name="navdrawer_menu_sub">
-        <item>Setting app</item>
-        <item>About</item>
-    </string-array>
-    <string-array name="preference_period_list">
-        <item>Never</item>
-        <item>Every screen off</item>
-        <item>1 hour</item>
-        <item>2 hour</item>
-        <item>3 hour</item>
-        <item>4 hour</item>
-        <item>6 hour</item>
-        <item>8 hour</item>
-        <item>12 hour</item>
-        <item>24 hour</item>
-    </string-array>
-    <string-array name="preference_period_listValues">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
+        <item>Settings</item>
+        <item>placeholder</item>
     </string-array>
 </resources>

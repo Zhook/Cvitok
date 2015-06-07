@@ -19,7 +19,6 @@ public class ImplRenderer implements GLSurfaceView.Renderer {
     protected int width;
     protected int height;
     protected float[] def_background = new float[]{1, 1, 1, 1};
-    protected volatile boolean screenshot = false;
 
     private TrianglesBase mTrianglesBase;
 
@@ -36,6 +35,9 @@ public class ImplRenderer implements GLSurfaceView.Renderer {
         gl.glDepthFunc(GL10.GL_LEQUAL);
         gl.glEnable(GL10.GL_COLOR_MATERIAL);
         gl.glHint(GL10.GL_PERSPECTIVE_CORRECTION_HINT, GL10.GL_NICEST);
+        gl.glEnable(GL10.GL_TEXTURE_2D);
+
+
     }
 
     @Override
@@ -70,7 +72,6 @@ public class ImplRenderer implements GLSurfaceView.Renderer {
         GLU.gluLookAt(gl, c[0], c[1], c[2], t[0], t[1], t[2], u[0], u[1], u[2]);
 
 
-        //CHECKIT
         gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
         gl.glEnableClientState(GL10.GL_COLOR_ARRAY);
         gl.glEnableClientState(GL10.GL_NORMAL_ARRAY);
@@ -85,12 +86,22 @@ public class ImplRenderer implements GLSurfaceView.Renderer {
                     p.paint(gl);
             }
 
-        if (screenshot) {
+        gl.glDisableClientState(GL10.GL_VERTEX_ARRAY);
+        gl.glDisableClientState(GL10.GL_COLOR_ARRAY);
+        gl.glDisableClientState(GL10.GL_NORMAL_ARRAY);
+
+        if (mTrianglesBase.isScreenshot()) {
             ScreenShot screenShot = new ScreenShot(gl, width, height);
             Bitmap bitmap = screenShot.makeBitmap();
             onCaptureScreenShot(bitmap);
-            screenshot = false;
         }
+
+        if (mTrianglesBase.isPaindHUD()) {
+            //setupOrtho(gl);
+            mTrianglesBase.getHUD().loadGLTexture(gl);
+            mTrianglesBase.getHUD().draw(gl);
+        }
+
     }
 
     public void onCaptureScreenShot(Bitmap bitmap) {
@@ -139,7 +150,7 @@ public class ImplRenderer implements GLSurfaceView.Renderer {
         gl.glMatrixMode(GL10.GL_PROJECTION);
         gl.glPushMatrix();
         gl.glLoadIdentity();
-        GLU.gluOrtho2D(gl, width / 2, -width / 2, height / 2, -height / 2);
+        GLU.gluOrtho2D(gl, 0, width, 0, height);
         gl.glMatrixMode(GL10.GL_MODELVIEW);
         gl.glPushMatrix();
         gl.glLoadIdentity();
@@ -152,10 +163,6 @@ public class ImplRenderer implements GLSurfaceView.Renderer {
 
     public int getWidth() {
         return width;
-    }
-
-    public void makeScreenshot() {
-        screenshot = true;
     }
 
     private float[] getColor(GL10 gl, int x, int y) {

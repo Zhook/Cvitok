@@ -50,7 +50,7 @@ public class FragmentFlowerTools extends Fragment {
 
 
         ImageButton b_background = (ImageButton) view.findViewById(R.id.fragment_flower_imageButton_background);
-        b_background.setOnClickListener(backgroundOnClickListener);
+
 
 //        ImageButton b_light = (ImageButton) view.findViewById(R.id.fragment_flower_imageButton_light);
 //        b_light.setOnClickListener(new View.OnClickListener() {
@@ -60,17 +60,6 @@ public class FragmentFlowerTools extends Fragment {
 //            }
 //        });
     }
-
-    View.OnClickListener backgroundOnClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            ColorDialog.showPreference(
-                    getFragmentManager(),
-                    PreferenceManager.getDefaultSharedPreferences(context),
-                    getString(R.string.prefkey_def_background),
-                    getString(R.string.pref_def_background_title));
-        }
-    };
 
 
     private void setToolsFrame(android.support.v4.app.Fragment fragment) {

@@ -1,7 +1,7 @@
 package net.vc9ufi.cvitok.data;
 
-import net.vc9ufi.geometry.temp.GlObject;
 import net.vc9ufi.geometry.Vector3f;
+import net.vc9ufi.geometry.temp.GlObject;
 
 import java.security.InvalidParameterException;
 import java.util.Comparator;

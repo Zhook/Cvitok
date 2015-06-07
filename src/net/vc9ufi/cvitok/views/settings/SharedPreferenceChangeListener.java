@@ -23,20 +23,5 @@ public class SharedPreferenceChangeListener implements SharedPreferences.OnShare
             mTrianglesBase.setTransparency(sharedPreferences.getBoolean(key, true));
         }
 
-        if (key.contains(mContext.getString(R.string.prefkey_def_background))) {
-            float[] background = ((App) mContext.getApplicationContext()).getPetalsBase().getBackgroundColor().clone();
-            ColorPreference.changePart(sharedPreferences, key, background);
-            ((App) mContext.getApplicationContext()).getPetalsBase().setBackgroundColor(background);
-        }
-
-        if (key.contains(mContext.getString(R.string.prefkey_gen_background))) {
-            if (!sharedPreferences.getBoolean(key, true)) {
-                float[] background = ColorPreference.loadColor(
-                        sharedPreferences,
-                        mContext.getString(R.string.prefkey_def_background),
-                        null);
-                ((App) mContext.getApplicationContext()).getPetalsBase().setBackgroundColor(background);
-            }
-        }
     }
 }

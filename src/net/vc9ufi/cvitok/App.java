@@ -9,8 +9,10 @@ import net.vc9ufi.cvitok.control.RotatingCamera;
 import net.vc9ufi.cvitok.data.FlowerFile;
 import net.vc9ufi.cvitok.data.Parameters;
 import net.vc9ufi.cvitok.data.PetalsCalculator;
+import net.vc9ufi.cvitok.generator.FlowerGenerator;
 import net.vc9ufi.cvitok.views.settings.SharedPreferenceChangeListener;
 import net.vc9ufi.geometry.TrianglesBase;
+import net.vc9ufi.geometry.temp.HUD;
 
 public class App extends Application {
 
@@ -29,12 +31,12 @@ public class App extends Application {
 
         mPetalsBase = new TrianglesBase();
         mPetalsBase.setTransparency(sharedPreferences.getBoolean(getString(R.string.prefkey_transparency), true));
+        mPetalsBase.setHUD(new HUD(this));
 
         sharedPreferenceChangeListener = new SharedPreferenceChangeListener(this, mPetalsBase);
         sharedPreferences.registerOnSharedPreferenceChangeListener(sharedPreferenceChangeListener);
 
         Camera camera = new Camera();
-        camera.set(new float[]{0, 5, 5}, new float[]{0, 0, 0}, new float[]{0, 0, 1});
 
         mWallpaperCamera = new Camera4WallpaperService(camera) {
             @Override
@@ -53,6 +55,8 @@ public class App extends Application {
                 }
             }
         };
+
+        setFlower(new FlowerGenerator(this).generate());
     }
 
     public TrianglesBase getPetalsBase() {
@@ -73,12 +77,12 @@ public class App extends Application {
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
             int quality = sharedPreferences.getInt(getString(R.string.prefkey_quality), 10);
 
-            int i = 0;
-            for (; i < mFlower.petals.size(); i++) {
+            mPetalsBase.clear();
+            for (int i = 0; i < mFlower.petals.size(); i++) {
                 p = mFlower.petals.get(i);
                 mPetalsBase.add(new PetalsCalculator(p, quality, i), i);
             }
-            mPetalsBase.deleteWithTagMoreThan(i);
+
         }
     }
 

@@ -50,6 +50,7 @@
     <string name="fragment_flower_petals">Petals</string>
     <string name="fragment_flower_light">Light</string>
 
+    <string name="actionBar_imageButton_generate_description" translatable="false">Generate</string>
     <string name="actionBar_imageButton_screenshot_description" translatable="false">ScreenShot</string>
     <string name="actionBar_imageButton_repaint_description" translatable="false">Repaint</string>
     <string name="toast_screenshot_error">Error writing to the SD card</string>
@@ -68,8 +69,7 @@
     <string name="color_dialog_description_green">Green</string>
     <string name="color_dialog_description_blue">Blue</string>
     <string name="color_dialog_description_transparency">Transparency</string>
-
-
+    <string name="control_button_des" translatable="false">Control button</string>
 
 
 </resources>

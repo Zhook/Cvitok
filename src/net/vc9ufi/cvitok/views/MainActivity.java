@@ -13,10 +13,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
-import android.widget.ListView;
+import android.widget.*;
 import net.vc9ufi.cvitok.App;
 import net.vc9ufi.cvitok.R;
 import net.vc9ufi.cvitok.data.FlowerFile;
@@ -31,26 +28,22 @@ import net.vc9ufi.cvitok.views.settings.PrefActivity;
 
 public class MainActivity extends ActionBarActivity {
 
-    private App app;
+    private App mApp;
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
     private FlowerFragment mFlowerFragment = new FlowerFragment();
-    final static String WALLPAPER = "wallpaper";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
-        app = (App) getApplicationContext();
+        mApp = (App) getApplicationContext();
 
-        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
-        assert actionBar != null;
-        actionBar.setDisplayShowTitleEnabled(false);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeButtonEnabled(true);
 
+        initActionBar();
         initDrawerLayout();
+
 
         getSupportFragmentManager()
                 .beginTransaction()
@@ -92,6 +85,47 @@ public class MainActivity extends ActionBarActivity {
         mDrawerLayout.openDrawer(findViewById(R.id.left_drawer));
     }
 
+    private void initActionBar() {
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeButtonEnabled(true);
+
+        View customActionBarView = View.inflate(this, R.layout.actionbar_flower, null);
+
+        actionBar.setCustomView(customActionBarView);
+        actionBar.setDisplayShowCustomEnabled(true);
+
+        ImageButton b_screenshot = (ImageButton) customActionBarView.findViewById(R.id.actionBar_imageButton_screenshot);
+        b_screenshot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mApp.getPetalsBase().makeScreenshot();
+            }
+        });
+
+        ImageButton b_generate = (ImageButton) customActionBarView.findViewById(R.id.actionBar_imageButton_generate);
+        b_generate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AsyncTask<Void, Void, FlowerFile>() {
+                    @Override
+                    protected FlowerFile doInBackground(Void... params) {
+                        return new FlowerGenerator(mApp).generate();
+                    }
+
+                    @Override
+                    protected void onPostExecute(FlowerFile flowerFile) {
+                        super.onPostExecute(flowerFile);
+                        mApp.setFlower(flowerFile);
+                    }
+                }.execute();
+            }
+        });
+    }
+
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -126,7 +160,6 @@ public class MainActivity extends ActionBarActivity {
 
 
     private void SetUpWallpaper() {
-        SaveNLoad.save(this, app.getFlower(), WALLPAPER);
         Intent intent = new Intent();
         if (Build.VERSION.SDK_INT >= 16) {
             intent.setAction(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER);
@@ -144,36 +177,39 @@ public class MainActivity extends ActionBarActivity {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             switch (position) {
                 case 0:
-                    String name = app.getFlower().name;
+                    mApp.sort();
+                    break;
+                case 1:
+                    String name = mApp.getFlower().name;
                     if ((name == null) || (name.length() == 0)) {
-                        (new FileNameDialog(app) {
+                        (new FileNameDialog(mApp) {
 
                             @Override
                             protected void haveValidName(String name) {
-                                app.getFlower().name = name;
-                                SaveNLoad.save(app);
+                                mApp.getFlower().name = name;
+                                SaveNLoad.save(mApp);
                             }
                         }).show();
-                    } else SaveNLoad.save(app);
-                    break;
-                case 1:
-                    (new FileListDialog(MainActivity.this)).show();
+                    } else SaveNLoad.save(mApp);
                     break;
                 case 2:
+                    (new FileListDialog(MainActivity.this)).show();
+                    break;
+                case 3:
                     new AsyncTask<Void, Void, FlowerFile>() {
                         @Override
                         protected FlowerFile doInBackground(Void... params) {
-                            return new FlowerGenerator(app).generate();
+                            return new FlowerGenerator(mApp).generate();
                         }
 
                         @Override
                         protected void onPostExecute(FlowerFile flowerFile) {
                             super.onPostExecute(flowerFile);
-                            app.setFlower(flowerFile);
+                            mApp.setFlower(flowerFile);
                         }
                     }.execute();
                     break;
-                case 3:
+                case 4:
                     SetUpWallpaper();
                     break;
             }
@@ -187,6 +223,10 @@ public class MainActivity extends ActionBarActivity {
             switch (position) {
                 case 0:
                     startActivity(new Intent(MainActivity.this, PrefActivity.class));
+                    break;
+
+                case 1:
+
                     break;
             }
             mDrawerLayout.closeDrawers();
