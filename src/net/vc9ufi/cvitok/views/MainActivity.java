@@ -182,7 +182,7 @@ public class MainActivity extends ActionBarActivity {
                 case 1:
                     String name = mApp.getFlower().name;
                     if ((name == null) || (name.length() == 0)) {
-                        (new FileNameDialog(mApp) {
+                        (new FileNameDialog(MainActivity.this) {
 
                             @Override
                             protected void haveValidName(String name) {
@@ -223,10 +223,6 @@ public class MainActivity extends ActionBarActivity {
             switch (position) {
                 case 0:
                     startActivity(new Intent(MainActivity.this, PrefActivity.class));
-                    break;
-
-                case 1:
-
                     break;
             }
             mDrawerLayout.closeDrawers();

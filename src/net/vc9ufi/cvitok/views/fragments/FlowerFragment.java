@@ -36,9 +36,6 @@ public class FlowerFragment extends Fragment {
 
     private TrianglesBase trianglesBase;
 
-    private FragmentFlowerTools mFlowerTools;
-    private FragmentPetalsTools mPetalTools;
-
     private ImplRenderer mFlowerRenderer;
 
     private ProgressBar progressBar;
@@ -48,9 +45,6 @@ public class FlowerFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        mFlowerTools = new FragmentFlowerTools();
-        mPetalTools = new FragmentPetalsTools();
     }
 
     @Override
@@ -136,24 +130,6 @@ public class FlowerFragment extends Fragment {
         return view;
     }
 
-
-    private void addFlowerToolsFragment() {
-        if (mFlowerTools.isAdded()) {
-            setToolsFrame(PLACEHOLDER);
-
-        } else {
-            setToolsFrame(mFlowerTools);
-        }
-    }
-
-    private void addPetalsToolsFragment() {
-        if (mPetalTools.isAdded()) {
-            setToolsFrame(PLACEHOLDER);
-
-        } else {
-            setToolsFrame(mPetalTools);
-        }
-    }
 
     private void setToolsFrame(android.support.v4.app.Fragment fragment) {
 //        getActivity().getSupportFragmentManager()

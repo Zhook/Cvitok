@@ -59,6 +59,8 @@ public abstract class NameDialog {
                 if (wantToCloseDialog) nameDialog.dismiss();
             }
         });
+
+
     }
 
     public void setMsg(String msg) {

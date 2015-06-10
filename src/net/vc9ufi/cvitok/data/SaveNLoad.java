@@ -109,7 +109,9 @@ public class SaveNLoad {
     }
 
     public static boolean isFileExists(Context context, String name) {
-        return context.getFileStreamPath(name + EXT).exists();
+        File file = context.getFileStreamPath(name + EXT);
+        if (file == null) return false;
+        return file.exists();
     }
 
 

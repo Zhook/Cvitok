@@ -63,14 +63,4 @@
         <attr name="defValue2" format="integer"/>
         <attr name="postfix2" format="string"/>
     </declare-styleable>
-    <declare-styleable name="ColorDialog">
-        <attr name="keyRed" format="string"/>
-        <attr name="defValueRed" format="integer"/>
-        <attr name="keyGreen" format="string"/>
-        <attr name="defValueGreen" format="integer"/>
-        <attr name="keyBlue" format="string"/>
-        <attr name="defValueBlue" format="integer"/>
-        <attr name="keyAlpha" format="string"/>
-        <attr name="defValueAlpha" format="integer"/>
-    </declare-styleable>
 </resources>
