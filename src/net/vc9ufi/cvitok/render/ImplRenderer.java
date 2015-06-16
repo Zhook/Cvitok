@@ -28,7 +28,6 @@ public class ImplRenderer implements GLSurfaceView.Renderer {
 
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-
         gl.glShadeModel(GL10.GL_SMOOTH);
         gl.glEnable(GL10.GL_DEPTH_TEST);
         gl.glClearDepthf(1.0f);
@@ -36,8 +35,6 @@ public class ImplRenderer implements GLSurfaceView.Renderer {
         gl.glEnable(GL10.GL_COLOR_MATERIAL);
         gl.glHint(GL10.GL_PERSPECTIVE_CORRECTION_HINT, GL10.GL_NICEST);
         gl.glEnable(GL10.GL_TEXTURE_2D);
-
-
     }
 
     @Override
@@ -71,14 +68,15 @@ public class ImplRenderer implements GLSurfaceView.Renderer {
         float[] u = camera.getUp();
         GLU.gluLookAt(gl, c[0], c[1], c[2], t[0], t[1], t[2], u[0], u[1], u[2]);
 
+        light(gl);
 
         gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
         gl.glEnableClientState(GL10.GL_COLOR_ARRAY);
         gl.glEnableClientState(GL10.GL_NORMAL_ARRAY);
 
-//        gl.glMaterialfv(GL10.GL_FRONT_AND_BACK, GL10.GL_AMBIENT, new float[]{0.2f, 0.2f, 0.2f, 0.2f}, 0);
-//        gl.glMaterialfv(GL10.GL_FRONT_AND_BACK, GL10.GL_DIFFUSE, new float[]{1.0f, 1.0f, 1.0f, 1}, 0);
-//        gl.glMaterialfv(GL10.GL_FRONT_AND_BACK, GL10.GL_SPECULAR, new float[]{0.2f, 0.2f, 0.2f, 1}, 0);
+        gl.glMaterialfv(GL10.GL_FRONT_AND_BACK, GL10.GL_AMBIENT, new float[]{0.2f, 0.2f, 0.2f, 0.2f}, 0);
+        gl.glMaterialfv(GL10.GL_FRONT_AND_BACK, GL10.GL_DIFFUSE, new float[]{1.0f, 1.0f, 1.0f, 1}, 0);
+        gl.glMaterialfv(GL10.GL_FRONT_AND_BACK, GL10.GL_SPECULAR, new float[]{0.2f, 0.2f, 0.2f, 1}, 0);
         LinkedList<Pointers> pointers = mTrianglesBase.getTrianglesPointers();
         if (pointers != null)
             for (Pointers p : pointers) {
@@ -135,6 +133,17 @@ public class ImplRenderer implements GLSurfaceView.Renderer {
             gl.glDisable(GL10.GL_BLEND);
         }
     }
+
+
+    private void light(GL10 gl) {
+        if (mTrianglesBase.isLight()) {
+            gl.glEnable(GL10.GL_LIGHTING);
+            mTrianglesBase.getLight().lightOn(gl);
+        } else {
+            gl.glDisable(GL10.GL_LIGHTING);
+        }
+    }
+
 
     private void setupPerspective(GL10 gl) {
         gl.glMatrixMode(GL10.GL_PROJECTION);

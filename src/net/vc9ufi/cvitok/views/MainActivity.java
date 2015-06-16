@@ -3,10 +3,12 @@ package net.vc9ufi.cvitok.views;
 import android.app.WallpaperManager;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -82,7 +84,15 @@ public class MainActivity extends ActionBarActivity {
         mDrawerSubListView.setAdapter(adapterSub);
         mDrawerSubListView.setOnItemClickListener(new SubListItemOnClickListener());
 
-        mDrawerLayout.openDrawer(findViewById(R.id.left_drawer));
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(mApp);
+        if (sharedPreferences.getBoolean(getString(R.string.prefkey_first_launch), true)) {
+            mDrawerLayout.openDrawer(findViewById(R.id.left_drawer));
+
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean(getString(R.string.prefkey_first_launch), false);
+
+            editor.apply();
+        }
     }
 
     private void initActionBar() {

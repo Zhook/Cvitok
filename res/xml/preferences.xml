@@ -3,7 +3,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:my="http://schemas.android.com/apk/res/net.vc9ufi.cvitok">
 
-    <net.vc9ufi.cvitok.views.settings.dialogs.PreferenceDialogDecorSeekBar
+    <net.vc9ufi.cvitok.views.settings.dialogs.PrefDialogDecorSeekBar
             android:key="@string/prefkey_quality"
             android:title="@string/pref_quality_title"
             android:dialogTitle="@string/pref_quality_title"
@@ -14,18 +14,100 @@
             my:minLabel="@string/pref_quality_low"
             my:maxLabel="@string/pref_quality_high"/>
 
-    <SwitchPreference android:title="@string/pref_transparency_title"
-                      android:key="@string/prefkey_transparency"
-                      android:summaryOff="@string/pref_transparency_off"
-                      android:summaryOn="@string/pref_transparency_on"
-                      android:defaultValue="true"
-                      android:switchTextOff="@string/pref_off"
-                      android:switchTextOn="@string/pref_on"/>
+    <PreferenceScreen android:title="@string/pref_light_title">
+
+        <SwitchPreference
+                android:title="@string/pref_light_title"
+                android:key="@string/prefkey_enable_light"
+                android:summaryOff="@string/pref_light_off"
+                android:summaryOn="@string/pref_light_on"
+                android:defaultValue="true"
+                android:switchTextOff="@string/pref_off"
+                android:switchTextOn="@string/pref_on"/>
+        <net.vc9ufi.cvitok.views.settings.dialogs.PrefDialogColor
+                android:key="@string/prefkey_ambient_light"
+                android:title="@string/pref_light_ambient_title"
+                android:dialogTitle="@string/pref_light_ambient_title"
+                android:persistent="false"
+                android:dependency="@string/prefkey_enable_light"
+                my:defRed="30"
+                my:defGreen="30"
+                my:defBlue="30"/>
+        <net.vc9ufi.cvitok.views.settings.dialogs.PrefDialogColor
+                android:key="@string/prefkey_diffuse_light"
+                android:title="@string/pref_light_diffuse_title"
+                android:dialogTitle="@string/pref_light_diffuse_title"
+                android:persistent="false"
+                android:dependency="@string/prefkey_enable_light"
+                my:defRed="50"
+                my:defGreen="50"
+                my:defBlue="50"/>
+        <net.vc9ufi.cvitok.views.settings.dialogs.PrefDialogColor
+                android:key="@string/prefkey_specular_light"
+                android:title="@string/pref_light_specular_title"
+                android:dialogTitle="@string/pref_light_specular_title"
+                android:persistent="false"
+                android:dependency="@string/prefkey_enable_light"
+                my:defRed="10"
+                my:defGreen="10"
+                my:defBlue="10"/>
+
+    </PreferenceScreen>
+
+    <PreferenceScreen android:title="@string/pref_transparency_title">
+
+        <SwitchPreference
+                android:title="@string/pref_transparency_title"
+                android:key="@string/prefkey_transparency"
+                android:summaryOff="@string/pref_transparency_off"
+                android:summaryOn="@string/pref_transparency_on"
+                android:defaultValue="true"
+                android:switchTextOff="@string/pref_off"
+                android:switchTextOn="@string/pref_on"/>
+        <net.vc9ufi.cvitok.views.settings.dialogs.PrefDialogRangeSeekBar
+                android:title="@string/generator_petals_transparency_category_title"
+                android:dialogTitle="@string/generator_petals_transparency_category_title"
+                android:persistent="false"
+                android:key="@string/prefkey_generator_petals_transparency"
+                android:dependency="@string/prefkey_transparency"
+                my:postfix="@string/generator_petals_transparency_postfix"
+                my:defFirstValue="10"
+                my:defSecondValue="50"
+                my:minValue="0"
+                my:maxValue="100"/>
+        <net.vc9ufi.cvitok.views.settings.dialogs.PrefDialogRangeSeekBar
+                android:title="@string/generator_quantity_transparency_petals_category_title"
+                android:dialogTitle="@string/generator_quantity_transparency_petals_category_title"
+                android:persistent="false"
+                android:key="@string/prefkey_generator_quantity_transparency_petals"
+                android:dependency="@string/prefkey_transparency"
+                my:postfix="@string/generator_quantity_transparency_petals_postfix"
+                my:defFirstValue="10"
+                my:defSecondValue="50"
+                my:minValue="0"
+                my:maxValue="100"/>
+        <net.vc9ufi.cvitok.views.settings.dialogs.PrefDialogRangeSeekBar
+                android:title="@string/generator_portion_transparency_petal_category_title"
+                android:dialogTitle="@string/generator_portion_transparency_petal_category_title"
+                android:persistent="false"
+                android:key="@string/prefkey_generator_portion_transparency_petal"
+                android:dependency="@string/prefkey_transparency"
+                my:postfix="@string/generator_quantity_transparency_petals_postfix"
+                my:defFirstValue="10"
+                my:defSecondValue="50"
+                my:minValue="0"
+                my:maxValue="100"/>
+    </PreferenceScreen>
+
+        <!--<PreferenceScreen android:title="@string/pref_petals_title">-->
+
+
+        <!--</PreferenceScreen>-->
 
     <PreferenceCategory android:title="@string/generator_title"
                         android:summary="@string/generator_summary">
 
-        <net.vc9ufi.cvitok.views.settings.dialogs.PreferenceRangeColorPicker
+        <net.vc9ufi.cvitok.views.settings.dialogs.PrefDialogRangeColor
                 android:title="@string/pref_background_color_title"
                 android:dialogTitle="@string/pref_background_color_title"
                 android:persistent="false"
@@ -37,19 +119,19 @@
                 my:defMinBlue="90"
                 my:defMaxBlue="99"/>
 
-        <net.vc9ufi.cvitok.views.settings.dialogs.PreferenceRangeColorPicker
+        <net.vc9ufi.cvitok.views.settings.dialogs.PrefDialogRangeColor
                 android:title="@string/pref_gen_petals_color_screen_title"
                 android:dialogTitle="@string/pref_gen_petals_color_screen_title"
                 android:persistent="false"
                 android:key="@string/prefkey_generator_petals_color"
-                my:defMinRed="80"
+                my:defMinRed="60"
                 my:defMaxRed="100"
-                my:defMinGreen="40"
-                my:defMaxGreen="60"
-                my:defMinBlue="0"
-                my:defMaxBlue="20"/>
+                my:defMinGreen="20"
+                my:defMaxGreen="40"
+                my:defMinBlue="20"
+                my:defMaxBlue="60"/>
 
-        <net.vc9ufi.cvitok.views.settings.dialogs.PreferenceDialogRangeSeekBar
+        <net.vc9ufi.cvitok.views.settings.dialogs.PrefDialogRangeSeekBar
                 android:title="@string/generator_radius_category_title"
                 android:dialogTitle="@string/generator_radius_category_title"
                 android:persistent="false"
@@ -60,7 +142,7 @@
                 my:minValue="0"
                 my:maxValue="100"/>
 
-        <net.vc9ufi.cvitok.views.settings.dialogs.PreferenceDialogRangeSeekBar
+        <net.vc9ufi.cvitok.views.settings.dialogs.PrefDialogRangeSeekBar
                 android:title="@string/generator_circles_category_title"
                 android:dialogTitle="@string/generator_circles_category_title"
                 android:persistent="false"
@@ -70,7 +152,7 @@
                 my:minValue="1"
                 my:maxValue="10"/>
 
-        <net.vc9ufi.cvitok.views.settings.dialogs.PreferenceDialogRangeSeekBar
+        <net.vc9ufi.cvitok.views.settings.dialogs.PrefDialogRangeSeekBar
                 android:title="@string/generator_theta_category_title"
                 android:dialogTitle="@string/generator_theta_category_title"
                 android:persistent="false"
@@ -81,7 +163,7 @@
                 my:minValue="0"
                 my:maxValue="180"/>
 
-        <net.vc9ufi.cvitok.views.settings.dialogs.PreferenceDialogRangeSeekBar
+        <net.vc9ufi.cvitok.views.settings.dialogs.PrefDialogRangeSeekBar
                 android:title="@string/generator_quantity_petals_category_title"
                 android:dialogTitle="@string/generator_quantity_petals_category_title"
                 android:persistent="false"
@@ -91,7 +173,7 @@
                 my:minValue="1"
                 my:maxValue="30"/>
 
-        <net.vc9ufi.cvitok.views.settings.dialogs.PreferenceDialogRangeSeekBar
+        <net.vc9ufi.cvitok.views.settings.dialogs.PrefDialogRangeSeekBar
                 android:title="@string/generator_petals_convex_category_title"
                 android:dialogTitle="@string/generator_petals_convex_category_title"
                 android:persistent="false"
@@ -102,43 +184,7 @@
                 my:minValue="-100"
                 my:maxValue="100"/>
 
-        <PreferenceScreen android:title="@string/generator_petals_transparency_screen_title">
-
-            <net.vc9ufi.cvitok.views.settings.dialogs.PreferenceDialogRangeSeekBar
-                    android:title="@string/generator_petals_transparency_category_title"
-                    android:dialogTitle="@string/generator_petals_transparency_category_title"
-                    android:persistent="false"
-                    android:key="@string/prefkey_generator_petals_transparency"
-                    my:postfix="@string/generator_petals_transparency_postfix"
-                    my:defFirstValue="10"
-                    my:defSecondValue="50"
-                    my:minValue="0"
-                    my:maxValue="100"/>
-
-            <net.vc9ufi.cvitok.views.settings.dialogs.PreferenceDialogRangeSeekBar
-                    android:title="@string/generator_quantity_transparency_petals_category_title"
-                    android:dialogTitle="@string/generator_quantity_transparency_petals_category_title"
-                    android:persistent="false"
-                    android:key="@string/prefkey_generator_quantity_transparency_petals"
-                    my:postfix="@string/generator_quantity_transparency_petals_postfix"
-                    my:defFirstValue="10"
-                    my:defSecondValue="50"
-                    my:minValue="0"
-                    my:maxValue="100"/>
-
-            <net.vc9ufi.cvitok.views.settings.dialogs.PreferenceDialogRangeSeekBar
-                    android:title="@string/generator_portion_transparency_petal_category_title"
-                    android:dialogTitle="@string/generator_portion_transparency_petal_category_title"
-                    android:persistent="false"
-                    android:key="@string/prefkey_generator_portion_transparency_petal"
-                    my:postfix="@string/generator_quantity_transparency_petals_postfix"
-                    my:defFirstValue="10"
-                    my:defSecondValue="50"
-                    my:minValue="0"
-                    my:maxValue="100"/>
-
-        </PreferenceScreen>
-
     </PreferenceCategory>
+
 
 </PreferenceScreen>

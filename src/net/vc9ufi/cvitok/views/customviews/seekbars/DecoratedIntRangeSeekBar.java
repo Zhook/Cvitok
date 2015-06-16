@@ -99,7 +99,7 @@ public class DecoratedIntRangeSeekBar extends View {
 
         formatter = new Formatter(minValue, maxValue, mPostfix);
 
-        mRangeSeekBarCanvas.setAttributes(context, attributes);
+        mRangeSeekBarCanvas.setAttributes(context, attrs);
         mRangeSeekBarCanvas.setFirstValue(formatter.getFloatValue(firstValue));
         mRangeSeekBarCanvas.setSecondValue(formatter.getFloatValue(secondValue));
     }

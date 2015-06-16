@@ -70,6 +70,7 @@
     <string name="color_dialog_description_blue">Blue</string>
     <string name="color_dialog_description_transparency">Transparency</string>
     <string name="control_button_des" translatable="false">Control button</string>
+    <string name="pref_light_title">Light</string>
 
 
 </resources>

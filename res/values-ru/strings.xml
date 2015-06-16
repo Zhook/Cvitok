@@ -119,5 +119,8 @@
     <string name="pref_gen_petals_red_min_title">Минимум красного</string>
     <string name="pref_gen_petals_red_title">Красный</string>
     <string name="pref_background_color_title">Цвет фона</string>
+    <string name="pref_light_ambient_title">Фоновый свет</string>
+    <string name="pref_light_diffuse_title">Рассеянный свет</string>
+    <string name="pref_light_specular_title">Отраженный свет</string>
 
 </resources>

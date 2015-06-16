@@ -8,8 +8,8 @@ import net.vc9ufi.cvitok.R;
 import net.vc9ufi.cvitok.data.FlowerFile;
 import net.vc9ufi.cvitok.data.Light;
 import net.vc9ufi.cvitok.data.Parameters;
-import net.vc9ufi.cvitok.views.settings.dialogs.PreferenceDialogRangeSeekBar;
-import net.vc9ufi.cvitok.views.settings.dialogs.PreferenceRangeColorPicker;
+import net.vc9ufi.cvitok.views.settings.dialogs.PrefDialogRangeSeekBar;
+import net.vc9ufi.cvitok.views.settings.dialogs.PrefDialogRangeColor;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
@@ -62,41 +62,41 @@ public class FlowerGenerator {
 
     public float[] rowBackground(SharedPreferences sharedPreferences) {
         int[] minColor = new int[]{90, 90, 90};
-        minColor = PreferenceRangeColorPicker.getMinColor(context, sharedPreferences, R.string.prefkey_background_color, minColor);
+        minColor = PrefDialogRangeColor.getMinColor(context, sharedPreferences, R.string.prefkey_background_color, minColor);
         int[] maxColor = new int[]{99, 99, 99};
-        maxColor = PreferenceRangeColorPicker.getMaxColor(context, sharedPreferences, R.string.prefkey_background_color, maxColor);
+        maxColor = PrefDialogRangeColor.getMaxColor(context, sharedPreferences, R.string.prefkey_background_color, maxColor);
         return getRandomColor(minColor, maxColor);
     }
 
     public int rowCirclesQuantity(SharedPreferences sharedPreferences) {
-        int min = PreferenceDialogRangeSeekBar.getFirstValue(context, sharedPreferences, R.string.prefkey_generator_circles, 4);
-        int max = PreferenceDialogRangeSeekBar.getSecondValue(context, sharedPreferences, R.string.prefkey_generator_circles, 7);
+        int min = PrefDialogRangeSeekBar.getFirstValue(context, sharedPreferences, R.string.prefkey_generator_circles, 4);
+        int max = PrefDialogRangeSeekBar.getSecondValue(context, sharedPreferences, R.string.prefkey_generator_circles, 7);
         return getRandomQuantity(min, max);
     }
 
     private ArrayList<Parameters> row(SharedPreferences sharedPreferences) {
         int circles = rowCirclesQuantity(sharedPreferences);
-        int minTheta = PreferenceDialogRangeSeekBar.getFirstValue(context, sharedPreferences, R.string.prefkey_generator_theta, 10);
-        int maxTheta = PreferenceDialogRangeSeekBar.getSecondValue(context, sharedPreferences, R.string.prefkey_generator_theta, 120);
-        int minRadius = PreferenceDialogRangeSeekBar.getFirstValue(context, sharedPreferences, R.string.prefkey_generator_radius_of_petals, 20);
-        int maxRadius = PreferenceDialogRangeSeekBar.getSecondValue(context, sharedPreferences, R.string.prefkey_generator_radius_of_petals, 60);
-        int minQuantity = PreferenceDialogRangeSeekBar.getFirstValue(context, sharedPreferences, R.string.prefkey_generator_petals_in_circles, 6);
-        int maxQuantity = PreferenceDialogRangeSeekBar.getSecondValue(context, sharedPreferences, R.string.prefkey_generator_petals_in_circles, 11);
-        int minConvex = PreferenceDialogRangeSeekBar.getFirstValue(context, sharedPreferences, R.string.prefkey_generator_petals_convex, -30);
-        int maxConvex = PreferenceDialogRangeSeekBar.getSecondValue(context, sharedPreferences, R.string.prefkey_generator_petals_convex, 30);
+        int minTheta = PrefDialogRangeSeekBar.getFirstValue(context, sharedPreferences, R.string.prefkey_generator_theta, 10);
+        int maxTheta = PrefDialogRangeSeekBar.getSecondValue(context, sharedPreferences, R.string.prefkey_generator_theta, 120);
+        int minRadius = PrefDialogRangeSeekBar.getFirstValue(context, sharedPreferences, R.string.prefkey_generator_radius_of_petals, 20);
+        int maxRadius = PrefDialogRangeSeekBar.getSecondValue(context, sharedPreferences, R.string.prefkey_generator_radius_of_petals, 60);
+        int minQuantity = PrefDialogRangeSeekBar.getFirstValue(context, sharedPreferences, R.string.prefkey_generator_petals_in_circles, 6);
+        int maxQuantity = PrefDialogRangeSeekBar.getSecondValue(context, sharedPreferences, R.string.prefkey_generator_petals_in_circles, 11);
+        int minConvex = PrefDialogRangeSeekBar.getFirstValue(context, sharedPreferences, R.string.prefkey_generator_petals_convex, -30);
+        int maxConvex = PrefDialogRangeSeekBar.getSecondValue(context, sharedPreferences, R.string.prefkey_generator_petals_convex, 30);
 
 
-        int[] minColor = new int[]{80, 50, 10};
-        minColor = PreferenceRangeColorPicker.getMinColor(context, sharedPreferences, R.string.prefkey_generator_petals_color, minColor);
-        int[] maxColor = new int[]{100, 70, 30};
-        maxColor = PreferenceRangeColorPicker.getMaxColor(context, sharedPreferences, R.string.prefkey_generator_petals_color, maxColor);
+        int[] minColor = new int[]{60, 20, 20};
+        minColor = PrefDialogRangeColor.getMinColor(context, sharedPreferences, R.string.prefkey_generator_petals_color, minColor);
+        int[] maxColor = new int[]{100, 40, 60};
+        maxColor = PrefDialogRangeColor.getMaxColor(context, sharedPreferences, R.string.prefkey_generator_petals_color, maxColor);
 
-        int minTransparency = PreferenceDialogRangeSeekBar.getFirstValue(context, sharedPreferences, R.string.prefkey_generator_petals_transparency, 0);
-        int maxTransparency = PreferenceDialogRangeSeekBar.getSecondValue(context, sharedPreferences, R.string.prefkey_generator_petals_transparency, 50);
-        int minPortionTransparency = PreferenceDialogRangeSeekBar.getFirstValue(context, sharedPreferences, R.string.prefkey_generator_portion_transparency_petal, 0);
-        int maxPortionTransparency = PreferenceDialogRangeSeekBar.getSecondValue(context, sharedPreferences, R.string.prefkey_generator_portion_transparency_petal, 50);
-        int minQuantityTransparency = PreferenceDialogRangeSeekBar.getFirstValue(context, sharedPreferences, R.string.prefkey_generator_quantity_transparency_petals, 0);
-        int maxQuantityTransparency = PreferenceDialogRangeSeekBar.getSecondValue(context, sharedPreferences, R.string.prefkey_generator_quantity_transparency_petals, 50);
+        int minTransparency = PrefDialogRangeSeekBar.getFirstValue(context, sharedPreferences, R.string.prefkey_generator_petals_transparency, 0);
+        int maxTransparency = PrefDialogRangeSeekBar.getSecondValue(context, sharedPreferences, R.string.prefkey_generator_petals_transparency, 50);
+        int minPortionTransparency = PrefDialogRangeSeekBar.getFirstValue(context, sharedPreferences, R.string.prefkey_generator_portion_transparency_petal, 0);
+        int maxPortionTransparency = PrefDialogRangeSeekBar.getSecondValue(context, sharedPreferences, R.string.prefkey_generator_portion_transparency_petal, 50);
+        int minQuantityTransparency = PrefDialogRangeSeekBar.getFirstValue(context, sharedPreferences, R.string.prefkey_generator_quantity_transparency_petals, 0);
+        int maxQuantityTransparency = PrefDialogRangeSeekBar.getSecondValue(context, sharedPreferences, R.string.prefkey_generator_quantity_transparency_petals, 50);
         double[][] packAngles = rowVerticalSegments(minTheta, maxTheta, circles);
 
         ArrayList<Parameters> parameters = new ArrayList<>();

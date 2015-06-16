@@ -26,7 +26,6 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
 
-
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         mPetalsBase = new TrianglesBase();

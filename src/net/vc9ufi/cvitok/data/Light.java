@@ -8,25 +8,25 @@ import javax.microedition.khronos.opengles.GL10;
 
 public class Light {
     @SerializedName("Position")
-    public float[] position;
+    public volatile float[] position;
     @SerializedName("Direction")
-    public float[] direction;
+    public volatile float[] direction;
     @SerializedName("SpotCutoff")
-    public float spotCutoff;
+    public volatile float spotCutoff;
     @SerializedName("Ambient")
-    public float[] ambient;
+    public volatile float[] ambient;
     @SerializedName("Diffuse")
-    public float[] diffuse;
+    public volatile float[] diffuse;
     @SerializedName("Specular")
-    public float[] specular;
+    public volatile float[] specular;
 
     private View.OnTouchListener mOnTouchListener;
 
     public Light() {
-        position = new float[]{3, 7, 10, 1};
+        position = new float[]{0, 6, 10, 1};
         direction = new float[]{0, 0, -1};
-        spotCutoff = 90f;
-        ambient = new float[]{0.1f, 0.1f, 0.1f, 1};
+        spotCutoff = 180f;
+        ambient = new float[]{0.3f, 0.3f, 0.3f, 1};
         diffuse = new float[]{0.7f, 0.7f, 0.7f, 1};
         specular = new float[]{0.1f, 0.1f, 0.1f, 1};
 
@@ -50,6 +50,8 @@ public class Light {
 
     public void lightOn(GL10 gl) {
         gl.glEnable(GL10.GL_LIGHT0);
+        //gl.glLightModelf(GL10.GL_LIGHT_MODEL_TWO_SIDE, 1f);
+        gl.glLightModelf(GL10.GL_LIGHT_MODEL_TWO_SIDE, GL10.GL_TRUE);
         gl.glLightfv(GL10.GL_LIGHT0, GL10.GL_POSITION, position, 0);
         gl.glLightfv(GL10.GL_LIGHT0, GL10.GL_SPOT_DIRECTION, direction, 0);
         gl.glLightf(GL10.GL_LIGHT0, GL10.GL_SPOT_CUTOFF, spotCutoff);

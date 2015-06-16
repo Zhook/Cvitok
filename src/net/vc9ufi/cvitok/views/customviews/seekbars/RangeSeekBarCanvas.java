@@ -72,10 +72,11 @@ public class RangeSeekBarCanvas {
 
 
     public RangeSeekBarCanvas(Context context, AttributeSet attrs) {
-        setAttributes(context, context.obtainStyledAttributes(attrs, R.styleable.DecoratedSeekBar, 0, 0));
+        setAttributes(context, attrs);
     }
 
-    public void setAttributes(Context context, TypedArray attributes) {
+    public void setAttributes(Context context, AttributeSet attrs) {
+        final TypedArray attributes = context.obtainStyledAttributes(attrs, R.styleable.DecoratedSeekBar, 0, 0);
         int idThumbNormal;
         int idThumbPressed;
         try {

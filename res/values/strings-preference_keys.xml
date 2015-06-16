@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="prefkey_first_launch" translatable="false">prefkey_first_launch</string>
+
     <string name="prefkey_lastfile" translatable="false">preference_key_last_flower</string>
 
     <string name="prefkey_graphics" translatable="false">preference_key_graphics</string>
 
     <string name="prefkey_transparency" translatable="false">preference_key_transparency</string>
     <string name="prefkey_quality" translatable="false">preference_key_quality</string>
+
+    <!--Light    -->
+    <string name="prefkey_enable_light" translatable="false">prefkey_enable_light</string>
+    <string name="prefkey_ambient_light" translatable="false">prefkey_ambient_light</string>
+    <string name="prefkey_diffuse_light" translatable="false">prefkey_diffuse_light</string>
+    <string name="prefkey_specular_light" translatable="false">prefkey_specular_light</string>
+
 
     <!-- Generator settings-->
 
@@ -18,9 +27,14 @@
     <string name="prefkey_generator_petals_convex" translatable="false">prefkey_generator_petals_convex</string>
 
     <!--Transparency-->
-    <string name="prefkey_generator_petals_transparency" translatable="false">prefkey_generator_petals_transparency</string>
-    <string name="prefkey_generator_quantity_transparency_petals" translatable="false">prefkey_generator_quantity_transparency_petals</string>
-    <string name="prefkey_generator_portion_transparency_petal" translatable="false">prefkey_generator_portion_transparency_petal</string>
+    <string name="prefkey_generator_petals_transparency" translatable="false">prefkey_generator_petals_transparency
+    </string>
+    <string name="prefkey_generator_quantity_transparency_petals" translatable="false">
+        prefkey_generator_quantity_transparency_petals
+    </string>
+    <string name="prefkey_generator_portion_transparency_petal" translatable="false">
+        prefkey_generator_portion_transparency_petal
+    </string>
 
     <!--DOIT -->
     <string name="prefkey_lookat_camera" translatable="false">prefkey_lookat_camera</string>

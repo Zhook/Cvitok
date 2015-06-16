@@ -10,7 +10,7 @@
 
     <string name="pref_quality_title">Качество</string>
 
-    <string name="pref_light_title">Свет(не работает)</string>
+    <string name="pref_light_title">Освещение</string>
     <string name="pref_light_off">Свет выключен</string>
     <string name="pref_light_on">Свет включен</string>
 

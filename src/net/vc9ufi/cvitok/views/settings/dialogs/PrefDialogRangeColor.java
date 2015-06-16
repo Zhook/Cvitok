@@ -8,15 +8,15 @@ import android.os.Build;
 import android.preference.DialogPreference;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewParent;
 import net.vc9ufi.cvitok.R;
 import net.vc9ufi.cvitok.views.customviews.seekbars.RangeColorPicker;
 
 import java.security.InvalidParameterException;
 
 
-public class PreferenceRangeColorPicker extends DialogPreference {
+public class PrefDialogRangeColor extends DialogPreference {
+
+    public static final int DEFAULT_LAYOUT_RESOURCE_ID = R.layout.preference_color_range;
 
     public static final String MIN_KEY = "_min";
     public static final String MAX_KEY = "_max";
@@ -29,18 +29,18 @@ public class PreferenceRangeColorPicker extends DialogPreference {
 
     private RangeColorPicker mRangeColorPicker;
 
-    public PreferenceRangeColorPicker(Context context, AttributeSet attrs) {
+    public PrefDialogRangeColor(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs);
     }
 
-    public PreferenceRangeColorPicker(Context context, AttributeSet attrs, int defStyleAttr) {
+    public PrefDialogRangeColor(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context, attrs);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public PreferenceRangeColorPicker(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public PrefDialogRangeColor(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init(context, attrs);
     }
@@ -66,7 +66,7 @@ public class PreferenceRangeColorPicker extends DialogPreference {
     @Override
     protected View onCreateDialogView() {
 
-        mRangeColorPicker = (RangeColorPicker) View.inflate(getContext(), R.layout.preference_color_range, null);
+        mRangeColorPicker = (RangeColorPicker) View.inflate(getContext(), DEFAULT_LAYOUT_RESOURCE_ID, null);
 
         int[] minColor = mRangeColorPicker.getFirstColor();
         int[] maxColor = mRangeColorPicker.getSecondColor();
@@ -83,7 +83,6 @@ public class PreferenceRangeColorPicker extends DialogPreference {
 
         return mRangeColorPicker;
     }
-
 
 
     @Override
@@ -113,9 +112,9 @@ public class PreferenceRangeColorPicker extends DialogPreference {
         if (defColor.length != 3) throw new InvalidParameterException("defColor.length must be 3");
 
         int[] result = new int[3];
-        result[0] = sharedPreferences.getInt(context.getString(id) + MIN_KEY + RED_KEY, result[0]);
-        result[1] = sharedPreferences.getInt(context.getString(id) + MIN_KEY + GREEN_KEY, result[1]);
-        result[2] = sharedPreferences.getInt(context.getString(id) + MIN_KEY + BLUE_KEY, result[2]);
+        result[0] = sharedPreferences.getInt(context.getString(id) + MIN_KEY + RED_KEY, defColor[0]);
+        result[1] = sharedPreferences.getInt(context.getString(id) + MIN_KEY + GREEN_KEY, defColor[1]);
+        result[2] = sharedPreferences.getInt(context.getString(id) + MIN_KEY + BLUE_KEY, defColor[2]);
 
         return result;
     }
@@ -125,9 +124,9 @@ public class PreferenceRangeColorPicker extends DialogPreference {
         if (defColor.length != 3) throw new InvalidParameterException("defColor.length must be 3");
 
         int[] result = new int[3];
-        result[0] = sharedPreferences.getInt(context.getString(id) + MAX_KEY + RED_KEY, result[0]);
-        result[1] = sharedPreferences.getInt(context.getString(id) + MAX_KEY + GREEN_KEY, result[1]);
-        result[2] = sharedPreferences.getInt(context.getString(id) + MAX_KEY + BLUE_KEY, result[2]);
+        result[0] = sharedPreferences.getInt(context.getString(id) + MAX_KEY + RED_KEY, defColor[0]);
+        result[1] = sharedPreferences.getInt(context.getString(id) + MAX_KEY + GREEN_KEY, defColor[1]);
+        result[2] = sharedPreferences.getInt(context.getString(id) + MAX_KEY + BLUE_KEY, defColor[2]);
 
         return result;
     }

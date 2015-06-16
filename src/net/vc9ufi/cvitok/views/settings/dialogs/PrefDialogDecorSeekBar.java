@@ -10,7 +10,9 @@ import android.view.View;
 import net.vc9ufi.cvitok.R;
 import net.vc9ufi.cvitok.views.customviews.DecoratedSeekBar;
 
-public class PreferenceDialogDecorSeekBar extends DialogPreference {
+public class PrefDialogDecorSeekBar extends DialogPreference {
+
+    public static final int DEFAULT_LAYOUT_RESOURCE_ID = R.layout.preference_dialog_decorseekbar;
 
     private String mDescription = DecoratedSeekBar.DEF_DESCRIPTION;
     private int mMinValue = DecoratedSeekBar.DEF_MIN_VALUE;
@@ -23,18 +25,18 @@ public class PreferenceDialogDecorSeekBar extends DialogPreference {
 
     private DecoratedSeekBar mDecoratedSeekBar;
 
-    public PreferenceDialogDecorSeekBar(Context context, AttributeSet attrs) {
+    public PrefDialogDecorSeekBar(Context context, AttributeSet attrs) {
         super(context, attrs);
         readAttributes(attrs);
     }
 
-    public PreferenceDialogDecorSeekBar(Context context, AttributeSet attrs, int defStyleAttr) {
+    public PrefDialogDecorSeekBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         readAttributes(attrs);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public PreferenceDialogDecorSeekBar(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public PrefDialogDecorSeekBar(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         readAttributes(attrs);
     }
@@ -79,7 +81,7 @@ public class PreferenceDialogDecorSeekBar extends DialogPreference {
     protected View onCreateDialogView() {
         int value = getPersistedInt(mDefValue);
 
-        View view = View.inflate(getContext(), R.layout.preference_dialog_decorseekbar, null);
+        View view = View.inflate(getContext(), DEFAULT_LAYOUT_RESOURCE_ID, null);
 
         mDecoratedSeekBar = (DecoratedSeekBar) view.findViewById(R.id.decSeekBar);
         mDecoratedSeekBar.setDescription(mDescription);

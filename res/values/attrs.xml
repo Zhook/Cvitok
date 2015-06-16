@@ -32,10 +32,9 @@
         <attr name="summaryFormat" format="string"/>
     </declare-styleable>
     <declare-styleable name="ColorPickerLayout">
-        <attr name="defRed" format="float"/>
-        <attr name="defGreen" format="float"/>
-        <attr name="defBlue" format="float"/>
-        <attr name="defAlpha" format="float"/>
+        <attr name="defRed" format="integer"/>
+        <attr name="defGreen" format="integer"/>
+        <attr name="defBlue" format="integer"/>
     </declare-styleable>
     <declare-styleable name="ColorRangePickerLayout">
         <attr name="defMinRed" format="integer"/>
@@ -44,23 +43,5 @@
         <attr name="defMaxGreen" format="integer"/>
         <attr name="defMinBlue" format="integer"/>
         <attr name="defMaxBlue" format="integer"/>
-    </declare-styleable>
-    <declare-styleable name="TwoDecoratedSeekBars">
-        <attr name="key1" format="string"/>
-        <attr name="description1" format="string"/>
-        <attr name="minValue1" format="integer"/>
-        <attr name="maxValue1" format="integer"/>
-        <attr name="minLabel1" format="string"/>
-        <attr name="maxLabel1" format="string"/>
-        <attr name="defValue1" format="integer"/>
-        <attr name="postfix1" format="string"/>
-        <attr name="key2" format="string"/>
-        <attr name="description2" format="string"/>
-        <attr name="minValue2" format="integer"/>
-        <attr name="maxValue2" format="integer"/>
-        <attr name="minLabel2" format="string"/>
-        <attr name="maxLabel2" format="string"/>
-        <attr name="defValue2" format="integer"/>
-        <attr name="postfix2" format="string"/>
     </declare-styleable>
 </resources>

@@ -2,10 +2,7 @@ package net.vc9ufi.geometry;
 
 
 import net.vc9ufi.cvitok.control.Camera;
-import net.vc9ufi.cvitok.data.Calculator;
-import net.vc9ufi.cvitok.data.ExecutorServiceExt;
-import net.vc9ufi.cvitok.data.RangeComparator;
-import net.vc9ufi.cvitok.data.ThreadFactoryWithPriority;
+import net.vc9ufi.cvitok.data.*;
 import net.vc9ufi.cvitok.render.Pointers;
 import net.vc9ufi.geometry.temp.HUD;
 
@@ -41,8 +38,14 @@ public class TrianglesBase {
     final TrianglesList triangles = new TrianglesList();
 
     volatile boolean mTransparency = false;
+
     volatile boolean mPaintHUD = false;
     private HUD mHUD;
+
+    private Light mLight = new Light();
+    volatile boolean mLightOn = true;
+
+
     volatile private boolean mScreenshot = false;
     volatile float[] mBackground = new float[]{1, 1, 1, 1};
 
@@ -58,6 +61,8 @@ public class TrianglesBase {
         return mBackground;
     }
 
+
+
     public boolean isTransparency() {
         return mTransparency;
     }
@@ -65,6 +70,21 @@ public class TrianglesBase {
     public void setTransparency(boolean transparency) {
         this.mTransparency = transparency;
     }
+
+
+    public boolean isLight() {
+        return mLightOn;
+    }
+
+    public void setLightOn(boolean light) {
+        this.mLightOn = light;
+    }
+
+    public Light getLight() {
+        return mLight;
+    }
+
+
 
     public void setLookAt(Camera camera) {
         this.camera = camera;
@@ -78,6 +98,7 @@ public class TrianglesBase {
     public Camera getCamera() {
         return camera;
     }
+
 
     public LinkedList<Pointers> getTrianglesPointers() {
         return mPointers;

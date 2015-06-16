@@ -11,7 +11,9 @@ import android.view.View;
 import net.vc9ufi.cvitok.R;
 import net.vc9ufi.cvitok.views.customviews.seekbars.DecoratedIntRangeSeekBar;
 
-public class PreferenceDialogRangeSeekBar extends DialogPreference {
+public class PrefDialogRangeSeekBar extends DialogPreference {
+
+    public static final int DEFAULT_LAYOUT_RESOURCE_ID = R.layout.preference_range_seekbar;
 
     public static final String FIRST_KEY = "_first";
     public static final String SECOND_KEY = "_second";
@@ -24,18 +26,18 @@ public class PreferenceDialogRangeSeekBar extends DialogPreference {
     private int maxValue;
 
 
-    public PreferenceDialogRangeSeekBar(Context context, AttributeSet attrs) {
+    public PrefDialogRangeSeekBar(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(attrs);
     }
 
-    public PreferenceDialogRangeSeekBar(Context context, AttributeSet attrs, int defStyleAttr) {
+    public PrefDialogRangeSeekBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(attrs);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public PreferenceDialogRangeSeekBar(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public PrefDialogRangeSeekBar(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init(attrs);
     }
@@ -56,7 +58,7 @@ public class PreferenceDialogRangeSeekBar extends DialogPreference {
 
     @Override
     protected View onCreateDialogView() {
-        rangeSeekBar = (DecoratedIntRangeSeekBar) View.inflate(getContext(), R.layout.preference_range_seekbar, null);
+        rangeSeekBar = (DecoratedIntRangeSeekBar) View.inflate(getContext(), DEFAULT_LAYOUT_RESOURCE_ID, null);
 
         SharedPreferences sharedPreferences = getSharedPreferences();
         firstValue = sharedPreferences.getInt(getKey() + FIRST_KEY, firstValue);
@@ -91,13 +93,13 @@ public class PreferenceDialogRangeSeekBar extends DialogPreference {
 
     public static int getFirstValue(Context context, SharedPreferences sharedPreferences, int id, int defValue) {
         return sharedPreferences.getInt(
-                context.getString(id) + PreferenceDialogRangeSeekBar.FIRST_KEY,
+                context.getString(id) + PrefDialogRangeSeekBar.FIRST_KEY,
                 defValue);
     }
 
     public static int getSecondValue(Context context, SharedPreferences sharedPreferences, int id, int defValue) {
         return sharedPreferences.getInt(
-                context.getString(id) + PreferenceDialogRangeSeekBar.SECOND_KEY,
+                context.getString(id) + PrefDialogRangeSeekBar.SECOND_KEY,
                 defValue);
     }
 }
